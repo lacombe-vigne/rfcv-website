@@ -80,22 +80,22 @@ $(document).ready(function(){
 				$('#footer_lien_contents').append(list_footer);
 			}
 			if(key==="login_page_fr"){
-				var site_loginpage = '	<form action="./php/login.php" method="post" >'+
+				var site_loginpage = '	<form>'+
 											'<table class="site-login-form">'+
 												'<tr>'+
 													'<td colspan="2" class="title-login">'+value.title+'</td>'+
 												'</tr>'+
 												'<tr>'+
 													'<td>'+value.username+'</td>'+
-													'<td><input type="text" name="user" class="login-input"/></td>'+
+													'<td><input type="text" name="user" id="login_name" class="login-input"/></td>'+
 												'</tr>'+
 													'<td>'+value.password+'</td>'+
-													'<td><input type="password" name="password" class="login-input"/><input type="hidden" value="FR" name="langue"></td>'+
+													'<td><input type="password" name="password" id="login_pass" class="login-input"/><input type="hidden" id="login_langue" value="FR" name="langue"></td>'+
 													
 												'<tr>'+
 												'<tr>'+
 													'<td></td>'+
-													'<td  align="center"><input type="submit" value="'+value.button+'" class="button"/></td>'+
+													'<td  align="center"><input type="submit" onclick="$.login()" value="'+value.button+'" class="button"/></td>'+
 												'</tr>'+
 												'</tr>'+
 											'</table>'+

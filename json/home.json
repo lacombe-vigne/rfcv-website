@@ -1,4 +1,4 @@
-﻿{
+{
 	"title_fr":
 		{
 			"main_title":"Collections de Vigne en France",
@@ -52,9 +52,9 @@
 			"read_more":"<a href='Partenaires.php'>Read more</a>"
 		},
 	"accueil_part2_fr":{
-			"title":"Charte de gestion des ressources vigne",
+			"title":"La charte de gestion des ressources vigne",
 			"sous_title":"Le document de référence",
-			"contents":"Ce texte de référence a été rédigé en 1999 sous l'égide du Bureau des Ressources Génétiques (aujourd'hui FRB). Il défini le cadre, les objectifs et les modalités des actions entreprises par le réseau français en matière de ressources génétiques de la vigne. <a href='Charte.php' >  >>> En savoir plus</a>",
+			"contents":"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla <a href='Charte.php' >  >>> En savoir plus</a>",
 			"read_more":"<a href='Charte.php'>En savoir plus</a>"
 		},
 	"accueil_part2_en":{
@@ -67,7 +67,7 @@
 		{
 			"title":"Documentation de la base de données",
 			"sous_title":"WHAT OUR CUSTOMERS ARE SAYING",
-			"contents":"La présente base de données est co-gérée par l'INRA (UMR AGAP Equipe DAAV et Domaine de Vassal), l'IFV et Montpellier SupAgro. Elle a pour objectif de regrouper, harmoniser et partager les diverses informations liées au matériel végétal conservé. <a href='Documentation.php' >  >>> En savoir plus</a> ",
+			"contents":"La présente base de données a été initiée par l'INRA <a href='Documentation.php' >  >>> En savoir plus</a> ",
 			"read_more":"<a href='Documentation.php'>En savoir plus</a>"
 		},
 	"accueil_part3_en":
@@ -185,29 +185,29 @@
 		},
 	"partenaire_page_fr":
 		{
-			"title_parti1":"Les Partenaires du réseau français",
-			"contents_parti1":"La Grande Muraille (chinois simplifié : 长城 ; chinois traditionnel : 長城 ; pinyin : Chángchéng ; Wade : Ch'ang²ch'eng² ; littéralement « la longue muraille ») est un ensemble de fortifications militaires chinoises construites, détruites et reconstruites en plusieurs fois et à plusieurs endroits entre le iiie siècle av. J.-C. et le xviie siècle pour marquer et défendre la frontière nord de la Chine. C'est la structure architecturale la plus importante jamais construite par l’Homme à la fois en longueur, en surface et en masse.",
-			"title_parti2":"La Commission Technique Nationale de Sélection et de Participation (CTNSP)",
+			"title_parti1":"title_parti1",
+			"contents_parti1":"La Grande Muraille (chinois simplifié : 长城 ; <a href='./pdfWEB/Abouriou_N.pdf'>Abouriou_N</a>chinois traditionnel : 長城 ; pinyin : Chángchéng ; Wade : Ch'ang²ch'eng² ; littéralement « la longue muraille ») est un ensemble de fortifications militaires chinoises construites, détruites et reconstruites en plusieurs fois et à plusieurs endroits entre le iiie siècle av. J.-C. et le xviie siècle pour marquer et défendre la frontière nord de la Chine. C'est la structure architecturale la plus importante jamais construite par l’Homme à la fois en longueur, en surface et en masse.",
+			"title_parti2":"title_parti1",
 			"contents_parti2":"Populairement, on désigne sous le nom de « Grande Muraille » la partie construite durant la dynastie Ming qui part de Shanhaiguan sur le territoire de la ville de Qinhuangdao dans la province du Hebei à l’Est pour arriver à Jiayuguan dans la province du Gansu à l’Ouest. Sa longueur varie selon les sources. Selon un rapport de 1990, la longueur totale des murs serait de 6 700 km1. En raison de sa longueur, elle est surnommée en chinois « La longue muraille de dix mille li » (chinois simplifié : 万里长城 ; chinois traditionnel : 萬里長城 ; pinyin : Wànlǐ Chángchéng ; Wade : Wan⁴li³ Ch'ang²ch'eng²), le li étant une ancienne unité de longueur chinoise et dix mille symbolisant l’infini en chinois. Ce surnom peut cependant être pris dans son sens littéral par approximation, 6 700 km faisant 11 632 li dans sa valeur généralement considérée de 576 m ou 13 400 li dans sa valeur actuelle d’exactement 500 m. En moyenne, elle mesure 6 à 7 m de hauteur, et 4 à 5 m de largeur. En avril 2009, l'Administration d'État chargée du patrimoine culturel, ayant utilisé des technologies de mesure plus récentes2, révise cette mesure et déclare une longueur de 8 851,8 km dont 6 259,6 km de murs, 359,7 km de tranchées et 2 232,5 km de barrières naturelles, telles des montagnes ou des rivières. Le même service a publié en juin 2012 une mise à jour de son étude, et estime désormais à 21 196,18 km la longueur totale de la Grande Muraille3,4. Cette nouvelle estimation prend en compte des parties actuellement détruites.",
-			"title_parti3":"Les conservatoires du réseau",
+			"title_parti3":"title_parti1",
 			"contents_parti3":"Populairement, on désigne sous le nom de « Grande Muraille » la partie construite durant la dynastie Ming qui part de Shanhaiguan sur le territoire de la ville de Qinhuangdao dans la province du Hebei à l’Est pour arriver à Jiayuguan dans la province du Gansu à l’Ouest. Sa longueur varie selon les sources. Selon un rapport de 1990, la longueur totale des murs serait de 6 700 km1. En raison de sa longueur, elle est surnommée en chinois « La longue muraille de dix mille li » (chinois simplifié : 万里长城 ; chinois traditionnel : 萬里長城 ; pinyin : Wànlǐ Chángchéng ; Wade : Wan⁴li³ Ch'ang²ch'eng²), le li étant une ancienne unité de longueur chinoise et dix mille symbolisant l’infini en chinois. Ce surnom peut cependant être pris dans son sens littéral par approximation, 6 700 km faisant 11 632 li dans sa valeur généralement considérée de 576 m ou 13 400 li dans sa valeur actuelle d’exactement 500 m. En moyenne, elle mesure 6 à 7 m de hauteur, et 4 à 5 m de largeur. En avril 2009, l'Administration d'État chargée du patrimoine culturel, ayant utilisé des technologies de mesure plus récentes2, révise cette mesure et déclare une longueur de 8 851,8 km dont 6 259,6 km de murs, 359,7 km de tranchées et 2 232,5 km de barrières naturelles, telles des montagnes ou des rivières. Le même service a publié en juin 2012 une mise à jour de son étude, et estime désormais à 21 196,18 km la longueur totale de la Grande Muraille3,4. Cette nouvelle estimation prend en compte des parties actuellement détruites."
 		},
 	"partenaire_page_en":
 		{
-			"title_parti1":"Partners of the French Network",
+			"title_parti1":"title_parti1",
 			"contents_parti1":"The Great Wall (simplified Chinese: 长城, traditional Chinese: 長城; pinyin: Changcheng; Wade: Ch'ang²ch'eng², literally \"long wall\") is a set of Chinese military fortifications built, destroyed and rebuilt several times and several locations between the third century BC. BC and the seventeenth century to mark and defend the northern border of China. This is the most important architectural structure ever built by man both in length, area and mass.",
-			"title_parti2":"The CTNSP",
+			"title_parti2":"title_parti1",
 			"contents_parti2":"Popularly, it refers to as the \"Great Wall\" section built during the Ming dynasty from Shanhaiguan in the territory of the city of Qinhuangdao in Hebei Province in the east to get to Jiayuguan in Gansu province to West. Its length varies according to sources. According to a 1990 report, the total length of the walls would be 6700 km 1. Because of its length, it is called in Chinese \"The long wall of ten thousand li\" (simplified Chinese: 万里长城, traditional Chinese: 萬里長城; pinyin: Wànlǐ Changcheng; Wade: Wan⁴li³ Ch'ang²ch'eng²), the li being a former unit of length, and ten thousand Chinese symbolizes infinity in Chinese. This nickname however can be taken in its literal sense by approximation, 6 700 km by 11,632 li in its generally considered value of 576 m or 13,400 li in its current value of exactly 500 m. On average, it measures 6-7 m tall and 4-5 m wide. In April 2009, the State Administration of Cultural Heritage, who used technology more récentes2 measure, review the measure and says a length of 8 851.8 km including 6 259.6 kilometers of wall, 359.7 km trench 2 and 232.5 km of natural barriers such as mountains or rivers. The same service was published in June 2012 update of its study, and is now estimated at 21 196.18 km total length of the Great Muraille3,4. The new estimate takes into account the parties are destroyed.",
-			"title_parti3":"The repositories",
+			"title_parti3":"title_parti1",
 			"contents_parti3":"Popularly, it refers to as the \"Great Wall\" section built during the Ming dynasty from Shanhaiguan in the territory of the city of Qinhuangdao in Hebei Province in the east to get to Jiayuguan in Gansu province to West. Its length varies according to sources. According to a 1990 report, the total length of the walls would be 6700 km 1. Because of its length, it is called in Chinese \"The long wall of ten thousand li\" (simplified Chinese: 万里长城, traditional Chinese: 萬里長城; pinyin: Wànlǐ Changcheng; Wade: Wan⁴li³ Ch'ang²ch'eng²), the li being a former unit of length, and ten thousand Chinese symbolizes infinity in Chinese. This nickname however can be taken in its literal sense by approximation, 6 700 km by 11,632 li in its generally considered value of 576 m or 13,400 li in its current value of exactly 500 m. On average, it measures 6-7 m tall and 4-5 m wide. In April 2009, the State Administration of Cultural Heritage, who used technology more récentes2 measure, review the measure and says a length of 8 851.8 km including 6 259.6 kilometers of wall, 359.7 km trench 2 and 232.5 km of natural barriers such as mountains or rivers. The same service was published in June 2012 update of its study, and is now estimated at 21 196.18 km total length of the Great Muraille3,4. The new estimate takes into account the parties are destroyed."
 		},
 	"charte_page_fr":
 		{
-			"title_parti1":"La Charte de Gestion des Ressources Génétiques de la Vigne",
+			"title_parti1":"title_parti1",
 			"contents_parti1":"Guilin (桂林 ; pinyin : Guìlín ; Zhuang : Gveihlaem ; littéralement « la forêt d’osmanthus »)2 est une ville de la région autonome zhuang du Guangxi, en Chine, située sur la rivière Li. Elle tire son nom de l’osmanthus, un arbre qui pousse abondamment entre la rivière et les collines.",
-			"title_parti2":"Collection Nationale",
+			"title_parti2":"title_parti1",
 			"contents_parti2":"Guilin est connue pour son paysage composé de milliers de petites montagnes en forme de bosses très pentues, des reliefs karstiques, caractéristiques de cette région. Ce paysage extraordinaire, presque surnaturel pour certains, est très apprécié des touristes, qui utilisent l'aéroport international de Guilin Liangjiang, à 30 km au sud ouest de la ville.",
-			"title_parti3":"Fonctionnement du réseau",
+			"title_parti3":"title_parti1",
 			"contents_parti3":"Les environs de Guilin comptent parmi les terres agricoles les plus productives du pays : on y cultive le riz mais aussi les céréales, les agrumes, le taro, les châtaignes... Autre pilier de l'économie locale, le tourisme d'initiation aux plaisirs de la vie campagnarde a été mis en place par les autorités et séduit de plus en plus de citadins chinois."
 		},
 	"charte_page_en":
@@ -221,11 +221,11 @@
 		},
 	"documentation_page_fr":
 		{
-			"title_parti1":"Documentation de la base de données",
+			"title_parti1":"title_parti1",
 			"contents_parti1":"Le Palais du Potala (Tibet: པོ་ ཏ་ ལ, Wylie: Po ta la, ZYPY: Bödälä; chinois simplifié: 布达拉宫; chinois traditionnel: 布達拉宮; pinyin: Budala Gong) à Lhassa, Région autonome du Tibet, Chine, était la résidence principale du Dalaï Lama jusqu'à ce que le 14ème Dalaï Lama a fui en Inde lors du soulèvement tibétain de 1959. Il est maintenant un musée et site du patrimoine mondial de l'UNESCO.",
-			"title_parti2":"Caractéristiques techniques et fonctionalités",
+			"title_parti2":"title_parti1",
 			"contents_parti2":"Le palais est nommé d'après le Mont Potalaka, la demeure mythique de Chenresig ou Avalokitesvara. [1] Lozang Gyatso, le Grand Cinquième Dalaï Lama, a commencé sa construction en 1645 [2], après un de ses conseillers spirituels, Konchog Chophel (mort en 1646), a fait remarquer que le site était idéal comme siège du gouvernement, alors qu'il est situé entre Drepung et Sera monastères et la vieille ville de Lhassa. [3] on peut superposer les restes d'une ancienne forteresse, appelé le blanc ou le palais Rouge, [4] sur le site construit par Songtsen Gampo en 637 [5]",
-			"title_parti3":"Documents de référence",
+			"title_parti3":"title_parti1",
 			"contents_parti3":"Le bâtiment mesure 400 mètres est-ouest et à 350 mètres du nord au sud, en pente murs de pierre en moyenne 3 m. d'épaisseur, et 5 m. (plus de 16 m) d'épaisseur à la base, et avec le cuivre coulé dans les fondations pour aider la preuve contre les tremblements de terre [6] Treize histoires des bâtiments -. contenant plus de 1000 pièces, 10 000 sanctuaires et environ 200.000 statues - montent de 117 mètres (384 pi) au-dessus de Marpo Ri, le \"Red Hill\", progressant de plus de 300 m (environ 1000 pieds) au total au-dessus du fond de la vallée. [7]"
 		},
 	"documentation_page_en":

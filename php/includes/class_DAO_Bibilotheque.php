@@ -1696,13 +1696,13 @@ class BibliothequeDAO {
 			$sql="select * from Personnels where upper(CodePersonne)=upper('".$username."') and JY_MotDePasse='".$password."'";
 			$resultat = mysql_query($sql) or die(mysql_error());
 			if(mysql_num_rows($resultat)<0){
-				$alert="<script>alert('erreur de base de donnes')</script>";
+				$alert="erreur";
 				exit;
 			}
 			if(mysql_num_rows($resultat)==0){
-
-					$alert='<div id="message_emptyCompte"></div>';
-					$alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+					$alert=4;
+					// $alert='<div id="message_emptyCompte"></div>';
+					// $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
 			}
 			if(mysql_num_rows($resultat)==1){
 				$dico= mysql_fetch_assoc($resultat);
@@ -1716,18 +1716,22 @@ class BibliothequeDAO {
 					$_SESSION['prenomPersonne'] = $dico['Prenom'];
 					$_SESSION['CodePartenairePersonne'] = $dico['CodePartenaire'];
 					$_SESSION['ProfilPersonne'] = $dico['JY_Profil_Utilisateur'];
-					$alert='<div id="message_login"></div>';
-					$alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+					// $alert='<div id="message_login"></div>';
+					// $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+					$alert=1;
 				}else{
-					$alert='<div id="message_emptyCompte">Ce compte n\'exist plus!!!!!</div>';
-					$alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+					// $alert='<div id="message_emptyCompte">Ce compte n\'exist plus!!!!!</div>';
+					// $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+					$alert=2;
 				}
 			}
 		}else{
-			$alert="<div id='message_problemFilling'></div>";
-			$alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+			// $alert="<div id='message_problemFilling'></div>";
+			// $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
+			$alert=3;
 		}
 		deconnexion_bbd();
+		// $res['alert']=$alert;
 		return $alert;
 	}
 	public function getSesInfo($codePersonne){

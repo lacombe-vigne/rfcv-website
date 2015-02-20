@@ -371,6 +371,87 @@ $(document).ready(function(){
 			alert("Vous n'avez pas bien rempli les champs! ");
 		}
 	});
+	$.extend({'login':function(){
+		var username=$('#login_name').val();
+		var password=$('#login_pass').val();
+		var DataString='function=login&username='+username+'&password='+password;
+		console.log(DataString);
+		creatAjax();
+		
+		$.ajax({
+				type:"POST",
+				url:"./php/script_webbio.php",
+				data:DataString,
+				beforeSend: function(){ 
+					$(".site-login-form").empty();
+					$('<div id="msg" />').addClass("loading").html("Connexion au cours...").css("color","#999").appendTo('.site-login-form'); 
+				},
+				success: function(data){
+					console.log(data);
+					$('<div id="msg" />').remove();
+					$(".site-login-form").empty(); 
+					if(data==1){
+						console.log('1');
+						var div='<div id="message_login"></div>';
+					}
+					if(data==2){
+						console.log('2');
+						var div='<div id="message_emptyCompte"></div>';
+					}
+					if(data==3){
+						console.log('3');
+						var div="<div id='message_problemFilling'></div>";
+					}
+					if(data==4){
+						console.log('4');
+						var div='<div id="message_emptyCompte"></div>';
+					}
+					if(data=="erreur"){
+						var div="<div id='message_login'>erreur de base de donnes</div>";
+					}
+					$.getJSON("./json/message.json",function(data){
+						$.each(data,function(key, value){
+							if(key==="emptyCompte_fr"){
+								var message_emptyCompte=value;
+								$('#message_emptyCompte').append(message_emptyCompte);
+							}
+							if(key==="login_fr"){
+								var message_login=value;
+								$('#message_login').append(message_login);
+							}
+							if(key==="problemFillin_fr"){
+								var message_problemFilling=value;
+								$('#message_problemFilling').append(message_problemFilling);
+							}
+							if(key==="logout_fr"){
+								var message_logout=value;
+								$('#message_logout').append(message_logout);
+							}
+						});
+					});
+					$(".site-login-form").append(div);
+					console.log(data);
+				}
+				/*
+				, 
+				success: function(json){ 
+					if(json.success==1){ 
+						$(".site-login-form").remove(); 
+						var div = "<div id='result'><p><strong>"+json.user+"</strong>，恭喜您登录成功！</p> 
+						<p>您这是第<span>"+json.login_counts+"</span>次登录本站。</p> 
+						<p>上次登录本站的时间是：<span>"+json.login_time+"</span></p><p> 
+						<a href='#' id='logout'>【退出】</a></p></div>"; 
+						$("#login").append(div); 
+					}else{ 
+						$("#msg").remove(); 
+						$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub') .fadeOut(2000); 
+						return false; 
+					} 
+				} 
+				*/
+		});
+	}
+	});
 	//ses infos
 	 $.extend({'ses_carte':function(a){
 			creatAjax();

@@ -3183,6 +3183,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 
 /* 4.0 site Message */
 #message_logout,#message_emptyCompte,#message_login,#message_problemFilling {
+	color:red;
 	margin:20% auto auto auto ;
 }
 

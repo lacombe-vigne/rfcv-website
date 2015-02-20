@@ -13,7 +13,6 @@ switch($fun){
 		echo $resultat=$DAO->verifierCodePersonne($codePerson);
 	break;
 	case "ses_infos":
-		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$codePersonne=$_POST['CodePersonne'];
 		$resultat=$DAO->getSesInfo($codePersonne);
 		echo json_encode($resultat);
@@ -30,6 +29,14 @@ switch($fun){
 		$resultat=$DAO->resetPassword($codePersonne);
 		echo $resultat;
 	break;
+	
+	case "login":
+		$username=suppr_accents_connexion($_POST['username']);
+		$password=sha1($_POST['password']);
+		$res = $DAO->login($username,$password);
+		echo $res;
+	break;
+	
 	case "newUser":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$CodePersonne=$_POST['CodePersonne'];
@@ -53,6 +60,7 @@ switch($fun){
 		$resultat=$DAO->newUser($CodePersonne,$Nom,$Prenom,$Profile,$Partenaire,$PersonneMAJ,$DateFinValide,$password,$DateMAJ_jour,$DateMAJ_mois,$DateMAJ_annee,$function,$Dom,$Tel,$Fax,$Mail);
 		echo $resultat;
 	break;
+
 	case "modifiez_infoPerson":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$user_nom=$_POST['user_nom'];
@@ -925,6 +933,7 @@ switch($fun){
 		$section=$_POST['section'];
 		unset ($_SESSION['selection'][ucfirst($section)]);
 	break;
+   
 }
 
 
