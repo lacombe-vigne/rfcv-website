@@ -83,8 +83,9 @@
 	
 	if(count($_SESSION['selection']['Variete'])!=0){
 		$Variete_Contents=array();
+                $langue =$_SESSION['language_Vigne'];
 		foreach($_SESSION['selection']['Variete'] as $value){
-			$content=$DAO->variete_selection($value);
+			$content=$DAO->variete_selection($value,$langue);
 			array_push($Variete_Contents,$content);
 		}
 		$pagetotal=ceil(count($_SESSION['selection']['Variete'])/20);
@@ -755,7 +756,7 @@
 										<td>'.$value['Auteur'].'</td>
 										<td width="15%">'.$value['Date_doc'].'</td>
 										<td width="15%">'.$value['TypeDoc'].'</td>
-										<td width="10%"><a href="'.$value['FichierDocPdf'].'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
+										<td width="10%"><a href="'.$value['FichierDocPdf'].'" target =_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
 										<td width="5%">'.$value['CodeAcc'].'</td>
 										<td width="5%">'.$value['CodeVar'].'</td>
 										<td width="5%">...</td>
@@ -997,7 +998,7 @@
 										<td width="25%">'.$value['Titre'].'</td>
 										<td>'.$value['NomSite'].'</td>
 										<td width="25%">'.$value['Pays'].'</td>
-										<td width="15%"><a href="'.$value['URL'].'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
+										<td width="15%"><a href="'.$value['URL'].'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
 										<td>'.$value['CodeIntro'].'</td>
 										<td width="25%">'.$value['CodeVar'].'</td>
 										<td width="5%" >...</td>

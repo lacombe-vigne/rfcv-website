@@ -3,8 +3,21 @@
 	session_start();
 	function supprNull($a){
 		$res=$a;
+                if($a == "oui"){
+                    $res="yes";
+                    return $res;
+                }
+                if($a == "non" && $_SESSION['language_Vigne'] == "EN"){
+                    $res="no";
+                    return $res;
+                }
 		if($a==null){
-			$res="";
+                    if($_SESSION['language_Vigne']=="FR"){
+                        $res="–";
+                    }else{
+                        $res="–";
+                    }
+                    
 		}else{
 			$res=$a;
 		}
@@ -25,7 +38,7 @@
 	if($section=='variete'){
 		$CodeVar=supprNull($_POST['CodeVar']);
 		$NomVar=supprNull($_POST['NomVar']);
-		$SynoMajeur=supprNull($_POST['SynoMajeur']);
+		$SynoMajeur=supprNull($_POST['SynoMajeur']);  
 		$NumVarOnivins=supprNull($_POST['NumVarOnivins']);
 		$InscriptionFrance=supprNull($_POST['InscriptionFrance']);
 		$AnneeInscriptionFrance=supprNull($_POST['AnneeInscriptionFrance']);
@@ -37,7 +50,7 @@
 		$Saveur=supprNull($_POST['Saveur']);
 		$Obtenteur=supprNull($_POST['Obtenteur']);
 		$Pepins=supprNull($_POST['Pepins']);
-		$Pay=supprNull($_POST['Pay']);
+		$OIpays=supprNull($_POST['OIpays']);
 		$Utilite=supprNull($_POST['Utilite']);
 		$codeEspece=supprNull($_POST['codeEspece']);
 		
@@ -230,7 +243,7 @@
 	$search_value=$_POST['search_value'];
 	$case_s_value=$_POST['case_s_value'];
 	$model_value=$_POST['model_value'];
-	$langue_value=$_POST['langue_value'];
+	$langue_value=$_POST['langue'];
 	$classname_espece=$_POST['classname_espece'];
 	$section_espece=$_POST['section_espece'];
 	$colone_espece=$_POST['colone_espece'];
@@ -277,14 +290,14 @@
 					<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
 				}else{
 					echo"
 					<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
 				}
@@ -341,7 +354,7 @@
 						<div id='function_ligne'>
 							<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
-							<a id='export_pdf_fihce'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
+							<a id='export_pdf_fiche'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
 							<img src='images/variete_fichier.png'/>";
@@ -350,12 +363,12 @@
 					<div id='FichierVar'>
 						<div id='function_ligne'>
 							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
-							<a id='export_pdf_fihce'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
+							<a id='export_pdf_fiche'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
 							<img src='images/variete_fichier.png'/>";
 				}
-					if($SynoMajeur!=""){	
+					if($SynoMajeur!=" –" && $SynoMajeur!=" – "){
 						echo "<span id='var_FichierVar'></span>&nbsp &nbsp".$NomVar."&nbsp &nbsp 
 								<span class='SynoMajeur_FichierAcc'>[Synonyme: ".$SynoMajeur."]</span>
 								<span id='codeVar_FichierVar'><span id='code_fiche' >Code: </span> ".$CodeVar."</span>";
@@ -384,7 +397,7 @@
 								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pepins_lable_var'></span></td><td width='30%' class='res_var'>".$Pepins."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pay_lable_var'></span></td><td width='30%' class='res_var'>".$Pay."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='OIpays_lable_var'></span></td><td width='30%' class='res_var'>".$OIpays."</td>
 								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Obtenteur_lable_var'></span></td><td width='30%' class='res_var'>".$Obtenteur."</td>
 							</tr>
 						</table>
@@ -463,13 +476,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierAcc'>
@@ -569,13 +582,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierApt'>
@@ -630,13 +643,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierMor'>
@@ -691,13 +704,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierEmp'>
@@ -768,13 +781,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSan'>
@@ -825,13 +838,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierGen'>
@@ -894,13 +907,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierBib'>
@@ -978,14 +991,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierPar'>
@@ -997,28 +1010,28 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_partenaire' value='".$CodePartenaire."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NomPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$NomPartenaire."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ResponsablesPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$ResponsablesPartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NomPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$NomPartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ResponsablesPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$ResponsablesPartenaire."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SiglePartenaire_lable_par'></span></td><td class='res_acc'>".$SiglePartenaire."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='TelephonePartenaire_lable_par'></span></td><td class='res_acc'>".$TelephonePartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SiglePartenaire_lable_par'></span></td><td class='res_acc'>".$SiglePartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TelephonePartenaire_lable_par'></span></td><td class='res_acc'>".$TelephonePartenaire."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SectionRegionaleENTAV_lable_par'></span></td><td width='30%' class='res_acc'>".$SectionRegionaleENTAV."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Email_lable_par'></span></td><td width='30%' class='res_acc'>".$Email."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SectionRegionaleENTAV_lable_par'></span></td><td width='30%' class='res_acc'>".$SectionRegionaleENTAV."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Email_lable_par'></span></td><td width='30%' class='res_acc'>".$Email."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='RegionPartenaire_lable_par'></span></td><td class='res_acc'>".$RegionPartenaire."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AdressePartenaire_lable_par'></span></td><td class='res_acc'>".$AdressePartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='RegionPartenaire_lable_par'></span></td><td class='res_acc'>".$RegionPartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AdressePartenaire_lable_par'></span></td><td class='res_acc'>".$AdressePartenaire."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DepartPartenaire_lable_par'></span></td><td class='res_acc'>".$DepartPartenaire."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodPostPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$CodPostPartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DepartPartenaire_lable_par'></span></td><td class='res_acc'>".$DepartPartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodPostPartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$CodPostPartenaire."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CommunePartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$CommunePartenaire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CommunePartenaire_lable_par'></span></td><td width='30%' class='res_acc'>".$CommunePartenaire."</td>
 							</tr>
 						</table>
 					</div>
@@ -1032,13 +1045,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fihce'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSite'>

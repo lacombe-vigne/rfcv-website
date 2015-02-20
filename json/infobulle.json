@@ -8,8 +8,8 @@
 			"langue_en":"Anglais",
 			"back_button":"Retourner",
 			"modifier_fiche":"Modifier",
-			"selection_fiche":"My selection",
-			"export_pdf_fihce":"Export PDF",
+			"selection_fiche":"Ma selection",
+			"export_pdf_fiche":"Export PDF",
 			"PagePerson":"Page personne",
 			"logout":"Déconnexion"
 		},
@@ -23,7 +23,7 @@
 			"back_button":"Return",
 			"modifier_fiche":"Modify",
 			"selection_fiche":"My selection",
-			"export_pdf_fihce":"Export PDF",
+			"export_pdf_fiche":"Export PDF",
 			"PagePerson":"Page person",
 			"logout":"Logout"
 		}

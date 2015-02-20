@@ -16,7 +16,6 @@ class Variete {
 	private $Saveur = null;
 	private $Pepins = null;
 	private $Obtenteur = null;
-	private $Pays = null;
 	private $Utilite = null;
 	private $codeEspece = null;
 	private $sexe=null;
@@ -30,7 +29,7 @@ class Variete {
 	private $Pobtenteur=null;
 	private $PmereReelle=null;
 	private $PanneeObtention=null;
-	private $PcodeVarMereReel=null;
+	private $PcodeVarMereReelle=null;
 	private $PmereObt=null;
 	private $PprerReel=null;
 	private $PcodeCroismentINRA=null;
@@ -54,7 +53,6 @@ class Variete {
 	public function getSaveur(){return $this->Saveur;}
 	public function getPepins(){return $this->Pepins;}
 	public function getObtenteur(){return $this->Obtenteur;}
-	public function getPays(){return $this->Pays;}
 	public function getUtilite(){return $this->Utilite;}
 	public function getCodeEspece(){return $this->codeEspece;}
 	public function getSexe(){return $this->sexe;}
@@ -68,7 +66,7 @@ class Variete {
 	public function getPobtenteur(){return $this->Pobtenteur;}
 	public function getPmereReelle(){return $this->PmereReelle;}
 	public function getPanneeObtention(){return $this->PanneeObtention;}
-	public function getPcodeVarMereReel(){return $this->PcodeVarMereReel;}
+	public function getPcodeVarMereReelle(){return $this->PcodeVarMereReelle;}
 	public function getPprerReel(){return $this->PprerReel;}
 	public function getPmereObt(){return $this->PmereObt;}
 	public function getPcodeCroismentINRA(){return $this->PcodeCroismentINRA;}
@@ -79,7 +77,7 @@ class Variete {
 	public function getRremarquesVar(){return $this->RremarquesVar;}
 
 
-	function __construct($CodeVar,$NomVar,$SynoMajeur,$NumVarOnivins,$InscriptionFrance,$AnneeInscriptionFrance,$UniteVar,$Type,$Espece,$CouleurPe,$CouleurPu,$Saveur,$Pepins,$Obtenteur,$Pays,$Utilite,$codeEspece,$sexe,$OIpays,$OIregion,$OIdeparte,$OIinscriptionFrance,$OIanneeInscriptionFrance,$OInumVarOnivins,$OIinscriptionEurop,$Pobtenteur,$PmereReelle,$PanneeObtention,$PcodeVarMereReel,$PmereObt,$PprerReel,$PcodeCroismentINRA,$PcodeVarPereReel,$PpereObt,$PremarqueParenteReelle,$RstatutEnCollection,$RremarquesVar){
+	function __construct($CodeVar,$NomVar,$SynoMajeur,$NumVarOnivins,$InscriptionFrance,$AnneeInscriptionFrance,$UniteVar,$Type,$Espece,$CouleurPe,$CouleurPu,$Saveur,$Pepins,$Obtenteur,$Utilite,$codeEspece,$sexe,$OIpays,$OIregion,$OIdeparte,$OIinscriptionFrance,$OIanneeInscriptionFrance,$OInumVarOnivins,$OIinscriptionEurop,$Pobtenteur,$PmereReelle,$PanneeObtention,$PcodeVarMereReelle,$PmereObt,$PprerReel,$PcodeCroismentINRA,$PcodeVarPereReel,$PpereObt,$PremarqueParenteReelle,$RstatutEnCollection,$RremarquesVar){
 		$this->CodeVar = $CodeVar;
 		$this->NomVar = $NomVar;
 		$this->SynoMajeur = $SynoMajeur;
@@ -94,7 +92,6 @@ class Variete {
 		$this->Saveur = $Saveur;
 		$this->Pepins = $Pepins;
 		$this->Obtenteur = $Obtenteur;
-		$this->Pays = $Pays;
 		$this->Utilite = $Utilite;
 		$this->codeEspece = $codeEspece;
 		$this->sexe= $sexe;
@@ -108,7 +105,7 @@ class Variete {
 		$this->Pobtenteur= $Pobtenteur;
 		$this->PmereReelle= $PmereReelle;
 		$this->PanneeObtention= $PanneeObtention;
-		$this->PcodeVarMereReel= $PcodeVarMereReel;
+		$this->PcodeVarMereReelle= $PcodeVarMereReelle;
 		$this->PmereObt= $PmereObt;
 		$this->PprerReel= $PprerReel;
 		$this->PcodeCroismentINRA= $PcodeCroismentINRA;
@@ -124,12 +121,12 @@ class Variete {
 		$contents_variete['codeVar']=$this->getCodeVar();
 		$contents_variete['nomVar']=$this->getNomVar();
 		$contents_variete['SynoMajeur']=$this->getSynoMajeur();
-		$contents_variete['utilite']=$this->getUniteVar();
+		$contents_variete['utilite']=$this->getUtilite();
 		$contents_variete['couleurPel']=$this->getCouleurPe();
 		$contents_variete['saveur']=$this->getSaveur();
 		$contents_variete['pepins']=$this->getPepins();
 		$contents_variete['sexe']=$this->getSexe();
-		$contents_variete['paysorigine']=$this->getPays();
+		$contents_variete['paysorigine']=$this->getOIpays();
 		return $contents_variete;
 	}
 	function getFicherVariete(){
@@ -150,7 +147,7 @@ class Variete {
 		$contents['Pepins']=$this->getPepins();
 		$contents['Obtenteur']=$this->getObtenteur();
 		$contents['Utilite']=$this->getUtilite();
-		$contents['Pay']=$this->getPays();
+		$contents['OIpays']=$this->getOIpays(); 
 		return $contents;
 	}
 	function getFicherVarieteTab(){
@@ -165,11 +162,11 @@ class Variete {
 		$parente['PereReel']=$this->getPprerReel();
 		$parente['CodeCroisementINRA']=$this->getPcodeCroismentINRA();
 		$parente['AnneeObtention']=$this->getPanneeObtention();
-		$parente['CodeVarMereReel']=$this->getPcodeVarMereReel();
+		$parente['CodeVarMereReelle']=$this->getPcodeVarMereReelle();
 		$parente['CodeVarPereReel']=$this->getPcodeVarPereReel();
 		$parente['RemarqueParenteReelle']=$this->getPremarqueParenteReelle();
 		$parente['MereObt']=$this->getPmereObt();
-		$parente['PreeObt']=$this->getPpereObt();
+		$parente['PereObt']=$this->getPpereObt();
 		$origine['PaysOrigine']=$this->getOIpays();
 		$origine['RegionOrigine']=$this->getOIregion();
 		$origine['DepartOrigine']=$this->getOIdeparte();
@@ -185,12 +182,12 @@ class Variete {
 		$contents_variete['codeVar']=$this->getCodeVar();
 		$contents_variete['nomVar']=$this->getNomVar();
 		$contents_variete['SynoMajeur']=$this->getSynoMajeur();
-		$contents_variete['utilite']=$this->getUniteVar();
+		$contents_variete['utilite']=$this->getUtilite();
 		$contents_variete['couleurPel']=$this->getCouleurPe();
 		$contents_variete['saveur']=$this->getSaveur();
 		$contents_variete['pepins']=$this->getPepins();
 		$contents_variete['sexe']=$this->getSexe();
-		$contents_variete['paysorigine']=$this->getPays();
+		$contents_variete['paysorigine']=$this->getOIpays();
 		$contents_variete['CodeEsp']=$this->getCodeEspece();
 		$contents_variete['Espece']=$this->getEspece();
 		return $contents_variete;

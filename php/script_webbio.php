@@ -13,6 +13,7 @@ switch($fun){
 		echo $resultat=$DAO->verifierCodePersonne($codePerson);
 	break;
 	case "ses_infos":
+		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$codePersonne=$_POST['CodePersonne'];
 		$resultat=$DAO->getSesInfo($codePersonne);
 		echo json_encode($resultat);
@@ -583,7 +584,7 @@ switch($fun){
 		$tri_accession_classname=$_POST['tri_accession_classname'];
 		$tri_accession_section=$_POST['tri_accession_section'];
 		$tri_accession_colone=$_POST['tri_accession_colone'];
-		$_SESSION['language_Vigne']=$langue;
+		$langue=$_SESSION['language_Vigne'];
 		$resultat=$DAO->ficher($section,$code,$search_complet,$case_s,$model,$langue,$page_espece,$pagesize_espece,$page_variete,$pagesize_variete,$page_accession,$pagesize_accession,$tri_espece_classname,$tri_espece_section,$tri_espece_colone,$tri_variete_classname,$tri_variete_section,$tri_variete_colone,$tri_accession_classname,$tri_accession_section,$tri_accession_colone);
 		echo json_encode($resultat);
 	break;
@@ -736,11 +737,12 @@ switch($fun){
 	case 'select_change_selection_listvariete':
 		$curpage=$_POST['curpage'];
 		$pagesize=$_POST['pagesize'];
+                $langue=$_POST['langue'];//$_SESSION['language_Vigne'];
 		$pagetotal=ceil(count($_SESSION['selection']['Variete'])/$pagesize);
 		$startpage=($curpage-1)*$pagesize;
 		$Variete_Contents=array();
 		foreach($_SESSION['selection']['Variete'] as $value){
-			$content=$DAO->variete_selection($value);
+			$content=$DAO->variete_selection($value,$langue);
 			array_push($Variete_Contents,$content);
 		}
 		$Variete['contents']=$Variete_Contents;

@@ -1,10 +1,10 @@
 {
-	"emptyCompte_fr":"Ce compte n'existe pas !",
-	"emptyCompte_en":"This account does not exist!",
-	"login_fr":"Vous êtes connecté !",
-	"login_en":"You are connected!",
+	"emptyCompte_fr":"Ce compte n'existe pas",
+	"emptyCompte_en":"This account does not exist",
+	"login_fr":"Vous êtes maintenant connecté",
+	"login_en":"You are connected now",
 	"problemFillin_fr":"Votre saisie est incorrecte",
 	"problemFillin_en":"You don't have filled correctly",
-	"logout_fr":"Vous êtes  deconnecté",
+	"logout_fr":"Vous êtes déconnecté",
 	"logout_en":"You are disconnected"
 }

@@ -67,7 +67,7 @@ class Doc {
 		$contents['Volume']=$this->getVolume();
 		$contents['Pages']=$this->getPages();
 		$contents['TypeDoc']=$this->getTypeDoc();
-		$contents['FichierDocPdf']="http://bioweb.supagro.inra.fr/collection_vigne2014/DocumentsPdfVignes/".$this->getFichierDocPdf();
+		$contents['FichierDocPdf']="././DocumentsPdfVignes/".$this->getFichierDocPdf();
 		return $contents;
 	}
 	function getSelectionDoc(){
@@ -83,7 +83,7 @@ class Doc {
 		$contents['Volume']=$this->getVolume();
 		$contents['Pages']=$this->getPages();
 		$contents['TypeDoc']=$this->getTypeDoc();
-		$contents['FichierDocPdf']="http://bioweb.supagro.inra.fr/collection_vigne2014/DocumentsPdfVignes/".$this->getFichierDocPdf();
+		$contents['FichierDocPdf']="././DocumentsPdfVignes/".$this->getFichierDocPdf();
 		$contents['CodeVar']=$this->getCodeVar();
 		$contents['NomVar']=$this->getNomVar();
 		$contents['CodeAcc']=$this->getCodeAcc();

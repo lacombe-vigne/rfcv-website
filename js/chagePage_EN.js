@@ -350,7 +350,7 @@ $(document).ready(function(){
 				$('#Espece_lable_var').append(value.Espece);
 				$('#UniteVar_lable_var').append(value.UniteVar);
 				$('#Utilite_lable_var').append(value.Utilite);
-				$('#Pay_lable_var').append(value.Pays);
+				$('#OIpays_lable_var').append(value.OIpays);
 				$('#CouleurPer_lable_var').append(value.CouleurPulp);
 				$('#CouleurPu_lable_var').append(value.CouleurPel);
 				$('#Saveur_lable_var').append(value.Saveur);
@@ -612,7 +612,7 @@ $(document).ready(function(){
 				$( "#back_button a" ).attr( "title", value.back_button );
 				$( "#modifier_fiche" ).attr( "title", value.modifier_fiche );
 				$( "#selection_fiche" ).attr( "title", value.selection_fiche );
-				$( "#export_pdf_fihce" ).attr( "title", value.export_pdf_fihce );
+				$( "#export_pdf_fiche" ).attr( "title", value.export_pdf_fiche );
 				$( "#PagePerson" ).attr( "title", value.PagePerson );
 				$( "#logout" ).attr( "title", value.logout );
 			}

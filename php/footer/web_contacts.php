@@ -23,20 +23,20 @@ echo '
 		<h3 id="title_parti1_contacts"></h3>
 		<p id="contents_parti1_contacts"></p>
 	  </div>
-	  <img src="http://bioweb.supagro.inra.fr/collection_vigne2014/images/contacts_image1.jpg" width="250" height="165">
+	  <img src="././images/contacts_image1.jpg" width="250" height="165">
 	</div>
 	<div class="events_item">
 	  <div class="events_intro">
 		<h3  id="title_parti2_contacts"></h3>
 		<p id="contents_parti2_contacts"></p>
 	  </div>
-	  <img src="http://bioweb.supagro.inra.fr/collection_vigne2014/images/contacts_image2.jpg" width="250" height="165">  
+	  <img src="././images/contacts_image2.jpg" width="250" height="165">  
 	</div>
 	<div class="events_item">
 	  <div class="events_intro fr">
 		<h3 id="title_parti3_contacts"></h3>
 		<p id="contents_parti3_contacts"></p>
 	  </div>
-	  <img src="http://bioweb.supagro.inra.fr/collection_vigne2014/images/contacts_image3.jpg" width="250" height="165">  
+	  <img src="././images/contacts_image3.jpg" width="250" height="165">  
 	</div>
 </div>
