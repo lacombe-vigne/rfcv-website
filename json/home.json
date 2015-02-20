@@ -1,0 +1,294 @@
+﻿{
+	"title_fr":
+		{
+			"main_title":"Collections de Vigne en France",
+			"sous_title":"Base de données du réseau français des conservatoires de Vigne"
+		},
+	"title_en":
+		{
+			"main_title":"Grapevine Collections in France",
+			"sous_title":"Database of the French network of grapevine repositories"
+		},
+	"login_fr":
+		{
+			"title":"Bienvenu",
+			"button_login":"Connexion"
+		},
+	"login_en":
+		{
+			"title":"Welcome",
+			"button_login":"Login"
+		},
+	"menu_main_fr":
+		{
+			"Accueil":"Accueil",
+			"Rechercher":"Recherche",
+			"Selection":"Ma sélection"
+		},
+	"menu_main_en":
+		{
+			"Accueil":"Home",
+			"Rechercher":"Search",
+			"Selection":"My selection"
+		},
+	"search_fr": {
+			"ss":"Recherche simple",
+			"as":"Recherche avancée"
+		},
+	"search_en": {
+			"ss":"Quick search",
+			"as":"Advanced search"
+		},
+	"accueil_part1_fr":{
+			"title":"Les partenaires du réseau",
+			"sous_title":"Une démarche collective de la sélection française",
+			"contents":"Le Réseau Français des Conservatoires de Vigne regroupe plus d'une trentaire de partenaires régionaux impliqués dans la sauvegarde des ressources génétiques et la sélection. Plus de 110 conservatoires sont actuellement implantés dans toutes les régions viticoles du pays. <a href='Partenaires.php' >  >>> En savoir plus</a>",
+			"read_more":"<a href='Partenaires.php' >En savoir plus</a>"
+		},
+	"accueil_part1_en":{
+			"title":"Partners of the network",
+			"sous_title":"A comon initiative from the selection partners",
+			"contents":"Le Réseau Français des Conservatoires de Vigne regroupe plus d'une trentaire de partenaires régionaux impliqués dans la sauvegarde des ressources génétiques et la sélection. Plus de 110 conservatoires sont actuellement implantés dans toutes les régions viticoles du pays. <a href='Partenaires.php' >  >>> En savoir plus</a>",
+			"read_more":"<a href='Partenaires.php'>Read more</a>"
+		},
+	"accueil_part2_fr":{
+			"title":"Charte de gestion des ressources vigne",
+			"sous_title":"Le document de référence",
+			"contents":"Ce texte de référence a été rédigé en 1999 sous l'égide du Bureau des Ressources Génétiques (aujourd'hui FRB). Il défini le cadre, les objectifs et les modalités des actions entreprises par le réseau français en matière de ressources génétiques de la vigne. <a href='Charte.php' >  >>> En savoir plus</a>",
+			"read_more":"<a href='Charte.php'>En savoir plus</a>"
+		},
+	"accueil_part2_en":{
+			"title":"The grapevine genetic resources chart",
+			"sous_title":"THE BEST SUPPORT IN THE BIZ",
+			"contents":"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla <a href='Charte.php' >  >>> En savoir plus</a> ",
+			"read_more":"<a href='Charte.php'>Read more</a>"
+		},
+	"accueil_part3_fr":
+		{
+			"title":"Documentation de la base de données",
+			"sous_title":"WHAT OUR CUSTOMERS ARE SAYING",
+			"contents":"La présente base de données est co-gérée par l'INRA (UMR AGAP Equipe DAAV et Domaine de Vassal), l'IFV et Montpellier SupAgro. Elle a pour objectif de regrouper, harmoniser et partager les diverses informations liées au matériel végétal conservé. <a href='Documentation.php' >  >>> En savoir plus</a> ",
+			"read_more":"<a href='Documentation.php'>En savoir plus</a>"
+		},
+	"accueil_part3_en":
+		{
+			"title":"Database documentation",
+			"sous_title":"THE BEST SUPPORT IN THE BIZ",
+			"contents":"bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla <a href='Documentation.php' >  >>> En savoir plus</a>  ",
+			"read_more":"<a href='Documentation.php'>Read more</a>"
+		},
+	"link_fr":
+		{
+			"title":"Liens Utile",
+			"link":[
+				{
+					"name":"blabla1",
+					"add":"www.google.fr"
+				},
+				{
+					"name":"blabla2",
+					"add":"www.google.com"
+				},
+				{
+					"name":"blabla3",
+					"add":"www.google.hk"
+				}
+			]	
+		},
+	"link_en":
+		{
+			"title":"Useful Links",
+			"link":[
+				{
+					"name":"blabla1EN",
+					"add":"www.google.fr"
+				},
+				{
+					"name":"blabla2EN",
+					"add":"www.google.com"
+				},
+				{
+					"name":"blabla3EN",
+					"add":"www.google.hk"
+				}
+			]	
+		}	
+	,
+	"footer_fr":[	
+		{
+			"name":"Contacts",
+			"add":"Contacts.php"
+		},	
+		{
+			"name":"Crédits",
+			"add":"Credits.php"
+		},	
+		{
+			"name":"Droits et devoirs des utilisateurs",
+			"add":"Rights_duties.php"
+		}	
+	],
+	"footer_en":[	
+		{
+			"name":"Contacts",
+			"add":"Contacts.php"
+		},	
+		{
+			"name":"Credits",
+			"add":"Credits.php"
+		},	
+		{
+			"name":"Rights and duties of users",
+			"add":"Rights_duties.php"
+		}
+	],
+	"login_page_fr":
+		{
+			"title":"Identifiez-vous",
+			"username":"Nom d'utilisateur : ",
+			"password":"Mot de Passe : ",
+			"button":"Validez",
+			"notice_title":"Attention:",
+			"notice_contents":"Seuls les partenaires membres de Réseau peuvent utiliser ce type d'accès. Veuillez saisir votre nom d'utilisateur et le mot de passe personnel qui vous a été donné par les administrateurs de la base. Si vous n'êtes pas membre du Réseau, vous pouvez toutefois consulter les données publiques en parcourant directement le menu en haut."
+		},
+	"login_page_en":
+		{
+			"title":"Log in",
+			"username":"Username : ",
+			"password":"Password : ",
+			"button":"OK",
+			"notice_title":"Attention:",
+			"notice_contents":"Only partners Network members can use this type of access. Please enter your username and personal password that was given to you by the database administrators. If you are not a member of the Network, you can still see public data directly through the menu above."
+		},
+	"chemin_fr":
+		{
+			"chemin_home":"Accueil",
+			"chemin_selection":"Ma Selection",
+			"chemin_searchA":"Recherche Avancé",
+			"chemin_login":"Connexion",
+			"chemin_resutat":"Resultat de Recherche",
+			"chemin_searchS":"Recherche Simple",
+			"chemin_fiche":"Fiche",
+			"chemin_person":"Page personnel"
+			
+		},
+	"chemin_en":
+		{
+			"chemin_home":"Home",
+			"chemin_selection":"My selection",
+			"chemin_searchA":"Advanced search",
+			"chemin_login":"Login",
+			"chemin_resutat":"Search Result",
+			"chemin_searchS":"Quick search",
+			"chemin_fiche":"Fiche",
+			"chemin_person":"personal page"
+		},
+	"partenaire_page_fr":
+		{
+			"title_parti1":"Les Partenaires du réseau français",
+			"contents_parti1":"La Grande Muraille (chinois simplifié : 长城 ; chinois traditionnel : 長城 ; pinyin : Chángchéng ; Wade : Ch'ang²ch'eng² ; littéralement « la longue muraille ») est un ensemble de fortifications militaires chinoises construites, détruites et reconstruites en plusieurs fois et à plusieurs endroits entre le iiie siècle av. J.-C. et le xviie siècle pour marquer et défendre la frontière nord de la Chine. C'est la structure architecturale la plus importante jamais construite par l’Homme à la fois en longueur, en surface et en masse.",
+			"title_parti2":"La Commission Technique Nationale de Sélection et de Participation (CTNSP)",
+			"contents_parti2":"Populairement, on désigne sous le nom de « Grande Muraille » la partie construite durant la dynastie Ming qui part de Shanhaiguan sur le territoire de la ville de Qinhuangdao dans la province du Hebei à l’Est pour arriver à Jiayuguan dans la province du Gansu à l’Ouest. Sa longueur varie selon les sources. Selon un rapport de 1990, la longueur totale des murs serait de 6 700 km1. En raison de sa longueur, elle est surnommée en chinois « La longue muraille de dix mille li » (chinois simplifié : 万里长城 ; chinois traditionnel : 萬里長城 ; pinyin : Wànlǐ Chángchéng ; Wade : Wan⁴li³ Ch'ang²ch'eng²), le li étant une ancienne unité de longueur chinoise et dix mille symbolisant l’infini en chinois. Ce surnom peut cependant être pris dans son sens littéral par approximation, 6 700 km faisant 11 632 li dans sa valeur généralement considérée de 576 m ou 13 400 li dans sa valeur actuelle d’exactement 500 m. En moyenne, elle mesure 6 à 7 m de hauteur, et 4 à 5 m de largeur. En avril 2009, l'Administration d'État chargée du patrimoine culturel, ayant utilisé des technologies de mesure plus récentes2, révise cette mesure et déclare une longueur de 8 851,8 km dont 6 259,6 km de murs, 359,7 km de tranchées et 2 232,5 km de barrières naturelles, telles des montagnes ou des rivières. Le même service a publié en juin 2012 une mise à jour de son étude, et estime désormais à 21 196,18 km la longueur totale de la Grande Muraille3,4. Cette nouvelle estimation prend en compte des parties actuellement détruites.",
+			"title_parti3":"Les conservatoires du réseau",
+			"contents_parti3":"Populairement, on désigne sous le nom de « Grande Muraille » la partie construite durant la dynastie Ming qui part de Shanhaiguan sur le territoire de la ville de Qinhuangdao dans la province du Hebei à l’Est pour arriver à Jiayuguan dans la province du Gansu à l’Ouest. Sa longueur varie selon les sources. Selon un rapport de 1990, la longueur totale des murs serait de 6 700 km1. En raison de sa longueur, elle est surnommée en chinois « La longue muraille de dix mille li » (chinois simplifié : 万里长城 ; chinois traditionnel : 萬里長城 ; pinyin : Wànlǐ Chángchéng ; Wade : Wan⁴li³ Ch'ang²ch'eng²), le li étant une ancienne unité de longueur chinoise et dix mille symbolisant l’infini en chinois. Ce surnom peut cependant être pris dans son sens littéral par approximation, 6 700 km faisant 11 632 li dans sa valeur généralement considérée de 576 m ou 13 400 li dans sa valeur actuelle d’exactement 500 m. En moyenne, elle mesure 6 à 7 m de hauteur, et 4 à 5 m de largeur. En avril 2009, l'Administration d'État chargée du patrimoine culturel, ayant utilisé des technologies de mesure plus récentes2, révise cette mesure et déclare une longueur de 8 851,8 km dont 6 259,6 km de murs, 359,7 km de tranchées et 2 232,5 km de barrières naturelles, telles des montagnes ou des rivières. Le même service a publié en juin 2012 une mise à jour de son étude, et estime désormais à 21 196,18 km la longueur totale de la Grande Muraille3,4. Cette nouvelle estimation prend en compte des parties actuellement détruites."
+		},
+	"partenaire_page_en":
+		{
+			"title_parti1":"Partners of the French Network",
+			"contents_parti1":"The Great Wall (simplified Chinese: 长城, traditional Chinese: 長城; pinyin: Changcheng; Wade: Ch'ang²ch'eng², literally \"long wall\") is a set of Chinese military fortifications built, destroyed and rebuilt several times and several locations between the third century BC. BC and the seventeenth century to mark and defend the northern border of China. This is the most important architectural structure ever built by man both in length, area and mass.",
+			"title_parti2":"The CTNSP",
+			"contents_parti2":"Popularly, it refers to as the \"Great Wall\" section built during the Ming dynasty from Shanhaiguan in the territory of the city of Qinhuangdao in Hebei Province in the east to get to Jiayuguan in Gansu province to West. Its length varies according to sources. According to a 1990 report, the total length of the walls would be 6700 km 1. Because of its length, it is called in Chinese \"The long wall of ten thousand li\" (simplified Chinese: 万里长城, traditional Chinese: 萬里長城; pinyin: Wànlǐ Changcheng; Wade: Wan⁴li³ Ch'ang²ch'eng²), the li being a former unit of length, and ten thousand Chinese symbolizes infinity in Chinese. This nickname however can be taken in its literal sense by approximation, 6 700 km by 11,632 li in its generally considered value of 576 m or 13,400 li in its current value of exactly 500 m. On average, it measures 6-7 m tall and 4-5 m wide. In April 2009, the State Administration of Cultural Heritage, who used technology more récentes2 measure, review the measure and says a length of 8 851.8 km including 6 259.6 kilometers of wall, 359.7 km trench 2 and 232.5 km of natural barriers such as mountains or rivers. The same service was published in June 2012 update of its study, and is now estimated at 21 196.18 km total length of the Great Muraille3,4. The new estimate takes into account the parties are destroyed.",
+			"title_parti3":"The repositories",
+			"contents_parti3":"Popularly, it refers to as the \"Great Wall\" section built during the Ming dynasty from Shanhaiguan in the territory of the city of Qinhuangdao in Hebei Province in the east to get to Jiayuguan in Gansu province to West. Its length varies according to sources. According to a 1990 report, the total length of the walls would be 6700 km 1. Because of its length, it is called in Chinese \"The long wall of ten thousand li\" (simplified Chinese: 万里长城, traditional Chinese: 萬里長城; pinyin: Wànlǐ Changcheng; Wade: Wan⁴li³ Ch'ang²ch'eng²), the li being a former unit of length, and ten thousand Chinese symbolizes infinity in Chinese. This nickname however can be taken in its literal sense by approximation, 6 700 km by 11,632 li in its generally considered value of 576 m or 13,400 li in its current value of exactly 500 m. On average, it measures 6-7 m tall and 4-5 m wide. In April 2009, the State Administration of Cultural Heritage, who used technology more récentes2 measure, review the measure and says a length of 8 851.8 km including 6 259.6 kilometers of wall, 359.7 km trench 2 and 232.5 km of natural barriers such as mountains or rivers. The same service was published in June 2012 update of its study, and is now estimated at 21 196.18 km total length of the Great Muraille3,4. The new estimate takes into account the parties are destroyed."
+		},
+	"charte_page_fr":
+		{
+			"title_parti1":"La Charte de Gestion des Ressources Génétiques de la Vigne",
+			"contents_parti1":"Guilin (桂林 ; pinyin : Guìlín ; Zhuang : Gveihlaem ; littéralement « la forêt d’osmanthus »)2 est une ville de la région autonome zhuang du Guangxi, en Chine, située sur la rivière Li. Elle tire son nom de l’osmanthus, un arbre qui pousse abondamment entre la rivière et les collines.",
+			"title_parti2":"Collection Nationale",
+			"contents_parti2":"Guilin est connue pour son paysage composé de milliers de petites montagnes en forme de bosses très pentues, des reliefs karstiques, caractéristiques de cette région. Ce paysage extraordinaire, presque surnaturel pour certains, est très apprécié des touristes, qui utilisent l'aéroport international de Guilin Liangjiang, à 30 km au sud ouest de la ville.",
+			"title_parti3":"Fonctionnement du réseau",
+			"contents_parti3":"Les environs de Guilin comptent parmi les terres agricoles les plus productives du pays : on y cultive le riz mais aussi les céréales, les agrumes, le taro, les châtaignes... Autre pilier de l'économie locale, le tourisme d'initiation aux plaisirs de la vie campagnarde a été mis en place par les autorités et séduit de plus en plus de citadins chinois."
+		},
+	"charte_page_en":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"Guilin (桂林; pinyin: Guilin, Zhuang Gveihlaem, literally \"the forest of osmanthus\") 2 is a city of Guangxi Zhuang Autonomous Region, China, located on the Li River It is named after the osmanthus. , a tree that grows abundantly between the river and the hills.",
+			"title_parti2":"title_parti1",
+			"contents_parti2":"Guilin is famous for its landscape composed of thousands of small mountains in the form of very steep bumps, karst characteristic of this region. This extraordinary, almost supernatural landscape for some, is very popular with tourists, who use Guilin Liangjiang International Airport, 30 miles south west of the city.",
+			"title_parti3":"title_parti1",
+			"contents_parti3":"Near Guilin are among the most productive farmland in the country: Growing rice but also cereals, citrus, taro, chestnuts ... Another pillar of the local economy, tourism initiation pleasures of country life was set up by the authorities and is attracting more and more urban Chinese."
+		},
+	"documentation_page_fr":
+		{
+			"title_parti1":"Documentation de la base de données",
+			"contents_parti1":"Le Palais du Potala (Tibet: པོ་ ཏ་ ལ, Wylie: Po ta la, ZYPY: Bödälä; chinois simplifié: 布达拉宫; chinois traditionnel: 布達拉宮; pinyin: Budala Gong) à Lhassa, Région autonome du Tibet, Chine, était la résidence principale du Dalaï Lama jusqu'à ce que le 14ème Dalaï Lama a fui en Inde lors du soulèvement tibétain de 1959. Il est maintenant un musée et site du patrimoine mondial de l'UNESCO.",
+			"title_parti2":"Caractéristiques techniques et fonctionalités",
+			"contents_parti2":"Le palais est nommé d'après le Mont Potalaka, la demeure mythique de Chenresig ou Avalokitesvara. [1] Lozang Gyatso, le Grand Cinquième Dalaï Lama, a commencé sa construction en 1645 [2], après un de ses conseillers spirituels, Konchog Chophel (mort en 1646), a fait remarquer que le site était idéal comme siège du gouvernement, alors qu'il est situé entre Drepung et Sera monastères et la vieille ville de Lhassa. [3] on peut superposer les restes d'une ancienne forteresse, appelé le blanc ou le palais Rouge, [4] sur le site construit par Songtsen Gampo en 637 [5]",
+			"title_parti3":"Documents de référence",
+			"contents_parti3":"Le bâtiment mesure 400 mètres est-ouest et à 350 mètres du nord au sud, en pente murs de pierre en moyenne 3 m. d'épaisseur, et 5 m. (plus de 16 m) d'épaisseur à la base, et avec le cuivre coulé dans les fondations pour aider la preuve contre les tremblements de terre [6] Treize histoires des bâtiments -. contenant plus de 1000 pièces, 10 000 sanctuaires et environ 200.000 statues - montent de 117 mètres (384 pi) au-dessus de Marpo Ri, le \"Red Hill\", progressant de plus de 300 m (environ 1000 pieds) au total au-dessus du fond de la vallée. [7]"
+		},
+	"documentation_page_en":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"The Potala Palace (Tibetan: པོ་ཏ་ལ, Wylie: Po ta la, ZYPY: Bodala; simplified Chinese: 布达拉宫; traditional Chinese: 布達拉宮; pinyin: Bùdálā Gōng) in Lhasa, Tibet Autonomous Region, China, was the chief residence of the Dalai Lama until the 14th Dalai Lama fled to India during the 1959 Tibetan uprising. It is now a museum and UNESCO World Heritage Site.",
+			"title_parti2":"title_parti1",
+			"contents_parti2":"The palace is named after Mount Potalaka, the mythical abode of Chenresig or Avalokitesvara.[1] Lozang Gyatso, the Great Fifth Dalai Lama, started its construction in 1645[2] after one of his spiritual advisers, Konchog Chophel (died 1646), pointed out that the site was ideal as a seat of government, situated as it is between Drepung and Sera monasteries and the old city of Lhasa.[3] It may overlay the remains of an earlier fortress, called the White or Red Palace,[4] on the site built by Songtsen Gampo in 637.[5]",
+			"title_parti3":"title_parti1",
+			"contents_parti3":"The building measures 400 metres east-west and 350 metres north-south, with sloping stone walls averaging 3 m. thick, and 5 m. (more than 16 ft) thick at the base, and with copper poured into the foundations to help proof it against earthquakes.[6] Thirteen stories of buildings – containing over 1,000 rooms, 10,000 shrines and about 200,000 statues – soar 117 metres (384 ft) on top of Marpo Ri, the \"Red Hill\", rising more than 300 m (about 1,000 ft) in total above the valley floor.[7]"
+		},
+	"contacts_page_fr":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"Le lac de Sainte-Croix est une retenue artificielle, mise en eau en 1973, suite à la construction du barrage de Sainte-Croix, sur le cours du Verdon. Il est situé entre les départements du Var et des Alpes-de-Haute-Provence, au pied des gorges du Verdon, du Plan de Canjuers et du plateau de Valensole, haut lieu de la culture du lavandin.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"Cette retenue est la quatrième de France métropolitaine par sa superficie (environ 2 200 ha) après le lac du Der-Chantecoq, le lac de Serre-Ponçon et le lac d'Orient. Le lac est devenu un centre de tourisme estival ; il est très fréquenté pour les loisirs aquatiques.",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"La navigation des bateaux à moteur à essence est interdite. Seuls les moteurs électriques et les voiles sont autorisés. On y rencontre beaucoup de pédalos et de barques diverses de juin à septembre. Ce lac artificiel est également utilisé pour les écopages des Canadairs lors des incendies dans la région."
+		},
+	"contacts_page_en":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"The Lake of Sainte-Croix (French: lac de Sainte-Croix) is a man-made lake that was formed by the construction, between 1971 and 1974 (when it was put into service) of a reinforced-concrete arch dam by the name of Dam of Sainte-Croix (French: Barrage de Sainte-Croix). The reservoir holds a maximum of 761 million cubic metres of water. The dam, which generates 142 million kWh of electricity per year, is 94 metres high, 7.5 metres thick at its base and 3 metres thick at its crest.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"The village that can be seen adjacent to the lake, however, is not the eponymous village of Sainte-Croix-de-Verdon but Les Salles-sur-Verdon. The original village is now completely underwater.",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"The other villages around the lake are:Sainte-Croix-du-Verdon, Bauduen,Les Salles-sur-Verdon (new village)"
+		},
+	"credit_page_fr":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"Bordeaux (prononcé [bɔʁ.ˈd̪o ]) est une commune du Sud-Ouest de la France, préfecture du département de la Gironde et chef-lieu de la région d'Aquitaine. Ses habitants sont appelés les Bordelais et les Bordelaises.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"La commune compte 239 399 habitants (recensement 2011)1, ce qui en fait la neuvième commune de France par sa population. La population de Bordeaux intra-muros reste relativement faible comparée à son agglomération puisqu'en 2011, 21 % des habitants de l'agglomération vivaient dans Bordeaux contre 45,3 % en 1968. Cela s'explique par la faible superficie de la ville, et par l'attractivité des communes de banlieue comme Mérignac ou Pessac par exemple qui comptent chacune environ 60 000 habitants. Par contre, l'agglomération bordelaise compte 851 071 habitants (2011)2 tandis que son aire urbaine, la sixième la plus peuplée de France, compte 1 140 668 habitants (2011)3.",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"Bordeaux est la commune principale de la communauté urbaine de Bordeaux (ou CUB) qui, avec 726 716 habitants, est la 5e métropole la plus peuplée de France derrière Paris, Lyon, Lille et Marseille."
+		},
+	"credit_page_en":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"The small municipality (commune) of Bordeaux proper has a population of 239,399 (January 2011),[4] but together with its suburbs and satellite towns Bordeaux forms the 6th-largest metropolitan area in France with a population of 1,140,668 at the January 2011 census.[3] It is the capital of the Aquitaine region, as well as the prefecture of the Gironde department. Its inhabitants are called \"Bordelais\" (for men) or \"Bordelaises\" (women). The term \"Bordelais\" may also refer to the city and its surrounding region.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"The city's nicknames are \"La perle d'Aquitaine\" (The Pearl of Aquitaine), and \"La Belle Endormie\" (Sleeping Beauty) in reference to the old center which had black walls due to pollution. Nowadays, this is not the case. In fact, a part of the city, Le Port de La Lune, was almost completely renovated.",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"Bordeaux is the world's major wine industry capital. It is home to the world's main wine fair, Vinexpo (fr),[5] while the wine economy in the metro area takes in 14.5 billion euros each year. Bordeaux wine has been produced in the region since the 8th century. The historic part of the city is on the UNESCO World Heritage List as \"an outstanding urban and architectural ensemble\" of the 18th century.[6]"
+		},
+	"rights_duties_page_fr":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"Tours (prononcé [tuʁ ] Prononciation du titre dans sa version originale Écouter) est une commune française du centre-ouest de la France, sur les rives de la Loire, préfecture du département d'Indre-et-Loire. La ville, comptant 134 633 habitants en 2011 (population municipale stricto sensu, opposée au nombre d’habitants de la ville, à savoir 138 268)2, est au centre d'une unité urbaine de 347 600 habitants (2011)1, elle-même noyau d'une aire urbaine de 480 400 habitants1. Elle est ainsi, selon ces chiffres, la plus grande commune, la plus grande unité urbaine et la plus grande aire urbaine de la région Centre, ainsi que la 18e aire urbaine de France3.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"Tours est classée Ville d'Art et d'Histoire et est au cœur du site de la Loire, inscrit au patrimoine mondial de l'UNESCO au titre de paysage culturel. Ses habitants sont appelés les Tourangeaux/TourangellesNote 1.",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"Jusqu'à très récemment (xxe siècle), Tours, dont le développement initial se fait sur une butte au bord de la Loire (actuel secteur autour de la cathédrale), était restée entre Loire et Cher, au cœur de leur plaine alluviale (dite aussi « varenne », dont l'altitude ne s'écarte jamais beaucoup de 50 mètres). Désormais, depuis l'annexion des communes de Saint Symphorien et Sainte Radegonde au nord de la Loire, et au sud du Cher, du parc de Grandmont qui appartenait à la commune de Joué-les-Tours, la ville s'étale au-delà des coteaux, sur les plateaux (entre 80 et 100 mètres d'altitude)."
+		},
+	"rights_duties_page_en":
+		{
+			"title_parti1":"title_parti1",
+			"contents_parti1":"Tours (pronounced: [tuʁ]) is a city in central France, the capital of the Indre-et-Loire department.",
+			"title_parti2":"title_parti2",
+			"contents_parti2":"It stands on the lower reaches of the river Loire, between Orléans and the Atlantic coast. Touraine, the region around Tours, is known for its wines, the alleged perfection (as perceived by some speakers) of its local spoken French, and the Battle of Tours in 732. It is also the site of the Paris–Tours road bicycle race. Tours is the largest city in the Centre region of France, although it is not the regional capital, which is the region's second-largest city, Orléans. In 2006, the city itself had 138,268 inhabitants and the metropolitan area had 546,105 .",
+			"title_parti3":"title_parti3",
+			"contents_parti3":"The city of Tours has a population of 140,000 and is called \"Le Jardin de la France\" (\"The Garden of France\"). There are several parks located within the city. Tours is located between two rivers, the Loire to the north and the Cher to the south. The buildings of Tours are white with blue slate (called Ardoise) roofs; this style is common in the north of France, while most buildings in the south of France have terracotta roofs ."
+		}
+}

@@ -1,0 +1,30 @@
+{
+	"infobulle_fr":
+		{
+			"aide_nombre_resultat":"aide_nombre_resultat aide_nombre_resultat aide_nombre_resultat",
+			"aide_myselection":"Ma selection",
+			"aide_export_xls":" Export XLS",
+			"langue_fr":"Francaise",
+			"langue_en":"Anglais",
+			"back_button":"Retourner",
+			"modifier_fiche":"Modifier",
+			"selection_fiche":"My selection",
+			"export_pdf_fihce":"Export PDF",
+			"PagePerson":"Page personne",
+			"logout":"Déconnexion"
+		},
+	"infobulle_en":
+		{
+			"aide_nombre_resultat":"en en en en en en en en en en en en",
+			"aide_myselection":"My selection",
+			"aide_export_xls":"Export XLS",
+			"langue_fr":"Francaise",
+			"langue_en":"English",
+			"back_button":"Return",
+			"modifier_fiche":"Modify",
+			"selection_fiche":"My selection",
+			"export_pdf_fihce":"Export PDF",
+			"PagePerson":"Page person",
+			"logout":"Logout"
+		}
+}

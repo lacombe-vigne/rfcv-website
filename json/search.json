@@ -1,0 +1,114 @@
+{
+	"site_searchS_fr":
+		{
+			"title":"Recherche simple par nom de vigne",
+			"case_complet":"Est",
+			"case_start":"Commence par",
+			"case_end":"Fini par",
+			"case_fuzzy":"Contient",
+			"model_tous":"Toutes les vignes",
+			"model_especes":"Espèces",
+			"model_varietes":"Variétés",
+			"model_accession":"Accessions / Clones",
+			"button":"Rechercher"
+		},
+	"site_searchS_en":
+		{
+			"title":"Simple search by grapevine name",
+			"case_complet":"Is",
+			"case_start":"Begins with",
+			"case_end":"Ends with",
+			"case_fuzzy":"Contains",
+			"model_tous":"All grapevines",
+			"model_especes":"Species",
+			"model_varietes":"Varieties",
+			"model_accession":"Accessions / Clons",
+			"button":"Search"
+		},
+	"search_notice_fr":
+		{
+			"title":"Attention : ",
+			"contents":"les contenu les contenu les contenu les contenu"
+		},
+	"search_notice_en":
+		{
+			"title":"Attention : ",
+			"contents":"the content the content the content the content"
+		},
+	"resultat_espece_fr":
+		{
+			"title":"Espèces",
+			"parPage":"Nombre d'enregistrements par page :",
+			"page":"page",
+			"CodeEspece":"Code",
+			"NomEspece":"Nom Espèce",
+			"Botaniste":"Auteur",
+			"Tronc":"Continent"
+		},
+	"resultat_espece_en":
+		{
+			"title":"Species",
+			"parPage":"Number of records by page:",
+			"page":"page",
+			"CodeEspece":"Code",
+			"NomEspece":"Species name",
+			"Botaniste":"Author",
+			"Tronc":"Continent"
+		},
+	"resultat_variete_fr":
+		{
+			"title":"Variétés",
+			"parPage":"Nombre d'enregistrements par page:",
+			"page":"page",
+			"CodeVariete":"Code",
+			"NomVariete":"Nom variété",
+			"SynoMajeur":"Synonyme majeur",
+			"Utilite":"Utilisation",
+			"CouleurPellicule":"Couleur",
+			"Saveur":"Saveur",
+			"Pepins":"Pépins",
+			"Sexe":"Sexe",
+			"PaysOrigine":"Pays origine"
+		},
+	"resultat_variete_en":
+		{
+			"title":"Varieties",
+			"parPage":"Number of records by page:",
+			"page":"page",
+			"CodeVariete":"Code",
+			"NomVariete":"Variety name",
+			"SynoMajeur":"Main synonym",
+			"Utilite":"Use",
+			"CouleurPellicule":"Colour",
+			"Saveur":"Flavour",
+			"Pepins":"Seeds",
+			"Sexe":"Sex",
+			"PaysOrigine":"Country origin"
+		},
+	"resultat_accession_fr":
+		{
+			"title":"Accessions / Clones",
+			"parPage":"Nombre d'enregistrements par page:",
+			"page":"page",
+			"CodeIntro":"Code",
+			"NomIntro":"Nom accession",
+			"NomVariete":"Nom variété",
+			"Partenaire":"Partenaire",
+			"PaysProvenance":"Pays provenance",
+			"CommuneProvenance":"Ville provenance",
+			"AnneeEntree":"Année"
+		},
+	"resultat_accession_en":
+		{
+			"title":"Accession / Clones",
+			"parPage":"Number of records by page:",
+			"page":"page",
+			"CodeIntro":"Code",
+			"NomIntro":"Accession name",
+			"NomVariete":"Variety name",
+			"Partenaire":"Partner",
+			"PaysProvenance":"Country provenance",
+			"CommuneProvenance":"City Provenance",
+			"AnneeEntree":"Year"
+		}
+}

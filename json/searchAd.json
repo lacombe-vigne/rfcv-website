@@ -1,0 +1,269 @@
+{
+	"page_principale_fr":
+		{
+			"title_recherche_avancee":"Recherche Avancée",
+			"fieldset_conditions_legend":"Votre Condition De Recherche",
+			"titile_section":"Section",
+			"titile_Champ":"Champ",
+			"titile_Modele":"Modele",
+			"titile_Condition":"Condition",
+			"titile_Supprimer":"Fonction",
+			"go_searchA":"Recherche",
+			"recherche_avancee_titleAttention":"Attention: ",
+			"recherche_avancee_Attention":"tehtehtehtehtethethethethtehteh",
+			"titleResultat_rechreche_avancee":"Resultat"
+		},
+	"page_principale_en":
+		{
+			"title_recherche_avancee":"Advanced search",
+			"fieldset_conditions_legend":"Your conditions of search",
+			"titile_section":"Section",
+			"titile_Champ":"Field",
+			"titile_Modele":"Model",
+			"titile_Condition":"Condition",
+			"titile_Supprimer":"Function",
+			"go_searchA":"Search",
+			"recherche_avancee_titleAttention":"Attention: ",
+			"recherche_avancee_Attention":"tehtehtehtehtethethethethtehteh",
+			"titleResultat_rechreche_avancee":"Results"
+		},
+	"section_fr":
+		{
+			"section_espece_RA":"Espece",
+			"section_variete_RA":"Variete",
+			"section_accession_RA":"Accession",
+			"section_emplacement_RA":"Emplacement",
+			"section_sanitaire_RA":"Sanitaire",
+			"section_description_RA":"Description Morphologique",
+			"section_aptitude_RA":"Aptitude",
+			"section_genetique_RA":"Profil génétique",
+			"section_phototheque_RA":"Photothèque",
+			"section_documentation_RA":"Documentation PDF/DOC",
+			"section_bibliographie_RA":"Bibliographie",
+			"section_partenaire_RA":"Partenaire"
+		},
+	"section_en":
+		{
+			"section_espece_RA":"Espece",
+			"section_variete_RA":"Variete",
+			"section_accession_RA":"Accession",
+			"section_emplacement_RA":"Emplacement",
+			"section_sanitaire_RA":"Sanitaire",
+			"section_description_RA":"Description Morphologique",
+			"section_aptitude_RA":"Aptitude",
+			"section_genetique_RA":"Profil génétique",
+			"section_phototheque_RA":"Photothèque",
+			"section_documentation_RA":"Documentation PDF/DOC",
+			"section_bibliographie_RA":"Bibliographie",
+			"section_partenaire_RA":"Partenaire"
+		},
+	"model_fr":
+		{
+			"section_model_like":"like",
+			"section_model_exact":"exact",
+			"section_model_start":"start",
+			"section_model_finish":"finish"
+		},
+	"model_en":
+		{
+			"section_model_like":"like",
+			"section_model_exact":"exact",
+			"section_model_start":"start",
+			"section_model_finish":"finish"
+		},
+	"champ_espece_fr":
+		{
+			"indifferent":"---indifférent---",
+			"CodeEsp":"Code",
+			"Espece":"Nom Espèce"
+		},
+	"champ_espece_en":
+		{
+			"indifferent":"---indifférent---",
+			"CodeEsp":"Code",
+			"Espece":"Species Name"
+		},
+	"champ_variete_fr":
+		{
+			"indifferent":"---indifférent---",
+			"CodeVar":"Code",
+			"NomVar":"Nom variété",
+			"SynoMajeur":"Synonyme majeur",
+			"CodeType":"Type",
+			"UniteVar":"Unité",
+			"Utilite":"Utilisation",
+			"PaysOrigine":"Pays Origine",
+			"RegionOrigine":"Région",
+			"DepartOrigine":"Département",
+			"CouleurPel":"Couleur",
+			"CouleurPulp":"Couleur Pulpe",
+			"Saveur":"Saveur",
+			"Pepins":"Pépins",
+			"Obtenteur":"Obtenteur",
+			"MereObt":"Mère Obtenteur",
+			"PereObt":"Père Obtenteur",
+			"InscriptionFrance":"Inscription France",
+			"InscriptionEurope":"Inscription Europe"
+		},
+	"champ_variete_en":
+		{
+			"indifferent":"---indifférent---",
+			"CodeVar":"Code",
+			"NomVar":"Nom variété",
+			"SynoMajeur":"Synonyme majeur",
+			"CodeType":"Type",
+			"UniteVar":"Unité",
+			"Utilite":"Utilisation",
+			"PaysOrigine":"Pays Origine",
+			"RegionOrigine":"Région",
+			"DepartOrigine":"Département",
+			"CouleurPel":"Couleur",
+			"CouleurPulp":"Couleur Pulpe",
+			"Saveur":"Saveur",
+			"Pepins":"Pépins",
+			"Obtenteur":"Obtenteur",
+			"MereObt":"Mère Obtenteur",
+			"PereObt":"Père Obtenteur",
+			"InscriptionFrance":"Inscription France",
+			"InscriptionEurope":"Inscription Europe"
+		},
+	"champ_accession_fr":
+		{
+			"indifferent":"---indifférent---",
+			"CodeIntro":"Code",
+			"NomIntro":"Nom Accession",
+			"Statut":"Statut",
+			"UniteIntro":"Unité Matériel",
+			"PaysProvenance":"Pays Provenance",
+			"RegionProvenance":"Région Provenance",
+			"DepartProvenance":"Department Provenance",
+			"CommuneProvenance":"Ville Provenance",
+			"AdresProvenance":"Adresse Provenance",
+			"AnneeEntree":"Année",
+			"Agrement":"Agrément",
+			"NumCloneCTPS":"NumCloneCTPS"
+		},
+	"champ_accession_en":
+		{
+			"indifferent":"---indifférent---",
+			"CodeIntro":"Code",
+			"NomIntro":"Nom Accession",
+			"Statut":"Statut",
+			"UniteIntro":"Unité Matériel",
+			"PaysProvenance":"Pays Provenance",
+			"RegionProvenance":"Région Provenance",
+			"DepartProvenance":"Department Provenance",
+			"CommuneProvenance":"Ville Provenance",
+			"AdresProvenance":"Adresse Provenance",
+			"AnneeEntree":"Année",
+			"Agrement":"Agrément",
+			"NumCloneCTPS":"NumCloneCTPS"
+		},
+	"champ_emplacement_fr":
+		{
+			"indifferent":"---indifférent---",
+			"CodeEmplacem":"Code",
+			"CodeSite":"Site",
+			"Parcelle":"Parcelle",
+			"Rang":"Rang",
+			"TypeSouche":"TypeSouche",
+			"PremiereSouche":"Première Souche"
+		},
+	"champ_emplacement_en":
+		{
+			"indifferent":"---indifférent---",
+			"CodeEmplacem":"Code",
+			"CodeSite":"Site",
+			"Parcelle":"Parcelle",
+			"Rang":"Rang",
+			"TypeSouche":"TypeSouche",
+			"PremiereSouche":"Première Souche"
+		},
+	"champ_sanitaire_fr":
+		{
+			"indifferent":"---indifférent---",
+			"NomTest":"Pathogène",
+			"CategorieTest":"CategorieTest",
+			"ResultatTest":"Résultat"
+		},
+	"champ_sanitaire_en":
+		{
+			"indifferent":"---indifférent---",
+			"NomTest":"Pathogène",
+			"CategorieTest":"CategorieTest",
+			"ResultatTest":"Résultat"
+		},
+	
+	"champ_aptitude_fr":
+		{
+			"indifferent":"---indifférent---",
+			"CodeCaract":"Aptitude",
+			"ValeurCaractNum":"Valeur"
+		},
+	"champ_aptitude_en":
+		{
+			"indifferent":"---indifférent---",
+			"CodeCaract":"Aptitude",
+			"ValeurCaractNum":"Valeur"
+		},
+	"champ_phototheque_fr":
+		{
+			"indifferent":"---indifférent---",
+			"OrganePhoto":"Organge",
+			"CouleurPhoto":"CouleurPhoto",
+			"TypePhoto":"Type"
+		},
+	"champ_phototheque_en":
+		{
+			"indifferent":"---indifférent---",
+			"OrganePhoto":"Organge",
+			"CouleurPhoto":"CouleurPhoto",
+			"TypePhoto":"Type"
+		},
+	"champ_documentation_fr":
+		{
+			"indifferent":"---indifférent---",
+			"TypeDoc":"Type Doc",
+			"Titre":"Title",
+			"Auteurs":"Auteur"
+		},
+	"champ_documentation_en":
+		{
+			"indifferent":"---indifférent---",
+			"TypeDoc":"Type Doc",
+			"Titre":"Title",
+			"Auteurs":"Auteur"
+		},
+	"champ_bibliographie_fr":
+		{
+			"indifferent":"---indifférent---",
+			"TypeDoc":"Type Doc",
+			"Title":"Title",
+			"Author":"Auteur"
+		},
+	"champ_bibliographie_en":
+		{
+			"indifferent":"---indifférent---",
+			"TypeDoc":"Type Doc",
+			"Title":"Title",
+			"Author":"Auteur"
+		},
+	"champ_partenaire_fr":
+		{
+			"indifferent":"---indifférent---",
+			"NomPartenaire":"Nom",
+			"SiglePartenaire":"Sigle",
+			"SectionRegionaleENTAV":"Section Régional",
+			"RegionPartenaire":"Region",
+			"DepartPartenaire":"Département"
+		},
+	"champ_partenaire_en":
+		{
+			"indifferent":"---indifférent---",
+			"NomPartenaire":"Nom",
+			"SiglePartenaire":"Sigle",
+			"SectionRegionaleENTAV":"Section Régional",
+			"RegionPartenaire":"Region",
+			"DepartPartenaire":"Département"
+		}
+}
