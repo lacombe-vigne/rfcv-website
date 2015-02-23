@@ -1,4 +1,17 @@
-$(document).ready(function(){
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+       <?php $langue = $_POST['langue_value']; ?>
+       <script type="text/javascript" charset=utf-8>          
+        $(document).ready(function(){
 	//page person, qui ne affiche pas au début de ce page
 	$('.modifier_mesInfos').hide();
 	$('.list-users').hide();
@@ -25,7 +38,7 @@ $(document).ready(function(){
 	if($_GET['l']!=undefined){
 		var langue=$_GET['l'];
 	}else{
-		var langue="EN";
+		var langue='<?php echo $langue;?>';
 	}
 	//afficher le formulaire pour modifer mes infos
 	$('#Modifiez-mes-info').click(function(){
@@ -763,7 +776,7 @@ $(document).ready(function(){
 			}
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 			console.log(dataString);
-			search_ajax(dataString);
+			search_ajax(dataString,search);
 		}
 	});
 	
@@ -807,7 +820,7 @@ $(document).ready(function(){
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 			// alert(dataString);
 			console.log(dataString);
-			search_ajax(dataString);
+			search_ajax(dataString,search);
 		}
 	});
 	$.extend({'search_page_FichierEsp_listVariete':
@@ -1545,7 +1558,7 @@ $(document).ready(function(){
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 			// alert(dataString);
 			console.log(dataString);
-			search_ajax(dataString);
+			search_ajax(dataString,search);
 		}
 	});
 	$.extend({'tri_table_variete_FichierEsp':
@@ -2250,8 +2263,9 @@ $(document).ready(function(){
 			avance_listEspece(dataString);
 		}
 	});
-	function search_ajax(dataString){
+	function search_ajax(dataString,search){
 		var data=dataString+"&function=searchSimple";
+                search = " : "+ search;
 		$.ajax({
 			type:"post",
 			url:"./php/script_webbio.php",
@@ -2283,7 +2297,7 @@ $(document).ready(function(){
 								$('#chemin_selection').append(value_search.chemin_selection);
 								$('#chemin_searchA').append(value_search.chemin_searchA);
 								$('#chemin_login').append(value_search.chemin_login);
-								$('#chemin_resutat').append(value_search.chemin_resutat);
+								$('#chemin_resutat').append(value_search.chemin_resutat).append(search);
 								$('#chemin_searchS').append(value_search.chemin_searchS);
 								$('#chemin_fiche').append(value_search.chemin_fiche);
 								$('#chemin_person').append(value_search.chemin_person);
@@ -3352,7 +3366,7 @@ $(document).ready(function(){
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 				// alert(dataString);
 			console.log(dataString);
-			search_ajax(dataString);
+			search_ajax(dataString,search);
 		}
 	});
 	$.extend({'select_change_FichierEsp_listvariete':
@@ -4040,7 +4054,8 @@ $(document).ready(function(){
 			$('#FichierPar').remove();
 			$('#FichierSite').remove();
 			$('.center').append('<div id="site-search"></div>');
-			search_ajax(dataString);
+                        var search=$("#search_value").val();
+			search_ajax(dataString,search);
 			return false;
 		}
 	});
@@ -8215,7 +8230,7 @@ $(document).ready(function(){
 																				'<td width="25%">'+entry['Titre']+'</td>'+
 																				'<td>'+entry['NomSite']+'</td>'+
 																				'<td width="25%">'+entry['Pays']+'</td>'+
-																				'<td width="15%"><a href="'+entry['URL']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="15%"><a href="'+entry['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_lien').append(contents_ligne_lien);
 							var v=$('#contents_ligne_lien')[0];
@@ -8356,7 +8371,7 @@ $(document).ready(function(){
 																				'<td width="25%">'+entry['Titre']+'</td>'+
 																				'<td>'+entry['NomSite']+'</td>'+
 																				'<td width="25%">'+entry['Pays']+'</td>'+
-																				'<td width="15%"><a href="'+entry['URL']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="15%"><a href="'+entry['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_lien').append(contents_ligne_lien);
 							var v=$('#contents_ligne_lien')[0];
@@ -8515,7 +8530,7 @@ $(document).ready(function(){
 																				'<td>'+entry['Auteur']+'</td>'+
 																				'<td width="15%">'+entry['Date_doc']+'</td>'+
 																				'<td width="15%">'+entry['TypeDoc']+'</td>'+
-																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_doc').append(contents_ligne_doc);
 							var v=$('#contents_ligne_doc')[0];
@@ -8674,7 +8689,7 @@ $(document).ready(function(){
 																				'<td>'+entry['Auteur']+'</td>'+
 																				'<td width="15%">'+entry['Date_doc']+'</td>'+
 																				'<td width="15%">'+entry['TypeDoc']+'</td>'+
-																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_doc').append(contents_ligne_doc);
 							var v=$('#contents_ligne_doc')[0];
@@ -8910,7 +8925,7 @@ $(document).ready(function(){
 																				'<td width="25%">'+entry['Titre']+'</td>'+
 																				'<td>'+entry['NomSite']+'</td>'+
 																				'<td width="25%">'+entry['Pays']+'</td>'+
-																				'<td width="15%"><a href="'+entry['URL']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="15%"><a href="'+entry['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_lien').append(contents_ligne_lien);
 							var v=$('#contents_ligne_lien')[0];
@@ -9049,7 +9064,7 @@ $(document).ready(function(){
 																				'<td>'+entry['Auteur']+'</td>'+
 																				'<td width="15%">'+entry['Date_doc']+'</td>'+
 																				'<td width="15%">'+entry['TypeDoc']+'</td>'+
-																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																				'<td width="10%"><a href="'+entry['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 							});
 							$('#contents_ligne_doc').append(contents_ligne_doc);
 							var v=$('#contents_ligne_doc')[0];
@@ -9288,7 +9303,7 @@ $(document).ready(function(){
 																					'<td width="25%">'+entry['Titre']+'</td>'+
 																					'<td>'+entry['NomSite']+'</td>'+
 																					'<td width="25%">'+entry['Pays']+'</td>'+
-																					'<td width="15%"><a href="'+entry['URL']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																					'<td width="15%"><a href="'+entry['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 								});
 								$('#contents_ligne_lien').append(contents_ligne_lien);
 								var v=$('#contents_ligne_lien')[0];
@@ -9427,7 +9442,7 @@ $(document).ready(function(){
 																					'<td>'+entry['Auteur']+'</td>'+
 																					'<td width="15%">'+entry['Date_doc']+'</td>'+
 																					'<td width="15%">'+entry['TypeDoc']+'</td>'+
-																					'<td width="10%"><a href="'+entry['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																					'<td width="10%"><a href="'+entry['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 								});
 								$('#contents_ligne_doc').append(contents_ligne_doc);
 								var v=$('#contents_ligne_doc')[0];
@@ -10709,9 +10724,10 @@ $(document).ready(function(){
 									dataString_res=value.dataString;
 									creatAjax();
 									console.log(dataString_res);
+                                                                        var search=$("#search_value").val();
 									$('#site-center').empty();
 									$('#site-center').append('<div id="site-search"></div>')
-									search_ajax(dataString_res);
+									search_ajax(dataString_res,search);
 								}
 								if(statue==2){
 									
@@ -10719,9 +10735,10 @@ $(document).ready(function(){
 									dataString_res=value.dataString;
 									creatAjax();
 									console.log(dataString_res);
+                                                                        var search=$("#search_value").val();
 									$('#site-center').empty();
 									$('#site-center').append('<div id="site-search"></div>')
-									search_ajax(dataString_res);
+									search_ajax(dataString_res,search);
 								}
 						}
 					});
@@ -13285,7 +13302,7 @@ $(document).ready(function(){
 					if(key==="Accession"){
 						$("#contents_Accession_avance").append('<div id="list2_cate_esp"><fieldset id="list2_fieldset"></fieldset></div>');
 						//legend
-						var legend='<legend ><img src="images/plus6.png"/ width="40" height="40"><span class="h4_accession"></span> <a href="#" onclick="$.checkLogin_avance()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat31"  onmouseover="$.aide_nombre_resultat(31);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_accession"></div>';
+						var legend='<legend ><img src="images/plus6.png"/ width="40" height="40"><span class="h4_accession"></span> <aClo href="#" onclick="$.checkLogin_avance()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aClo><a id="aide_nombre_resultat31"  onmouseover="$.aide_nombre_resultat(31);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_accession"></div>';
 						$('#list2_fieldset').append(legend);
 						//function_ligne
 						$('#contents_accession').append('<div class="function_ligne_accession"></div>');
@@ -14658,7 +14675,7 @@ $(document).ready(function(){
 																					'<td>'+entry['Auteur']+'</td>'+
 																					'<td width="15%">'+entry['Date_doc']+'</td>'+
 																					'<td width="15%">'+entry['TypeDoc']+'</td>'+
-																					'<td width="10%"><a href="'+entry['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
+																					'<td width="10%"><a href="'+entry['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td></tr>';
 								});
 								$('#contents_ligne_doc').append(contents_ligne_doc);
 								var v=$('#contents_ligne_doc')[0];
@@ -15990,7 +16007,7 @@ $(document).ready(function(){
 										'<td>'+value.contents[i]['Auteur']+'</td>'+
 										'<td width="15%">'+value.contents[i]['Date_doc']+'</td>'+
 										'<td width="15%">'+value.contents[i]['TypeDoc']+'</td>'+
-										'<td width="10%"><a href="'+value.contents[i]['FichierDocPdf']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
+										'<td width="10%"><a href="'+value.contents[i]['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
 										'<td width="5%">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="5%">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="5%">...</td>'+
@@ -16218,7 +16235,7 @@ $(document).ready(function(){
 										'<td width="25%">'+value.contents[i]['Titre']+'</td>'+
 										'<td>'+value.contents[i]['NomSite']+'</td>'+
 										'<td width="25%">'+value.contents[i]['Pays']+'</td>'+
-										'<td width="15%"><a href="'+value.contents[i]['URL']+'"><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
+										'<td width="15%"><a href="'+value.contents[i]['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
 										'<td>'+value.contents[i]['CodeIntro']+'</td>'+
 										'<td width="25%">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="5%" >...</td>'+
@@ -16544,4 +16561,96 @@ $(document).ready(function(){
 			}
 		}
 	});
+        
+        $.extend({'login':function(){
+		var username=$('#login_name').val();
+		var password=$('#login_pass').val();
+		var DataString='function=login&username='+username+'&password='+password;
+		console.log(DataString);
+		creatAjax();
+		
+		$.ajax({
+				type:"POST",
+				url:"./php/script_webbio.php",
+				data:DataString,
+				beforeSend: function(){ 
+					$(".site-login-form").empty();
+					$('<div id="msg" />').addClass("loading").html("Connexion au cours...").css("color","#999").appendTo('.site-login-form'); 
+				},
+				success: function(data){
+					console.log(data);
+					$('<div id="msg" />').remove();
+					$(".site-login-form").empty(); 
+					if(data==1){
+						console.log('1');
+						var div='<div id="message_login"></div>';
+					}
+					if(data==2){
+						console.log('2');
+						var div='<div id="message_emptyCompte"></div>';
+					}
+					if(data==3){
+						console.log('3');
+						var div="<div id='message_problemFilling'></div>";
+					}
+					if(data==4){
+						console.log('4');
+						var div='<div id="message_emptyCompte"></div>';
+					}
+					if(data=="erreur"){
+						var div="<div id='message_login'>erreur de base de donnes</div>";
+					}
+					$.getJSON("./json/message.json",function(data){
+						$.each(data,function(key, value){
+							if(key==="emptyCompte_fr"){
+								var message_emptyCompte=value;
+								$('#message_emptyCompte').append(message_emptyCompte);
+							}
+							if(key==="login_fr"){
+								var message_login=value;
+								$('#message_login').append(message_login);
+							}
+							if(key==="problemFillin_fr"){
+								var message_problemFilling=value;
+								$('#message_problemFilling').append(message_problemFilling);
+							}
+							if(key==="logout_fr"){
+								var message_logout=value;
+								$('#message_logout').append(message_logout);
+							}
+						});
+					});
+					$(".site-login-form").append(div);
+					console.log(data);
+				}
+				/*
+				, 
+				success: function(json){ 
+					if(json.success==1){ 
+						$(".site-login-form").remove(); 
+						var div = "<div id='result'><p><strong>"+json.user+"</strong>，恭喜您登录成功！</p> 
+						<p>您这是第<span>"+json.login_counts+"</span>次登录本站。</p> 
+						<p>上次登录本站的时间是：<span>"+json.login_time+"</span></p><p> 
+						<a href='#' id='logout'>【退出】</a></p></div>"; 
+						$("#login").append(div); 
+					}else{ 
+						$("#msg").remove(); 
+						$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub') .fadeOut(2000); 
+						return false; 
+					} 
+				} 
+				*/
+		});
+	}
+	});
+        
 });
+
+           
+           
+           
+           
+           
+    </script>
+    </body>
+</html>
