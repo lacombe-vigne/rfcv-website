@@ -47,5 +47,5 @@ Une fois qu'un utilisateur déconnecte, il destroy son session.
 	$_SESSION = array();
 	session_destroy();
 	echo'<div id="message_logout"></div>';
-	echo'<meta http-equiv="Refresh" content="1;url=./Home.php?l='.$langue.'">';
+	echo'<meta http-equiv="Refresh" content="1;url=././Home.php?l='.$langue.'">';
 ?>

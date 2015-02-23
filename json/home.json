@@ -166,7 +166,7 @@
 			"chemin_selection":"Ma Selection",
 			"chemin_searchA":"Recherche Avancé",
 			"chemin_login":"Connexion",
-			"chemin_resutat":"Resultat de Recherche",
+			"chemin_resultat":"Resultat de Recherche",
 			"chemin_searchS":"Recherche Simple",
 			"chemin_fiche":"Fiche",
 			"chemin_person":"Page personnel"
@@ -178,7 +178,7 @@
 			"chemin_selection":"My selection",
 			"chemin_searchA":"Advanced search",
 			"chemin_login":"Login",
-			"chemin_resutat":"Search Result",
+			"chemin_resultat":"Search Result",
 			"chemin_searchS":"Quick search",
 			"chemin_fiche":"Fiche",
 			"chemin_person":"Personal page"

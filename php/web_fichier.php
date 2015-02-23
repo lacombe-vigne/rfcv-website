@@ -581,14 +581,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierApt'>
@@ -600,36 +600,36 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_aptitude' value='".$codeAptitude."'>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier' >".$nomVar."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Experimentateur_lable_apt'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier' >".$nomVar."</a></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Experimentateur_lable_apt'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/>><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/>><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc''><img src='images/poin_acc.png' width='10' height='10'/><span id='Caracteristique_lable_apt'></span></td><td width='30%' class='res_acc'>".$Caracteristique."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='JourExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$JourExp."</td>
+								<td width='17%' class='lable_carte_acc''><img src='images/poin_par.png' width='10' height='10'/><span id='Caracteristique_lable_apt'></span></td><td width='30%' class='res_acc'>".$Caracteristique."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='JourExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$JourExp."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Valeur_lable_apt'></span></td><td class='res_acc'>".$Valeur."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='MoisExp_lable_apt'></span></td><td class='res_acc'>".$MoisExp."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Valeur_lable_apt'></span></td><td class='res_acc'>".$Valeur."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='MoisExp_lable_apt'></span></td><td class='res_acc'>".$MoisExp."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Unite_lable_apt'></span></td><td class='res_acc'>".$Unite."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$AnneeExp."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Unite_lable_apt'></span></td><td class='res_acc'>".$Unite."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='AnneeExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$AnneeExp."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Ponderation_lable_apt'></span></td><td class='res_acc'>".$Ponderation."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='LieuExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
-							</tr>
-							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$SiteExp."</a></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Ponderation_lable_apt'></span></td><td class='res_acc'>".$Ponderation."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='LieuExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='EmplacementExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$EmplacementExp."</td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$SiteExp."</a></td>
+							</tr>
+							<tr>
+								<td colspan='2'></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='EmplacementExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$EmplacementExp."</td>
 							</tr>
 						</table>
 					</div>
@@ -642,14 +642,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierMor'>
@@ -661,36 +661,36 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_ampelo' value='".$CodeAmpelo."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomAcc_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Experimentateur_lable_mor'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Experimentateur_lable_mor'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Descripteur_lable_mor'></span></td><td class='res_acc'>".$Descripteur."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Partenaire_lable_mor'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Descripteur_lable_mor'></span></td><td class='res_acc'>".$Descripteur."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_mor'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeDescripteur_lable_mor'></span></td><td width='30%' class='res_acc'>".$CodeDescripteur."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='JourExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$JourExp."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeDescripteur_lable_mor'></span></td><td width='30%' class='res_acc'>".$CodeDescripteur."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='JourExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$JourExp."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Caractere_lable_mor'></span></td><td class='res_acc'>".$Caractere."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='MoisExp_lable_mor'></span></td><td class='res_acc'>".$MoisExp."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Caractere_lable_mor'></span></td><td class='res_acc'>".$Caractere."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='MoisExp_lable_mor'></span></td><td class='res_acc'>".$MoisExp."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeCaractere_lable_mor'></span></td><td class='res_acc'>".$CodeCaractere."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AnneeExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$AnneeExp."</td>
-							</tr>
-							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='LieuExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeCaractere_lable_mor'></span></td><td class='res_acc'>".$CodeCaractere."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AnneeExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$AnneeExp."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SiteExp_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$SiteExp."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='LieuExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Emplamcement_lable_mor'></span></td><td width='30%' class='res_acc'>".$Emplamcement."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SiteExp_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$SiteExp."</a></td>
+							</tr>
+							<tr>
+								<td colspan='2'></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Emplamcement_lable_mor'></span></td><td width='30%' class='res_acc'>".$Emplamcement."</td>
 							</tr>
 						</table>
 					</div>
@@ -703,14 +703,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierEmp'>
@@ -722,51 +722,51 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_emplacement' value='".$CodeEmplacemen."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomAcc_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Rang_lable_emp'></span></td><td width='30%' class='res_acc'>".$Rang."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Rang_lable_emp'></span></td><td width='30%' class='res_acc'>".$Rang."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeAcc_lable_emp'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='TypeSouche_lable_emp'></span></td><td class='res_acc'>".$TypeSouche."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeAcc_lable_emp'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TypeSouche_lable_emp'></span></td><td class='res_acc'>".$TypeSouche."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Site_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$Site."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PremiereSouche_lable_emp'></span></td><td width='30%' class='res_acc'>".$PremiereSouche."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Site_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeSite."\",\"site\")' class='lien_fichier'>".$Site."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PremiereSouche_lable_emp'></span></td><td width='30%' class='res_acc'>".$PremiereSouche."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Zone_lable_emp'></span></td><td class='res_acc'>".$Zone."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DerniereSouche_lable_emp'></span></td><td class='res_acc'>".$DerniereSouche."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Zone_lable_emp'></span></td><td class='res_acc'>".$Zone."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DerniereSouche_lable_emp'></span></td><td class='res_acc'>".$DerniereSouche."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Parcelle_lable_emp'></span></td><td class='res_acc'>".$Parcelle."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AnneePlantation_lable_emp'></span></td><td width='30%' class='res_acc'>".$AnneePlantation."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Parcelle_lable_emp'></span></td><td class='res_acc'>".$Parcelle."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AnneePlantation_lable_emp'></span></td><td width='30%' class='res_acc'>".$AnneePlantation."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SousPartie_lable_emp'></span></td><td class='res_acc'>".$SousPartie."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AnneeElimination_lable_emp'></span></td><td width='30%' class='res_acc'>".$AnneeElimination."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SousPartie_lable_emp'></span></td><td class='res_acc'>".$SousPartie."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AnneeElimination_lable_emp'></span></td><td width='30%' class='res_acc'>".$AnneeElimination."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatNormal_lable_emp'></span></td><td class='res_acc'>".$NbreEtatNormal."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CategMateriel_lable_emp'></span></td><td width='30%' class='res_acc'>".$CategMateriel."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatNormal_lable_emp'></span></td><td class='res_acc'>".$NbreEtatNormal."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CategMateriel_lable_emp'></span></td><td width='30%' class='res_acc'>".$CategMateriel."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatMoyen_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMoyen."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Greffe_lable_emp'></span></td><td width='30%' class='res_acc'>".$Greffe."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatMoyen_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMoyen."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Greffe_lable_emp'></span></td><td width='30%' class='res_acc'>".$Greffe."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatMoyFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMoyFaible."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PorteGreffe_lable_emp'></span></td><td width='30%' class='res_acc'>".$PorteGreffe."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatMoyFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMoyFaible."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PorteGreffe_lable_emp'></span></td><td width='30%' class='res_acc'>".$PorteGreffe."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatFaible."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NumCloneCTPS_lable_emp'></span></td><td width='30%' class='res_acc'>".$NumCloneCTPS."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatFaible."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NumCloneCTPS_lable_emp'></span></td><td width='30%' class='res_acc'>".$NumCloneCTPS."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatTresFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatTresFaible."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatTresFaible_lable_emp'></span></td><td class='res_acc'>".$NbreEtatTresFaible."</td>
 								<td codspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NbreEtatMort_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMort."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NbreEtatMort_lable_emp'></span></td><td class='res_acc'>".$NbreEtatMort."</td>
 								<td codspan='2'></td>
 							</tr>
 						</table>
@@ -780,14 +780,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSan'>
@@ -799,32 +799,32 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_sanitaire' value='".$CodeSanitaire."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomAcc_lable_san'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CategorieTest_lable_san'></span></td><td width='30%' class='res_acc'>".$CategorieTest."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_san'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CategorieTest_lable_san'></span></td><td width='30%' class='res_acc'>".$CategorieTest."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeAcc_lable_san'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='MatTeste_lable_san'></span></td><td class='res_acc'>".$MatTeste."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeAcc_lable_san'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='MatTeste_lable_san'></span></td><td class='res_acc'>".$MatTeste."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PathogeneTeste_lable_san'></span></td><td width='30%' class='res_acc'>".$PathogeneTeste."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeEmplacem_lable_san'></span></td><td width='30%' class='res_acc'>".$CodeEmplacem."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PathogeneTeste_lable_san'></span></td><td width='30%' class='res_acc'>".$PathogeneTeste."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeEmplacem_lable_san'></span></td><td width='30%' class='res_acc'>".$CodeEmplacem."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ResultatTest_lable_san'></span></td><td class='res_acc'>".$ResultatTest."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SoucheTestee_lable_san'></span></td><td class='res_acc'>".$SoucheTestee."</td>
-							</tr>
-							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Laboratoire_lable_san'></span></td><td width='30%' class='res_acc'>".$Laboratoire."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ResultatTest_lable_san'></span></td><td class='res_acc'>".$ResultatTest."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SoucheTestee_lable_san'></span></td><td class='res_acc'>".$SoucheTestee."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DateTest_lable_san'></span></td><td width='30%' class='res_acc'>".$DateTest."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Laboratoire_lable_san'></span></td><td width='30%' class='res_acc'>".$Laboratoire."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Partenaire_lable_san'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DateTest_lable_san'></span></td><td width='30%' class='res_acc'>".$DateTest."</td>
+							</tr>
+							<tr>
+								<td colspan='2'></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_san'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
 							</tr>
 						</table>
 					</div>
@@ -837,14 +837,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierGen'>
@@ -856,43 +856,43 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_genetique' value='".$Code."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomAcc_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='IdStockADN_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdStockADN."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdStockADN_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdStockADN."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodeAcc_lable_gen'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='IdProtocolePCR_lable_gen'></span></td><td class='res_acc'>".$IdProtocolePCR."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeAcc_lable_gen'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$CodeAcc."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdProtocolePCR_lable_gen'></span></td><td class='res_acc'>".$IdProtocolePCR."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Marqueur_lable_gen'></span></td><td width='30%' class='res_acc'>".$Marqueur."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DatePCR_lable_gen'></span></td><td width='30%' class='res_acc'>".$DatePCR."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Marqueur_lable_gen'></span></td><td width='30%' class='res_acc'>".$Marqueur."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DatePCR_lable_gen'></span></td><td width='30%' class='res_acc'>".$DatePCR."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ValeurCodee1_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee1."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DateRun_lable_gen'></span></td><td class='res_acc'>".$DateRun."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ValeurCodee1_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee1."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DateRun_lable_gen'></span></td><td class='res_acc'>".$DateRun."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ValeurCodee2_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee2."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Partenaire_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ValeurCodee2_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee2."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".$Partenaire."</a></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='EmplacemRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$EmplacemRecolte."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='EmplacemRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$EmplacemRecolte."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SouchePrelev_lable_gen'></span></td><td width='30%' class='res_acc'>".$SouchePrelev."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SouchePrelev_lable_gen'></span></td><td width='30%' class='res_acc'>".$SouchePrelev."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DateRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$DateRecolte."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DateRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$DateRecolte."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='IdProtocoleRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdProtocoleRecolte."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdProtocoleRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdProtocoleRecolte."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='TypeOrgane_lable_gen'></span></td><td width='30%' class='res_acc'>".$TypeOrgane."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TypeOrgane_lable_gen'></span></td><td width='30%' class='res_acc'>".$TypeOrgane."</td>
 								<td colspan='2'></td>
 							</tr>
 						</table>
@@ -906,14 +906,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierBib'>
@@ -925,59 +925,59 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_bibliographique' value='".$Code."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomVar_lable_bib'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier'>".$nomVar."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='VolumeCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$VolumeCitation."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomVar_lable_bib'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier'>".$nomVar."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='VolumeCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$VolumeCitation."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='nomAcc_lable_bib'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PagesCitation_lable_bib'></span></td><td class='res_acc'>".$PagesCitation."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_bib'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".$nomAcc."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PagesCitation_lable_bib'></span></td><td class='res_acc'>".$PagesCitation."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='TypeDoc_lable_bib'></span></td><td width='30%' class='res_acc'>".$TypeDoc."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AuteurCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$AuteurCitation."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TypeDoc_lable_bib'></span></td><td width='30%' class='res_acc'>".$TypeDoc."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AuteurCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$AuteurCitation."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Title_lable_bib'></span></td><td class='res_acc'>".$Title."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NomVigneCite_lable_bib'></span></td><td class='res_acc'>".$NomVigneCite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Title_lable_bib'></span></td><td class='res_acc'>".$Title."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NomVigneCite_lable_bib'></span></td><td class='res_acc'>".$NomVigneCite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Author_lable_bib'></span></td><td class='res_acc'>".$Author."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Author_lable_bib'></span></td><td class='res_acc'>".$Author."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Year_lable_bib'></span></td><td width='30%' class='res_acc'>".$Year."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Year_lable_bib'></span></td><td width='30%' class='res_acc'>".$Year."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Edition_lable_bib'></span></td><td width='30%' class='res_acc'>".$Edition."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Edition_lable_bib'></span></td><td width='30%' class='res_acc'>".$Edition."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Publisher_lable_bib'></span></td><td width='30%' class='res_acc'>".$Publisher."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Publisher_lable_bib'></span></td><td width='30%' class='res_acc'>".$Publisher."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PlacePublished_lable_bib'></span></td><td width='30%' class='res_acc'>".$PlacePublished."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PlacePublished_lable_bib'></span></td><td width='30%' class='res_acc'>".$PlacePublished."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ISBN_lable_bib'></span></td><td width='30%' class='res_acc'>".$ISBN."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ISBN_lable_bib'></span></td><td width='30%' class='res_acc'>".$ISBN."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='Language_lable_bib'></span></td><td width='30%' class='res_acc'>".$Language."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Language_lable_bib'></span></td><td width='30%' class='res_acc'>".$Language."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='NumberOfVolumes_lable_bib'></span></td><td width='30%' class='res_acc'>".$NumberOfVolumes."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='NumberOfVolumes_lable_bib'></span></td><td width='30%' class='res_acc'>".$NumberOfVolumes."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PagesDoc_lable_bib'></span></td><td width='30%' class='res_acc'>".$PagesDoc."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PagesDoc_lable_bib'></span></td><td width='30%' class='res_acc'>".$PagesDoc."</td>
 								<td colspan='2'></td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CallNumber_lable_bib'></span></td><td width='30%' class='res_acc'>".$CallNumber."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CallNumber_lable_bib'></span></td><td width='30%' class='res_acc'>".$CallNumber."</td>
 								<td colspan='2'></td>
 							</tr>
 						</table>
@@ -1044,14 +1044,14 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSite'>
@@ -1063,44 +1063,44 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_site' value='".$CodeSite."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='RegionSite_lable_site'></span></td><td width='30%' class='res_acc'>".$RegionSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='SecRegENTAV_lable_site'></span></td><td width='30%' class='res_acc'>".$SecRegENTAV."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='RegionSite_lable_site'></span></td><td width='30%' class='res_acc'>".$RegionSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SecRegENTAV_lable_site'></span></td><td width='30%' class='res_acc'>".$SecRegENTAV."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='DepartSite_lable_site'></span></td><td class='res_acc'>".$DepartSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ProprietaireSite_lable_site'></span></td><td class='res_acc'>".$ProprietaireSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DepartSite_lable_site'></span></td><td class='res_acc'>".$DepartSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ProprietaireSite_lable_site'></span></td><td class='res_acc'>".$ProprietaireSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CommuneSite_lable_site'></span></td><td width='30%' class='res_acc'>".$CommuneSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ExploitSite_lable_site'></span></td><td width='30%' class='res_acc'>".$ExploitSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CommuneSite_lable_site'></span></td><td width='30%' class='res_acc'>".$CommuneSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ExploitSite_lable_site'></span></td><td width='30%' class='res_acc'>".$ExploitSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='CodPostSite_lable_site'></span></td><td class='res_acc'>".$CodPostSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='ResponsSite_lable_site'></span></td><td class='res_acc'>".$ResponsSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodPostSite_lable_site'></span></td><td class='res_acc'>".$CodPostSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ResponsSite_lable_site'></span></td><td class='res_acc'>".$ResponsSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AdresseSite_lable_site'></span></td><td class='res_acc'>".$AdresseSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='TelSite_lable_site'></span></td><td width='30%' class='res_acc'>".$TelSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AdresseSite_lable_site'></span></td><td class='res_acc'>".$AdresseSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TelSite_lable_site'></span></td><td width='30%' class='res_acc'>".$TelSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='LatSite_lable_site'></span></td><td class='res_acc'>".$LatSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='FaxSite_lable_site'></span></td><td width='30%' class='res_acc'>".$FaxSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='LatSite_lable_site'></span></td><td class='res_acc'>".$LatSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='FaxSite_lable_site'></span></td><td width='30%' class='res_acc'>".$FaxSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='LongSite_lable_site'></span></td><td class='res_acc'>".$LongSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='MailSite_lable_site'></span></td><td width='30%' class='res_acc'>".$MailSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='LongSite_lable_site'></span></td><td class='res_acc'>".$LongSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='MailSite_lable_site'></span></td><td width='30%' class='res_acc'>".$MailSite."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AltSite_lable_site'></span></td><td class='res_acc'>".$AltSite."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='AnneeCreationSite_lable_site'></span></td><td width='30%' class='res_acc'>".$AnneeCreationSite."</td>
-							</tr>
-							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='VarMajoritairesSite_lable_site'></span></td><td width='30%' class='res_acc'>".$VarMajoritairesSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AltSite_lable_site'></span></td><td class='res_acc'>".$AltSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='AnneeCreationSite_lable_site'></span></td><td width='30%' class='res_acc'>".$AnneeCreationSite."</td>
 							</tr>
 							<tr>
 								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_acc.png' width='10' height='10'/>  <span id='PresentationSite_lable_site'></span></td><td width='30%' class='res_acc'>".$PresentationSite."</td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='VarMajoritairesSite_lable_site'></span></td><td width='30%' class='res_acc'>".$VarMajoritairesSite."</td>
+							</tr>
+							<tr>
+								<td colspan='2'></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PresentationSite_lable_site'></span></td><td width='30%' class='res_acc'>".$PresentationSite."</td>
 							</tr>
 						</table>
 					</div>

@@ -1646,64 +1646,64 @@ avar,aesp,aclo{
     font-style:normal;        
 }
 #FichierApt #apt_FichierApt{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierMor #mor_FichierMor{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierEmp #emp_FichierEmp{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierSan #san_FichierSan{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierGen #gen_FichierGen{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierBib #bib_FichierBib{
-    color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierPar #par_FichierPar{
-    color:#F00;
-    text-shadow: 0 2px 2px #F88;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #FichierSite #site_FichierSite{
     color:#595959;
-    text-shadow: 0 2px 2px #727272;
+    text-shadow: 0 2px 2px #C0C0C0;
     font-family:Arial, Helvetica, sans-serif;
     margin:-1% auto auto auto;
     font-style:normal;
 }
 #code_fiche{
-    color:#F00;
-    text-shadow: 0 2px 2px #F88;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
 }
 #FichierAcc .carte_FichierAcc,#FichierVar .carte_FichierVar,#FichierEsp .carte_FichierEsp,
 #FichierApt .carte_FichierApt,#FichierMor .carte_FichierMor,#FichierEmp .carte_FichierEmp,

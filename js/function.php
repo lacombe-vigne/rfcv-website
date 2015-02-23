@@ -2285,7 +2285,7 @@ and open the template in the editor.
 							'<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>'+
 							'<li><a href="SearchS.php" class="lien_chemin" id="chemin_searchS"></a></li>'+
 							'<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>'+
-							'<li id="chemin_resutat"></li>'+
+							'<li id="chemin_resultat"></li>'+
 							'<li id="back_button"><a  href="SearchS.php" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>'+
 							'</ul>';
 				$('.chemin').append(chemin);
@@ -2297,7 +2297,7 @@ and open the template in the editor.
 								$('#chemin_selection').append(value_search.chemin_selection);
 								$('#chemin_searchA').append(value_search.chemin_searchA);
 								$('#chemin_login').append(value_search.chemin_login);
-								$('#chemin_resutat').append(value_search.chemin_resutat).append(search);
+								$('#chemin_resultat').append(value_search.chemin_resultat).append(search);
 								$('#chemin_searchS').append(value_search.chemin_searchS);
 								$('#chemin_fiche').append(value_search.chemin_fiche);
 								$('#chemin_person').append(value_search.chemin_person);
@@ -2309,7 +2309,7 @@ and open the template in the editor.
 								$('#chemin_selection').append(value_search.chemin_selection);
 								$('#chemin_searchA').append(value_search.chemin_searchA);
 								$('#chemin_login').append(value_search.chemin_login);
-								$('#chemin_resutat').append(value_search.chemin_resutat);
+								$('#chemin_resultat').append(value_search.chemin_resultat);
 								$('#chemin_searchS').append(value_search.chemin_searchS);
 								$('#chemin_fiche').append(value_search.chemin_fiche);
 								$('#chemin_person').append(value_search.chemin_person);

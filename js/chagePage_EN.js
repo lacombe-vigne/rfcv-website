@@ -105,7 +105,7 @@ $(document).ready(function(){
 				$('#chemin_selection').append(value.chemin_selection);
 				$('#chemin_searchA').append(value.chemin_searchA);
 				$('#chemin_login').append(value.chemin_login);
-				$('#chemin_resultat').append(value.chemin_resutat);
+				$('#chemin_resultat').append(value.chemin_resultat);
 				$('#chemin_searchS').append(value.chemin_searchS);
 				$('#chemin_fiche').append(value.chemin_fiche);
 				$('#chemin_person').append(value.chemin_person);
