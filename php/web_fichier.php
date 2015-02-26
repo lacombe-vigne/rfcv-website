@@ -37,6 +37,7 @@
 	}
 	if($section=='variete'){
 		$CodeVar=supprNull($_POST['CodeVar']);
+                $_SESSION['CodeVar']=$CodeVar;
 		$NomVar=supprNull($_POST['NomVar']);
 		$SynoMajeur=supprNull($_POST['SynoMajeur']);  
 		$NumVarOnivins=supprNull($_POST['NumVarOnivins']);
@@ -354,7 +355,7 @@
 						<div id='function_ligne'>
 							<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
-							<a id='export_pdf_fiche'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
+							<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Variete.php' target=_blank><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
 							<img src='images/variete_fichier.png'/>";
@@ -363,7 +364,7 @@
 					<div id='FichierVar'>
 						<div id='function_ligne'>
 							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
-							<a id='export_pdf_fiche'><img src='images/variete_pdf.png'  width='25' height='25'/></a>
+							<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Variete.php' target=_blank><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
 							<img src='images/variete_fichier.png'/>";

@@ -115,7 +115,47 @@ class Variete {
 		$this->RstatutEnCollection= $RstatutEnCollection;
 		$this->RremarquesVar= $RremarquesVar;
 	}
-
+        
+        function getFichePDFVariete(){/*Permet d'exporter les données en PDF*/
+            $contents=array();
+                $contents['CodeVar']=$this->getCodeVar();
+		$contents['NomVar']=$this->getNomVar();
+		$contents['SynoMajeur']=$this->getSynoMajeur();
+		$contents['NumVarOnivins']=$this->getNumVarOnivins();
+		$contents['InscriptionFrance']=$this->getInscriptionFrance();
+		$contents['AnneeInscriptionFrance']=$this->getAnneeInscriptionFrance();
+		$contents['UniteVar']=$this->getUniteVar();
+		$contents['Type']=$this->getType();
+		$contents['Espece']=$this->getEspece();
+		$contents['codeEspece']=$this->getCodeEspece();
+		$contents['CouleurPe']=$this->getCouleurPe();
+		$contents['CouleurPu']=$this->getCouleurPu();
+		$contents['Saveur']=$this->getSaveur();
+		$contents['Pepins']=$this->getPepins();
+		$contents['Obtenteur']=$this->getObtenteur();
+		$contents['Utilite']=$this->getUtilite();
+		$contents['OIpays']=$this->getOIpays();
+                $contents['StatutEnCollection']=$this->getRstatutEnCollection();
+		$contents['RemarquesVar']=$this->getRremarquesVar();
+		$contents['Obtenteur']=$this->getPobtenteur();
+		$contents['MereReelle']=$this->getPmereReelle();
+		$contents['PereReel']=$this->getPprerReel();
+		$contents['CodeCroisementINRA']=$this->getPcodeCroismentINRA();
+		$contents['AnneeObtention']=$this->getPanneeObtention();
+		$contents['CodeVarMereReelle']=$this->getPcodeVarMereReelle();
+		$contents['CodeVarPereReel']=$this->getPcodeVarPereReel();
+		$contents['RemarqueParenteReelle']=$this->getPremarqueParenteReelle();
+		$contents['MereObt']=$this->getPmereObt();
+		$contents['PereObt']=$this->getPpereObt();
+		$contents['PaysOrigine']=$this->getOIpays();
+		$contents['RegionOrigine']=$this->getOIregion();
+		$contents['DepartOrigine']=$this->getOIdeparte();
+		$contents['InscriptionFrance']=$this->getOIinscriptionFrance();
+		$contents['NumVarOnivins']=$this->getOInumVarOnivins();
+		$contents['AnneeInscriptionFrance']=$this->getOIanneeInscriptionFrance();
+		$contents['InscriptionEurope']=$this->getOIinscriptionEurop();
+                return $contents;
+        }
 	function getListeVariete(){
 		$contents_variete=array();
 		$contents_variete['codeVar']=$this->getCodeVar();

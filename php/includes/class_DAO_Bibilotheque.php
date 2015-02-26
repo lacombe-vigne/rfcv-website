@@ -6432,5 +6432,38 @@ class BibliothequeDAO {
             }
             return $utilite;
         }
+        
+        public function exportpdf($code,$langue,$section){/*Permet d'exporter les données en PDF*/
+                $DAO =new BibliothequeDAO();
+		connexion_bbd();
+		mysql_query('SET NAMES UTF8');
+		$sql="select * from `NV-VARIETES` where CodeVar='".$code."'";
+		$resultat=mysql_query($sql) or die(mysql_error());
+		if(!$resultat){
+			deconnexion_bbd();
+			echo "<script>alert('erreur de base de donnes')</script>";
+			exit;
+		}
+		if(mysql_num_rows($resultat)==0){
+			deconnexion_bbd();
+			exit;
+		}
+		if(mysql_num_rows($resultat)>0){
+			for($i=0;$i<(mysql_num_rows($resultat));$i=$i+1){
+				$dico= mysql_fetch_assoc($resultat);
+				$VAR = new Variete($dico['CodeVar'],$dico['NomVar'],$dico['SynoMajeur'],$dico['NumVarOnivins'],$dico['InscriptionFrance'],
+									$dico['AnneeInscriptionFrance'],$dico['UniteVar'],$DAO->type($dico['CodeType'],$langue),$DAO->espece($dico['CodeEsp']),$DAO->couleurPel($dico['CouleurPel'],$langue),$DAO->couleurPulp($dico['CouleurPulp'],$langue),
+									$DAO->saveur($dico['Saveur'],$langue),$DAO->pepins($dico['Pepins'],$langue),$dico['Obtenteur'],$DAO->utilite($dico['Utilite'],$langue),$dico['CodeEsp'],$DAO->sexe($dico['Sexe'],$langue),$DAO->paysorigine($dico['PaysOrigine'],$langue),
+									$DAO->regionorigine($dico['RegionOrigine'],$langue),$DAO->departorigine($dico['DepartOrigine'],$langue),$dico['InscriptionFrance'],$dico['AnneeInscriptionFrance'],
+									$dico['NumVarOnivins'],$dico['InscriptionEurope'],$dico['Obtenteur'],$dico['MereReelle'],$dico['AnneeObtention'],
+									$dico['CodeVarMereReelle'],$dico['MereObt'],$dico['PereReel'],$dico['CodeCroisementINRA'],$dico['CodeVarPereReel'],
+									$dico['PereObt'],$dico['RemarqueParenteReelle'],$DAO->departorigine($dico['DepartOrigine'],$langue),$dico['RemarquesVar']);
+				$detail = $VAR->getFichePDFVariete();
+			}
+			deconnexion_bbd();
+		}
+		$res=$detail;
+		return $res;
+        }
 }
 
