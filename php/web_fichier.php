@@ -26,6 +26,7 @@
 	$section=$_GET['section'];
 	if($section=='espece'){
 		$CodeEsp=supprNull($_POST['CodeEsp']);
+                $_SESSION['CodeEsp']=$CodeEsp;
 		$Espece=supprNull($_POST['Espece']);
 		$Botaniste=supprNull($_POST['Botaniste']);
 		$Genre=supprNull($_POST['Genre']);
@@ -58,6 +59,7 @@
 	}
 	if($section=='accession'){
 		$CodeIntro=supprNull($_POST['CodeIntro']);
+                $_SESSION['CodeIntro']=$CodeIntro;
 		$NomIntro=supprNull($_POST['NomIntro']);
 		$NomVar=supprNull($_POST['NomVar']);
 		$Partenaire=supprNull($_POST['Partenaire']);
@@ -291,14 +293,14 @@
 					<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Espece.php' target=_blank><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
 				}else{
 					echo"
 					<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/espece_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Espece.php' target=_blank><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
 				}
@@ -477,13 +479,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Accession.php' target=_blank><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/accession_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Accession.php' target=_blank><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierAcc'>

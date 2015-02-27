@@ -1,26 +1,17 @@
 <?php
-session_start();
-if($_SESSION['language_Vigne']=="FR"){
-	include('php/web_style_fr.php');
-}else if($_SESSION['language_Vigne']=="EN"){
-	include('php/web_style_en.php');
-}else{
-	include('php/web_style_fr.php');
-}
-
-?>
-<?php
+session_start(); //Permet de récupérer le contenu des variables de session
 /*Traitement fichier.json*/
 $json = file_get_contents('../json/fichier.json');
-$parsed_json = json_decode($json);
+$parsed_json = json_decode($json);// Permet de lire le fichier JSON avec PHP.
+/*Permet de récuperer le label correspondant en anglais ou en français*/
 if($_SESSION['language_Vigne']=='FR'){/*Français*/
     /*Titres*/
-    $Ptitle = $parsed_json->{variete_fr}->{OIpays};
+    $Ptitle = $parsed_json->{variete_fr}->{Ptitle};
     $OItitle = $parsed_json->{variete_fr}->{OItitle};
     $Rtitle = $parsed_json->{variete_fr}->{Rtitle};
     /*Données*/
     $Title = $parsed_json->{variete_fr}->{Title};
-    $Type = $parsed_json->{variete_fr}->{Title};
+    $Type = $parsed_json->{variete_fr}->{Type};
     $Unite = $parsed_json->{variete_fr}->{UniteVar};
     $Utilite = $parsed_json->{variete_fr}->{Utilite};
     $Espece = $parsed_json->{variete_fr}->{Espece};
@@ -30,12 +21,16 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $Saveur = $parsed_json->{variete_fr}->{Saveur};
     $Pepins = $parsed_json->{variete_fr}->{Pepins};
     $Obtenteneur = $parsed_json->{variete_fr}->{Obtenteneur};
+        
+    /*Origine et Inscription*/
     $OIregion = $parsed_json->{variete_fr}->{OIregion};
     $OIdeparte = $parsed_json->{variete_fr}->{OIdeparte};
     $OIinscriptionFrance = $parsed_json->{variete_fr}->{OIinscriptionFrance};
     $OIanneeInscriptionFrance = $parsed_json->{variete_fr}->{OIanneeInscriptionFrance};
     $OInumVarOnivins = $parsed_json->{variete_fr}->{OInumVarOnivins};
     $OIinscriptionEurop = $parsed_json->{variete_fr}->{OIinscriptionEurop};
+        
+    /*Parenté*/
     $Pobtenteur = $parsed_json->{variete_fr}->{Pobtenteur};
     $PmereReelle = $parsed_json->{variete_fr}->{PmereReelle};
     $PanneeObtention = $parsed_json->{variete_fr}->{PanneeObtention};
@@ -46,17 +41,19 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $PcodeVarPereReel = $parsed_json->{variete_fr}->{PcodeVarPereReel};
     $PpereObt = $parsed_json->{variete_fr}->{PpereObt};
     $PremarqueParenteReelle = $parsed_json->{variete_fr}->{PremarqueParenteReelle};
+        
+    /*Remarques*/
     $RstatutEnCollection = $parsed_json->{variete_fr}->{RstatutEnCollection};
     $RremarquesVar = $parsed_json->{variete_fr}->{RremarquesVar};
     
 }else{/*Anglais*/
-    /*Titles*/
+    /*Titres*/
     $Ptitle = $parsed_json->{variete_en}->{Ptitle};
     $OItitle = $parsed_json->{variete_en}->{OItitle};
     $Rtitle = $parsed_json->{variete_en}->{Rtitle};
-    /*Datas*/
+    /*Données*/
     $Title = $parsed_json->{variete_en}->{Title};
-    $Type = $parsed_json->{variete_en}->{Title};
+    $Type = $parsed_json->{variete_en}->{Type};
     $Unite = $parsed_json->{variete_en}->{UniteVar};
     $Utilite = $parsed_json->{variete_en}->{Utilite};
     $Espece = $parsed_json->{variete_en}->{Espece};
@@ -66,12 +63,16 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $Saveur = $parsed_json->{variete_en}->{Saveur};
     $Pepins = $parsed_json->{variete_en}->{Pepins};
     $Obtenteneur = $parsed_json->{variete_en}->{Obtenteneur};
+    
+    /*Origine et Inscription*/
     $OIregion = $parsed_json->{variete_en}->{OIregion};
     $OIdeparte = $parsed_json->{variete_en}->{OIdeparte};
     $OIinscriptionFrance = $parsed_json->{variete_en}->{OIinscriptionFrance};
     $OIanneeInscriptionFrance = $parsed_json->{variete_en}->{OIanneeInscriptionFrance};
     $OInumVarOnivins = $parsed_json->{variete_en}->{OInumVarOnivins};
     $OIinscriptionEurop = $parsed_json->{variete_en}->{OIinscriptionEurop};
+    
+    /*Parenté*/
     $Pobtenteur = $parsed_json->{variete_en}->{Pobtenteur};
     $PmereReelle = $parsed_json->{variete_en}->{PmereReelle};
     $PanneeObtention = $parsed_json->{variete_en}->{PanneeObtention};
@@ -82,46 +83,23 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $PcodeVarPereReel = $parsed_json->{variete_en}->{PcodeVarPereReel};
     $PpereObt = $parsed_json->{variete_en}->{PpereObt};
     $PremarqueParenteReelle = $parsed_json->{variete_en}->{PremarqueParenteReelle};
+    
+    /*Remarques*/
     $RstatutEnCollection = $parsed_json->{variete_en}->{RstatutEnCollection};
     $RremarquesVar = $parsed_json->{variete_en}->{RremarquesVar};
 }
-function supprNullPDF($a) {
-    $res = $a;
-    if ($a == "oui" && $_SESSION['language_Vigne'] == "EN") {
-        $res = "yes";
-        return $res;
-    }
-    if ($a == "non" && $_SESSION['language_Vigne'] == "EN") {
-        $res = "no";
-        return $res;
-    }
-    if ($a == null || $a == "" || $a == "null") {
-        if ($_SESSION['language_Vigne'] == "FR") {
-            $res = "–";
-        } else {
-            $res = "–";
-        }
-    } else {
-        $res = $a;
-    }
-    return $res;
-}
-
-require('../php/includes/bibliFonc.php');
-require('../php/includes/class_DAO_Bibilotheque.php');
+require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
+require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
 $DAO = new BibliothequeDAO();
-$resultat = $DAO->exportpdf($_SESSION['CodeVar'], $_SESSION['language_Vigne'], null);
-supprNullPDF($resultat);
+$resultat = $DAO->exportpdf($_SESSION['CodeVar'], $_SESSION['language_Vigne'], "variete");/*Requête SQL*/
 ob_start();
 ?>
 
 <!-- CSS de la page HTML -->
 <style type="text/css">
     table{width:100%;color:#888;}
-    h4{color:#080;text-shadow: 0px 2px 2px #9ACD32;}
+    h4{color:#080;}
     b{color:#000;}
-
-
 </style>
 
 <!-- Mise en page -->
@@ -147,36 +125,36 @@ ob_start();
     <!--Entête de fiche-->
     <table>
         <tr>
-            <td><h4><?php echo $Title?> </h4></td><td style="width: 33%"><b><?php echo supprNullPDF($resultat['NomVar'])?></b></td>
-            <?php if($resultat['SynoMajeur'] == null){?>
-                <td><h4>Code : </h4></td><td style="width: 33%"><b><?php echo supprNullPDF($resultat['CodeVar'])?></b></td>
+            <td><h4><?php echo $Title?> </h4></td><td style="width: 33%"><b><?php echo $resultat['NomVar']?></b></td>
+            <?php if($resultat['SynoMajeur'] == " –" ||$resultat['SynoMajeur'] == " – "){?>
+                <td><h4>Code : </h4></td><td style="width: 33%"><b><?php echo $resultat['CodeVar']?></b></td>
             <?php }else{ ?>
-                <td><h4>Synonyme : </h4></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['SynoMajeur'])?></b></td>
-                <td><h4>Code : </h4></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CodeVar'])?></b></td>
+                <td><h4>Synonyme : </h4></td><td style="width: 25%"><b><?php echo $resultat['SynoMajeur']?></b></td>
+                <td><h4>Code : </h4></td><td style="width: 25%"><b><?php echo $resultat['CodeVar']?></b></td>
             <?php } ?>
         </tr>
     </table><br>
     <!--Début de fiche-->
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $Type?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Type'])?></b></td>
-            <td style="width: 25%"><?php echo $CouleurPu?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CouleurPu'])?></b></td>
+            <td style="width: 25%"><?php echo $Type?></td><td style="width: 25%"><b><?php echo $resultat['Type']?></b></td>
+            <td style="width: 25%"><?php echo $CouleurPu?></td><td style="width: 25%"><b><?php echo $resultat['CouleurPu']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $Espece?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Espece'])?></b></td>
-            <td style="width: 25%"><?php echo $CouleurPe?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CouleurPe'])?></b></td>
+            <td style="width: 25%"><?php echo $Espece?></td><td style="width: 25%"><b><?php echo $resultat['Espece']?></b></td>
+            <td style="width: 25%"><?php echo $CouleurPe?></td><td style="width: 25%"><b><?php echo $resultat['CouleurPe']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $Unite?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['UniteVar'])?></b></td>
-            <td style="width: 25%"><?php echo $Saveur?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Saveur'])?></b></td>
+            <td style="width: 25%"><?php echo $Unite?></td><td style="width: 25%"><b><?php echo $resultat['UniteVar']?></b></td>
+            <td style="width: 25%"><?php echo $Saveur?></td><td style="width: 25%"><b><?php echo $resultat['Saveur']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $Utilite?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Utilite'])?></b></td>
-            <td style="width: 25%"><?php echo $Pepins?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Pepins'])?></b></td>
+            <td style="width: 25%"><?php echo $Utilite?></td><td style="width: 25%"><b><?php echo $resultat['Utilite']?></b></td>
+            <td style="width: 25%"><?php echo $Pepins?></td><td style="width: 25%"><b><?php echo $resultat['Pepins']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $OIpays?></td><td style="width: 25%"><b><?php echo supprNullPDF(supprNullPDF($resultat['OIpays']))?></b></td>
-            <td style="width: 25%"><?php echo $Obtenteneur?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Obtenteur'])?></b></td>
+            <td style="width: 25%"><?php echo $OIpays?></td><td style="width: 25%"><b><?php echo $resultat['OIpays']?></b></td>
+            <td style="width: 25%"><?php echo $Obtenteneur?></td><td style="width: 25%"><b><?php echo $resultat['Obtenteur']?></b></td>
         </tr>
     </table><br><br>
     <!--Origine et inscription-->
@@ -187,19 +165,19 @@ ob_start();
     </table><br>
     <table>    
         <tr>
-            <td style="width: 25%"><?php echo $OIpays?></td><td style="width: 25%"><b><?php echo supprNullPDF(supprNullPDF($resultat['OIpays']))?></b></td>
-            <td style="width: 25%"><?php echo $OIinscriptionFrance?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['InscriptionFrance'])?></b></td>
+            <td style="width: 25%"><?php echo $OIpays?></td><td style="width: 25%"><b><?php echo $resultat['OIpays']?></b></td>
+            <td style="width: 25%"><?php echo $OIinscriptionFrance?></td><td style="width: 25%"><b><?php echo $resultat['InscriptionFrance']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $OIregion?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['RegionOrigine'])?></b></td>
-            <td style="width: 25%"><?php echo $OIanneeInscriptionFrance?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['AnneeInscriptionFrance'])?></b></td>
+            <td style="width: 25%"><?php echo $OIregion?></td><td style="width: 25%"><b><?php echo $resultat['RegionOrigine']?></b></td>
+            <td style="width: 25%"><?php echo $OIanneeInscriptionFrance?></td><td style="width: 25%"><b><?php echo $resultat['AnneeInscriptionFrance']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $OIdeparte?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['DepartOrigine'])?></b></td>
-            <td style="width: 30%"><?php echo $OInumVarOnivins?></td><td style="width: 20%"><b><?php echo supprNullPDF($resultat['NumVarOnivins'])?></b></td>
+            <td style="width: 25%"><?php echo $OIdeparte?></td><td style="width: 25%"><b><?php echo $resultat['DepartOrigine']?></b></td>
+            <td style="width: 30%"><?php echo $OInumVarOnivins?></td><td style="width: 20%"><b><?php echo $resultat['NumVarOnivins']?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $OIinscriptionEurop?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['InscriptionEurope'])?></b></td>
+            <td style="width: 25%"><?php echo $OIinscriptionEurop?></td><td style="width: 25%"><b><?php echo $resultat['InscriptionEurope']?></b></td>
         </tr>
     </table><br><br>
     <!--Parenté-->
@@ -210,24 +188,24 @@ ob_start();
     </table><br>
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $Obtenteneur?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['Obtenteneur'])?></b></td>
-            <td style="width: 25%"><?php echo $PmereReelle?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['MereReelle'])?></b></td>
+            <td style="width: 25%"><?php echo $Obtenteneur?></td><td style="width: 25%"><b><?php echo ($resultat['Obtenteneur'])?></b></td>
+            <td style="width: 25%"><?php echo $PmereReelle?></td><td style="width: 25%"><b><?php echo ($resultat['MereReelle'])?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PanneeObtention?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['AnneeObtention'])?></b></td>
-            <td style="width: 25%"><?php echo $PcodeVarMereReelle?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CodeVarMereReelle'])?></b></td>
+            <td style="width: 25%"><?php echo $PanneeObtention?></td><td style="width: 25%"><b><?php echo ($resultat['AnneeObtention'])?></b></td>
+            <td style="width: 25%"><?php echo $PcodeVarMereReelle?></td><td style="width: 25%"><b><?php echo ($resultat['CodeVarMereReelle'])?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PmereObt?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['MereObt'])?></b></td>
-            <td style="width: 25%"><?php echo $PprerReel?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['PereReel'])?></b></td>
+            <td style="width: 25%"><?php echo $PmereObt?></td><td style="width: 25%"><b><?php echo ($resultat['MereObt'])?></b></td>
+            <td style="width: 25%"><?php echo $PprerReel?></td><td style="width: 25%"><b><?php echo ($resultat['PereReel'])?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PcodeCroismentINRA?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CodeCroisementINRA'])?></b></td>
-            <td style="width: 25%"><?php echo $PcodeVarPereReel?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['CodeVarPereReel'])?></b></td>
+            <td style="width: 25%"><?php echo $PcodeCroismentINRA?></td><td style="width: 25%"><b><?php echo ($resultat['CodeCroisementINRA'])?></b></td>
+            <td style="width: 25%"><?php echo $PcodeVarPereReel?></td><td style="width: 25%"><b><?php echo ($resultat['CodeVarPereReel'])?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PpereObt?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['PereObt'])?></b></td>
-            <td style="width: 25%"><?php echo $PremarqueParenteReelle?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['RemarqueParenteReelle'])?></b></td>
+            <td style="width: 25%"><?php echo $PpereObt?></td><td style="width: 25%"><b><?php echo ($resultat['PereObt'])?></b></td>
+            <td style="width: 25%"><?php echo $PremarqueParenteReelle?></td><td style="width: 25%"><b><?php echo ($resultat['RemarqueParenteReelle'])?></b></td>
         </tr>
     </table><br><br>
     <!--Remarques-->
@@ -238,10 +216,10 @@ ob_start();
     </table><br>
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $RstatutEnCollection?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['StatutEnCollection'])?></b></td>  
+            <td style="width: 25%"><?php echo $RstatutEnCollection?></td><td style="width: 25%"><b><?php echo ($resultat['StatutEnCollection'])?></b></td>  
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $RremarquesVar?></td><td style="width: 25%"><b><?php echo supprNullPDF($resultat['RemarquesVar'])?></b></td> 
+            <td style="width: 25%"><?php echo $RremarquesVar?></td><td style="width: 25%"><b><?php echo ($resultat['RemarquesVar'])?></b></td> 
         </tr>
     </table>
 
@@ -249,16 +227,14 @@ ob_start();
 </page>
 
 <?php
-echo $nomPDF;
-$content = ob_get_clean();
-require('html2pdf/html2pdf.class.php');
+$content = ob_get_clean(); //Permet d'enregistrer le contenu de la page HTML dans la variable content
+require('html2pdf/html2pdf.class.php'); //Appel à la classe de la librairie HTML2PDF
 try {
-    $pdf = new HTML2PDF('P', 'A4', 'fr');
-    $pdf->pdf->SetDisplayMode('fullpage');
-    $pdf->writeHTML($content);
-    $nomPDF=$NomVar+".pdf";
-    $pdf->Output($nomPDF);
-} catch (HTML2PDF_Exception $ex) {
+    $pdf = new HTML2PDF('P', 'A4', 'fr'); // Définit les caractéristiques de notre pdf
+    $pdf->pdf->SetDisplayMode('fullpage'); // Affiche le contenu de la première page par défaut
+    $pdf->writeHTML($content); // Permet de remplir le PDF
+    $pdf->Output("test.pdf"); //Permet de nommer le PDF téléchargeable
+} catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
 session_destroy();

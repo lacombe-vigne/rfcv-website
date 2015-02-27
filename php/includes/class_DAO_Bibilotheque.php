@@ -6434,7 +6434,8 @@ class BibliothequeDAO {
         }
         
         public function exportpdf($code,$langue,$section){/*Permet d'exporter les données en PDF*/
-                $DAO =new BibliothequeDAO();
+            $DAO =new BibliothequeDAO();
+            if($section=="variete"){
 		connexion_bbd();
 		mysql_query('SET NAMES UTF8');
 		$sql="select * from `NV-VARIETES` where CodeVar='".$code."'";
@@ -6459,11 +6460,82 @@ class BibliothequeDAO {
 									$dico['CodeVarMereReelle'],$dico['MereObt'],$dico['PereReel'],$dico['CodeCroisementINRA'],$dico['CodeVarPereReel'],
 									$dico['PereObt'],$dico['RemarqueParenteReelle'],$DAO->departorigine($dico['DepartOrigine'],$langue),$dico['RemarquesVar']);
 				$detail = $VAR->getFichePDFVariete();
+                                $detail = supprNull($detail);
 			}
 			deconnexion_bbd();
 		}
 		$res=$detail;
+		return $res;    
+            }else if($section=="accession"){
+		connexion_bbd();
+		mysql_query('SET NAMES UTF8');
+		$sql="select * from `NV-INTRODUCTIONS` where CodeIntro='".$code."'";
+		$resultat_accession = mysql_query($sql) or die(mysql_error());
+		if(!$resultat_accession){
+			deconnexion_bbd();
+			echo "<script>alert('erreur de base de donnes')</script>";
+			exit;
+		}
+		if(mysql_num_rows($resultat_accession)==0){
+			deconnexion_bbd();
+			exit;
+		}
+		if(mysql_num_rows($resultat_accession)>0){
+			for($i=0;$i<(mysql_num_rows($resultat_accession));$i=$i+1){
+				$dico= mysql_fetch_assoc($resultat_accession);
+				$ACC = new Accession($dico['CodeIntro'],$dico['NomIntro'],$DAO->nomVar($dico['CodeVar']),$DAO->Partenaire($dico['CodePartenaire']),
+									$DAO->paysorigine($dico['PaysProvenance'],$langue),$dico['CommuneProvenance'],$dico['AnneeEntree'],$dico['CodeVar'],$dico['CodeIntroPartenaire'],
+									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),
+									$DAO->sexe($dico['SexeIntro'],$langue),$DAO->statut($dico['Statut'],$langue),$DateEntre,
+									$dico['Collecteur'],$dico['AdresProvenance'],$dico['SiteProvenance'],$dico['CodePartenaire'],$dico['UniteIntro'],$dico['AnneeAgrement'],$dico['Collecteur'],
+									$dico['TypeCollecteur'],$dico['ContinentProvenance'],$dico['CommuneProvenance'],$dico['CodPostProvenance'],$dico['SiteProvenance'],
+									$dico['AdresProvenance'],$dico['ProprietProvenance'],$dico['ParcelleProvenance'],$dico['TypeParcelleProvenance'],$dico['RangProvenance'],
+									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
+									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
+									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
+									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
+									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
+									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
+									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
+									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
+									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+				$detail = $ACC->getFichePDFAccession();
+                                $detail = supprNull($detail);
+			}
+			deconnexion_bbd();
+		}
+                $res=$detail;
 		return $res;
+            }else if($section=="espece"){
+                connexion_bbd();
+		mysql_query('SET NAMES UTF8');
+		$sql_espece="select * from `NV-ESPECES` where CodeEsp='".$code."'";
+		$resultat_espece = mysql_query($sql_espece) or die(mysql_error());
+		if(!$resultat_espece){
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+		}
+		if(mysql_num_rows($resultat_espece)==0){
+                    $contents=null;
+                    deconnexion_bbd();
+		}
+		if(mysql_num_rows($resultat_espece)>0){
+                    for($i=0;$i<(mysql_num_rows($resultat_espece));$i=$i+1){
+                        $dico_espece=mysql_fetch_assoc($resultat_espece);
+			$ESP=new Espece($dico_espece['CodeEsp'],$dico_espece['Espece'],$dico_espece['Botaniste'],$dico_espece['Genre'],$dico_espece['CompoGenet'],$dico_espece['SousGenre'],$dico_espece['Validite'],$dico_espece['Tronc'],$dico_espece['RemarqueEsp']);
+			$detail = $ESP->getFicherEspece();
+                        $detail = supprNUll($detail);
+                    }
+                    deconnexion_bbd();
+		}
+		$res=$detail;
+		return $res;						
+            }
+
         }
 }
 
