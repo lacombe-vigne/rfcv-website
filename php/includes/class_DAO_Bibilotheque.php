@@ -6528,12 +6528,37 @@ class BibliothequeDAO {
                         $dico_espece=mysql_fetch_assoc($resultat_espece);
 			$ESP=new Espece($dico_espece['CodeEsp'],$dico_espece['Espece'],$dico_espece['Botaniste'],$dico_espece['Genre'],$dico_espece['CompoGenet'],$dico_espece['SousGenre'],$dico_espece['Validite'],$dico_espece['Tronc'],$dico_espece['RemarqueEsp']);
 			$detail = $ESP->getFicherEspece();
-                        $detail = supprNUll($detail);
+                        $detail = supprNull($detail);
                     }
                     deconnexion_bbd();
 		}
 		$res=$detail;
 		return $res;						
+            }else if($section=="partenaire"){
+                connexion_bbd();
+		mysql_query('SET NAMES UTF8');
+		$sql="select * from `Partenaires` where CodePartenaire='".$code."'";
+		$resultat_par = mysql_query($sql) or die(mysql_error());
+		if(!$resultat_par){
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+		}
+		if(mysql_num_rows($resultat_par)==0){
+                    $contents=null;
+                    deconnexion_bbd();
+		}
+		if(mysql_num_rows($resultat_par)>0){
+		for($j=0;$j<(mysql_num_rows($resultat_par));$j=$j+1){
+			$dico= mysql_fetch_assoc($resultat_par);
+			$PAR = new Partenaire($dico['CodePartenaire'],$dico['NomPartenaire'],$dico['SiglePartenaire'],$dico['SectionRegionaleENTAV'],$dico['RegionPartenaire'],$dico['DepartPartenaire'],$dico['ResponsablesPartenaire'],$dico['TelephonePartenaire'],$dico['Email'],$dico['AdressePartenaire'],$dico['CodPostPartenaire'],$dico['CommunePartenaire']);
+			$detail = $PAR->getFicherPartenaire();
+                        $detail= supprNull($detail);
+		}
+                deconnexion_bbd();
+		}
+		$res=$detail;
+                return $res;
             }
 
         }

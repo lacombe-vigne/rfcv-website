@@ -1,4 +1,12 @@
 {
+        "code_en":
+                {
+                    "Code":"Code: "
+                },
+        "code_fr":
+                {
+                    "Code":"Code : "
+                },
 	"espece_fr":
 		{
 			"Title":"Espèce : ",
@@ -24,6 +32,7 @@
 	"variete_fr":
 		{
 			"Title":"Variété : ",
+                        "SynoMajeur":"Synonyme : ",
 			"Type":"Type : ",
 			"Espece":"Espèce : ",
 			"UniteVar":"Unité : ",
@@ -69,6 +78,7 @@
 	"variete_en":
 		{
 			"Title":"Variety: ",
+                        "SynoMajeur":"Synonym: ",
 			"Type":"Type: ",
 			"Espece":"Species: ",
 			"UniteVar":"Unity: ",
@@ -94,7 +104,7 @@
 			"OIinscriptionFrance":"Registration France: ",
 			"OIanneeInscriptionFrance":"Year registration  France: ",
 			"OInumVarOnivins":"Number FranceAgriMer/CTPS: ",
-			"OIinscriptionEurop":"Registration Europe",
+			"OIinscriptionEurop":"Registration Europe: ",
 			"Ptitle":"Parentage",
 			"Pobtenteur":"Obtenteur: ",
 			"PmereReelle":"Mother/parent1 real: ",

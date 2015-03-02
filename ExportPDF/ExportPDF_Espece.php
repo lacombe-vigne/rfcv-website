@@ -22,8 +22,8 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
 require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
 require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
 $DAO = new BibliothequeDAO();
-//$resultat = $DAO->exportpdf($_SESSION['CodeEsp'], $_SESSION['language_Vigne'], "espece");/*Requête SQL*/
-$resultat = $DAO->exportpdf("esp1", "FR", "espece");//test
+$resultat = $DAO->exportpdf($_SESSION['CodeEsp'], $_SESSION['language_Vigne'], "espece");/*Requête SQL*/
+//$resultat = $DAO->exportpdf("esp1", "FR", "espece");//test
 ob_start();
 ?>
 <!-- CSS de la page HTML -->

@@ -210,6 +210,7 @@
 	}
 	if($section=='partenaire'){
 		$CodePartenaire=supprNull($_POST['CodePartenaire']);
+                $_SESSION["CodePartenaire"]=$CodePartenaire;
 		$NomPartenaire=supprNull($_POST['NomPartenaire']);
 		$SiglePartenaire=supprNull($_POST['SiglePartenaire']);
 		$SectionRegionaleENTAV=supprNull($_POST['SectionRegionaleENTAV']);
@@ -995,13 +996,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Partenaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Partenaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierPar'>
