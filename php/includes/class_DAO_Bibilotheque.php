@@ -49,28 +49,28 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";
-								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";
+								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";
+								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";
 								//variete
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
-									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
+									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where (upper(nomVar)=upper('".$search_complet."') and codePartenaire='".$_SESSION['CodePartenairePersonne']."') or(upper(nomVar)=upper('".$search_complet."') and public!='N') UNION select * from `NV-VARIETES` where (upper(SynoMajeur)=upper('".$search."') and codePartenaire='".$_SESSION['CodePartenairePersonne']."') or(upper(SynoMajeur)=upper('".$search."') and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where (upper(nomVar)=upper('".$search_complet."') and codePartenaire='".$_SESSION['CodePartenairePersonne']."') or(upper(nomVar)=upper('".$search_complet."') and public!='N') UNION select * from `NV-VARIETES` where (upper(SynoMajeur)=upper('".$search."') and codePartenaire='".$_SESSION['CodePartenairePersonne']."') or(upper(SynoMajeur)=upper('".$search."') and public!='N') UNION select * from `NV-VARIETES` where (upper(CodeVar)=upper('".$search."') and codePartenaire='".$_SESSION['CodePartenairePersonne']."') or(upper(CodeVar)=upper('".$search."') and public!='N')";
+									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 								}
 								//accession
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
-									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
+									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -80,47 +80,62 @@ class BibliothequeDAO {
 										(upper(NomIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
+										(upper(CodeIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(upper(CodeIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
 										(upper(NomIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(upper(NomIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
+										(upper(CodeIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(upper(CodeIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
+									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
 								}
 							}else{
 						
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";
+								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";
 								//variete
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+								$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 								//accession
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a'  ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";							
+								$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a'  ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";							
 							}
 						break;
 						case "especes":
 							
 							if(isset($_SESSION['codePersonne'])){
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";
-								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";								
+								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";
+								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";								
 							}else{
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."')";
+								$sql_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') and public!='N' UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."') and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where upper(Espece)=upper('".$search_complet."') UNION select * from `NV-ESPECES` where upper(CodeEsp)=upper('".$search_complet."')";
 							}							
 						break;
 						case "varietes":
@@ -128,20 +143,20 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
-									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
+									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N')";
-									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+									$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION  select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search."') and (codePartenaire='".$_SESSION['CodePartenairePersonne']."' or  public!='N')";
+									$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 								}
 							}else{
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."')";
+								$sql_variete="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where upper(nomVar)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."') and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where upper(NomVar)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('".$search_complet."') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('".$search_complet."')";
 							}
 						
 						break;
@@ -150,9 +165,9 @@ class BibliothequeDAO {
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
-									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
+									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -162,21 +177,36 @@ class BibliothequeDAO {
 										(upper(NomIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
+										(upper(CodeIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(upper(CodeIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
 										(upper(NomIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(upper(NomIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a')  or 
+										(upper(NomIntro)=upper('".$search_complet."') and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(upper(NomIntro)=upper('".$search_complet."') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
+									$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
 								}
 							}else{
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."')";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a'  ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."') and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where upper(NomIntro)=upper('".$search_complet."') UNION select * from `NV-INTRODUCTIONS` where upper(CodeIntro)=upper('".$search_complet."')";
 							}
 						
 						break;
@@ -190,34 +220,40 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
 								//variete
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
+									$total_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '^".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '^".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+																													or (SynoMajeur REGEXP '^".$search."' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '^".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+                                                                        ///
 									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '^".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '^".$search."' and public!='N')";																				
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+																													or (SynoMajeur REGEXP '^".$search."' and public!='N')	
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '^".$search."' and public!='N')";
+                                                                        ///
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 								}
 								//accession
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -227,32 +263,47 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '^".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '^".$search."' and IdReseau1='a')  or 
 										(NomIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '^".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
 								}
 							}else{
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' ".$tri_espece."  limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' ".$tri_espece."  limit ".$startPage_espece.",".$pagesize_espece." UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' and public!='N' ".$tri_espece."  limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
 								//variete
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 								//accession
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
 							}
 						
 						break;
@@ -261,14 +312,14 @@ class BibliothequeDAO {
 						
 							if(isset($_SESSION['codePersonne'])){
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
 							}else{
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
 								
 							}
 						
@@ -278,26 +329,32 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '^".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '^".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+																													or (SynoMajeur REGEXP '^".$search."' and public!='N')
+                                                                                                                                                                UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '^".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+                                                                        ///
 									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '^".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '^".$search."' and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+																													or (SynoMajeur REGEXP '^".$search."' and public!='N')
+                                                                                                                                                            UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '^".$search."' and public!='N')";
+                                                                        ///
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 								}
 							}else{
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '^".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^".$search."'";
 							}
 						break;
 					
@@ -306,9 +363,9 @@ class BibliothequeDAO {
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -318,22 +375,37 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '^".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '^".$search."' and IdReseau1='a')  or 
 										(NomIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '^".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '^".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '^".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
 								}
 								
 							}else{
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a'  ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' and IdReseau1='a'  ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '^".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '^".$search."'";
 							}
 						break;
 						
@@ -347,35 +419,40 @@ class BibliothequeDAO {
 						case "tous":
 							if(isset($_SESSION['codePersonne'])){
 								//espece
-								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
+                                                                $startPage_espece=($page_espece-1)*$pagesize_espece;
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '^".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^".$search."'";
 								//variete
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (SynoMajeur REGEXP '".$search."' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+                                                                        ///
+                                                                        $sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."' and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+																													or (SynoMajeur REGEXP '".$search."' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."' and public!='N')";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
 								}
 								//accession
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -385,46 +462,61 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '".$search."' and IdReseau1='a')  or 
 										(NomIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 								}
 							}else{
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."'";
 								//variete
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
 								//accession
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 							}
 						break;
 						
 						case "especes":
 							if(isset($_SESSION['codePersonne'])){
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '";
 							}else{
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."'";
 								
 							}
 						break;
@@ -432,27 +524,33 @@ class BibliothequeDAO {
 						case "varietes":
 							if(isset($_SESSION['codePersonne'])){
 								if($_SESSION['ProfilPersonne']=='A'){
-									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+                                                                        $startPage_variete=($page_variete-1)*$pagesize_variete;
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
+									
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (SynoMajeur REGEXP '".$search."' and public!='N') 
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+                                                                        ///
+                                                                        $sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."' and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+																													or (SynoMajeur REGEXP '".$search."' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."' and public!='N')";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
 								}
 							}else{
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."'";
 							}
 						break;
 					
@@ -460,10 +558,10 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
-									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+                                                                        $startPage_accession=($page_accession-1)*$pagesize_accession;
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -473,22 +571,37 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '".$search."' and IdReseau1='a')  or 
 										(NomIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 								}
 								
 							}else{
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."'";
 							}
 						break;
 						
@@ -503,34 +616,38 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
 								//variete
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."$' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."$' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+																													or (SynoMajeur REGEXP '".$search."$' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."$' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
 									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."$' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."$' and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+																													or (SynoMajeur REGEXP '".$search."$' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."$' and public!='N')";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 								}
 								//accession
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -540,46 +657,61 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."$' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '".$search."$' and IdReseau1='a')  or 
 										(NomIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."$' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";                                                                                                    
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 								}
 							}else{
 								//espece
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
 								//variete
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 								//accession
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 							}
 						break;
 						
 						case "especes":
 							if(isset($_SESSION['codePersonne'])){
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
 							}else{
 								$startPage_espece=($page_espece-1)*$pagesize_espece;
-								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
-								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N'";
-								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$'";
+								$sql_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' and public!='N' ".$tri_espece." limit ".$startPage_espece.",".$pagesize_espece."";
+								$sql_espece_possible="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$' and public!='N'";
+								$total_espece="select * from `NV-ESPECES` where Espece REGEXP '".$search."$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '".$search."$'";
 							}
 						break;
 				
@@ -587,26 +719,30 @@ class BibliothequeDAO {
 							if(isset($_SESSION['codePersonne'])){
 								if($_SESSION['ProfilPersonne']=='A'){
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
-									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+									$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+									$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 								}else{
 									$startPage_variete=($page_variete-1)*$pagesize_variete;
 									$sql_variete="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."$' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."$' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+																													or (SynoMajeur REGEXP '".$search."$' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."$' and public!='N') ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
 									$sql_variete_possible="select * from `NV-VARIETES` where (nomVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
 																					or(nomVar REGEXP '".$search."$' and public!='N')
 																			  UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
-																													or (SynoMajeur REGEXP '".$search."$' and public!='N')";
-									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+																													or (SynoMajeur REGEXP '".$search."$' and public!='N')
+                                                                                                                                                          UNION select * from `NV-VARIETES` where (CodeVar REGEXP '".$search."$' and codePartenaire='".$_SESSION['CodePartenairePersonne']."')
+																													or (CodeVar REGEXP '".$search."$' and public!='N')";
+									$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 								}
 							}else{
 								$startPage_variete=($page_variete-1)*$pagesize_variete;
-								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
-								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N'";
-								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$'";
+								$sql_variete="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' and public!='N' ".$tri_variete." limit ".$startPage_variete.",".$pagesize_variete."";
+								$sql_variete_possible="select * from `NV-VARIETES` where nomVar REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$' and public!='N'";
+								$total_variete="select * from `NV-VARIETES` where NomVar REGEXP '".$search."$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '".$search."$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '".$search."$'";
 							}
 						break;
 					
@@ -615,9 +751,9 @@ class BibliothequeDAO {
 								if($_SESSION['ProfilPersonne']=='A'){
 									//sup_admin
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
-									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
-									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+									$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 								}else{
 									//utilisateur admin_partenaire
 									$startPage_accession=($page_accession-1)*$pagesize_accession;
@@ -627,22 +763,37 @@ class BibliothequeDAO {
 										(NomIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."$' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')))) ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
+                                                                        ///
 									$sql_accession_possible="select * from `NV-INTRODUCTIONS` where 
 										(NomIntro REGEXP '".$search."$' and IdReseau1='a')  or 
 										(NomIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
 										(NomIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";
-									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))
+                                                                                UNION select * from `NV-INTRODUCTIONS` where 
+										(CodeIntro REGEXP '".$search."$' and IdReseau1='a')  or 
+										(CodeIntro REGEXP '".$search."$' and CodePartenaire='".$_SESSION['CodePartenairePersonne']."') or 
+										(CodeIntro REGEXP '".$search."$' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or 
+																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."')) or
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='".$_SESSION['CodePartenairePersonne']."'))))";                                                                                                    
+									$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 								}
 								
 							}else{
 								$startPage_accession=($page_accession-1)*$pagesize_accession;
-								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession." ";
-								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a'";
-								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$'";
+								$sql_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' and IdReseau1='a' ".$tri_accession." limit ".$startPage_accession.",".$pagesize_accession."";
+								$sql_accession_possible="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' and IdReseau1='a' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$' and IdReseau1='a'";
+								$total_accession="select * from `NV-INTRODUCTIONS` where NomIntro REGEXP '".$search."$' UNION select * from `NV-INTRODUCTIONS` where CodeIntro REGEXP '".$search."$'";
 							}						
 						break;
 					}
@@ -790,15 +941,15 @@ class BibliothequeDAO {
 									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+									$dico['CodPostProvAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+									$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+									$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 				
 				$content_accession = supprNull($ACC->getListeAccession());
 				// $content_accession="";
@@ -2086,15 +2237,15 @@ class BibliothequeDAO {
 									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+									$dico['CodPostProvAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+									$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+									$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenancevAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 							$content_accession = supprNull($ACC->getFicherAccession());
 						}
 						deconnexion_bbd();
@@ -2510,15 +2661,15 @@ class BibliothequeDAO {
 									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+									$dico['CodPostPrvoAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+									$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+									$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 				
 				$content_accession = supprNull($ACC->getListeAccession());
 				array_push($contents_accession,$content_accession);
@@ -3323,15 +3474,15 @@ class BibliothequeDAO {
 									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+									$dico['CodPostProvAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+									$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+									$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenancevAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 				$detail = $ACC->getFicherAccessionTab();
 			}
 			deconnexion_bbd();
@@ -6161,15 +6312,15 @@ class BibliothequeDAO {
 								$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 								$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 								$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-								$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-								$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-								$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-								$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+								$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+								$dico['CodPostProvAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+								$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+								$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 								$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 								$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 								$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 								$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-								$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+								$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 				$content_accession = supprNull($ACC->getSelectionAccession());
 		}
 		return $content_accession;
@@ -6493,15 +6644,15 @@ class BibliothequeDAO {
 									$dico['SoucheProvenance'],$dico['SoucheTheoriqueProvenance'],$DAO->paysorigine($dico['PaysProvenance'],$langue),$DAO->regionorigine($dico['RegionProvenance'],$langue),
 									$DAO->departorigine($dico['DepartProvenance'],$langue),$dico['evdb_15-LATITUDE'],$dico['evdb_16-LONGITUDE'],$dico['evdb_17-ELEVATION'],$dico['JourEntree'],
 									$dico['MoisEntree'],$dico['AnneeEntree'],$dico['CodeIntroProvenance'],$dico['CodeEntree'],$dico['ReIntroduit'],$dico['IssuTraitement'],
-									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProAnt'],$dico['CommuneProAnt'],
-									$dico['CodPostProAnt'],$dico['SiteProAnt'],$dico['AdresProAnt'],$dico['ProprietProAnt'],$dico['ParcelleProAnt'],$dico['TypeParcelleProAnt'],
-									$dico['RangProAnt'],$dico['SoucheProAnt'],$dico['SoucheTheoriqueProAnt'],$DAO->paysorigine($dico['PaysProAnt'],$langue),$DAO->regionorigine($dico['RegionProAnt'],$langue),
-									$DAO->departorigine($dico['DepartProAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
+									$dico['CloneTraite'],$dico['RemarquesProvenance'],$dico['CollecteurAnt'],$dico['TypeCollecteurAnt'],$dico['ContinentProvAnt'],$dico['CommuneProvAnt'],
+									$dico['CodPostProvAnt'],$dico['SiteProvAnt'],$dico['AdresProvAnt'],$dico['ProprietProvAnt'],$dico['ParcelleProvAnt'],$dico['TypeParcelleProvAnt'],
+									$dico['RangProvAnt'],$dico['SoucheProvAnt'],$dico['SoucheTheoriqueProvAnt'],$DAO->paysorigine($dico['PaysProvAnt'],$langue),$DAO->regionorigine($dico['RegionProvAnt'],$langue),
+									$DAO->departorigine($dico['DepartProvAnt'],$langue),$dico['CodeIntroProvenanceAnt'],$dico['evdb_ID_VITIS'],$dico['evdb_F-ConfirmAmpelo'],$dico['evdb_G-ConfirmSSR'],
 									$dico['evdb_I-BiblioVolume'],$dico['evdb_L-ConfirmOther'],$dico['evdb_I-BiblioVolume'],$dico['evdb_K-BiblioPage'],$dico['evdb_M-RemarkAccessionName'],
 									$DAO->couleurPel($dico['CouleurPelIntro'],$langue),$DAO->couleurPulp($dico['CouleurPulpIntro'],$langue),$DAO->saveur($dico['SaveurIntro'],$langue),$DAO->pepins($dico['PepinsIntro'],$langue),
 									$DAO->sexe($dico['SexeIntro'],$langue),$dico['NumTempCTPS'],$dico['DelegONIVINS'],$DAO->statut($dico['Statut'],$langue),$dico['DepartAgrementClone'],
 									$dico['AnneeAgrement'],$dico['SiteAgrementClone'],$dico['AnneeNonCertifiable'],$dico['LieuDepotMatInitial'],$dico['SurfMulti'],$DAO->Partenaire($dico['NomPartenaire']),
-									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['remarquesIntro']);
+									$DAO->Partenaire($dico['NomPartenaire2']),$dico['Famille'],$dico['Agrement'],$dico['NumCloneCTPS'],$dico['SiregalPresenceEnColl'],$dico['MTAactif'],$dico['RemarquesIntro']);
 				$detail = $ACC->getFichePDFAccession();
                                 $detail = supprNull($detail);
 			}
@@ -6559,6 +6710,35 @@ class BibliothequeDAO {
 		}
 		$res=$detail;
                 return $res;
+            }else if($section=="aptitude"){
+                $DAO =new BibliothequeDAO();
+		$sql="select * from `Aptitudes` where CodeAptitude='".$code."'";
+		connexion_bbd();
+		mysql_query('SET NAMES UTF8');
+		$resultat= mysql_query($sql) or die(mysql_error());
+		if(!$resultat){
+			deconnexion_bbd();
+			echo "<script>alert('erreur de base de donnes')</script>";
+			exit;
+		}
+		if(mysql_num_rows($resultat)==0){
+			deconnexion_bbd();
+			echo "<script>alert('erreur de base de donnes')</script>";
+			exit;
+		}
+		if(mysql_num_rows($resultat)>0){
+			$dico= mysql_fetch_assoc($resultat);
+			$date=$dico['JourExpe'].'/'.$dico['MoisExpe'].'/'.$dico['AnneeExpe'];
+			$APT = new Aptitude($dico['CodeAptitude'],$dico['CodeVar'],$DAO->nomCaract($dico['CodeCaract']),$dico['ValeurCaractNum'],$DAO->uniteCarct($dico['CodeCaract']),
+									$dico['Ponderation'],$date,$dico['CodeSite'],$dico['CodePartenaire'],$dico['CodeAptitude'],
+									$DAO->nomVar($dico['CodeVar']),$dico['CodeVar'],$DAO->nomAcc($dico['CodeIntro']),$dico['CodeIntro'],$DAO->nomCaract($dico['CodeCaract']),$dico['ValeurCaractNum'],$DAO->uniteCarct($dico['CodeCaract']),
+									$dico['Ponderation'],$dico['CodePersonneExpe'],$DAO->Partenaire($dico['CodePartenaire']),$dico['CodePartenaire'],$dico['JourExpe'],
+									$dico['MoisExpe'],$dico['AnneeExpe'],$dico['LieuExpe'],$DAO->site($dico['CodeSite']),$dico['CodeSite'],$dico['CodeEmplacemExpe']);
+                        $detail = $APT->getFicherAptitude();
+                        $detail = supprNull($detail);
+                        deconnexion_bbd();
+		}
+		return $detail;
             }
 
         }

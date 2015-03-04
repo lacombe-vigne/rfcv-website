@@ -1726,7 +1726,8 @@ avar,aesp,aclo{
     font-family:Arial, Helvetica, sans-serif;
     padding-left:20px;
     color: #808080;
-    //width: 25.5%
+    vertical-align: top;
+    text-align:left;
 }
 .lable_carte_acc img{
 
@@ -1735,7 +1736,8 @@ avar,aesp,aclo{
 .res_acc,.res_var,.res_esp{
     font-family:Arial, Helvetica, sans-serif;
     color:#000000;
-    width: 16.5%;
+    vertical-align:top;
+    text-align:left;
 }
 #cate1_FichierAcc,#cate2_FichierAcc,#cate3_FichierAcc
 ,#cate4_FichierAcc,#cate5_FichierAcc,#cate6_FichierAcc

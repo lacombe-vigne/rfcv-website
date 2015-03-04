@@ -1,11 +1,12 @@
 {
-        "code_en":
-                {
-                    "Code":"Code: "
-                },
         "code_fr":
                 {
                     "Code":"Code : "
+                },
+        
+        "code_en":
+                {
+                    "Code":"Code: "
                 },
 	"espece_fr":
 		{

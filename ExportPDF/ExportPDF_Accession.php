@@ -5,6 +5,7 @@ $json = file_get_contents('../json/fichier.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 /*Permet de récuperer le label correspondant en anglais ou en français*/
 if($_SESSION['language_Vigne']=='FR'){/*Français*/
+    $Code= $parsed_json->{code_fr}->{Code};
     /*Titres*/
     $PDtitle = $parsed_json->{accession_fr}->{PDtitle};
     $PAtitle = $parsed_json->{accession_fr}->{PAtitle};
@@ -101,6 +102,7 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     
     
 }else{/*Anglais*/
+    $Code= $parsed_json->{code_en}->{Code};
     /*Titres*/
     $PDtitle = $parsed_json->{accession_en}->{PDtitle};
     $PAtitle = $parsed_json->{accession_en}->{PAtitle};
@@ -199,234 +201,255 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
 require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
 require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
 $DAO = new BibliothequeDAO();
-$resultat = $DAO->exportpdf($_SESSION['CodeIntro'], $_SESSION['language_Vigne'], "accession");/*Requête SQL*/
+//$resultat = $DAO->exportpdf($_SESSION['CodeIntro'], $_SESSION['language_Vigne'], "accession");/*Requête SQL*/
+$resultat = $DAO->exportpdf("999999Mtp888888", "FR", "accession");//test
 ob_start();
 ?>
 
 <!-- CSS de la page HTML -->
 <style type="text/css">
-    table{width:100%;color:#888;}
+    table{width:100%;color:#888;border-collapse: collapse}
     h4{color:#FF8C00;}
     b{color:#000;}
+    h3{}
+    td{display: inline-block;
+	vertical-align: top;
+	text-align: left;
+        border: 1px;border-color:#aaa
+    }
+    
 </style>
 
 <!-- Mise en page -->
-<page backtop="20mm" backleft="10mm" backright="10mm" backbottom="30mm">
+<page backtop="30mm" backleft="5mm" backright=5mm" backbottom="30mm" ng-style="color:#900">
     <!--Entête du pdf-->
     <page_header>
         <table>
             <tr>
-                <td style="width:50%"><img src="imagesPDF/inra.png" height="50" width="150"/></td>
-                <td style="width:25%"><img src="imagesPDF/logoSupAgro.png" height="50" width="150"/></td>
+                <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
+                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;">Collections de Vigne en France</font><br><font style="color:#555;">Base de données du réseau français des conservatoires de Vigne</font></td>
+            </tr>
+        </table>
+        <table style="background-color:#FFDEAD;border-radius:10px;">
+            <tr>
+                <td style="border:none;"><font style="font-size: 22px; color:#FF8C00; font-weight:bold "><?php echo '&nbsp;&nbsp;'.$Title.''?> </font></td><td style="border:none;width: 49%"><font style="font-size: 22px; color:#000; font-weight:bold"><?php echo $resultat['NomIntro']?></font></td>
+                <td style="border:none;"><font style="font-size: 14px; color:#FF8C00; font-weight:bold "><?php echo $Code?></font></td><td style="border:none;width:17%"><font style="font-size:14px; color:#000; font-weight: bold"><?php echo $resultat['CodeIntro']?></font></td>
             </tr>
         </table>
     </page_header>
     <!--Pied de page du pdf-->
-    <page_footer>
+    <page_footer ng-style="color:#900" >
+        <hr style="color:#888" />
         <table>
             <tr>
-                <td style="width:50%">INRA</td>
-                <td style="width:50%">SUPAGRO</td>
+                <td style="border:none;width:50%"><img src="imagesPDF/Bandeau.JPG" /></td>
+                
             </tr>
         </table>
+        <table >
+            <tr style="color:#900">
+                <td style="border:none;text-align: left; width: 40%">Document édité le [[date_d]]/[[date_m]]/[[date_y]]</td>
+                <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
+                <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
+            </tr>
+        </table>
+        
+        
     </page_footer>
-    <!--Entête de fiche-->
-    <table>
-        <tr>
-            <td><h4><?php echo $Title ?></h4></td><td style="width: 50%"><b><?php echo $resultat['NomIntro'] ?></b></td>
-           <td><h4>Code :</h4></td><td style="width: 50%"><b><?php echo $resultat['CodeIntro'] ?></b></td>
-        </tr> 
-    </table><br>
     <!--Début de fiche-->
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $Partenaire ?></td><td style="width: 25%"><b><?php echo $resultat['Partenaire'] ?></b></td>
-            <td style="width: 25%"><?php echo $AnneeAgrement ?></td><td style="width: 25%"><b><?php echo $resultat['AnneeAgrement'] ?></b></td>
+            <td style="width: 14%"><?php echo $Partenaire ?></td><td style="width: 36%"><b><?php echo $resultat['Partenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnneeAgrement ?></td><td style="width: 36%"><b><?php echo $resultat['AnneeAgrement'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $codeIntroPartenaire ?></td><td style="width: 25%"><b><?php echo $resultat['CodeIntroPartenaire'] ?></b></td>
-            <td style="width: 25%"><?php echo $PayP ?></td><td style="width: 25%"><b><?php echo $resultat['PayP'] ?></b></td>
+            <td style="width: 14%"><?php echo $codeIntroPartenaire ?></td><td style="width: 36%"><b><?php echo $resultat['CodeIntroPartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $PayP ?></td><td style="width: 36%"><b><?php echo $resultat['PayP'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $Statut ?></td><td style="width: 25%"><b><?php echo $resultat['Statut'] ?></b></td>
-            <td style="width: 25%"><?php echo $CommuneP ?></td><td style="width: 25%"><b><?php echo $resultat['CommuneProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $Statut ?></td><td style="width: 36%"><b><?php echo $resultat['Statut'] ?></b></td>
+            <td style="width: 14%"><?php echo $CommuneP ?></td><td style="width: 36%"><b><?php echo $resultat['CommuneProvenance'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $UniteIntro ?></td><td style="width: 25%"><b><?php echo $resultat['UniteIntro'] ?></b></td>
-            <td style="width: 25%"><?php echo $AdresseP ?></td><td style="width: 25%"><b><?php echo $resultat['AdresProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $UniteIntro ?></td><td style="width: 36%"><b><?php echo $resultat['UniteIntro'] ?></b></td>
+            <td style="width: 14%"><?php echo $AdresseP ?></td><td style="width: 36%"><b><?php echo $resultat['AdresProvenance'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $NomVar ?></td><td style="width: 25%"><b><?php echo $resultat['NomVar'] ?></b></td>
-            <td style="width: 25%"><?php echo $Collecteur ?></td><td style="width: 25%"><b><?php echo $resultat['Collecteur'] ?></b></td>
+            <td style="width: 14%"><?php echo $NomVar ?></td><td style="width: 36%"><b><?php echo $resultat['NomVar'] ?></b></td>
+            <td style="width: 14%"><?php echo $Collecteur ?></td><td style="width: 36%"><b><?php echo $resultat['Collecteur'] ?></b></td>
         </tr>
     </table><br>
     <!--Provenance directe-->
     <table>
         <tr>
-            <td><h4><?php echo $PDtitle ?></h4></td>
+            <td style="border:none;"><h4><?php echo $PDtitle ?></h4></td>
         </tr>
     </table><br>
     <table>
         <tr>
-            <td style="width: 17%"><?php echo $PDpays ?></td><td style="width: 16%"><b><?php echo $resultat['PaysProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDparcelle ?></td><td style="width: 16%"><b><?php echo $resultat['ParcelleProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDdepart ?></td><td style="width: 16%"><b><?php echo $resultat['DepartProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDpays ?></td><td style="width: 36%"><b><?php echo $resultat['PaysProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDparcelle ?></td><td style="width: 36%"><b><?php echo $resultat['ParcelleProvenance'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDregion ?></td><td style="width: 16%"><b><?php echo $resultat['RegionProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDrang ?></td><td style="width: 16%"><b><?php echo $resultat['RangProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDcodeEntree ?></td><td style="width: 16%"><b><?php echo $resultat['CodeEntree'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDregion ?></td><td style="width: 36%"><b><?php echo $resultat['RegionProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDrang ?></td><td style="width: 36%"><b><?php echo $resultat['RangProvenance'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDcodeIntroProvenance ?></td><td style="width: 16%"><b><?php echo $resultat['CodeIntroPorvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDsouche ?></td><td style="width: 16%"><b><?php echo $resultat['SoucheProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDreIntroduit ?></td><td style="width: 16%"><b><?php echo $resultat['ReIntroduit'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDcodeIntroProvenance ?></td><td style="width: 36%"><b><?php echo $resultat['CodeIntroPorvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDsouche ?></td><td style="width: 36%"><b><?php echo $resultat['SoucheProvenance'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDcommune ?></td><td style="width: 16%"><b><?php echo $resultat['CommuneProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDlatitude ?></td><td style="width: 16%"><b><?php echo $resultat['Latitude'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDissuTraitement ?></td><td style="width: 16%"><b><?php echo $resultat['IssuTraitement'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDcommune ?></td><td style="width: 36%"><b><?php echo $resultat['CommuneProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDlatitude ?></td><td style="width: 36%"><b><?php echo $resultat['Latitude'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDcodePost ?></td><td style="width: 16%"><b><?php echo $resultat['CodPostProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDlongitude ?></td><td style="width: 16%"><b><?php echo $resultat['Longitude'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDcoloneTraite ?></td><td style="width: 16%"><b><?php echo $resultat['CloneTraite'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDcodePost ?></td><td style="width: 36%"><b><?php echo $resultat['CodPostProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDlongitude ?></td><td style="width: 36%"><b><?php echo $resultat['Longitude'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDsite ?></td><td style="width: 16%"><b><?php echo $resultat['SiteProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDaltitude ?></td><td style="width: 16%"><b><?php echo $resultat['Altitude'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDremarques ?></td><td style="width: 16%"><b><?php echo $resultat['RemarquesProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDsite ?></td><td style="width: 36%"><b><?php echo $resultat['SiteProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDaltitude ?></td><td style="width: 36%"><b><?php echo $resultat['Altitude'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDadresse ?></td><td style="width: 16%"><b><?php echo $resultat['AdressProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDjour ?></td><td style="width: 16%"><b><?php echo $resultat['Jour'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDadresse ?></td><td style="width: 36%"><b><?php echo $resultat['AdressProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDjour ?></td><td style="width: 36%"><b><?php echo $resultat['Jour'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDpropirete ?></td><td style="width: 16%"><b><?php echo $resultat['ProprietProvenance'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDmois ?></td><td style="width: 16%"><b><?php echo $resultat['Mois'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDpropirete ?></td><td style="width: 36%"><b><?php echo $resultat['ProprietProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDmois ?></td><td style="width: 36%"><b><?php echo $resultat['Mois'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 17%"><?php echo $PDcollecteure ?></td><td style="width: 16%"><b><?php echo $resultat['Collecteur'] ?></b></td>
-            <td style="width: 17%"><?php echo $PDannee ?></td><td style="width: 16%"><b><?php echo $resultat['Annee'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDcollecteure ?></td><td style="width: 36%"><b><?php echo $resultat['Collecteur'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDannee ?></td><td style="width: 36%"><b><?php echo $resultat['Annee'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $PDdepart ?></td><td style="width: 36%"><b><?php echo $resultat['DepartProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDcodeEntree ?></td><td style="width: 36%"><b><?php echo $resultat['CodeEntree'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $PDreIntroduit ?></td><td style="width: 36%"><b><?php echo $resultat['ReIntroduit'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDissuTraitement ?></td><td style="width: 36%"><b><?php echo $resultat['IssuTraitement'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $PDcoloneTraite ?></td><td style="width: 36%"><b><?php echo $resultat['CloneTraite'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDremarques ?></td><td style="width: 36%"><b><?php echo $resultat['RemarquesProvenance'] ?></b></td>
         </tr>
     </table><br>
     <!--Provenance antérieure-->
     <table>
         <tr>
-            <td><h4><?php echo $PAtitle ?></h4></td>
+            <td style="border:none;"><h4><?php echo $PAtitle ?></h4></td>
         </tr>
     </table><br>
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $PApays ?></td><td style="width: 25%"><b><?php echo $resultat['PaysAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PApropriete ?></td><td style="width: 25%"><b><?php echo $resultat['ProprietAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PApays ?></td><td style="width: 36%"><b><?php echo $resultat['PaysAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PApropriete ?></td><td style="width: 36%"><b><?php echo $resultat['ProprietAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAregion ?></td><td style="width: 25%"><b><?php echo $resultat['RegionAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PAcollecteur ?></td><td style="width: 25%"><b><?php echo $resultat['CollecteurAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAregion ?></td><td style="width: 36%"><b><?php echo $resultat['RegionAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAcollecteur ?></td><td style="width: 36%"><b><?php echo $resultat['CollecteurAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAdeparte ?></td><td style="width: 25%"><b><?php echo $resultat['DepartAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PAparcelle ?></td><td style="width: 25%"><b><?php echo $resultat['ParcelleAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAdeparte ?></td><td style="width: 36%"><b><?php echo $resultat['DepartAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAparcelle ?></td><td style="width: 36%"><b><?php echo $resultat['ParcelleAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAcommune ?></td><td style="width: 25%"><b><?php echo $resultat['CommuneAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PArang ?></td><td style="width: 25%"><b><?php echo $resultat['RangAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAcommune ?></td><td style="width: 36%"><b><?php echo $resultat['CommuneAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PArang ?></td><td style="width: 36%"><b><?php echo $resultat['RangAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAcodePost ?></td><td style="width: 25%"><b><?php echo $resultat['CodPostAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PAsouche ?></td><td style="width: 25%"><b><?php echo $resultat['SoucheAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAcodePost ?></td><td style="width: 36%"><b><?php echo $resultat['CodPostAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAsouche ?></td><td style="width: 36%"><b><?php echo $resultat['SoucheAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAsite ?></td><td style="width: 25%"><b><?php echo $resultat['SiteAnt'] ?></b></td>
-            <td style="width: 25%"><?php echo $PAcodeIntro ?></td><td style="width: 25%"><b><?php echo $resultat['CodeIntroProvenanceAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAsite ?></td><td style="width: 36%"><b><?php echo $resultat['SiteAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAcodeIntro ?></td><td style="width: 36%"><b><?php echo $resultat['CodeIntroProvenanceAnt'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $PAadresse ?></td><td style="width: 25%"><b><?php echo $resultat['AdressAnt'] ?></b></td>
+            <td style="width: 14%"><?php echo $PAadresse ?></td><td style="width: 36%"><b><?php echo $resultat['AdressAnt'] ?></b></td>
         </tr> 
     </table><br>
     <!--Identification-->
     <table>
         <tr>
-            <td><h4><?php echo $CItilte ?></h4></td>
+            <td style="border:none;"><h4><?php echo $CItilte ?></h4></td>
         </tr>
     </table><br>
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $CIcouleurPe ?></td><td style="width: 25%"><b><?php echo $resultat['CouleurPe'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIidenMorphologique ?></td><td style="width: 25%"><b><?php echo $resultat['IdenMorphologique'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIcouleurPe ?></td><td style="width: 36%"><b><?php echo $resultat['CouleurPe'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIidenMorphologique ?></td><td style="width: 36%"><b><?php echo $resultat['IdenMorphologique'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIcouleurPu ?></td><td style="width: 25%"><b><?php echo $resultat['CouleurPu'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIidenGenetique ?></td><td style="width: 25%"><b><?php echo $resultat['IdenGenetique'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIcouleurPu ?></td><td style="width: 36%"><b><?php echo $resultat['CouleurPu'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIidenGenetique ?></td><td style="width: 36%"><b><?php echo $resultat['IdenGenetique'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIsaveur ?></td><td style="width: 25%"><b><?php echo $resultat['Saveur'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIbibliographie ?></td><td style="width: 25%"><b><?php echo $resultat['Bibliographie'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIsaveur ?></td><td style="width: 36%"><b><?php echo $resultat['Saveur'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIbibliographie ?></td><td style="width: 36%"><b><?php echo $resultat['Bibliographie'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIpepins ?></td><td style="width: 25%"><b><?php echo $resultat['Pepins'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIidenAutre ?></td><td style="width: 25%"><b><?php echo $resultat['IdenAutre'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIpepins ?></td><td style="width: 36%"><b><?php echo $resultat['Pepins'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIidenAutre ?></td><td style="width: 36%"><b><?php echo $resultat['IdenAutre'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIsexe ?></td><td style="width: 25%"><b><?php echo $resultat['Sexe'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIvolume ?></td><td style="width: 25%"><b><?php echo $resultat['Volume'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIsexe ?></td><td style="width: 36%"><b><?php echo $resultat['Sexe'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIvolume ?></td><td style="width: 36%"><b><?php echo $resultat['Volume'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIidentification ?></td><td style="width: 25%"><b><?php echo $resultat['Identification'] ?></b></td>
-            <td style="width: 25%"><?php echo $CIpage ?></td><td style="width: 25%"><b><?php echo $resultat['Page'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIidentification ?></td><td style="width: 36%"><b><?php echo $resultat['Identification'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIpage ?></td><td style="width: 36%"><b><?php echo $resultat['Page'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $CIremarque ?></td><td style="width: 25%"><b><?php echo $resultat['RemarqueAccessionName'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIremarque ?></td><td style="width: 36%"><b><?php echo $resultat['RemarqueAccessionName'] ?></b></td>
         </tr>
     </table><br>
     <!--Agrement-->
     <table>
         <tr>
-            <td><h4><?php echo $Atitle ?></h4></td>
+            <td style="border:none;"><h4><?php echo $Atitle ?></h4></td>
         </tr>
     </table><br>
     <table>
         <tr>
-           <td style="width: 25%"><?php echo $Aagrement ?></td><td style="width: 25%"><b><?php echo $resultat['Agrement'] ?></b></td>
-           <td style="width: 25%"><?php echo $AanneeNonCertifiable ?></td><td style="width: 25%"><b><?php echo $resultat['AnneeNonCertifiable'] ?></b></td>
+           <td style="width: 14%"><?php echo $Aagrement ?></td><td style="width: 36%"><b><?php echo $resultat['Agrement'] ?></b></td>
+           <td style="width: 14%"><?php echo $AanneeNonCertifiable ?></td><td style="width: 36%"><b><?php echo $resultat['AnneeNonCertifiable'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $AfamilleSanitaire ?></td><td style="width: 25%"><b><?php echo $resultat['FamilleSanitaire'] ?></b></td>
-            <td style="width: 25%"><?php echo $AlieuDepotMatInitial ?></td><td style="width: 25%"><b><?php echo $resultat['LieuDepotMatInitial'] ?></b></td>
+            <td style="width: 14%"><?php echo $AfamilleSanitaire ?></td><td style="width: 36%"><b><?php echo $resultat['FamilleSanitaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $AlieuDepotMatInitial ?></td><td style="width: 36%"><b><?php echo $resultat['LieuDepotMatInitial'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $AagrementCTPS ?></td><td style="width: 25%"><b><?php echo $resultat['AgrementCTPS'] ?></b></td>
-            <td style="width: 25%"><?php echo $AsurfMulti ?></td><td style="width: 25%"><b><?php echo $resultat['SurfMulti'] ?></b></td>
+            <td style="width: 14%"><?php echo $AagrementCTPS ?></td><td style="width: 36%"><b><?php echo $resultat['AgrementCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AsurfMulti ?></td><td style="width: 36%"><b><?php echo $resultat['SurfMulti'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $AnumTempCTPS ?></td><td style="width: 25%"><b><?php echo $resultat['NumTempCTPS'] ?></b></td>
-            <td style="width: 25%"><?php echo $AdelegONIVINS ?></td><td style="width: 25%"><b><?php echo $resultat['DelegONIVINS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnumTempCTPS ?></td><td style="width: 36%"><b><?php echo $resultat['NumTempCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AdelegONIVINS ?></td><td style="width: 36%"><b><?php echo $resultat['DelegONIVINS'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $AnumAgreCTPS ?></td><td style="width: 25%"><b><?php echo $resultat['NumCloneCTPS'] ?></b></td>
-            <td style="width: 25%"><?php echo $AnomPartenaire ?></td><td style="width: 25%"><b><?php echo $resultat['NomPartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnumAgreCTPS ?></td><td style="width: 36%"><b><?php echo $resultat['NumCloneCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnomPartenaire ?></td><td style="width: 36%"><b><?php echo $resultat['NomPartenaire'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $AanneeAgrement ?></td><td style="width: 25%"><b><?php echo $resultat['AnneeAgrement'] ?></b></td>
-            <td style="width: 25%"><?php echo $AnomPartenaire2 ?></td><td style="width: 25%"><b><?php echo $resultat['NomPartenaire2'] ?></b></td>
+            <td style="width: 14%"><?php echo $AanneeAgrement ?></td><td style="width: 36%"><b><?php echo $resultat['AnneeAgrement'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnomPartenaire2 ?></td><td style="width: 36%"><b><?php echo $resultat['NomPartenaire2'] ?></b></td>
         </tr>
     </table><br>
     <!--Remarques-->
     <table>
         <tr>
-            <td><h4><?php echo $Rtitle ?></h4></td>
+            <td style="border:none;"><h4><?php echo $Rtitle ?></h4></td>
         </tr>
     </table><br>
     <table>
         <tr>
-            <td style="width: 25%"><?php echo $RmaintienEnCollection ?></td><td style="width: 25%"><b><?php echo $resultat['MaintientEnCollection'] ?></b></td>          
+            <td style="width: 14%"><?php echo $RmaintienEnCollection ?></td><td style="width: 36%"><b><?php echo $resultat['MaintientEnCollection'] ?></b></td>
+            <td style="width: 14%"><?php echo $RremarqueDiffusion ?></td><td style="width: 36%"><b><?php echo $resultat['RestrictionDiffusion'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 25%"><?php echo $RremarqueDiffusion ?></td><td style="width: 25%"><b><?php echo $resultat['RestrictionDiffusion'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 25%"><?php echo $RremarqueIntro ?></td><td style="width: 25%"><b><?php echo $resultat['RemarquesIntro'] ?></b></td>
+            <td style="width: 14%"><?php echo $RremarqueIntro ?></td><td style="width: 36%"><b><?php echo $resultat['RemarquesIntro'] ?></b></td>
         </tr>
     </table>
 </page>

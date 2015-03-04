@@ -334,7 +334,10 @@ $(document).ready(function(){
 	//page fichier
 	$.getJSON("./json/fichier.json",function(data){
 		$.each(data,function(key, value){
-			if(key==="espece_en"){
+			if(key==="code_en"){
+                             $('#code_fiche').append(value.Code);
+                        }
+                        if(key==="espece_en"){
 				$('#esp_FichierEsp').append(value.Title);
 				$('#Botaniste_lable_esp').append(value.Botaniste);
 				$('#Genre_lable_esp').append(value.Genre);
@@ -345,6 +348,7 @@ $(document).ready(function(){
 				$('#click_cate3_FichierEsp').append(value.Cate2);
 			}
 			if(key==="variete_en"){
+                                $('#SynoMajeur_lable_var').append(value.SynoMajeur);
 				$('#var_FichierVar').append(value.Title);
 				$('#Type_lable_var').append(value.Type);
 				$('#Espece_lable_var').append(value.Espece);

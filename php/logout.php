@@ -43,9 +43,10 @@ Une fois qu'un utilisateur déconnecte, il destroy son session.
 				<link rel="stylesheet" href="./jin.css" type="text/css" media="all" />
 				
 			</head>';
-	}	
+	}
+        $langue=$_SESSION['language_Vigne'];
 	$_SESSION = array();
-	session_destroy();
 	echo'<div id="message_logout"></div>';
-	echo'<meta http-equiv="Refresh" content="1;url=././Home.php?l='.$langue.'">';
+	echo'<meta http-equiv="Refresh" content="1;url=../Home.php?l='.$langue.'">';
+        session_destroy();
 ?>

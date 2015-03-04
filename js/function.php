@@ -16584,21 +16584,26 @@ and open the template in the editor.
 					if(data==1){
 						console.log('1');
 						var div='<div id="message_login"></div>';
+                                                window.location = "./Home.php";
 					}
 					if(data==2){
 						console.log('2');
 						var div='<div id="message_emptyCompte"></div>';
+                                                
 					}
 					if(data==3){
 						console.log('3');
 						var div="<div id='message_problemFilling'></div>";
+                                                
 					}
 					if(data==4){
 						console.log('4');
 						var div='<div id="message_emptyCompte"></div>';
+                                                
 					}
 					if(data=="erreur"){
 						var div="<div id='message_login'>erreur de base de donnes</div>";
+                                                
 					}
 					$.getJSON("./json/message.json",function(data){
 						$.each(data,function(key, value){

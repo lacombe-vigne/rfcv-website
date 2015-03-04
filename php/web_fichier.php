@@ -84,6 +84,7 @@
 	}
 	if($section=='aptitude'){
 		$codeAptitude=supprNull($_POST['codeAptitude']);
+                $_SESSION['CodeAptitude']=$codeAptitude;
 		$nomVar=supprNull($_POST['nomVar']);
 		$CodeVar=supprNull($_POST['CodeVar']);
 		$nomAcc=supprNull($_POST['nomAcc']);
@@ -309,7 +310,7 @@
 					<div class='title_FichierEsp'>
 						<img src='images/espece_fichier.png' />
 						<span id='esp_FichierEsp'></span>&nbsp &nbsp".$Espece."
-						<span id='codeEsp_FichierEsp'><span id='code_fiche' >Code: </span> ".$CodeEsp."</span>
+						<span id='codeEsp_FichierEsp'><span id='code_fiche'></span> ".$CodeEsp."</span>
 					</div>
 					<div class='carte_FichierEsp'>
 						<table width='100%'>
@@ -374,35 +375,35 @@
 				}
 					if($SynoMajeur!=" –" && $SynoMajeur!=" – "){
 						echo "<span id='var_FichierVar'></span>&nbsp &nbsp".$NomVar."&nbsp &nbsp 
-								<span class='SynoMajeur_FichierAcc'>[Synonyme: ".$SynoMajeur."]</span>
-								<span id='codeVar_FichierVar'><span id='code_fiche' >Code: </span> ".$CodeVar."</span>";
+								<span class='SynoMajeur_FichierAcc'>[<span id='SynoMajeur_lable_var'></span> ".$SynoMajeur."]</span>
+								<span id='codeVar_FichierVar'><span id='code_fiche'></span> ".$CodeVar."</span>";
 					}else{
 						echo "<span id='var_FichierVar'></span>&nbsp &nbsp".$NomVar."&nbsp &nbsp 
-						<span id='codeVar_FichierVar'><span id='code_fiche' >Code: </span> ".$CodeVar."</span>";
+						<span id='codeVar_FichierVar'><span id='code_fiche'></span> ".$CodeVar."</span>";
 					}
 				echo "</div>
 					<div class='carte_FichierVar'>
 						<table width='100%'>
 							<tr>
 								<input id='fichier_code_variete' type='hidden' value='".$CodeVar."' />
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Type_lable_var'></span></td><td width='30%' class='res_var'>".$Type."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPer_lable_var'></span></td><td class='res_var'>".$CouleurPe."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Type_lable_var'></span></td><td width='35%' class='res_var'>".$Type."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPer_lable_var'></span></td><td width='35%' class='res_var'>".$CouleurPe."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Espece_lable_var'></span></td><td class='res_var'><a onclick='$.passerFicher(\"".$codeEspece."\",\"espece\")' class='lien_fichier'>".$Espece."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPu_lable_var'></span></td><td class='res_var'>".$CouleurPu."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Espece_lable_var'></span></td><td width='35%' class='res_var'><a onclick='$.passerFicher(\"".$codeEspece."\",\"espece\")' class='lien_fichier'>".$Espece."</a></td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPu_lable_var'></span></td><td width='35%' class='res_var'>".$CouleurPu."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='UniteVar_lable_var'></span></td><td class='res_var'>".$UniteVar."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Saveur_lable_var'></span></td><td class='res_var'>".$Saveur."</td>	
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='UniteVar_lable_var'></span></td><td width='35%' class='res_var'>".$UniteVar."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Saveur_lable_var'></span></td><td width='35%' class='res_var'>".$Saveur."</td>	
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Utilite_lable_var'></span></td><td width='30%' class='res_var'>".$Utilite."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pepins_lable_var'></span></td><td width='30%' class='res_var'>".$Pepins."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Utilite_lable_var'></span></td><td width='35%' class='res_var'>".$Utilite."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pepins_lable_var'></span></td><td width='35%' class='res_var'>".$Pepins."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='OIpays_lable_var'></span></td><td width='30%' class='res_var'>".$OIpays."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Obtenteur_lable_var'></span></td><td width='30%' class='res_var'>".$Obtenteur."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='OIpays_lable_var'></span></td><td width='35%' class='res_var'>".$OIpays."</td>
+								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Obtenteur_lable_var'></span></td><td width='35%' class='res_var'>".$Obtenteur."</td>
 							</tr>
 						</table>
 					</div>
@@ -492,7 +493,7 @@
 					echo "<div class='title_FichierAcc'>
 						<img src='images/accession_fichier.png' />
 						<span id='acc_FichierAcc'></span>&nbsp &nbsp".$NomIntro."
-						<span id='CodeIntro_FichierAcc'><span id='code_fiche' >Code: </span> ".$CodeIntro."</span>
+						<span id='CodeIntro_FichierAcc'><span id='code_fiche' > </span> ".$CodeIntro."</span>
 					</div>
 					<div class='carte_FichierAcc'>
 						<table width='100%'>
@@ -586,19 +587,19 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Aptitudes.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Aptitudes.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierApt'>
 						<img src='images/accession_fichier.png' />
 						<span id='apt_FichierApt'></span>&nbsp &nbsp
-						<span id='codeAptitude_FichierApt'><span id='code_fiche' >Code: </span> ".$codeAptitude."</span>
+						<span id='codeAptitude_FichierApt'><span id='code_fiche' > </span> ".$codeAptitude."</span>
 					</div>
 					<div class='carte_FichierApt'>
 						<table width='100%'>
@@ -659,7 +660,7 @@
 					echo "<div class='title_FichierMor'>
 						<img src='images/accession_fichier.png' />
 						<span id='mor_FichierMor'></span>&nbsp &nbsp
-						<span id='CodeAmpelo_FichierMor'><span id='code_fiche' >Code: </span> ".$CodeAmpelo."</span>
+						<span id='CodeAmpelo_FichierMor'><span id='code_fiche' > </span> ".$CodeAmpelo."</span>
 					</div>
 					<div class='carte_FichierMor'>
 						<table width='100%'>
@@ -720,7 +721,7 @@
 					echo "<div class='title_FichierEmp'>
 						<img src='images/accession_fichier.png' />
 						<span id='emp_FichierEmp'></span>&nbsp &nbsp
-						<span id='CodeEmplacemen_FichierEmp'><span id='code_fiche' >Code: </span> ".$CodeEmplacemen."</span>
+						<span id='CodeEmplacemen_FichierEmp'><span id='code_fiche' > </span> ".$CodeEmplacemen."</span>
 					</div>
 					<div class='carte_FichierEmp'>
 						<table width='100%'>
@@ -797,7 +798,7 @@
 					echo "<div class='title_FichierSan'>
 						<img src='images/accession_fichier.png' />
 						<span id='san_FichierSan'></span>&nbsp &nbsp
-						<span id='CodeSanitaire_FichierSan'><span id='code_fiche' >Code: </span> ".$CodeSanitaire."</span>
+						<span id='CodeSanitaire_FichierSan'><span id='code_fiche' > </span> ".$CodeSanitaire."</span>
 					</div>
 					<div class='carte_FichierSan'>
 						<table width='100%'>
@@ -854,7 +855,7 @@
 					echo "<div class='title_FichierGen'>
 						<img src='images/accession_fichier.png' />
 						<span id='gen_FichierGen'></span>&nbsp &nbsp
-						<span id='Code_FichierGen'><span id='code_fiche' >Code: </span> ".$Code."</span>
+						<span id='Code_FichierGen'><span id='code_fiche' > </span> ".$Code."</span>
 					</div>
 					<div class='carte_FichierGen'>
 						<table width='100%'>
@@ -923,7 +924,7 @@
 					echo "<div class='title_FichierBib'>
 						<img src='images/accession_fichier.png' />
 						<span id='bib_FichierBib'></span>&nbsp &nbsp
-						<span id='Code_FichierBib'><span id='code_fiche' >Code: </span> ".$Code."</span>
+						<span id='Code_FichierBib'><span id='code_fiche' > </span> ".$Code."</span>
 					</div>
 					<div class='carte_FichierBib'>
 						<table width='100%'>
@@ -1008,7 +1009,7 @@
 					echo "<div class='title_FichierPar'>
 						<img src='images/accession_fichier.png' />
 						<span id='par_FichierPar'></span>&nbsp &nbsp
-						<span id='CodePartenaire_FichierPar'><span id='code_fiche' >Code: </span> ".$CodePartenaire."</span>
+						<span id='CodePartenaire_FichierPar'><span id='code_fiche' > </span> ".$CodePartenaire."</span>
 					</div>
 					<div class='carte_FichierPar'>
 						<table width='100%'>
@@ -1061,7 +1062,7 @@
 					echo "<div class='title_FichierSite'>
 						<img src='images/accession_fichier.png' />
 						<span id='site_FichierSite'></span>&nbsp &nbsp
-						<span id='CodeSite_FichierSite'><span id='code_fiche' >Code: </span> ".$CodeSite."</span>
+						<span id='CodeSite_FichierSite'><span id='code_fiche'></span> ".$CodeSite."</span>
 					</div>
 					<div class='carte_FichierSite'>
 						<table width='100%'>
