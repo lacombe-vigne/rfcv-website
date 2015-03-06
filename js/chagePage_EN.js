@@ -548,7 +548,7 @@ $(document).ready(function(){
 				$('#SouchePrelev_lable_gen').append(value.SouchePrelev);
 				$('#DateRecolte_lable_gen').append(value.DateRecolte);
 			}
-			if(key==="biliographique_en"){
+			if(key==="bibliographique_en"){
 				$('#bib_FichierBib').append(value.title);
 				$('#nomVar_lable_bib').append(value.nomVar);
 				$('#VolumeCitation_lable_bib').append(value.VolumeCitation);

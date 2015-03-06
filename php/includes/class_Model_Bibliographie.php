@@ -9,7 +9,7 @@ class Bibliograhpie {
 	private $Year = null;
 	private $PagesCitation = null;
 	private $VolumeCitation = null;
-	
+
 	private $nomAcc = null;
 	private $nomVar = null;
 	private $CodeAcc = null;

@@ -493,7 +493,7 @@
 			"DateRun":"Date run",
 			"Partenaire":"Partner: "
 		},
-	"biliographique_fr":
+	"bibliographique_fr":
 		{
 			"title":"Citation Bibliographique",
 			"nomVar":"Nom variété : ",
@@ -515,7 +515,7 @@
 			"AuteurCitation":"Auteur(s) citation : ",
 			"NomVigneCite":"Nom vigne cité : "
 		},
-	"biliographique_en":
+	"bibliographique_en":
 		{
 			"title":"Bibliographic citation",
 			"nomVar":"Variety name: ",
@@ -569,7 +569,7 @@
 		},
 	"site_fr":
 		{
-			"title":"Site",
+			"title":"Site :",
 			"RegionSite":"Région : ",
 			"DepartSite":"Département : ",
 			"CommuneSite":"Commune : ",
@@ -591,7 +591,7 @@
 		},
 	"site_en":
 		{
-			"title":"Site",
+			"title":"Site:",
 			"RegionSite":"Region: ",
 			"DepartSite":"Department: ",
 			"CommuneSite":"Municipality: ",

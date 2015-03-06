@@ -84,7 +84,7 @@
 	}
 	if($section=='aptitude'){
 		$codeAptitude=supprNull($_POST['codeAptitude']);
-                $_SESSION['CodeAptitude']=$codeAptitude;
+                $_SESSION['codeAptitude']=$codeAptitude;
 		$nomVar=supprNull($_POST['nomVar']);
 		$CodeVar=supprNull($_POST['CodeVar']);
 		$nomAcc=supprNull($_POST['nomAcc']);
@@ -106,6 +106,7 @@
 	}
 	if($section=='morphologique'){
 		$CodeAmpelo=supprNull($_POST['CodeAmpelo']);
+                $_SESSION['CodeAmpelo']=$CodeAmpelo;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
 		$Descripteur=supprNull($_POST['Descripteur']);
@@ -128,6 +129,7 @@
 	}
 	if($section=='emplacement'){
 		$CodeEmplacemen=supprNull($_POST['CodeEmplacemen']);
+                $_SESSION["CodeEmplacemen"]=$CodeEmplacemen;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
 		$Site=supprNull($_POST['Site']);
@@ -154,6 +156,7 @@
 	}
 	if($section=='sanitaire'){
 		$CodeSanitaire=supprNull($_POST['CodeSanitaire']);
+                $_SESSION['CodeSanitaire']=$CodeSanitaire;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
 		$PathogeneTeste=supprNull($_POST['PathogeneTeste']);
@@ -169,6 +172,7 @@
 	}
 	if($section=='genetique'){
 		$Code=supprNull($_POST['Code']);
+                $_SESSION['Code']=$Code;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
 		$Marqueur=supprNull($_POST['Marqueur']);
@@ -188,6 +192,7 @@
 	}
 	if($section=='bibliographie'){
 		$Code=supprNull($_POST['Code']);
+                $_SESSION['Code']=$Code;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$nomVar=supprNull($_POST['nomVar']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
@@ -225,7 +230,9 @@
 		$CommunePartenaire=supprNull($_POST['CommunePartenaire']);
 	}
 	if($section=='site'){
-		$CodeSite=supprNull($_POST['CodeSite']);
+                $CodeSite=supprNull($_POST['CodeSite']);
+                $_SESSION["CodeSite"]=$CodeSite;
+                $NomSite=supprNull($_POST['NomSite']);
 		$RegionSite=supprNull($_POST['RegionSite']);
 		$DepartSite=supprNull($_POST['DepartSite']);
 		$CommuneSite=supprNull($_POST['CommuneSite']);
@@ -648,13 +655,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Morphologique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Morphologique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierMor'>
@@ -709,13 +716,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierEmp'>
@@ -786,13 +793,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Sanitaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Sanitaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSan'>
@@ -843,13 +850,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Genetique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Genetique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierGen'>
@@ -912,13 +919,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Bibliographie.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Bibliographie.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierBib'>
@@ -1050,13 +1057,13 @@
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Site.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
 						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
-						<a id='export_pdf_fiche'><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
+						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Site.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
 					echo "<div class='title_FichierSite'>

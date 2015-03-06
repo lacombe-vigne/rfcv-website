@@ -517,6 +517,8 @@ $(document).ready(function(){
 				
 			}
 			if(key==="genetique_fr"){
+                                $('#TypeOrgane_lable_gen').append(value.TypeOrgane);
+                                $('#IdProtocoleRecolte_lable_gen').append(value.IdProtocoleRecolte)
 				$('#gen_FichierGen').append(value.title);
 				$('#nomAcc_lable_gen').append(value.nomAcc);
 				$('#IdStockADN_lable_gen').append(value.IdStockADN);
@@ -532,7 +534,7 @@ $(document).ready(function(){
 				$('#SouchePrelev_lable_gen').append(value.SouchePrelev);
 				$('#DateRecolte_lable_gen').append(value.DateRecolte);
 			}
-			if(key==="biliographique_fr"){
+			if(key==="bibliographique_fr"){
 				$('#bib_FichierBib').append(value.title);
 				$('#nomVar_lable_bib').append(value.nomVar);
 				$('#VolumeCitation_lable_bib').append(value.VolumeCitation);
@@ -579,14 +581,12 @@ $(document).ready(function(){
 				$('#ResponsSite_lable_site').append(value.ResponsSite);
 				$('#AdresseSite_lable_site').append(value.AdresseSite);
 				$('#TelSite_lable_site').append(value.TelSite);
-				$('#LatSite_lable_site').append(value.LatSite);
 				$('#FaxSite_lable_site').append(value.FaxSite);
 				$('#LatSite_lable_site').append(value.LatSite);
-				$('#FaxSite_lable_site').append(value.FaxSite);
 				$('#LongSite_lable_site').append(value.LongSite);
 				$('#MailSite_lable_site').append(value.MailSite);
 				$('#AltSite_lable_site').append(value.AltSite);
-				$('#AnneeCreationSite').append(value.AnneeCreationSite);
+				$('#AnneeCreationSite_lable_site').append(value.AnneeCreationSite);
 				$('#VarMajoritairesSite_lable_site').append(value.VarMajoritairesSite);
 				$('#PresentationSite_lable_site').append(value.PresentationSite);
 			}

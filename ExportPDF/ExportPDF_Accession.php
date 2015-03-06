@@ -201,22 +201,18 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
 require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
 require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
 $DAO = new BibliothequeDAO();
-//$resultat = $DAO->exportpdf($_SESSION['CodeIntro'], $_SESSION['language_Vigne'], "accession");/*Requête SQL*/
-$resultat = $DAO->exportpdf("999999Mtp888888", "FR", "accession");//test
+$resultat = $DAO->exportpdf($_SESSION['CodeIntro'], $_SESSION['language_Vigne'], "accession");/*Requête SQL*/
+//$resultat = $DAO->exportpdf("999999Mtp888888", "FR", "accession");//test
 ob_start();
+$nompdf = $Title . $resultat['CodeIntro'] .".pdf"; //Nomme le pdf que l'on télécharge
 ?>
 
 <!-- CSS de la page HTML -->
 <style type="text/css">
     table{width:100%;color:#888;border-collapse: collapse}
     h4{color:#FF8C00;}
-    b{color:#000;}
-    h3{}
-    td{display: inline-block;
-	vertical-align: top;
-	text-align: left;
-        border: 1px;border-color:#aaa
-    }
+    b{color:#000; font-weight:normal}
+    td{display: inline-block;vertical-align: top;text-align: left;border: 1px;border-color:#aaa}
     
 </style>
 
@@ -246,15 +242,13 @@ ob_start();
                 
             </tr>
         </table>
-        <table >
+        <table>
             <tr style="color:#900">
                 <td style="border:none;text-align: left; width: 40%">Document édité le [[date_d]]/[[date_m]]/[[date_y]]</td>
                 <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
                 <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
         </table>
-        
-        
     </page_footer>
     <!--Début de fiche-->
     <table>
@@ -332,7 +326,7 @@ ob_start();
         </tr>
         <tr>
             <td style="width: 14%"><?php echo $PDcoloneTraite ?></td><td style="width: 36%"><b><?php echo $resultat['CloneTraite'] ?></b></td>
-            <td style="width: 14%"><?php echo $PDremarques ?></td><td style="width: 36%"><b><?php echo $resultat['RemarquesProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $PDremarques ?></td><td style="width: 36%;text-align:justify;"><b><?php echo $resultat['RemarquesProvenance'] ?></b></td>
         </tr>
     </table><br>
     <!--Provenance antérieure-->
@@ -402,7 +396,7 @@ ob_start();
             <td style="width: 14%"><?php echo $CIpage ?></td><td style="width: 36%"><b><?php echo $resultat['Page'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $CIremarque ?></td><td style="width: 36%"><b><?php echo $resultat['RemarqueAccessionName'] ?></b></td>
+            <td style="width: 14%"><?php echo $CIremarque ?></td><td style="width: 36%;text-align:justify;"><b><?php echo $resultat['RemarqueAccessionName'] ?></b></td>
         </tr>
     </table><br>
     <!--Agrement-->
@@ -449,7 +443,7 @@ ob_start();
             <td style="width: 14%"><?php echo $RremarqueDiffusion ?></td><td style="width: 36%"><b><?php echo $resultat['RestrictionDiffusion'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $RremarqueIntro ?></td><td style="width: 36%"><b><?php echo $resultat['RemarquesIntro'] ?></b></td>
+            <td style="width: 14%"><?php echo $RremarqueIntro ?></td><td style="width: 36%;text-align:justify;"><b><?php echo $resultat['RemarquesIntro'] ?></b></td>
         </tr>
     </table>
 </page>
@@ -457,10 +451,10 @@ ob_start();
 $content = ob_get_clean(); //Permet d'enregistrer le contenu de la page HTML dans la variable content
 require('html2pdf/html2pdf.class.php'); //Appel à la classe de la librairie HTML2PDF
 try {
-    $pdf = new HTML2PDF('P', 'A4', 'fr'); // Définit les caractéristiques de notre pdf
+    $pdf = new HTML2PDF('P', 'A4'); // Définit les caractéristiques de notre pdf
     $pdf->pdf->SetDisplayMode('fullpage'); // Affiche le contenu de la première page par défaut
     $pdf->writeHTML($content); // Permet de remplir le PDF
-    $pdf->Output("test.pdf"); //Permet de nommer le PDF téléchargeable
+    $pdf->Output($nompdf); //Permet de nommer le PDF téléchargeable
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
