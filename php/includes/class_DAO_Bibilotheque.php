@@ -292,7 +292,7 @@ class BibliothequeDAO {
                             } else {
                                 //espece
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
-                                $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' and public!='N' " . $tri_espece . "  limit " . $startPage_espece . "," . $pagesize_espece . " UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "' and public!='N' " . $tri_espece . "  limit " . $startPage_espece . "," . $pagesize_espece . "";
+                                $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "' and public!='N' " . $tri_espece . "  limit " . $startPage_espece . "," . $pagesize_espece . "";
                                 $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "' and public!='N'";
                                 $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' UNION select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "'";
                                 //variete
@@ -418,9 +418,9 @@ class BibliothequeDAO {
                             if (isset($_SESSION['codePersonne'])) {
                                 //espece
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
-                                $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
-                                $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "'";
-                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '^" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '^" . $search . "'";
+                                $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
+                                $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "'";
+                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "'";
                                 //variete
                                 if ($_SESSION['ProfilPersonne'] == 'A') {
                                     $startPage_variete = ($page_variete - 1) * $pagesize_variete;
@@ -509,7 +509,7 @@ class BibliothequeDAO {
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
                                 $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
                                 $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "'";
-                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '";
+                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "'";
                             } else {
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
                                 $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "' and public!='N' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
@@ -612,7 +612,7 @@ class BibliothequeDAO {
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
                                 $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
                                 $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
-                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
+                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
                                 //variete
                                 if ($_SESSION['ProfilPersonne'] == 'A') {
                                     $startPage_variete = ($page_variete - 1) * $pagesize_variete;
@@ -700,7 +700,7 @@ class BibliothequeDAO {
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
                                 $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
                                 $sql_espece_possible = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
-                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
+                                $total_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$'";
                             } else {
                                 $startPage_espece = ($page_espece - 1) * $pagesize_espece;
                                 $sql_espece = "select * from `NV-ESPECES` where Espece REGEXP '" . $search . "$' and public!='N' UNION select * from `NV-ESPECES` where CodeEsp REGEXP '" . $search . "$' and public!='N' " . $tri_espece . " limit " . $startPage_espece . "," . $pagesize_espece . "";
@@ -793,7 +793,7 @@ class BibliothequeDAO {
 
                     break;
             }
-
+            
             $tri_espece = array("classname" => $tri_espece_classname, "section" => $tri_espece_section, "colone" => $tri_espece_colone);
             $tri_variete = array("classname" => $tri_variete_classname, "section" => $tri_variete_section, "colone" => $tri_variete_colone);
             $tri_accession = array("classname" => $tri_accession_classname, "section" => $tri_accession_section, "colone" => $tri_accession_colone);
@@ -804,6 +804,7 @@ class BibliothequeDAO {
             }
             if ($sql_variete != "") {
                 $variete = $DAO->chargeContentVariete($sql_variete, $total_variete, $_SESSION['language_Vigne'], $page_variete, $pagesize_variete, $sql_variete_possible);
+                $_SESSION['resultat'] = $sql_variete_possible;
             }
             if ($sql_accession != "") {
                 $accession = $DAO->chargeContentAccession($sql_accession, $total_accession, $_SESSION['language_Vigne'], $page_accession, $pagesize_accession, $sql_accession_possible);
@@ -6494,7 +6495,7 @@ class BibliothequeDAO {
         return $utilite;
     }
 
-    public function exportpdf($code, $langue, $section) {/* Permet d'exporter les données en PDF */
+    public function exportpdf($code, $langue, $section) {// Permet d'exporter les données en PDF
         $DAO = new BibliothequeDAO();
         if ($section == "variete") {
             connexion_bbd();
@@ -6787,6 +6788,85 @@ class BibliothequeDAO {
                 deconnexion_bbd();
             }
             return $detail;
+        }
+    }
+
+    public function exportxls($langue, $search, $section, $typerecherche) {
+        $DAO = new BibliothequeDAO();
+        if ($section == "variete") {
+            connexion_bbd();
+            mysql_query('SET NAMES UTF8');
+            /*if ($typerecherche == "fuzzy") {
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "select * from `NV-VARIETES` where NomVar REGEXP '" . $search . "' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "'";
+                    } else {
+                        $sql = "select * from `NV-VARIETES` where (NomVar REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(nomVar REGEXP '" . $search . "' and public!='N')
+			 UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(SynoMajeur REGEXP '" . $search . "' and public!='N')
+			UNION select * from `NV-VARIETES` where (CodeVar REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or (CodeVar REGEXP '" . $search . "' and public!='N')";
+                    }
+                } else {
+                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "' and public!='N'";
+                }
+            } else if ($typerecherche == "complet") {
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "')";
+                    } else {
+                        $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N')";
+                    }
+                } else {
+                    $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "') and public!='N'";
+                }
+            } else if ($typerecherche == "start") {
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "select * from `NV-VARIETES` where nomVar REGEXP '^" . $search . "' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^" . $search . "' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^" . $search . "'";
+                    } else {
+                        $sql = "select * from `NV-VARIETES` where (nomVar REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(nomVar REGEXP '^" . $search . "' and public!='N')
+				UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (SynoMajeur REGEXP '^" . $search . "' and public!='N')
+                                UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (CodeVar REGEXP '^" . $search . "' and public!='N')";
+                    }
+                } else {
+                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^" . $search . "' and public!='N'";
+                }
+            } else{
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "$'";
+                    } else {
+                        $sql = "select * from `NV-VARIETES` where (nomVar REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or(nomVar REGEXP '" . $search . "$' and public!='N')
+						UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (SynoMajeur REGEXP '" . $search . "$' and public!='N')
+                                                UNION select * from `NV-VARIETES` where (CodeVar REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (CodeVar REGEXP '" . $search . "$' and public!='N')";
+                    }
+                } else {
+                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "$' and public!='N'";
+                }
+            }*/
+            $sql = $_SESSION['resultat'] . "order by CodeVar";
+            $resultat = mysql_query($sql) or die(mysql_error());
+            if (!$resultat) {
+                deconnexion_bdd();
+                echo "<script>alert('erreur de bdd')</script>";
+                exit;
+            }
+            if (mysql_num_rows($resultat) == 0) {
+                $result = null;
+                deconnexion_bdd();
+            }
+            $result = array();
+            if (mysql_num_rows($resultat) > 0) {
+                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                    $dico = mysql_fetch_assoc($resultat);
+                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['RemarquesVar']);
+                    $detail = $VAR->getListeVariete();
+                    $detail = supprNull($detail);
+                    array_push($result, $detail);
+                }
+                deconnexion_bbd();
+            }
+            $res = $result;
+            return $res;
         }
     }
 

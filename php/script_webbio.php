@@ -84,7 +84,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -113,7 +113,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -159,7 +159,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -197,7 +197,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -509,7 +509,7 @@ switch($fun){
 		// $search_complet=$_POST['search'];
 		// $case_s=$_POST['case_s'];
 		// $model=$_POST['model'];
-		// $langue=$_POST['langue'];
+		// $langue=$_POST['langue_value'];
 		// $page_espece=$_POST['page_espece'];
 		// $pagesize_espece=$_POST['pagesize_espece'];
 		// $page_variete=$_POST['page_variete'];
@@ -538,10 +538,13 @@ switch($fun){
 	break;
 	case "searchSimple":
 		$search=suppr_accents($_POST['search']);
+                $_SESSION['search']=$search;
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
+                $_SESSION['typerecherche']=$case_s;
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
+                //$langue=$_SESSION['language_Vigne'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -558,7 +561,9 @@ switch($fun){
 		$tri_accession_section=$_POST['tri_accession_section'];
 		$tri_accession_colone=$_POST['tri_accession_colone'];
 		$resultat=$DAO->searchSimple($search,$search_complet,$case_s,$model,$langue,$page_espece,$pagesize_espece,$page_variete,$pagesize_variete,$page_accession,$pagesize_accession,$tri_espece_classname,$tri_espece_section,$tri_espece_colone,$tri_variete_classname,$tri_variete_section,$tri_variete_colone,$tri_accession_classname,$tri_accession_section,$tri_accession_colone);
-		echo json_encode($resultat);
+                echo json_encode($resultat);
+                
+                //print_r($resultat);
 	break;
 	case "ficher":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
@@ -568,7 +573,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -666,12 +671,12 @@ switch($fun){
 		echo json_encode($resultat);
 	break;
 	case "charge_champ_Morphologique":
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$resultat=$DAO->charge_champ_Morphologique($langue);
 		echo $resultat;
 	break;
 	case "charge_champ_Genetique":
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$resultat=$DAO->charge_champ_Genetique($langue);
 		echo $resultat;
 	break;
@@ -703,7 +708,7 @@ switch($fun){
 	break;
 	case "searchAdvance_requete":
 		$section=$_POST['section'];
-		$langue=$_POST['langue'];
+		$langue=$_POST['langue_value'];
 		$sql_possible=$_POST['sql_possible'];
 		$sql_total=$_POST['sql_total'];
 		$pagesize=$_POST['pagesize'];
@@ -737,7 +742,7 @@ switch($fun){
 	case 'select_change_selection_listvariete':
 		$curpage=$_POST['curpage'];
 		$pagesize=$_POST['pagesize'];
-                $langue=$_POST['langue'];//$_SESSION['language_Vigne'];
+                $langue=$_POST['langue_value'];//$_SESSION['language_Vigne'];
 		$pagetotal=ceil(count($_SESSION['selection']['Variete'])/$pagesize);
 		$startpage=($curpage-1)*$pagesize;
 		$Variete_Contents=array();

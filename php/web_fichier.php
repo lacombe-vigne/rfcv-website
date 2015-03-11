@@ -255,7 +255,7 @@
 	$search_value=$_POST['search_value'];
 	$case_s_value=$_POST['case_s_value'];
 	$model_value=$_POST['model_value'];
-	$langue_value=$_POST['langue'];
+	$langue_value=$_POST['langue_value'];
 	$classname_espece=$_POST['classname_espece'];
 	$section_espece=$_POST['section_espece'];
 	$colone_espece=$_POST['colone_espece'];
