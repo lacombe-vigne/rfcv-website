@@ -11,36 +11,77 @@ session_start(); //Permet de récupérer le contenu des variables de session
 $json = file_get_contents('../../json/search.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 //Permet de récupérer les bon json en fonction de la langue
-if ($_SESSION['language_Vigne'] == "FR") {
-    $labeljson = array(
-        utf8_decode($parsed_json->{resultat_variete_fr}->{CodeVariete}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{NomVariete}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{SynoMajeur}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{Utilite}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{CouleurPellicule}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{Saveur}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{Pepins}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{Sexe}),
-        utf8_decode($parsed_json->{resultat_variete_fr}->{PaysOrigine}));
-} else {
-    $labeljson = array(
-        utf8_decode($parsed_json->{resultat_variete_en}->{CodeVariete}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{NomVariete}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{SynoMajeur}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{Utilite}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{CouleurPellicule}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{Saveur}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{Pepins}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{Sexe}),
-        utf8_decode($parsed_json->{resultat_variete_en}->{PaysOrigine}));
+if ($_GET["section"] == "variete") {
+    if ($_SESSION['language_Vigne'] == "FR") {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_variete_fr}->{CodeVariete}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{NomVariete}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{SynoMajeur}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{Utilite}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{CouleurPellicule}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{Saveur}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{Pepins}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{Sexe}),
+            utf8_decode($parsed_json->{resultat_variete_fr}->{PaysOrigine}));
+    } else {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_variete_en}->{CodeVariete}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{NomVariete}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{SynoMajeur}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{Utilite}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{CouleurPellicule}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{Saveur}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{Pepins}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{Sexe}),
+            utf8_decode($parsed_json->{resultat_variete_en}->{PaysOrigine}));
+    }
+} else if ($_GET["section"] == "accession") {
+    if ($_SESSION['language_Vigne'] == "FR") {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_accession_fr}->{CodeIntro}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{NomIntro}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{NomVariete}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{Partenaire}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{PaysProvenance}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{CommuneProvenance}),
+            utf8_decode($parsed_json->{resultat_accession_fr}->{AnneeEntree}));
+    } else {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_accession_en}->{CodeIntro}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{NomIntro}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{NomVariete}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{Partenaire}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{PaysProvenance}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{CommuneProvenance}),
+            utf8_decode($parsed_json->{resultat_accession_en}->{AnneeEntree}));
+    }
+} else if($_GET["section"] == "espece") {
+    if ($_SESSION['language_Vigne'] == "FR") {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_espece_fr}->{CodeEspece}),
+            utf8_decode($parsed_json->{resultat_espece_fr}->{NomEspece}),
+            utf8_decode($parsed_json->{resultat_espece_fr}->{Botaniste}),
+            utf8_decode($parsed_json->{resultat_espece_fr}->{Tronc}));
+    } else {
+        $labeljson = array(
+            utf8_decode($parsed_json->{resultat_espece_en}->{CodeEspece}),
+            utf8_decode($parsed_json->{resultat_espece_en}->{NomEspece}),
+            utf8_decode($parsed_json->{resultat_espece_en}->{Botaniste}),
+            utf8_decode($parsed_json->{resultat_espece_en}->{Tronc}));
+    }
 }
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $DAO = new BibliothequeDAO();
-//$resultat=$_SESSION['resultat'];
+
+/*$t1=microtime();
+$t1=explode(" ",$t1);
+$t2=explode(".",$t1[0]);
+$t2=$t1[1].".".$t2[1];*/
+
 //$resultat = $DAO->exportxls($_SESSION['language_Vigne'],$_SESSION['search'],"variete",$_SESSION['typerecherche']);
+$resultat = $DAO->exportxls($_SESSION['language_Vigne'], $_GET["section"]);
 //print_r($resultat);
-$resultat = $DAO->exportxls($_SESSION['language_Vigne'], null, "variete", null);
 //$resultat = $DAO->searchSimple($_SESSION['search'], $_SESSION['search'], "fuzzy", "variete", $_SESSION['language_Vigne'], 1, 20, 1, 20, 1, 20, "tri_espece_asc", 1, "CodeEsp", "tri_variete_asc", 1, "CodeVar", "tri_accession_asc", 1, "CodeIntro");
 /* foreach ($resultat as &$value) {
   foreach ($value as &$i) {
@@ -50,7 +91,11 @@ $resultat = $DAO->exportxls($_SESSION['language_Vigne'], null, "variete", null);
   }
   }
   } */
-//print_r($resultat);
+/*$i=0;
+while($i<60){
+$DAO->paysorigine($resultat[$i]['paysorigine'],$_SESSION['language_Vigne']);
+$i++;
+}*/
 //CSS du tableur
 $Titre = & $workbook->addformat();
 $Titre->set_bold();
@@ -79,29 +124,50 @@ $j = 0;
   $j++;
   } */
 $j = 0;
+$k = 0;
 foreach ($resultat as $value) {
     $i = 0;
+    //$worksheet->write(4 + $j, 10 + $k, $value, $Données);
+    $k++;
     foreach ($value as $v) {
-        $v = utf8_decode($v);
-        if ($v == ' ? ' || $v == ' ?') {
-            $v = '--';
+        //$v = utf8_decode($v);
+        if ($v == '  â€“ ' || $v == '  â€“') {
+            //$v = utf8_decode($v);
         }
         $worksheet->write(4 + $j, 0 + $i, $v, $Données);
         $i++;
     }
     $j++;
 }
+
+/*
+$t3=microtime();
+$t3=explode(" ",$t3);
+$t4=explode(".",$t3[0]);
+$t4=$t3[1].".".$t4[1];
+$t5=$t4-$t2;
+$t5=$t5*1000;
+printf("<center><FONT face='Arial' size='-3'>Requete effectuee en %0.1f ms</font></center>",$t5);
+ * 
+ */
 /* $j = 0;
   foreach ($resultat as $value) {
   echo $value;
   $j++;
   } */
-
+//\'data.xls\''
 $workbook->close();
-
+//header('Content-Type: application/octet-stream');
 header("Content-Type: application/x-msexcel; name=\"data.xls\"");
-header("Content-Disposition: inline; filename=\"data.xls\"");
-$fh = fopen($fname, "rb");
+header("Content-Disposition: attachment; filename=\"data.xls\"");
+header('Content-Transfer-Encoding: binary');
+header('Content-Description: File Transfer');
+header('Expires: 0');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Pragma: public');
+readfile($fname);
+/*$fh = fopen($fname, "rb");
 fpassthru($fh);
-unlink($fname);
+unlink($fname);*/
+exit;
 ?>

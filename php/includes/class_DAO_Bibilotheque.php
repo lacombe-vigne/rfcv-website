@@ -17,12 +17,11 @@ include_once('class_Model_Partenaire.php');
 include_once('class_Model_Site.php');
 include_once('bibliFonc.php');
 
-class BibliothequeDAO {
+class BibliothequeDAO{
 
     public function searchSimple($search, $search_complet, $case_s, $model, $langue, $page_espece, $pagesize_espece, $page_variete, $pagesize_variete, $page_accession, $pagesize_accession, $tri_espece_classname, $tri_espece_section, $tri_espece_colone, $tri_variete_classname, $tri_variete_section, $tri_variete_colone, $tri_accession_classname, $tri_accession_section, $tri_accession_colone) {
         // return $search."~~".$search_complet."~~".$case_s."~~".$model."~~".$langue."~~".$page_espece."~~".$pagesize_espece."~~".$page_variete."~~".$pagesize_variete."~~".$page_accession."~~".$pagesize_accession."~~".$tri_espece_classname."~~".$tri_espece_section."~~".$tri_espece_colone."~~".$tri_variete_classname."~~".$tri_variete_section."~~".$tri_variete_colone."~~".$tri_accession_classname."~~".$tri_accession_section."~~".$tri_accession_colone;
         $DAO = new BibliothequeDAO();
-
         if ($tri_espece_section == 1) {
             $tri_espece = "order by " . $tri_espece_colone . " asc";
         }
@@ -793,7 +792,7 @@ class BibliothequeDAO {
 
                     break;
             }
-            
+
             $tri_espece = array("classname" => $tri_espece_classname, "section" => $tri_espece_section, "colone" => $tri_espece_colone);
             $tri_variete = array("classname" => $tri_variete_classname, "section" => $tri_variete_section, "colone" => $tri_variete_colone);
             $tri_accession = array("classname" => $tri_accession_classname, "section" => $tri_accession_section, "colone" => $tri_accession_colone);
@@ -801,13 +800,16 @@ class BibliothequeDAO {
             mysql_query('SET NAMES UTF8');
             if ($sql_espece != "") {
                 $espece = $DAO->chargeContentEspece($sql_espece, $total_espece, $page_espece, $pagesize_espece, $sql_espece_possible);
+                $_SESSION['resultatEsp'] = $sql_espece_possible;
             }
             if ($sql_variete != "") {
                 $variete = $DAO->chargeContentVariete($sql_variete, $total_variete, $_SESSION['language_Vigne'], $page_variete, $pagesize_variete, $sql_variete_possible);
-                $_SESSION['resultat'] = $sql_variete_possible;
+                //$_SESSION['test'] = $variete;
+                $_SESSION['resultatVar'] = $sql_variete_possible;
             }
             if ($sql_accession != "") {
                 $accession = $DAO->chargeContentAccession($sql_accession, $total_accession, $_SESSION['language_Vigne'], $page_accession, $pagesize_accession, $sql_accession_possible);
+                $_SESSION['resultatIntro'] = $sql_accession_possible;
             }
             deconnexion_bbd();
             $res = array("search" => $search_complet, "case_s" => $case_s, "model" => $model, "langue" => $langue, "tri_espece" => $tri_espece, "tri_variete" => $tri_variete, "tri_accession" => $tri_accession, "espece" => $espece, "variete" => $variete, "accession" => $accession);
@@ -6494,6 +6496,21 @@ class BibliothequeDAO {
         }
         return $utilite;
     }
+    
+    public function utilitebis($a,$langue,$PDO){
+        if($langue == "FR"){
+            $req = $PDO->query("SELECT Utilite_Texte FROM ListeDeroulante_utilite WHERE Utilite ='" . $a . "'");
+            $utilite = $req->fetch(); 
+            return $utilite['Utilite_Texte'];
+        }else if($langue == "EN"){
+            $req = $PDO->query("SELECT Utilite_texte_anglais FROM ListeDeroulante_utilite WHERE Utilite ='" . $a . "'");
+            $utilite = $req->fetch();
+            return $utilite['Utilite_texte_anglais'];
+        }
+    }
+    
+
+    
 
     public function exportpdf($code, $langue, $section) {// Permet d'exporter les données en PDF
         $DAO = new BibliothequeDAO();
@@ -6791,59 +6808,41 @@ class BibliothequeDAO {
         }
     }
 
-    public function exportxls($langue, $search, $section, $typerecherche) {
+    public function exportxls($langue, $section) {
         $DAO = new BibliothequeDAO();
-        if ($section == "variete") {
+        try {
+            $PDO = new PDO("mysql:host=mysql55;dbname=collections_vigne", "lacombe", "lacombe05");
+            $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            //$PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo 'connexion impossible';
+        }
+        $result = array();
+        $req = $PDO->query($_SESSION['resultatVar'] . "order by CodeVar");
+        //print_r($req);
+        //print_r($req->fetch());
+        //print_r($req->rowCount());
+        
+        while ($donnees = $req->fetch()) { // Chaque entrée sera récupérée et placée dans un array.
+            //print_r($donnees);
+            //$DAO = new BibliothequeDAO();
+            //$reqU = $PDO->query("SELECT Utilite_Texte FROM ListeDeroulante_utilite WHERE Utilite ='" . $donnees['Utilite'] . "'");
+            //$utilite = $reqU->fetch();
+            //print_r($utilite);
+            $VAR = new Variete($donnees['CodeVar'], $donnees['NomVar'], $donnees['SynoMajeur'], $donnees['NumVarOnivins'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['UniteVar'], $donnees['CodeType'], $donnees['CodeEsp'], $donnees['CouleurPel'], $donnees['CouleurPulp'], $donnees['Saveur'], $donnees['Pepins'], $donnees['Obtenteur'], $DAO->utilitebis($donnees['Utilite'], $langue, $PDO), $donnees['CodeEsp'], $donnees['Sexe'], $donnees['PaysOrigine'], $donnees['RegionOrigine'], $donnees['DepartOrigine'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['NumVarOnivins'], $donnees['InscriptionEurope'], $donnees['Obtenteur'], $donnees['MereReelle'], $donnees['AnneeObtention'], $donnees['CodeVarMereReelle'], $donnees['MereObt'], $donnees['PereReel'], $donnees['CodeCroisementINRA'], $donnees['CodeVarPereReel'], $donnees['PereObt'], $donnees['RemarqueParenteReelle'], $donnees['DepartOrigine'], $donnees['RemarquesVar']);
+            //print_r($VAR);
+            $detail = $VAR->getListeVariete();
+            $detail = supprNull($detail);
+            array_push($result, $detail);
+            
+        }
+        $res = $result;
+        return $res;
+   
+        /*if ($section == "variete") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            /*if ($typerecherche == "fuzzy") {
-                if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql = "select * from `NV-VARIETES` where NomVar REGEXP '" . $search . "' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "'";
-                    } else {
-                        $sql = "select * from `NV-VARIETES` where (NomVar REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(nomVar REGEXP '" . $search . "' and public!='N')
-			 UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(SynoMajeur REGEXP '" . $search . "' and public!='N')
-			UNION select * from `NV-VARIETES` where (CodeVar REGEXP '" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or (CodeVar REGEXP '" . $search . "' and public!='N')";
-                    }
-                } else {
-                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "' and public!='N'";
-                }
-            } else if ($typerecherche == "complet") {
-                if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "')";
-                    } else {
-                        $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N') UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N') UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "') and (codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' or  public!='N')";
-                    }
-                } else {
-                    $sql = "select * from `NV-VARIETES` where upper(NomVar)=upper('" . $search . "') and public!='N' UNION select * from `NV-VARIETES` where upper(SynoMajeur)=upper('" . $search . "') and public!='N' UNION select * from `NV-VARIETES` where upper(CodeVar)=upper('" . $search . "') and public!='N'";
-                }
-            } else if ($typerecherche == "start") {
-                if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql = "select * from `NV-VARIETES` where nomVar REGEXP '^" . $search . "' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^" . $search . "' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^" . $search . "'";
-                    } else {
-                        $sql = "select * from `NV-VARIETES` where (nomVar REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(nomVar REGEXP '^" . $search . "' and public!='N')
-				UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (SynoMajeur REGEXP '^" . $search . "' and public!='N')
-                                UNION select * from `NV-VARIETES` where (CodeVar REGEXP '^" . $search . "' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (CodeVar REGEXP '^" . $search . "' and public!='N')";
-                    }
-                } else {
-                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '^" . $search . "' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '^" . $search . "' and public!='N'";
-                }
-            } else{
-                if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "$' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "$' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "$'";
-                    } else {
-                        $sql = "select * from `NV-VARIETES` where (nomVar REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or(nomVar REGEXP '" . $search . "$' and public!='N')
-						UNION select * from `NV-VARIETES` where (SynoMajeur REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (SynoMajeur REGEXP '" . $search . "$' and public!='N')
-                                                UNION select * from `NV-VARIETES` where (CodeVar REGEXP '" . $search . "$' and codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')or (CodeVar REGEXP '" . $search . "$' and public!='N')";
-                    }
-                } else {
-                    $sql = "select * from `NV-VARIETES` where nomVar REGEXP '" . $search . "$' and public!='N' UNION select * from `NV-VARIETES` where SynoMajeur REGEXP '" . $search . "$' and public!='N' UNION select * from `NV-VARIETES` where CodeVar REGEXP '" . $search . "$' and public!='N'";
-                }
-            }*/
-            $sql = $_SESSION['resultat'] . "order by CodeVar";
+            $sql = $_SESSION['resultatVar'] . "order by CodeVar";
             $resultat = mysql_query($sql) or die(mysql_error());
             if (!$resultat) {
                 deconnexion_bdd();
@@ -6855,6 +6854,7 @@ class BibliothequeDAO {
                 deconnexion_bdd();
             }
             $result = array();
+
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat);
@@ -6867,7 +6867,80 @@ class BibliothequeDAO {
             }
             $res = $result;
             return $res;
-        }
+        } else if ($section == "accession") {
+            connexion_bbd();
+            mysql_query('SET NAMES UTF8');
+            $sql = $_SESSION['resultatIntro'] . "order by CodeIntro";
+            $resultat = mysql_query($sql) or die(mysql_error());
+            if (!$resultat) {
+                deconnexion_bdd();
+                echo "<script>alert('erreur de bdd')</script>";
+                exit;
+            }
+            if (mysql_num_rows($resultat) == 0) {
+                $result = null;
+                deconnexion_bdd();
+            }
+            $result = array();
+
+            if (mysql_num_rows($resultat) > 0) {
+                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                    $dico = mysql_fetch_array($resultat);
+                    $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                    $detail = $ACC->getListeAccession();
+                    $detail = supprNull($detail);
+                    array_push($result, $detail);
+                }
+                deconnexion_bbd();
+            }
+            $res = $result;
+            return $res;
+        } else if ($section == "espece") {
+            connexion_bbd();
+            mysql_query('SET NAMES UTF8');
+            $sql = $_SESSION['resultatEsp'] . "order by CodeEsp";
+            $resultat = mysql_query($sql) or die(mysql_error());
+            if (!$resultat) {
+                deconnexion_bdd();
+                echo "<script>alert('erreur de bdd')</script>";
+                exit;
+            }
+            if (mysql_num_rows($resultat) == 0) {
+                $result = null;
+                deconnexion_bdd();
+            }
+            $result = array();
+
+            if (mysql_num_rows($resultat) > 0) {
+                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                    $dico = mysql_fetch_array($resultat);
+                    $ESP = new Espece($dico['CodeEsp'], $dico['Espece'], $dico['Botaniste'], $dico['Genre'], $dico['CompoGenet'], $dico['SousGenre'], $dico['Validite'], $dico['Tronc'], $dico['RemarqueEsp']);
+                    $detail = $ESP->getListeEspece();
+                    $detail = supprNull($detail);
+                    array_push($result, $detail);
+                }
+                deconnexion_bbd();
+            }
+            $res = $result;
+            return $res;
+        }*/
     }
 
 }
+
+//$VAR = new Variete($donnees['CodeVar'], $donnees['NomVar'], $donnees['SynoMajeur'], $donnees['NumVarOnivins'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['UniteVar'], type($donnees['CodeType'], $langue), espece($donnees['CodeEsp']), couleurPel($donnees['CouleurPel'], $langue), couleurPulp($donnees['CouleurPulp'], $langue), saveur($donnees['Saveur'], $langue), pepins($donnees['Pepins'], $langue), $donnees['Obtenteur'], utilite($donnees['Utilite'], $langue), $donnees['CodeEsp'], sexe($donnees['Sexe'], $langue), paysorigine($donnees['PaysOrigine'], $langue), regionorigine($donnees['RegionOrigine'], $langue), departorigine($donnees['DepartOrigine'], $langue), $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['NumVarOnivins'], $donnees['InscriptionEurope'], $donnees['Obtenteur'], $donnees['MereReelle'], $donnees['AnneeObtention'], $donnees['CodeVarMereReelle'], $donnees['MereObt'], $donnees['PereReel'], $donnees['CodeCroisementINRA'], $donnees['CodeVarPereReel'], $donnees['PereObt'], $donnees['RemarqueParenteReelle'], departorigine($donnees['DepartOrigine'], $langue), $donnees['RemarquesVar']);
+
+/*
+    $t1=microtime();
+    $t1=explode(" ",$t1);
+    $t2=explode(".",$t1[0]);
+    $t2=$t1[1].".".$t2[1];
+ * ///
+ *  $t3=microtime();
+    $t3=explode(" ",$t3);
+    $t4=explode(".",$t3[0]);
+    $t4=$t3[1].".".$t4[1];
+    $t5=$t4-$t2;
+    $t5=$t5*1000;
+    printf("<center><FONT face='Arial' size='-3'>Requete effectuee en %0.1f ms</font></center>",$t5);
+ */
