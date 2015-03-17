@@ -448,7 +448,7 @@ legend img {
     font-size:20px;
 }
 #site-search fieldset table .search-input{
-    background:#e1e1e1;
+    /*background:#e1e1e1;
     border-radius: 20px;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
@@ -466,10 +466,10 @@ legend img {
     -o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     width: 80%;
-    margin: auto 1% auto auto;
+    margin: auto 1% auto auto;*/
 }
 #site-search fieldset table .search-input:focus{
-    background:#fcfcfc;
+    /*background:#fcfcfc;
     border-radius: 20px;
     color: #000;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
@@ -477,7 +477,7 @@ legend img {
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin: auto 1% auto auto;
+    margin: auto 1% auto auto;*/
 }
 #site-search fieldset table .ss-radio {
     color: #000;

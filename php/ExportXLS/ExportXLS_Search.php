@@ -74,14 +74,13 @@ require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $DAO = new BibliothequeDAO();
 
-/*$t1=microtime();
+$t1=microtime();
 $t1=explode(" ",$t1);
 $t2=explode(".",$t1[0]);
-$t2=$t1[1].".".$t2[1];*/
+$t2=$t1[1].".".$t2[1];
 
 //$resultat = $DAO->exportxls($_SESSION['language_Vigne'],$_SESSION['search'],"variete",$_SESSION['typerecherche']);
 $resultat = $DAO->exportxls($_SESSION['language_Vigne'], $_GET["section"]);
-//print_r($resultat);
 //$resultat = $DAO->searchSimple($_SESSION['search'], $_SESSION['search'], "fuzzy", "variete", $_SESSION['language_Vigne'], 1, 20, 1, 20, 1, 20, "tri_espece_asc", 1, "CodeEsp", "tri_variete_asc", 1, "CodeVar", "tri_accession_asc", 1, "CodeIntro");
 /* foreach ($resultat as &$value) {
   foreach ($value as &$i) {
@@ -91,11 +90,18 @@ $resultat = $DAO->exportxls($_SESSION['language_Vigne'], $_GET["section"]);
   }
   }
   } */
+
 /*$i=0;
-while($i<60){
-$DAO->paysorigine($resultat[$i]['paysorigine'],$_SESSION['language_Vigne']);
+while($i<count($resultat)){
+$resultat[$i]['utilite']=$DAO->utilitebis($resultat[$i]['utilite'], $_SESSION['language_Vigne'], $_SESSION['PDO']);    
+$resultat[$i]['couleurPel']=$DAO->couleurPelBis($resultat[$i]['couleurPel'],$_SESSION['language_Vigne'],$_SESSION['PDO']);
+$resultat[$i]['saveur']=$DAO->saveurBis($resultat[$i]['saveur'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
+$resultat[$i]['pepins']=$DAO->pepinsBis($resultat[$i]['pepins'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
+$resultat[$i]['sexe']=$DAO->sexeBis($resultat[$i]['sexe'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
+$resultat[$i]['paysorigine']=$DAO->paysorigineBis($resultat[$i]['paysorigine'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
 $i++;
 }*/
+//$_SESSION['PDO']->closeCursor();
 //CSS du tableur
 $Titre = & $workbook->addformat();
 $Titre->set_bold();
@@ -130,9 +136,9 @@ foreach ($resultat as $value) {
     //$worksheet->write(4 + $j, 10 + $k, $value, $Données);
     $k++;
     foreach ($value as $v) {
-        //$v = utf8_decode($v);
-        if ($v == '  â€“ ' || $v == '  â€“') {
-            //$v = utf8_decode($v);
+        $v = utf8_decode($v);
+        if ($v == ' ? ' || $v == ' ?') {
+            $v = "--";
         }
         $worksheet->write(4 + $j, 0 + $i, $v, $Données);
         $i++;
@@ -140,16 +146,16 @@ foreach ($resultat as $value) {
     $j++;
 }
 
-/*
+
 $t3=microtime();
 $t3=explode(" ",$t3);
 $t4=explode(".",$t3[0]);
 $t4=$t3[1].".".$t4[1];
 $t5=$t4-$t2;
 $t5=$t5*1000;
-printf("<center><FONT face='Arial' size='-3'>Requete effectuee en %0.1f ms</font></center>",$t5);
- * 
- */
+$worksheet->write(2 , 1 ,count($resultat),$Données);
+$worksheet->write(2 , 0 , $t5, $Données);
+
 /* $j = 0;
   foreach ($resultat as $value) {
   echo $value;
@@ -157,7 +163,6 @@ printf("<center><FONT face='Arial' size='-3'>Requete effectuee en %0.1f ms</font
   } */
 //\'data.xls\''
 $workbook->close();
-//header('Content-Type: application/octet-stream');
 header("Content-Type: application/x-msexcel; name=\"data.xls\"");
 header("Content-Disposition: attachment; filename=\"data.xls\"");
 header('Content-Transfer-Encoding: binary');

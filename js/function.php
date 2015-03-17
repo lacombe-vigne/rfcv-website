@@ -9595,10 +9595,10 @@ and open the template in the editor.
 						if(key==="remarque"){
 							var tabs_3="<table width='100%'>"+
 											"<tr>"+
-												"<td width='30%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='StatutEnCollection_tab1_var'></span></td><td class='res_acc'>"+value.StatutEnCollection+"</td>"+
+												"<td width='19%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='StatutEnCollection_tab1_var'></span></td><td class='res_acc'>"+value.StatutEnCollection+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RemarquesVar_tab1_var'></span></td><td class='res_acc'>"+value.RemarquesVar+"</td>"+
+												"<td width='19%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RemarquesVar_tab1_var'></span></td><td class='res_acc'>"+value.RemarquesVar+"</td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-3_FichierVar').append(tabs_3);
@@ -9606,24 +9606,24 @@ and open the template in the editor.
 						if(key==="parente"){
 							var tabs_2="<table width='100%'>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='Obtenteur_tab2_var'></span></td><td class='res_acc'>"+value.Obtenteur+"</td>"+
-												"<td width='25%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='MereReelle_tab2_var'></span></td><td class='res_acc'>"+value.MereReelle+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='Obtenteur_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.Obtenteur+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='MereReelle_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.MereReelle+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='AnneeObtention_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.AnneeObtention+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeVarMereReelle_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.CodeVarMereReelle+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='AnneeObtention_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.AnneeObtention+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeVarMereReelle_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.CodeVarMereReelle+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='27%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='MereObt_tab2_var'></span></td><td class='res_acc'>"+value.MereObt+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PereReel_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.PereReel+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='MereObt_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.MereObt+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PereReel_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.PereReel+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeCroisementINRA_tab2_var'></span></td><td class='res_acc'>"+value.CodeCroisementINRA+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeVarPereReel_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.CodeVarPereReel+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeCroisementINRA_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.CodeCroisementINRA+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='CodeVarPereReel_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.CodeVarPereReel+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PereObt_tab2_var'></span></td><td class='res_acc'>"+value.PereObt+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RemarqueParenteReelle_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.RemarqueParenteReelle+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PereObt_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.PereObt+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RemarqueParenteReelle_tab2_var'></span></td><td width='30%' class='res_acc'>"+value.RemarqueParenteReelle+"</td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-2_FichierVar').append(tabs_2);
@@ -9631,20 +9631,20 @@ and open the template in the editor.
 						if(key==="origine"){
 							var tabs_1="<table width='100%'>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PaysOrigine_tab3_var'></span></td><td class='res_acc'>"+value.PaysOrigine+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='PaysOrigine_tab3_var'></span></td><td width='30% class='res_acc'>"+value.PaysOrigine+"</td>"+
 												"<td width='25%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='InscriptionFrance_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.InscriptionFrance+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RegionOrigine_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.RegionOrigine+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='AnneeInscriptionFrance_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.AnneeInscriptionFrance+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='RegionOrigine_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.RegionOrigine+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='AnneeInscriptionFrance_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.AnneeInscriptionFrance+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='DepartOrigine_tab3_var'></span></td><td class='res_acc'>"+value.DepartOrigine+"</td>"+
-												"<td width='35%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='NumVarOnivins_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.NumVarOnivins+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='DepartOrigine_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.DepartOrigine+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='NumVarOnivins_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.NumVarOnivins+"</td>"+
 											"</tr>"+
 											"<tr>"+
 												"<td colspan='2'></td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='InscriptionEurope_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.InscriptionEurope+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/><span id='InscriptionEurope_tab3_var'></span></td><td width='30%' class='res_acc'>"+value.InscriptionEurope+"</td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-1_FichierVar').append(tabs_1);
@@ -10012,41 +10012,41 @@ and open the template in the editor.
 						if(key==="ProA"){
 							var tabs_2="<table width='100%'>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='PaysProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.PaysProvenance+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='ParcelleProvenance_tab2_acc'></span></td><td class='res_acc'>"+value.ParcelleProvenance+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='PaysProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.PaysProvenance+"</td>"+
+												"<td width='22%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='ParcelleProvenance_tab2_acc'></span></td><td width='28%' class='res_acc'>"+value.ParcelleProvenance+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RegionProvenance_tab2_acc'></span></td><td class='res_acc'>"+value.RegionProvenance+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RangProvenance_tab2_acc'></span></td><td class='res_acc'>"+value.RangProvenance+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RegionProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.RegionProvenance+"</td>"+
+												"<td width='22%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RangProvenance_tab2_acc'></span></td><td width='28%' class='res_acc'>"+value.RangProvenance+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='DepartProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.DepartProvenance+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SoucheProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.SoucheProvenance+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='DepartProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.DepartProvenance+"</td>"+
+												"<td width='22%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SoucheProvenance_tab2_acc'></span></td><td width='28%' class='res_acc'>"+value.SoucheProvenance+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CommuneProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.CommuneProvenance+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodeIntroProvenanceAnt_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.CodeIntroProvenanceAnt+"</td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CommuneProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.CommuneProvenance+"</td>"+
+												"<td width='22%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodeIntroProvenanceAnt_tab2_acc'></span></td><td width='28%' class='res_acc'>"+value.CodeIntroProvenanceAnt+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodPostProvenancee_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.CodPostProvenance+"</td>"+
-												"<td width='17%' align='right' colspan='2'></td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodPostProvenancee_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.CodPostProvenance+"</td>"+
+												"<td width='22%' align='right' colspan='2'></td>"+
 											"</tr>"+
 											"<tr>"+
 												
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SiteProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.SiteProvenance+"</td>"+
-												"<td width='17%' align='right' colspan='2'></td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SiteProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.SiteProvenance+"</td>"+
+												"<td width='22%' align='right' colspan='2'></td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AdresProvenance_tab2_acc'></span></td><td class='res_acc'>"+value.AdresProvenance+"</td>"+
-												"<td width='17%' align='right' colspan='2'></td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AdresProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.AdresProvenance+"</td>"+
+												"<td width='22%' align='right' colspan='2'></td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='ProprietProvenance_tab2_acc'></span></td><td width='30%' class='res_acc'>"+value.ProprietProvenance+"</td>"+
-												"<td width='17%' align='right' colspan='2'></td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='ProprietProvenance_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.ProprietProvenance+"</td>"+
+												"<td width='22%' align='right' colspan='2'></td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Collecteur_tab2_acc'></span></td><td class='res_acc'>"+value.Collecteur+"</td>"+
-												"<td width='17%' align='right' colspan='2'></td>"+
+												"<td width='15%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Collecteur_tab2_acc'></span></td><td width='35%' class='res_acc'>"+value.Collecteur+"</td>"+
+												"<td width='22%' align='right' colspan='2'></td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-2').append(tabs_2);
@@ -10054,36 +10054,36 @@ and open the template in the editor.
 						if(key==="carac"){
 							var tabs_3="<table width='100%'>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CouleurPe_tab3_acc'></span></td><td class='res_acc'>"+value.CouleurPe+"</td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Identification_tab3_acc'></span></td><td width='30%' class='res_acc'>"+value.Identification+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CouleurPe_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.CouleurPe+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Identification_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Identification+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CouleurPut_tab3_acc'></span></td><td class='res_acc'>"+value.CouleurPu+"</td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenMorphologique_tab3_acc'></span></td><td width='30%' class='res_acc'>"+value.IdenMorphologique+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CouleurPut_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.CouleurPu+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenMorphologique_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.IdenMorphologique+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Saveur_tab3_acc'></span></td><td class='res_acc'>"+value.Saveur+"</td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenGenetique_tab3_acc'></span></td><td width='30%' class='res_acc'>"+value.IdenGenetique+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Saveur_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Saveur+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenGenetique_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.IdenGenetique+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Pepins_tab3_acc'></span></td><td class='res_acc'>"+value.Pepins+"</td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenAutre_tab3_acc'></span></td><td width='30%' class='res_acc'>"+value.IdenAutre+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Pepins_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Pepins+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='IdenAutre_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.IdenAutre+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Sexe_tab3_acc'></span></td><td class='res_acc'>"+value.Sexe+"</td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Bibliographie_tab3_acc'></span></td><td width='30%' class='res_acc'>"+value.Bibliographie+"</td>"+
+												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Sexe_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Sexe+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Bibliographie_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Bibliographie+"</td>"+
 											"</tr>"+
 											"<tr>"+
 												"<td colspan='2' ></td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Volume_tab3_acc'></span></td><td class='res_acc'>"+value.Volume+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Volume_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Volume+"</td>"+
 											"</tr>"+
 											"<tr>"+
 												"<td colspan='2'></td>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Page_tab3_acc'></span></td><td class='res_acc'>"+value.Page+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Page_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.Page+"</td>"+
 											"</tr>"+
 											"<tr>"+
 												"<td colspan='2'></td>"+
-												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RemarqueAccessionName_tab3_acc'></span></td><td class='res_acc'>"+value.RemarqueAccessionName+"</td>"+
+												"<td width='30%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='RemarqueAccessionName_tab3_acc'></span></td><td width='25%' class='res_acc'>"+value.RemarqueAccessionName+"</td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-3').append(tabs_3);			
@@ -10091,31 +10091,31 @@ and open the template in the editor.
 						if(key==="Agre"){
 							var tabs_4="<table width='100%'>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Agrement_tab4_acc'></span></td><td class='res_acc'>"+value.Agrement+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='LieuDepotMatInitial_tab4_acc'></span></td><td width='30%' class='res_acc'>"+value.LieuDepotMatInitial+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Agrement_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.Agrement+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='LieuDepotMatInitial_tab4_acc'></span></td><td width='35%' class='res_acc'>"+value.LieuDepotMatInitial+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='FamilleSanitaire_tab4_acc'></span></td><td class='res_acc'>"+value.FamilleSanitaire+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SurfMulti_tab4_acc'></span></td><td class='res_acc'>"+value.SurfMulti+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='FamilleSanitaire_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.FamilleSanitaire+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='SurfMulti_tab4_acc'></span></td><td width='35%' class='res_acc'>"+value.SurfMulti+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AgrementCTPS_tab4_acc'></span></td><td class='res_acc'>"+value.AgrementCTPS+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='DelegONIVINS_tab4_acc'></span></td><td width='30%' class='res_acc'>"+value.DelegONIVINS+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AgrementCTPS_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.AgrementCTPS+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='DelegONIVINS_tab4_acc'></span></td><td width='35%' class='res_acc'>"+value.DelegONIVINS+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NumTempCTPS_tab4_acc'></span></td><td class='res_acc'>"+value.NumTempCTPS+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomPartenaire_tab4_acc'></span></td><td width='30%' class='res_acc'>"+value.NomPartenaire+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NumTempCTPS_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.NumTempCTPS+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomPartenaire_tab4_acc'></span></td><td width='35%' class='res_acc'>"+value.NomPartenaire+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NumCloneCTPS_tab4_acc'></span></td><td class='res_acc'>"+value.NumCloneCTPS+"</td>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomPartenaire2_tab4_acc'></span></td><td class='res_acc'>"+value.NomPartenaire2+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NumCloneCTPS_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.NumCloneCTPS+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomPartenaire2_tab4_acc'></span></td><td width='35%' class='res_acc'>"+value.NomPartenaire2+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeAgrement_tab4_acc'></span></td><td width='30%' class='res_acc'>"+value.AnneeAgrement+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeAgrement_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.AnneeAgrement+"</td>"+
 												"<td></td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeNonCertifiable_tab4_acc'></span></td><td class='res_acc'>"+value.AnneeNonCertifiable+"</td>"+
+												"<td width='25%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeNonCertifiable_tab4_acc'></span></td><td width='15%' class='res_acc'>"+value.AnneeNonCertifiable+"</td>"+
 												"<td></td>"+
 											"</tr>"+
 										"</table>";
@@ -10124,13 +10124,13 @@ and open the template in the editor.
 						if(key==="remarques"){
 							var tabs_5="<table width='100%'>"+
 											"<tr>"+
-												"<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='MaintienEnCollection_tab5_acc'></span></td><td class='res_acc'>"+value.MaintienEnCollection+"</td>"+
+												"<td width='22%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='MaintienEnCollection_tab5_acc'></span></td><td class='res_acc'>"+value.MaintienEnCollection+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='20%'  class='lable_carte_acc''><img src='images/poin_acc.png' width='10' height='10'/><span id='RestrictionDiffusion_tab5_acc'></span></td><td class='res_acc'>"+value.RestrictionDiffusion+"</td>"+
+												"<td width='22%'  class='lable_carte_acc''><img src='images/poin_acc.png' width='10' height='10'/><span id='RestrictionDiffusion_tab5_acc'></span></td><td class='res_acc'>"+value.RestrictionDiffusion+"</td>"+
 											"</tr>"+
 											"<tr>"+
-												"<td width='20%'  class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='remarquesIntro_tab5_acc'></span></td><td class='res_acc'>"+value.remarquesIntro+"</td>"+
+												"<td width='22%'  class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='remarquesIntro_tab5_acc'></span></td><td class='res_acc'>"+value.remarquesIntro+"</td>"+
 											"</tr>"+
 										"</table>";
 							$('#tabs-5').append(tabs_5);

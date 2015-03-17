@@ -323,15 +323,15 @@
 						<table width='100%'>
 								<input id='fichier_code_espece' type='hidden' value='".$CodeEsp."' />	
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Botaniste_lable_esp'></span></td><td class='res_esp'>".$Botaniste."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Genre_lable_esp'></span></td><td class='res_esp'>".$Genre."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Botaniste_lable_esp'></span></td><td width='30%' class='res_esp'>".$Botaniste."</td>
+								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Genre_lable_esp'></span></td><td width='35%' class='res_esp'>".$Genre."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='CompoGenet_lable_esp'></span></td><td width='30%' class='res_esp'>".$CompoGenet."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='SousGenre_lable_esp'></span></td><td class='res_esp'>".$SousGenre."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='CompoGenet_lable_esp'></span></td><td width='30%' class='res_esp'>".$CompoGenet."</td>
+								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='SousGenre_lable_esp'></span></td><td width='35%' class='res_esp'>".$SousGenre."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='RemarqueEsp_lable_esp'></span></td><td  colspan='4' class='res_esp'>".$RemarqueEsp."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='RemarqueEsp_lable_esp'></span></td><td width='30%' colspan='4' class='res_esp'>".$RemarqueEsp."</td>
 							</tr>
 						</table>
 					</div>
@@ -393,24 +393,24 @@
 						<table width='100%'>
 							<tr>
 								<input id='fichier_code_variete' type='hidden' value='".$CodeVar."' />
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Type_lable_var'></span></td><td width='35%' class='res_var'>".$Type."</td>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPer_lable_var'></span></td><td width='35%' class='res_var'>".$CouleurPe."</td>
+								<td class='lable_carte_acc' width='15%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Type_lable_var'></span></td><td width='35%' class='res_var'>".$Type."</td>
+								<td class='lable_carte_acc' width='20%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPer_lable_var'></span></td><td width='30%' class='res_var'>".$CouleurPe."</td>
 							</tr>
 							<tr>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Espece_lable_var'></span></td><td width='35%' class='res_var'><a onclick='$.passerFicher(\"".$codeEspece."\",\"espece\")' class='lien_fichier'>".$Espece."</a></td>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPu_lable_var'></span></td><td width='35%' class='res_var'>".$CouleurPu."</td>
+								<td class='lable_carte_acc' width='15%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Espece_lable_var'></span></td><td width='35%' class='res_var'><a onclick='$.passerFicher(\"".$codeEspece."\",\"espece\")' class='lien_fichier'>".$Espece."</a></td>
+								<td class='lable_carte_acc' width='20%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='CouleurPu_lable_var'></span></td><td width='30%' class='res_var'>".$CouleurPu."</td>
 							</tr>
 							<tr>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='UniteVar_lable_var'></span></td><td width='35%' class='res_var'>".$UniteVar."</td>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Saveur_lable_var'></span></td><td width='35%' class='res_var'>".$Saveur."</td>	
+								<td class='lable_carte_acc' width='15%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='UniteVar_lable_var'></span></td><td width='35%' class='res_var'>".$UniteVar."</td>
+								<td class='lable_carte_acc' width='20%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Saveur_lable_var'></span></td><td width='30%' class='res_var'>".$Saveur."</td>	
 							</tr>
 							<tr>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Utilite_lable_var'></span></td><td width='35%' class='res_var'>".$Utilite."</td>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pepins_lable_var'></span></td><td width='35%' class='res_var'>".$Pepins."</td>
+								<td class='lable_carte_acc' width='15%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Utilite_lable_var'></span></td><td width='35%' class='res_var'>".$Utilite."</td>
+								<td class='lable_carte_acc' width='20%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Pepins_lable_var'></span></td><td width='30%' class='res_var'>".$Pepins."</td>
 							</tr>
 							<tr>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='OIpays_lable_var'></span></td><td width='35%' class='res_var'>".$OIpays."</td>
-								<td class='lable_carte_acc'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Obtenteur_lable_var'></span></td><td width='35%' class='res_var'>".$Obtenteur."</td>
+								<td class='lable_carte_acc' width='15%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='OIpays_lable_var'></span></td><td width='35%' class='res_var'>".$OIpays."</td>
+								<td class='lable_carte_acc' width='20%'><img src='images/poin_variete.png' width='10' height='10'/> <span id='Obtenteur_lable_var'></span></td><td width='30%' class='res_var'>".$Obtenteur."</td>
 							</tr>
 						</table>
 					</div>
@@ -506,24 +506,24 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_intro' value='".$CodeIntro."'>
-								<td width='17%'  class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Partenaire_lable_acc'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier' >".$Partenaire."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeAgrement_lable_acc'></span></td><td width='30%' class='res_acc'>".$AnneeAgrement."</td>
+								<td width='20%'  class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Partenaire_lable_acc'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier' >".$Partenaire."</a></td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeAgrement_lable_acc'></span></td><td width='30%' class='res_acc'>".$AnneeAgrement."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodeIntroPartenaire_lable_acc'></span></td><td class='res_acc'>".$CodeIntroPartenaire."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='PayP_lable_acc'></span></td><td class='res_acc'>".$PayP."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CodeIntroPartenaire_lable_acc'></span></td><td width='30%' class='res_acc'>".$CodeIntroPartenaire."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='PayP_lable_acc'></span></td><td width='30%' class='res_acc'>".$PayP."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Statut_lable_acc'></span></td><td width='30%' class='res_acc'>".$Statut."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CommuneProvenance_lable_acc'></span></td><td width='30%' class='res_acc'>".$CommuneProvenance."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Statut_lable_acc'></span></td><td width='30%' class='res_acc'>".$Statut."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='CommuneProvenance_lable_acc'></span></td><td width='30%' class='res_acc'>".$CommuneProvenance."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='UniteIntro_lable_acc'></span></td><td class='res_acc'>".$UniteIntro."</td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AdresProvenance_lable_acc'></span></td><td class='res_acc'>".$AdresProvenance."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='UniteIntro_lable_acc'></span></td><td width='30%' class='res_acc'>".$UniteIntro."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AdresProvenance_lable_acc'></span></td><td width='30%' class='res_acc'>".$AdresProvenance."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomVar_lable_acc'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier'>".$NomVar."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Collecteur_lable_acc'></span></td><td width='30%' class='res_acc'>".$Collecteur."</td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='NomVar_lable_acc'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodeVar."\",\"variete\")' class='lien_fichier'>".$NomVar."</a></td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Collecteur_lable_acc'></span></td><td width='30%' class='res_acc'>".$Collecteur."</td>
 							</tr>
 						</table>
 					</div>

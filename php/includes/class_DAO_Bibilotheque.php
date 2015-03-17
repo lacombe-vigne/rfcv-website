@@ -17,7 +17,7 @@ include_once('class_Model_Partenaire.php');
 include_once('class_Model_Site.php');
 include_once('bibliFonc.php');
 
-class BibliothequeDAO{
+class BibliothequeDAO {
 
     public function searchSimple($search, $search_complet, $case_s, $model, $langue, $page_espece, $pagesize_espece, $page_variete, $pagesize_variete, $page_accession, $pagesize_accession, $tri_espece_classname, $tri_espece_section, $tri_espece_colone, $tri_variete_classname, $tri_variete_section, $tri_variete_colone, $tri_accession_classname, $tri_accession_section, $tri_accession_colone) {
         // return $search."~~".$search_complet."~~".$case_s."~~".$model."~~".$langue."~~".$page_espece."~~".$pagesize_espece."~~".$page_variete."~~".$pagesize_variete."~~".$page_accession."~~".$pagesize_accession."~~".$tri_espece_classname."~~".$tri_espece_section."~~".$tri_espece_colone."~~".$tri_variete_classname."~~".$tri_variete_section."~~".$tri_variete_colone."~~".$tri_accession_classname."~~".$tri_accession_section."~~".$tri_accession_colone;
@@ -6496,21 +6496,6 @@ class BibliothequeDAO{
         }
         return $utilite;
     }
-    
-    public function utilitebis($a,$langue,$PDO){
-        if($langue == "FR"){
-            $req = $PDO->query("SELECT Utilite_Texte FROM ListeDeroulante_utilite WHERE Utilite ='" . $a . "'");
-            $utilite = $req->fetch(); 
-            return $utilite['Utilite_Texte'];
-        }else if($langue == "EN"){
-            $req = $PDO->query("SELECT Utilite_texte_anglais FROM ListeDeroulante_utilite WHERE Utilite ='" . $a . "'");
-            $utilite = $req->fetch();
-            return $utilite['Utilite_texte_anglais'];
-        }
-    }
-    
-
-    
 
     public function exportpdf($code, $langue, $section) {// Permet d'exporter les données en PDF
         $DAO = new BibliothequeDAO();
@@ -6809,40 +6794,250 @@ class BibliothequeDAO{
     }
 
     public function exportxls($langue, $section) {
-        $DAO = new BibliothequeDAO();
-        try {
-            $PDO = new PDO("mysql:host=mysql55;dbname=collections_vigne", "lacombe", "lacombe05");
-            $PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-            //$PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo 'connexion impossible';
-        }
-        $result = array();
-        $req = $PDO->query($_SESSION['resultatVar'] . "order by CodeVar");
-        //print_r($req);
-        //print_r($req->fetch());
-        //print_r($req->rowCount());
-        
-        while ($donnees = $req->fetch()) { // Chaque entrée sera récupérée et placée dans un array.
-            //print_r($donnees);
-            //$DAO = new BibliothequeDAO();
-            //$reqU = $PDO->query("SELECT Utilite_Texte FROM ListeDeroulante_utilite WHERE Utilite ='" . $donnees['Utilite'] . "'");
-            //$utilite = $reqU->fetch();
-            //print_r($utilite);
-            $VAR = new Variete($donnees['CodeVar'], $donnees['NomVar'], $donnees['SynoMajeur'], $donnees['NumVarOnivins'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['UniteVar'], $donnees['CodeType'], $donnees['CodeEsp'], $donnees['CouleurPel'], $donnees['CouleurPulp'], $donnees['Saveur'], $donnees['Pepins'], $donnees['Obtenteur'], $DAO->utilitebis($donnees['Utilite'], $langue, $PDO), $donnees['CodeEsp'], $donnees['Sexe'], $donnees['PaysOrigine'], $donnees['RegionOrigine'], $donnees['DepartOrigine'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['NumVarOnivins'], $donnees['InscriptionEurope'], $donnees['Obtenteur'], $donnees['MereReelle'], $donnees['AnneeObtention'], $donnees['CodeVarMereReelle'], $donnees['MereObt'], $donnees['PereReel'], $donnees['CodeCroisementINRA'], $donnees['CodeVarPereReel'], $donnees['PereObt'], $donnees['RemarqueParenteReelle'], $donnees['DepartOrigine'], $donnees['RemarquesVar']);
-            //print_r($VAR);
-            $detail = $VAR->getListeVariete();
-            $detail = supprNull($detail);
-            array_push($result, $detail);
-            
-        }
-        $res = $result;
-        return $res;
-   
-        /*if ($section == "variete") {
+        if ($section == "variete") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = $_SESSION['resultatVar'] . "order by CodeVar";
+            if ($langue == "FR") {
+                switch ($_SESSION['typerecherche']) {
+                    case "fuzzy" : // Type de recherche = contient
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "start" : // Type de recherche = commence par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "complet" : // Type de recherche = est
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "'))
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "')) AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "end" : // Type de recherche = fini par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                }
+            } else if ($langue == "EN") {
+                //
+                switch ($_SESSION['typerecherche']) {
+                    case "fuzzy" : // Type de recherche = contient
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "start" : // Type de recherche = commence par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal 
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "complet" : // Type de recherche = est
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "'))
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "')) AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                    case "end" : // Type de recherche = fini par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                       FROM `NV-VARIETES`
+                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
+                                       ORDER BY CodeVar;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
+                                    FROM `NV-VARIETES`
+                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
+                                    ORDER BY CodeVar;";
+                        }
+                        break;
+                }
+            }
+
             $resultat = mysql_query($sql) or die(mysql_error());
             if (!$resultat) {
                 deconnexion_bdd();
@@ -6858,10 +7053,7 @@ class BibliothequeDAO{
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat);
-                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['RemarquesVar']);
-                    $detail = $VAR->getListeVariete();
-                    $detail = supprNull($detail);
-                    array_push($result, $detail);
+                    array_push($result, $dico);
                 }
                 deconnexion_bbd();
             }
@@ -6870,8 +7062,199 @@ class BibliothequeDAO{
         } else if ($section == "accession") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = $_SESSION['resultatIntro'] . "order by CodeIntro";
-            $resultat = mysql_query($sql) or die(mysql_error());
+            if ($langue == "FR") {
+                switch ($_SESSION['typerecherche']) {
+                    case "fuzzy" : // Type de recherche = contient
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "start" : // Type de recherche = commence par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "complet" : // Type de recherche = est
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "')) AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "end" : // Type de recherche = fini par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                }
+            } else if ($langue = "EN") {
+                switch ($_SESSION['typerecherche']) {
+                    case "fuzzy" : // Type de recherche = contient
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "start" : // Type de recherche = commence par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "complet" : // Type de recherche = est
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "')) AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                    case "end" : // Type de recherche = fini par
+                        if (isset($_SESSION['codePersonne'])) {
+                            if ($_SESSION['ProfilPersonne'] == 'A') {
+                                $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                        FROM `NV-INTRODUCTIONS`
+                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
+                                        ORDER BY CodeIntro;";
+                            } else {
+                                
+                            }
+                        } else {
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
+                                    FROM `NV-INTRODUCTIONS`
+                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$') AND IdReseau1='a'
+                                    ORDER BY CodeIntro;";
+                        }
+                        break;
+                }
+            }
+
+            $resultat = mysql_query($sql) or die(mysql_error());;
             if (!$resultat) {
                 deconnexion_bdd();
                 echo "<script>alert('erreur de bdd')</script>";
@@ -6884,21 +7267,73 @@ class BibliothequeDAO{
             $result = array();
 
             if (mysql_num_rows($resultat) > 0) {
-                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
-                    $dico = mysql_fetch_array($resultat);
-                    $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
-                    $detail = $ACC->getListeAccession();
-                    $detail = supprNull($detail);
-                    array_push($result, $detail);
+                for ($i = 0; $i < (mysql_num_rows($resultat)); $i++) {
+                    $dico = mysql_fetch_assoc($resultat);
+                    $dico = supprNull($dico);
+                    array_push($result, $dico);
                 }
                 deconnexion_bbd();
             }
+            
             $res = $result;
             return $res;
         } else if ($section == "espece") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = $_SESSION['resultatEsp'] . "order by CodeEsp";
+            switch ($_SESSION['typerecherche']) {
+                case "fuzzy" : // Type de recherche = contient
+                    if (isset($_SESSION['codePersonne'])) {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '" . $_SESSION['search'] . "' OR CodeEsp REGEXP '" . $_SESSION['search'] . "')
+                        ORDER BY CodeEsp;";
+                    } else {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '" . $_SESSION['search'] . "' OR CodeEsp REGEXP '" . $_SESSION['search'] . "') AND public!='N'
+                        ORDER BY CodeEsp;";
+                    }
+                    break;
+                case "start" : // Type de recherche = commence par
+                    if (isset($_SESSION['codePersonne'])) {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '^" . $_SESSION['search'] . "' OR CodeEsp REGEXP '^" . $_SESSION['search'] . "')
+                        ORDER BY CodeEsp;";
+                    } else {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '^" . $_SESSION['search'] . "' OR CodeEsp REGEXP '^" . $_SESSION['search'] . "') AND public!='N'
+                        ORDER BY CodeEsp;";
+                    }
+                    break;
+                case "complet" : // Type de recherche = est
+                    if (isset($_SESSION['codePersonne'])) {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (upper(Espece)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeEsp)=upper('" . $_SESSION['searchcomplet'] . "'))
+                        ORDER BY CodeEsp;";
+                    } else {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (upper(Espece)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeEsp)=upper('" . $_SESSION['searchcomplet'] . "')) AND public!='N'
+                        ORDER BY CodeEsp;";
+                    }
+                    break;
+                case "end" : // Type de recherche = fini par
+                    if (isset($_SESSION['codePersonne'])) {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '" . $_SESSION['search'] . "$' OR CodeEsp REGEXP '" . $_SESSION['search'] . "$')
+                        ORDER BY CodeEsp;";
+                    } else {
+                        $sql = "SELECT CodeEsp, Espece, Botaniste, Tronc
+                        FROM `NV-ESPECES`
+                        WHERE (Espece REGEXP '" . $_SESSION['search'] . "$' OR CodeEsp REGEXP '" . $_SESSION['search'] . "$') AND public!='N'
+                        ORDER BY CodeEsp;";
+                    }
+                    break;
+            }
             $resultat = mysql_query($sql) or die(mysql_error());
             if (!$resultat) {
                 deconnexion_bdd();
@@ -6913,34 +7348,14 @@ class BibliothequeDAO{
 
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
-                    $dico = mysql_fetch_array($resultat);
-                    $ESP = new Espece($dico['CodeEsp'], $dico['Espece'], $dico['Botaniste'], $dico['Genre'], $dico['CompoGenet'], $dico['SousGenre'], $dico['Validite'], $dico['Tronc'], $dico['RemarqueEsp']);
-                    $detail = $ESP->getListeEspece();
-                    $detail = supprNull($detail);
-                    array_push($result, $detail);
+                    $dico = mysql_fetch_assoc($resultat);
+                    array_push($result, $dico);
                 }
                 deconnexion_bbd();
             }
             $res = $result;
             return $res;
-        }*/
+        }
     }
 
 }
-
-//$VAR = new Variete($donnees['CodeVar'], $donnees['NomVar'], $donnees['SynoMajeur'], $donnees['NumVarOnivins'], $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['UniteVar'], type($donnees['CodeType'], $langue), espece($donnees['CodeEsp']), couleurPel($donnees['CouleurPel'], $langue), couleurPulp($donnees['CouleurPulp'], $langue), saveur($donnees['Saveur'], $langue), pepins($donnees['Pepins'], $langue), $donnees['Obtenteur'], utilite($donnees['Utilite'], $langue), $donnees['CodeEsp'], sexe($donnees['Sexe'], $langue), paysorigine($donnees['PaysOrigine'], $langue), regionorigine($donnees['RegionOrigine'], $langue), departorigine($donnees['DepartOrigine'], $langue), $donnees['InscriptionFrance'], $donnees['AnneeInscriptionFrance'], $donnees['NumVarOnivins'], $donnees['InscriptionEurope'], $donnees['Obtenteur'], $donnees['MereReelle'], $donnees['AnneeObtention'], $donnees['CodeVarMereReelle'], $donnees['MereObt'], $donnees['PereReel'], $donnees['CodeCroisementINRA'], $donnees['CodeVarPereReel'], $donnees['PereObt'], $donnees['RemarqueParenteReelle'], departorigine($donnees['DepartOrigine'], $langue), $donnees['RemarquesVar']);
-
-/*
-    $t1=microtime();
-    $t1=explode(" ",$t1);
-    $t2=explode(".",$t1[0]);
-    $t2=$t1[1].".".$t2[1];
- * ///
- *  $t3=microtime();
-    $t3=explode(" ",$t3);
-    $t4=explode(".",$t3[0]);
-    $t4=$t3[1].".".$t4[1];
-    $t5=$t4-$t2;
-    $t5=$t5*1000;
-    printf("<center><FONT face='Arial' size='-3'>Requete effectuee en %0.1f ms</font></center>",$t5);
- */
