@@ -6804,12 +6804,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -6818,12 +6818,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6833,12 +6833,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -6847,12 +6847,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6862,12 +6862,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "'))
                                        ORDER BY CodeVar;";
                             } else {
@@ -6876,12 +6876,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "')) AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6891,12 +6891,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -6905,12 +6905,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte, CouleurPel_Texte, Saveur_Texte,Pepins_Texte, Sexe_texte, NomPaysFrancais 
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6924,12 +6924,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -6938,12 +6938,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6953,12 +6953,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal 
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -6967,12 +6967,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '^" . $_SESSION['search'] . "' OR SynoMajeur REGEXP '^" . $_SESSION['search'] . "' OR CodeVar REGEXP '^" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -6982,12 +6982,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "'))
                                        ORDER BY CodeVar;";
                             } else {
@@ -6996,12 +6996,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (upper(NomVar)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(SynoMajeur)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeVar)=upper('" . $_SESSION["searchcomplet"] . "')) AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -7011,12 +7011,12 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                        FROM `NV-VARIETES`
-                                       INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                       INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                       INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                       INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                       INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                       INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                       LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                       LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                       LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                       LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                       LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                       LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                        WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "')
                                        ORDER BY CodeVar;";
                             } else {
@@ -7025,12 +7025,12 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeVar, NomVar, SynoMajeur, Utilite_Texte_anglais, CouleurPel_Texte_en, Saveur_Texte_en,Pepins_texte_en, Sexe_texte_en, NomPaysLocal
                                     FROM `NV-VARIETES`
-                                    INNER JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
-                                    INNER JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
-                                    INNER JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
-                                    INNER JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
-                                    INNER JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `ListeDeroulante_utilite` ON `NV-VARIETES`.Utilite = `ListeDeroulante_utilite`.Utilite
+                                    LEFT JOIN `ListeDeroulante_couleurPel` ON `NV-VARIETES`.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                                    LEFT JOIN `ListeDeroulante_saveur` ON `NV-VARIETES`.Saveur = `ListeDeroulante_saveur`.Saveur
+                                    LEFT JOIN `ListeDeroulante_pepins` ON `NV-VARIETES`.Pepins = `ListeDeroulante_pepins`.Pepins
+                                    LEFT JOIN `ListeDeroulante_sexe` ON `NV-VARIETES`.Sexe = `ListeDeroulante_sexe`.Sexe
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-VARIETES`.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomVar REGEXP '" . $_SESSION['search'] . "$' OR SynoMajeur REGEXP '" . $_SESSION['search'] . "' OR CodeVar REGEXP '" . $_SESSION["search"] . "') AND public!='N'
                                     ORDER BY CodeVar;";
                         }
@@ -7069,9 +7069,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7080,9 +7080,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7092,9 +7092,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7103,9 +7103,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7115,9 +7115,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7126,9 +7126,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "')) AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7138,9 +7138,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7149,9 +7149,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7164,9 +7164,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7175,9 +7175,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7187,9 +7187,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7198,9 +7198,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7210,9 +7210,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7221,9 +7221,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "')) AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }
@@ -7233,9 +7233,9 @@ class BibliothequeDAO {
                             if ($_SESSION['ProfilPersonne'] == 'A') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
-                                        INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                        INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                        INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                        LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                        LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                        LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
                                         ORDER BY CodeIntro;";
                             } else {
@@ -7244,9 +7244,9 @@ class BibliothequeDAO {
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
-                                    INNER JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
-                                    INNER JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
-                                    INNER JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                                    LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
+                                    LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
+                                    LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$') AND IdReseau1='a'
                                     ORDER BY CodeIntro;";
                         }

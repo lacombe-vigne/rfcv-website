@@ -24,7 +24,7 @@
 							<div class="function_ligne_espece">
 								<table width="100%" id="table_espece_function">
 									<tr>
-										<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+										<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Espece" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 										<td width="65%"></td>
 										<td width="15%"><select id="select_pagesize_espece_selection" onchange="$.select_change_selection_espece();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 										if($pagetotal>1){
@@ -100,7 +100,7 @@
 								<div class="function_ligne_variete">
 									<table width="100%" id="table_variete_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Variete" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_variete_selection" onchange="$.select_change_selection_listvariete();"><option value="20" >20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -188,7 +188,7 @@
 								<div class="function_ligne_accession">
 									<table width="100%" id="table_accession_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Accession" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_accession_selection" onchange="$.select_change_selection_listaccession();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal<=1){
@@ -271,7 +271,7 @@
 								<div class="function_ligne_emplacement">
 									<table width="100%" id="table_emplacement_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Emplacement" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_emplacement_selection" onchange="$.select_change_selection_listemplacement();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal<=1){
@@ -356,7 +356,7 @@
 								<div class="function_ligne_sanitaire">
 									<table width="100%" id="table_sanitaire_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Sanitaire" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="60%"></td>
 											<td ><select id="select_pagesize_sanitaire_selection" onchange="$.select_change_selection_listsanitaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal<=1){
@@ -437,7 +437,7 @@
 								<div class="function_ligne_description">
 									<table width="100%" id="table_description_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Morphologique" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="60%"></td>
 											<td ><select id="select_pagesize_description_selection" onchange="$.select_change_selection_listdescription();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -518,7 +518,7 @@
 								<div class="function_ligne_aptitude">
 									<table width="100%" id="table_aptitude_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Aptitude" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_aptitude_selection" onchange="$.select_change_selection_listaptitude();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -626,7 +626,7 @@
 								<div class="function_ligne_genetique">
 									<table width="100%" id="table_genetique_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Genetique" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_genetique_selection" onchange="$.select_change_selection_listgenetique();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -710,7 +710,7 @@
 								<div class="function_ligne_doc">
 									<table width="100%" id="table_doc_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Documentation" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_documentation_selection" onchange="$.select_change_selection_listdoc();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -797,7 +797,7 @@
 								<div class="function_ligne_bibliographie">
 									<table width="100%" id="table_bibliographie_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Bibliographie" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_bibliographie_selection" onchange="$.select_change_selection_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -881,7 +881,7 @@
 								<div class="function_ligne_Partenaire">
 									<table width="100%" id="table_Partenaire_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Partenaire" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_Partenaire_selection" onchange="$.select_change_selection_listPartenaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){
@@ -956,7 +956,7 @@
 								<div class="function_ligne_lien">
 									<table width="100%" id="table_lien_function">
 										<tr>
-											<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a href="./php/ExportXLS/ExportXLS_Selection.php?section=Lien" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="60%"></td>
 											<td ><select id="select_pagesize_lien_selection" onchange="$.select_change_selection_listlien();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
 											if($pagetotal>1){

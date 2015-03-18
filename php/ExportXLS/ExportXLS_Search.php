@@ -121,20 +121,8 @@ $worksheet->write(1, 0, utf8_decode("Données extraites le 10/03"), $Date);
 
 $worksheet->write(3, 0, $labeljson, $Label);
 $j = 0;
-/* foreach ($resultat as $value) {
-  $i = 0;
-  foreach ($value as $v) {
-  echo $v."\n";
-  $i++;
-  }
-  $j++;
-  } */
-$j = 0;
-$k = 0;
 foreach ($resultat as $value) {
     $i = 0;
-    //$worksheet->write(4 + $j, 10 + $k, $value, $Données);
-    $k++;
     foreach ($value as $v) {
         $v = utf8_decode($v);
         if ($v == ' ? ' || $v == ' ?') {
