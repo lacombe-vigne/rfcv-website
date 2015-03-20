@@ -33,7 +33,7 @@ switch($fun){
 	
 	case "login":
 		$username=suppr_accents_connexion($_POST['username']);
-		$password=sha1($_POST['password']);
+		$password=$_POST['password'];
 		$res = $DAO->login($username,$password);
 		echo $res;
 	break;
@@ -47,7 +47,7 @@ switch($fun){
 		$Partenaire=$_POST['Partenaire'];
 		$PersonneMAJ=$_POST['PersonneMAJ'];
 		$DateFinValide=$_POST['DateFinValide'];
-		$password=sha1('123456');
+		$password=$_POST['password'];
 		$DateMAJ=date("Y-m-d");
 		$DateMAJ_ele=explode("-",$DateMAJ);
 		$DateMAJ_jour=$DateMAJ_ele[2];
