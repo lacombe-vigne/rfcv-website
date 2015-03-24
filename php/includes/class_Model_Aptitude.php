@@ -103,7 +103,7 @@ class Aptitude {
 		$contents['UniteMesure']=$this->getUniteMesure();
 		$contents['PonderationValeur']=$this->getPonderationValeur();
 		$contents['date']=$this->getdate_apt();
-		$contents['SiteMesure']=$this->getSiteMesure();
+		//$contents['SiteMesure']=$this->getSiteMesure();
 		$contents['PartenaireMesure']=$this->getPartenaireMesure();
 		return $contents;
 		

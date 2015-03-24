@@ -3,6 +3,8 @@ session_start(); //Permet de récupérer le contenu des variables de session
 /*Traitement fichier.json*/
 $json = file_get_contents('../json/fichier.json');
 $parsed_json = json_decode($json);// Permet de lire le fichier JSON avec PHP.
+$jsonHeader = file_get_contents('../json/home.json');
+$parsed_jsonHeader = json_decode($jsonHeader);// pour récuperer le contenu de home.json
 /*Permet de récuperer le label correspondant en anglais ou en français*/
 if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $Code= $parsed_json->{code_fr}->{Code};
@@ -48,6 +50,13 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $RstatutEnCollection = $parsed_json->{variete_fr}->{RstatutEnCollection};
     $RremarquesVar = $parsed_json->{variete_fr}->{RremarquesVar};
     
+    //Header pdf
+    $main_title= $parsed_jsonHeader->{title_fr}->{main_title};
+    $sous_title= $parsed_jsonHeader->{title_fr}->{sous_title};
+    
+    //Footer pdf
+    $document= $parsed_json->{pdf_fr}->{document};
+    
 }else{/*Anglais*/
     $Code= $parsed_json->{code_en}->{Code};
     /*Titres*/
@@ -91,6 +100,13 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     /*Remarques*/
     $RstatutEnCollection = $parsed_json->{variete_en}->{RstatutEnCollection};
     $RremarquesVar = $parsed_json->{variete_en}->{RremarquesVar};
+    
+    //Header pdf
+    $main_title= $parsed_jsonHeader->{title_en}->{main_title};
+    $sous_title= $parsed_jsonHeader->{title_en}->{sous_title};
+    
+    //Footer pdf
+    $document= $parsed_json->{pdf_en}->{document};
 }
 require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
 require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
@@ -120,7 +136,7 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
         <table>
             <tr>
                 <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
-                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;">Collections de Vigne en France</font><br><font style="color:#555;">Base de données du réseau français des conservatoires de Vigne</font></td>
+                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;"><?php echo $main_title ?></font><br><font style="color:#555;"><?php echo $sous_title ?></font></td>
             </tr>
         </table>
         <table style="background-color:#B3D270;border-radius:10px;">
@@ -149,7 +165,7 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
         </table>
         <table>
             <tr style="color:#900">
-                <td style="border:none;text-align: left; width: 40%">Document édité le [[date_d]]/[[date_m]]/[[date_y]]</td>
+                <td style="border:none;text-align: left; width: 40%"><?php echo $document ?> [[date_d]]/[[date_m]]/[[date_y]]</td>
                 <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
                 <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
@@ -158,24 +174,24 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
     <!--Début de fiche-->
     <table>
         <tr>
-            <td style="width: 14%;;"><?php echo $Type?></td><td style="width:36%;color:#000;;"><?php echo $resultat['Type']?></td>
-            <td style="width: 14%;;"><?php echo $CouleurPu?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['CouleurPu']?></td>
+            <td style="width: 14%;;"><?php echo $Type?></td><td style="width:36%;color:#000;;">&nbsp;<?php echo $resultat['Type']?></td>
+            <td style="width: 14%;;"><?php echo $CouleurPu?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['CouleurPu']?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $Espece?></td><td style="width: 36%;color:#000;;"><i><?php echo $resultat['Espece']?></i></td>
-            <td style="width: 14%;;"><?php echo $CouleurPe?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['CouleurPe']?></td>
+            <td style="width: 14%;;"><?php echo $Espece?></td><td style="width: 36%;color:#000;;"><i>&nbsp;<?php echo $resultat['Espece']?></i></td>
+            <td style="width: 14%;;"><?php echo $CouleurPe?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['CouleurPe']?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $Unite?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['UniteVar']?></td>
-            <td style="width: 14%;;"><?php echo $Saveur?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['Saveur']?></td>
+            <td style="width: 14%;;"><?php echo $Unite?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['UniteVar']?></td>
+            <td style="width: 14%;;"><?php echo $Saveur?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Saveur']?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $Utilite?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['Utilite']?></td>
-            <td style="width: 14%;;"><?php echo $Pepins?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['Pepins']?></td>
+            <td style="width: 14%;;"><?php echo $Utilite?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Utilite']?></td>
+            <td style="width: 14%;;"><?php echo $Pepins?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Pepins']?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $OIpays?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['OIpays']?></td>
-            <td style="width: 14%;;"><?php echo $Obtenteneur?></td><td style="width: 36%;color:#000;;"><?php echo $resultat['Obtenteur']?></td>
+            <td style="width: 14%;;"><?php echo $OIpays?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['OIpays']?></td>
+            <td style="width: 14%;;"><?php echo $Obtenteneur?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Obtenteur']?></td>
         </tr>
     </table><br>
     <!--Origine et inscription-->
@@ -209,24 +225,24 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
     </table>
     <table>
         <tr>
-            <td style="width: 14%;;"><?php echo $Obtenteneur?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['Obtenteur'])?></td>
-            <td style="width: 14%;;"><?php echo $PmereReelle?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['MereReelle'])?></td>
+            <td style="width: 14%;;"><?php echo $Obtenteneur?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['Obtenteur'])?></td>
+            <td style="width: 14%;;"><?php echo $PmereReelle?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['MereReelle'])?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $PanneeObtention?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['AnneeObtention'])?></td>
-            <td style="width: 14%;;"><?php echo $PcodeVarMereReelle?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['CodeVarMereReelle'])?></td>
+            <td style="width: 14%;;"><?php echo $PanneeObtention?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['AnneeObtention'])?></td>
+            <td style="width: 14%;;"><?php echo $PcodeVarMereReelle?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['CodeVarMereReelle'])?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $PmereObt?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['MereObt'])?></td>
-            <td style="width: 14%;;"><?php echo $PprerReel?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['PereReel'])?></td>
+            <td style="width: 14%;;"><?php echo $PmereObt?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['MereObt'])?></td>
+            <td style="width: 14%;;"><?php echo $PprerReel?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['PereReel'])?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $PcodeCroismentINRA?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['CodeCroisementINRA'])?></td>
-            <td style="width: 14%;;"><?php echo $PcodeVarPereReel?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['CodeVarPereReel'])?></td>
+            <td style="width: 14%;;"><?php echo $PcodeCroismentINRA?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['CodeCroisementINRA'])?></td>
+            <td style="width: 14%;;"><?php echo $PcodeVarPereReel?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['CodeVarPereReel'])?></td>
         </tr>
         <tr>
-            <td style="width: 14%;;"><?php echo $PpereObt?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['PereObt'])?></td>
-            <td style="width: 14%;vertical-align: text-bottom;;"><?php echo $PremarqueParenteReelle?></td><td style="width: 36%;color:#000;;"><?php echo ($resultat['RemarqueParenteReelle'])?></td>
+            <td style="width: 14%;;"><?php echo $PpereObt?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['PereObt'])?></td>
+            <td style="width: 14%;vertical-align: text-bottom;;"><?php echo $PremarqueParenteReelle?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo ($resultat['RemarqueParenteReelle'])?></td>
         </tr>
     </table><br>
     <!--Remarques-->
@@ -237,10 +253,10 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
     </table>
     <table>
         <tr>
-            <td style="width: 14%;" ><?php echo $RstatutEnCollection?></td><td style="color:#000;"><?php echo ($resultat['StatutEnCollection'])?></td>  
+            <td style="width: 14%;" ><?php echo $RstatutEnCollection?></td><td style="color:#000;">&nbsp;<?php echo ($resultat['StatutEnCollection'])?></td>  
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $RremarquesVar?></td><td  style="text-align:justify;width:86%;color:#000;"><?php echo ($resultat['RemarquesVar'])?></td> 
+            <td style="width: 14%;"><?php echo $RremarquesVar?></td><td  style="text-align:justify;width:86%;color:#000;">&nbsp;<?php echo ($resultat['RemarquesVar'])?></td> 
         </tr>
     </table>
 

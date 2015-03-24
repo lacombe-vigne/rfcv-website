@@ -1,14 +1,16 @@
 <?php
 session_start(); //Permet de récupérer le contenu des variables de session
-/*Traitement fichier.json*/
+/* Traitement fichier.json */
 $json = file_get_contents('../json/fichier.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
-/*Permet de récuperer le label correspondant en anglais ou en français*/
-if($_SESSION['language_Vigne']=="FR"){/*Français*/
-    $Code= $parsed_json->{code_fr}->{Code};
-    /*données*/
+$jsonHeader = file_get_contents('../json/home.json');
+$parsed_jsonHeader = json_decode($jsonHeader); // pour récuperer le contenu de home.json
+/* Permet de récuperer le label correspondant en anglais ou en français */
+if ($_SESSION['language_Vigne'] == "FR") {/* Français */
+    $Code = $parsed_json->{code_fr}->{Code};
+    /* données */
     $title = $parsed_json->{morphologique_fr}->{title};
-    $nomAcc= $parsed_json->{morphologique_fr}->{nomAcc};
+    $nomAcc = $parsed_json->{morphologique_fr}->{nomAcc};
     $Descripteur = $parsed_json->{morphologique_fr}->{Descripteur};
     $CodeDescripteur = $parsed_json->{morphologique_fr}->{CodeDescripteur};
     $Caractere = $parsed_json->{morphologique_fr}->{Caractere};
@@ -22,11 +24,17 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $SiteExp = $parsed_json->{morphologique_fr}->{SiteExp};
     $Emplamcement = $parsed_json->{morphologique_fr}->{Emplamcement};
 
-}else{/*Anglais*/
-    $Code= $parsed_json->{code_en}->{Code};
-        /*données*/
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_fr}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_fr}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_fr}->{document};
+} else {/* Anglais */
+    $Code = $parsed_json->{code_en}->{Code};
+    /* données */
     $title = $parsed_json->{morphologique_en}->{title};
-    $nomAcc= $parsed_json->{morphologique_en}->{nomAcc};
+    $nomAcc = $parsed_json->{morphologique_en}->{nomAcc};
     $Descripteur = $parsed_json->{morphologique_en}->{Descripteur};
     $CodeDescripteur = $parsed_json->{morphologique_en}->{CodeDescripteur};
     $Caractere = $parsed_json->{morphologique_en}->{Caractere};
@@ -39,15 +47,21 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $LieuExp = $parsed_json->{morphologique_en}->{LieuExp};
     $SiteExp = $parsed_json->{morphologique_en}->{SiteExp};
     $Emplamcement = $parsed_json->{morphologique_en}->{Emplamcement};
-    
+
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_en}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_en}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_en}->{document};
 }
-require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
-require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
+require('../php/includes/bibliFonc.php'); /* Accès à la base de données */
+require('../php/includes/class_DAO_Bibilotheque.php'); /* Accès aux requêtes SQL */
 $DAO = new BibliothequeDAO();
-$resultat = $DAO->exportpdf($_SESSION['CodeAmpelo'], $_SESSION['language_Vigne'], "morphologique");/*Requête SQL*/
+$resultat = $DAO->exportpdf($_SESSION['CodeAmpelo'], $_SESSION['language_Vigne'], "morphologique"); /* Requête SQL */
 //$resultat = $DAO->exportpdf("161740", "FR", "morphologique");//test
 ob_start();
-$nompdf = $title . $resultat['CodeAmpelo'] .".pdf"; //Nomme le pdf que l'on télécharge
+$nompdf = $title . $resultat['CodeAmpelo'] . ".pdf"; //Nomme le pdf que l'on télécharge
 ?>
 <!-- CSS de la page HTML -->
 <style type="text/css">
@@ -62,13 +76,12 @@ $nompdf = $title . $resultat['CodeAmpelo'] .".pdf"; //Nomme le pdf que l'on tél
         <table>
             <tr>
                 <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
-                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 18px; color:#900;">Collections de Vigne en France</font><br><font style="color:#555;">Base de données du réseau français des conservatoires de Vigne</font></td>
-            </tr>
+                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;"><?php echo $main_title ?></font><br><font style="color:#555;"><?php echo $sous_title ?></font></td>            </tr>
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;'.$title.''?> </font></td><td style="border:none;width:45%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code?></font></td><td style="border:none;width:12%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeAmpelo']?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:45%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:12%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeAmpelo'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -78,12 +91,12 @@ $nompdf = $title . $resultat['CodeAmpelo'] .".pdf"; //Nomme le pdf que l'on tél
         <table>
             <tr>
                 <td style="border:none;width:50%"><img src="imagesPDF/Bandeau.JPG" /></td>
-                
+
             </tr>
         </table>
         <table>
             <tr style="color:#900">
-                <td style="border:none;text-align: left; width: 40%">Document généré le [[date_d]]/[[date_m]]/[[date_y]]</td>
+                <td style="border:none;text-align: left; width: 40%"><?php echo $document ?> [[date_d]]/[[date_m]]/[[date_y]]</td>
                 <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
                 <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
@@ -92,33 +105,33 @@ $nompdf = $title . $resultat['CodeAmpelo'] .".pdf"; //Nomme le pdf que l'on tél
     <!--Contenu du pdf-->
     <table>
         <tr>
-            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;"><?php echo $resultat['nomAcc'] ?></td>
-            <td style="width: 14%;"><?php echo $JourExp ?></td><td style="width:36%;color:#000;"><?php echo $resultat['JourExp'] ?></td>
+            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $JourExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['JourExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Descripteur ?></td><td style="width:36%;color:#000;"><?php echo $resultat['Descripteur'] ?></td>
-            <td style="width: 14%;"><?php echo $MoisExp ?></td><td style="width:36%;color:#000;"><?php echo $resultat['MoisExp'] ?></td>
+            <td style="width: 14%;"><?php echo $Descripteur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Descripteur'] ?></td>
+            <td style="width: 14%;"><?php echo $MoisExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['MoisExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodeDescripteur ?></td><td style="width:36%;color:#000;"><?php echo $resultat['CodeDescripteur'] ?></td>
-            <td style="width: 14%;"><?php echo $AnneeExp ?></td><td style="width:36%;color:#000;"><?php echo $resultat['AnneeExp'] ?></td>
+            <td style="width: 14%;"><?php echo $CodeDescripteur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeDescripteur'] ?></td>
+            <td style="width: 14%;"><?php echo $AnneeExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AnneeExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Caractere ?></td><td style="width:36%;color:#000;"><?php echo $resultat['Caractere'] ?></td>
-            <td style="width: 14%;"><?php echo $LieuExp ?></td><td style="width:36%;color:#000;"><?php echo $resultat['LieuExp'] ?></td>
+            <td style="width: 14%;"><?php echo $Caractere ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Caractere'] ?></td>
+            <td style="width: 14%;"><?php echo $LieuExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['LieuExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodeCaractere ?></td><td style="width:36%;color:#000;"><?php echo $resultat['CodeCaractere'] ?></td>
-            <td style="width: 14%;"><?php echo $SiteExp ?></td><td style="width:36%;color:#000;"><?php echo $resultat['SiteExp'] ?></td>
+            <td style="width: 14%;"><?php echo $CodeCaractere ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeCaractere'] ?></td>
+            <td style="width: 14%;"><?php echo $SiteExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SiteExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Experimentateur ?></td><td style="width:36%;color:#000;"><?php echo $resultat['Experimentateur'] ?></td>
-            <td style="width: 14%;"><?php echo $Emplamcement ?></td><td style="width:36%;color:#000;"><?php echo $resultat['Emplamcement'] ?></td>
+            <td style="width: 14%;"><?php echo $Experimentateur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Experimentateur'] ?></td>
+            <td style="width: 14%;"><?php echo $Emplamcement ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Emplamcement'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Partenaire ?></td><td style="width:36%;color:#000;"><?php echo $resultat['Partenaire'] ?></td>
+            <td style="width: 14%;"><?php echo $Partenaire ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Partenaire'] ?></td>
         </tr>
-     </table>    
+    </table>    
 </page>
 <?php
 $content = ob_get_clean(); //Permet d'enregistrer le contenu de la page HTML dans la variable content

@@ -1,13 +1,13 @@
 {
 	"title_fr":
 		{
-			"main_title":"Collections de Vigne en France",
-			"sous_title":"Base de données du réseau français des conservatoires de Vigne"
+			"main_title":"Réseau Français des Conservatoires de Vigne",
+			"sous_title":"Base de données des collections"
 		},
 	"title_en":
 		{
-			"main_title":"Grapevine Collections in France",
-			"sous_title":"Database of the French network of grapevine repositories"
+			"main_title":"French Network of Grapevine Repositories",
+			"sous_title":"Database of the collections"
 		},
 	"login_fr":
 		{
@@ -48,7 +48,7 @@
 	"accueil_part1_en":{
 			"title":"Partners of the network",
 			"sous_title":"A comon initiative from the selection partners",
-			"contents":"Le Réseau Français des Conservatoires de Vigne regroupe plus d'une trentaire de partenaires régionaux impliqués dans la sauvegarde des ressources génétiques et la sélection. Plus de 110 conservatoires sont actuellement implantés dans toutes les régions viticoles du pays. <a href='Partenaires.php' >  >>> En savoir plus</a>",
+			"contents":"The French Network of Grapevine Repositories includes more than thirty regional partners involved in the preservation of genetic resources and selection. More than 110 repositories are planted in all the regions of grape production in France. <a href='Partenaires.php' >  >>> Read more</a>",
 			"read_more":"<a href='Partenaires.php'>Read more</a>"
 		},
 	"accueil_part2_fr":{
@@ -79,7 +79,7 @@
 		},
 	"link_fr":
 		{
-			"title":"Liens Utile",
+			"title":"Liens utiles",
 			"link":[
 				{
 					"name":"blabla1",
@@ -97,7 +97,7 @@
 		},
 	"link_en":
 		{
-			"title":"Useful Links",
+			"title":"Useful links",
 			"link":[
 				{
 					"name":"blabla1EN",
@@ -148,7 +148,7 @@
 			"username":"Nom d'utilisateur : ",
 			"password":"Mot de Passe : ",
 			"button":"Validez",
-			"notice_title":"Attention:",
+			"notice_title":"Attention :",
 			"notice_contents":"Seuls les partenaires membres de Réseau peuvent utiliser ce type d'accès. Veuillez saisir votre nom d'utilisateur et le mot de passe personnel qui vous a été donné par les administrateurs de la base. Si vous n'êtes pas membre du Réseau, vous pouvez toutefois consulter les données publiques en parcourant directement le menu en haut."
 		},
 	"login_page_en":
@@ -157,19 +157,19 @@
 			"username":"Username : ",
 			"password":"Password : ",
 			"button":"OK",
-			"notice_title":"Attention:",
+			"notice_title":"Warning:",
 			"notice_contents":"Only partners Network members can use this type of access. Please enter your username and personal password that was given to you by the database administrators. If you are not a member of the Network, you can still see public data directly through the menu above."
 		},
 	"chemin_fr":
 		{
 			"chemin_home":"Accueil",
-			"chemin_selection":"Ma Selection",
-			"chemin_searchA":"Recherche Avancé",
+			"chemin_selection":"Ma sélection",
+			"chemin_searchA":"Recherche avancée",
 			"chemin_login":"Connexion",
-			"chemin_resultat":"Resultat de Recherche",
-			"chemin_searchS":"Recherche Simple",
+			"chemin_resultat":"Résultat de recherche",
+			"chemin_searchS":"Recherche simple",
 			"chemin_fiche":"Fiche",
-			"chemin_person":"Page personnel"
+			"chemin_person":"Page personnelle"
 			
 		},
 	"chemin_en":
@@ -178,7 +178,7 @@
 			"chemin_selection":"My selection",
 			"chemin_searchA":"Advanced search",
 			"chemin_login":"Login",
-			"chemin_resultat":"Search Result",
+			"chemin_resultat":"Search results",
 			"chemin_searchS":"Quick search",
 			"chemin_fiche":"Fiche",
 			"chemin_person":"Personal page"

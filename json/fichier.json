@@ -810,5 +810,14 @@
 			"lable_Date":"Date: ",
 			"lable_Photographe":"Photograph: ",
 			"lable_Partenaire":"Partner: "
-		}
+		},
+        "pdf_fr":
+                {
+                  "document":"Document édité le "  
+                },
+        "pdf_en":
+                {
+                  "document":"Document edited on "  
+                }
+                
 }

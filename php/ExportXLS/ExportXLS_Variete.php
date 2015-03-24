@@ -6,38 +6,79 @@ require_once "writeexcel/class.writeexcel_worksheet.inc.php";
 $fname = tempnam("/tmp", "data.xls");
 $workbook = &new writeexcel_workbook($fname);
 $worksheet = &$workbook->addworksheet();
+$section = $_GET["section"];
+
 
 session_start(); //Permet de récupérer le contenu des variables de session
-$json = file_get_contents('../../json/search.json');
-$parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
+
+$langue = $_SESSION['language_Vigne'];
+$json = file_get_contents('../../json/selection.json');
+$parsed_json = json_decode($json);
+$json2 = file_get_contents('../../json/search.json');
+$parsed_json2 = json_decode($json2); // Permet de lire le fichier JSON avec PHP.
 //Permet de récupérer les bon json en fonction de la langue
-
-if ($_GET["section"] == "accession") {
-    if ($_SESSION['language_Vigne'] == "FR") {
-        $labeljson = array(
-            utf8_decode($parsed_json->{resultat_accession_fr}->{CodeIntro}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{NomIntro}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{NomVariete}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{Partenaire}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{PaysProvenance}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{CommuneProvenance}),
-            utf8_decode($parsed_json->{resultat_accession_fr}->{AnneeEntree}));
-    } else {
-        $labeljson = array(
-            utf8_decode($parsed_json->{resultat_accession_en}->{CodeIntro}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{NomIntro}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{NomVariete}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{Partenaire}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{PaysProvenance}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{CommuneProvenance}),
-            utf8_decode($parsed_json->{resultat_accession_en}->{AnneeEntree}));
-    }
+switch ($section) {
+    case "accession":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{CodeIntro}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{NomIntro}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{NomVariete}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{Partenaire}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{PaysProvenance}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{CommuneProvenance}),
+                utf8_decode($parsed_json2->{resultat_accession_fr}->{AnneeEntree}));
+        } else if($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json2->{resultat_accession_en}->{CodeIntro}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{NomIntro}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{NomVariete}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{Partenaire}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{PaysProvenance}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{CommuneProvenance}),
+                utf8_decode($parsed_json2->{resultat_accession_en}->{AnneeEntree}));
+        }
+        break;
+    case "aptitude":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{selection_fr}->{CodeAptitude}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_aptitude}),        
+                utf8_decode($parsed_json->{selection_fr}->{AptitudeMesure}),
+                utf8_decode($parsed_json->{selection_fr}->{ValeurCaractNum}),
+                utf8_decode($parsed_json->{selection_fr}->{UniteMesure}),
+                utf8_decode($parsed_json->{selection_fr}->{Ponderation}),
+                utf8_decode($parsed_json->{selection_fr}->{Date_aptitude}),
+                utf8_decode($parsed_json->{selection_fr}->{CodePartenaire}));
+        } else if ($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{selection_en}->{CodeAptitude}),
+                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_aptitude}), 
+                utf8_decode($parsed_json->{selection_en}->{AptitudeMesure}),
+                utf8_decode($parsed_json->{selection_en}->{ValeurCaractNum}),
+                utf8_decode($parsed_json->{selection_en}->{UniteMesure}),
+                utf8_decode($parsed_json->{selection_en}->{Ponderation}),
+                utf8_decode($parsed_json->{selection_en}->{Date_aptitude}),
+                utf8_decode($parsed_json->{selection_en}->{CodePartenaire}));
+        }
+        break;
+    case "":
+        break;
+    case "":
+        break;
+    case "":
+        break;
+    case "":
+        break;
+    case "":
+        break;
+    case "":
+        break;
 }
-
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 
-$code = $_SESSION['CodeVar']; 
+$code = $_SESSION['CodeVar'];
 $DAO = new BibliothequeDAO();
 $resultat = $DAO->exportxls_variete($_SESSION['language_Vigne'], $_GET["section"], $code);
 
@@ -73,7 +114,7 @@ foreach ($resultat as $value) {
 }
 
 
-$worksheet->write(2 , 0 ,count($resultat),$Données);
+$worksheet->write(2, 0, count($resultat), $Données);
 
 $workbook->close();
 header("Content-Type: application/x-msexcel; name=\"data.xls\"");

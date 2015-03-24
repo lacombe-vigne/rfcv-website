@@ -1,14 +1,14 @@
 <?php
 session_start(); //Permet de récupérer le contenu des variables de session
-/*Traitement fichier.json*/
+/* Traitement fichier.json */
 $json = file_get_contents('../json/fichier.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
-/*Permet de récuperer le label correspondant en anglais ou en français*/
-if($_SESSION['language_Vigne']=="FR"){/*Français*/
-    $Code= $parsed_json->{code_fr}->{Code};
-    /*données*/
+/* Permet de récuperer le label correspondant en anglais ou en français */
+if ($_SESSION['language_Vigne'] == "FR") {/* Français */
+    $Code = $parsed_json->{code_fr}->{Code};
+    /* données */
     $title = $parsed_json->{site_fr}->{title};
-    $RegionSite= $parsed_json->{site_fr}->{RegionSite};
+    $RegionSite = $parsed_json->{site_fr}->{RegionSite};
     $DepartSite = $parsed_json->{site_fr}->{DepartSite};
     $CommuneSite = $parsed_json->{site_fr}->{CommuneSite};
     $CodPostSite = $parsed_json->{site_fr}->{CodPostSite};
@@ -27,11 +27,17 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $VarMajoritairesSite = $parsed_json->{site_fr}->{VarMajoritairesSite};
     $PresentationSite = $parsed_json->{site_fr}->{PresentationSite};
 
-}else{/*Anglais*/
-    $Code= $parsed_json->{code_en}->{Code};
-    /*données*/
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_fr}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_fr}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_fr}->{document};
+} else {/* Anglais */
+    $Code = $parsed_json->{code_en}->{Code};
+    /* données */
     $title = $parsed_json->{site_en}->{title};
-    $RegionSite= $parsed_json->{site_en}->{RegionSite};
+    $RegionSite = $parsed_json->{site_en}->{RegionSite};
     $DepartSite = $parsed_json->{site_en}->{DepartSite};
     $CommuneSite = $parsed_json->{site_en}->{CommuneSite};
     $CodPostSite = $parsed_json->{site_en}->{CodPostSite};
@@ -49,15 +55,21 @@ if($_SESSION['language_Vigne']=="FR"){/*Français*/
     $AnneeCreationSite = $parsed_json->{site_en}->{AnneeCreationSite};
     $VarMajoritairesSite = $parsed_json->{site_en}->{VarMajoritairesSite};
     $PresentationSite = $parsed_json->{site_en}->{PresentationSite};
-    
+
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_en}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_en}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_en}->{document};
 }
-require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
-require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
+require('../php/includes/bibliFonc.php'); /* Accès à la base de données */
+require('../php/includes/class_DAO_Bibilotheque.php'); /* Accès aux requêtes SQL */
 $DAO = new BibliothequeDAO();
 //$resultat = $DAO->exportpdf($_SESSION['CodeAmpelo'], $_SESSION['language_Vigne'], "site");/*Requête SQL*/
-$resultat = $DAO->exportpdf("Vass", "FR", "site");//test
+$resultat = $DAO->exportpdf("Vass", "FR", "site"); //test
 ob_start();
-$nompdf = $title . $resultat['CodeSite'] .".pdf"; //Nomme le pdf que l'on télécharge
+$nompdf = $title . $resultat['CodeSite'] . ".pdf"; //Nomme le pdf que l'on télécharge
 ?>
 <!-- CSS de la page HTML -->
 <style type="text/css">
@@ -72,13 +84,12 @@ $nompdf = $title . $resultat['CodeSite'] .".pdf"; //Nomme le pdf que l'on télé
         <table>
             <tr>
                 <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
-                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 18px; color:#900;">Collections de Vigne en France</font><br><font style="color:#555;">Base de données du réseau français des conservatoires de Vigne</font></td>
-            </tr>
+                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;"><?php echo $main_title ?></font><br><font style="color:#555;"><?php echo $sous_title ?></font></td>            </tr>
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;'.$title.''?> </font></td><td style="border:none;width:70%"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo $resultat['NomSite']?></font></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code?></font></td><td style="border:none;width:13%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeSite']?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:70%"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo $resultat['NomSite'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:13%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeSite'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -88,12 +99,12 @@ $nompdf = $title . $resultat['CodeSite'] .".pdf"; //Nomme le pdf que l'on télé
         <table>
             <tr>
                 <td style="border:none;width:50%"><img src="imagesPDF/Bandeau.JPG" /></td>
-                
+
             </tr>
         </table>
         <table>
             <tr style="color:#900">
-                <td style="border:none;text-align: left; width: 40%">Document généré le [[date_d]]/[[date_m]]/[[date_y]]</td>
+                <td style="border:none;text-align: left; width: 40%"><?php echo $document ?> [[date_d]]/[[date_m]]/[[date_y]]</td>
                 <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
                 <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
@@ -102,40 +113,40 @@ $nompdf = $title . $resultat['CodeSite'] .".pdf"; //Nomme le pdf que l'on télé
     <!--Contenu du pdf-->
     <table>
         <tr>
-            <td style="width: 14%;"><?php echo $RegionSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['RegionSite'] ?></td>
-            <td style="width: 14%;"><?php echo $ProprietaireSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['ProprietaireSite'] ?></td>
+            <td style="width: 14%;"><?php echo $RegionSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['RegionSite'] ?></td>
+            <td style="width: 14%;"><?php echo $ProprietaireSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ProprietaireSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $DepartSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['DepartSite'] ?></td>
-            <td style="width: 14%;"><?php echo $ExploitSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['ExploitSite'] ?></td>
+            <td style="width: 14%;"><?php echo $DepartSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DepartSite'] ?></td>
+            <td style="width: 14%;"><?php echo $ExploitSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ExploitSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CommuneSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['CommuneSite'] ?></td>
-            <td style="width: 14%;"><?php echo $ResponsSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['ResponsSite'] ?></td>
+            <td style="width: 14%;"><?php echo $CommuneSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CommuneSite'] ?></td>
+            <td style="width: 14%;"><?php echo $ResponsSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ResponsSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodPostSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['CodPostSite'] ?></td>
-            <td style="width: 14%;"><?php echo $TelSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['TelSite'] ?></td>
+            <td style="width: 14%;"><?php echo $CodPostSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodPostSite'] ?></td>
+            <td style="width: 14%;"><?php echo $TelSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['TelSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $AdresseSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['AdresseSite'] ?></td>
-            <td style="width: 14%;"><?php echo $FaxSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['FaxSite'] ?></td>
+            <td style="width: 14%;"><?php echo $AdresseSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AdresseSite'] ?></td>
+            <td style="width: 14%;"><?php echo $FaxSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['FaxSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $LatSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['LatSite'] ?></td>
-            <td style="width: 14%;"><?php echo $MailSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['MailSite'] ?></td>
+            <td style="width: 14%;"><?php echo $LatSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['LatSite'] ?></td>
+            <td style="width: 14%;"><?php echo $MailSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['MailSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $LongSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['LongSite'] ?></td>
-            <td style="width: 14%;"><?php echo $AnneeCreationSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['AnneeCreationSite'] ?></td>
+            <td style="width: 14%;"><?php echo $LongSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['LongSite'] ?></td>
+            <td style="width: 14%;"><?php echo $AnneeCreationSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AnneeCreationSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $AltSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['AltSite'] ?></td>
-            <td style="width: 14%;"><?php echo $VarMajoritairesSite ?></td><td style="width:36%;color:#000;"><?php echo $resultat['VarMajoritairesSite'] ?></td>
+            <td style="width: 14%;"><?php echo $AltSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AltSite'] ?></td>
+            <td style="width: 14%;"><?php echo $VarMajoritairesSite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['VarMajoritairesSite'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $SecRegENTAV ?></td><td style="width:36%;color:#000;"><?php echo $resultat['SecRegENTAV'] ?></td>
-            <td style="width: 14%;"><?php echo $PresentationSite ?></td><td style="width:36%;color:#000;test-align:justify;"><?php echo $resultat['PresentationSite'] ?></td>
+            <td style="width: 14%;"><?php echo $SecRegENTAV ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SecRegENTAV'] ?></td>
+            <td style="width: 14%;"><?php echo $PresentationSite ?></td><td style="width:36%;color:#000;test-align:justify;">&nbsp;<?php echo $resultat['PresentationSite'] ?></td>
         </tr>
     </table>
 </page>

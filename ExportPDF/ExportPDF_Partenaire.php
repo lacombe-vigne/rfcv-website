@@ -1,11 +1,14 @@
 <?php
 session_start(); //Permet de récupérer le contenu des variables de session
-/*Traitement fichier.json*/
+/* Traitement fichier.json */
 $json = file_get_contents('../json/fichier.json');
-$parsed_json = json_decode($json);// Permet de lire le fichier JSON avec PHP.
-/*Permet de récuperer le label correspondant en anglais ou en français*/
-if($_SESSION['language_Vigne']=='FR'){/*Français*/
-    $Code= $parsed_json->{code_fr}->{Code};
+$parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
+
+$jsonHeader = file_get_contents('../json/home.json');
+$parsed_jsonHeader = json_decode($jsonHeader); // pour récuperer le contenu de home.json
+/* Permet de récuperer le label correspondant en anglais ou en français */
+if ($_SESSION['language_Vigne'] == 'FR') {/* Français */
+    $Code = $parsed_json->{code_fr}->{Code};
     $title = $parsed_json->{partenaire_fr}->{title};
     $NomPartenaire = $parsed_json->{partenaire_fr}->{NomPartenaire};
     $SiglePartenaire = $parsed_json->{partenaire_fr}->{SiglePartenaire};
@@ -18,8 +21,15 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $AdressePartenaire = $parsed_json->{partenaire_fr}->{AdressePartenaire};
     $CodPostPartenaire = $parsed_json->{partenaire_fr}->{CodPostPartenaire};
     $CommunePartenaire = $parsed_json->{partenaire_fr}->{CommunePartenaire};
-}else{/*Anglais*/
-    $Code= $parsed_json->{code_en}->{Code};
+
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_fr}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_fr}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_fr}->{document};
+} else {/* Anglais */
+    $Code = $parsed_json->{code_en}->{Code};
     $title = $parsed_json->{partenaire_en}->{title};
     $NomPartenaire = $parsed_json->{partenaire_en}->{NomPartenaire};
     $SiglePartenaire = $parsed_json->{partenaire_en}->{SiglePartenaire};
@@ -32,15 +42,21 @@ if($_SESSION['language_Vigne']=='FR'){/*Français*/
     $AdressePartenaire = $parsed_json->{partenaire_en}->{AdressePartenaire};
     $CodPostPartenaire = $parsed_json->{partenaire_en}->{CodPostPartenaire};
     $CommunePartenaire = $parsed_json->{partenaire_en}->{CommunePartenaire};
-    
+
+    //Header pdf
+    $main_title = $parsed_jsonHeader->{title_en}->{main_title};
+    $sous_title = $parsed_jsonHeader->{title_en}->{sous_title};
+
+    //Footer pdf
+    $document = $parsed_json->{pdf_en}->{document};
 }
-require('../php/includes/bibliFonc.php');/*Accès à la base de données*/
-require('../php/includes/class_DAO_Bibilotheque.php');/*Accès aux requêtes SQL*/
+require('../php/includes/bibliFonc.php'); /* Accès à la base de données */
+require('../php/includes/class_DAO_Bibilotheque.php'); /* Accès aux requêtes SQL */
 $DAO = new BibliothequeDAO();
-$resultat = $DAO->exportpdf($_SESSION['CodePartenaire'], $_SESSION['language_Vigne'], "partenaire");/*Requête SQL*/
+$resultat = $DAO->exportpdf($_SESSION['CodePartenaire'], $_SESSION['language_Vigne'], "partenaire"); /* Requête SQL */
 //$resultat = $DAO->exportpdf("Mtp", "FR", "partenaire");//test
 ob_start();
-$nompdf = $title . $resultat['CodePartenaire'] .".pdf"; //Nomme le pdf que l'on télécharge
+$nompdf = $title . $resultat['CodePartenaire'] . ".pdf"; //Nomme le pdf que l'on télécharge
 ?>
 <!-- CSS de la page HTML -->
 <style type="text/css">
@@ -56,13 +72,13 @@ $nompdf = $title . $resultat['CodePartenaire'] .".pdf"; //Nomme le pdf que l'on 
         <table>
             <tr>
                 <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
-                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;">Collections de Vigne en France</font><br><font style="color:#555;">Base de données du réseau français des conservatoires de Vigne</font></td>
+                <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;"><?php echo $main_title ?></font><br><font style="color:#555;"><?php echo $sous_title ?></font></td>            
             </tr>
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;'.$title.''?> </font></td><td style="border:none;width:70%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code?></font></td><td style="border:none;width:9%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodePartenaire']?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:70%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:9%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodePartenaire'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -76,37 +92,37 @@ $nompdf = $title . $resultat['CodePartenaire'] .".pdf"; //Nomme le pdf que l'on 
         </table>
         <table >
             <tr style="color:#900">
-                <td style="border:none;text-align: left; width: 40%">Document édité le [[date_d]]/[[date_m]]/[[date_y]]</td>
+                <td style="border:none;text-align: left; width: 40%"><?php echo $document ?> [[date_d]]/[[date_m]]/[[date_y]]</td>
                 <td style="border:none;width : 50%">© INRA-IFV-Montpellier SupAgro 2005-2015</td>
                 <td style="border:none;text-align: right; width: 10%">page [[page_cu]]/[[page_nb]]</td>
             </tr>
         </table>
-   
+
     </page_footer>
     <!--Début de fiche-->
     <table>
         <tr>
-            <td style="width: 14%"><?php echo $NomPartenaire?></td><td style="width: 36%"><b><?php echo $resultat['NomPartenaire']?></b></td>
-            <td style="width: 14%"><?php echo $ResponsablesPartenaire?></td><td style="width: 36%"><b><?php echo $resultat['ResponsablesPartenaire']?></b></td>
+            <td style="width: 14%"><?php echo $NomPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomPartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $ResponsablesPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['ResponsablesPartenaire'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $SiglePartenaire?></td><td style="width: 36%"><b><?php echo $resultat['SiglePartenaire']?></b></td>
-            <td style="width: 14%"><?php echo $TelephonePartenaire?></td><td style="width: 36%"><b><?php echo $resultat['TelephonePartenaire']?></b></td>
+            <td style="width: 14%"><?php echo $SiglePartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['SiglePartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $TelephonePartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['TelephonePartenaire'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $SectionRegionaleENTAV?></td><td style="width: 36%"><b><?php echo $resultat['SectionRegionaleENTAV']?></b></td>
-            <td style="width: 14%"><?php echo $Email?></td><td style="width: 36%"><b><?php echo $resultat['Email']?></b></td>
+            <td style="width: 14%"><?php echo $SectionRegionaleENTAV ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['SectionRegionaleENTAV'] ?></b></td>
+            <td style="width: 14%"><?php echo $Email ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Email'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $RegionPartenaire?></td><td style="width: 36%"><b><?php echo $resultat['RegionPartenaire']?></b></td>
-            <td style="width: 14%"><?php echo $AdressePartenaire?></td><td style="width: 36%"><b><?php echo $resultat['AdressePartenaire']?></b></td>
+            <td style="width: 14%"><?php echo $RegionPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['RegionPartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $AdressePartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AdressePartenaire'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $DepartPartenaire?></td><td style="width: 36%"><b><?php echo $resultat['DepartPartenaire']?></b></td>
-            <td style="width: 14%"><?php echo $CodPostPartenaire?></td><td style="width: 36%"><b><?php echo $resultat['CodPostPartenaire']?></b></td>
+            <td style="width: 14%"><?php echo $DepartPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['DepartPartenaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $CodPostPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CodPostPartenaire'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $CommunePartenaire?></td><td style="width: 36%"><b><?php echo $resultat['CommunePartenaire']?></b></td>
+            <td style="width: 14%"><?php echo $CommunePartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CommunePartenaire'] ?></b></td>
         </tr>
     </table>
 </page>
