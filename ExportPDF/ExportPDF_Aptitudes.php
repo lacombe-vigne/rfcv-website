@@ -11,7 +11,9 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     /* données */
     $title = $parsed_json->{aptitude_fr}->{title};
     $nomVar = $parsed_json->{aptitude_fr}->{nomVar};
+    $codeVar = $parsed_json->{aptitude_fr}->{codeVar};
     $nomAcc = $parsed_json->{aptitude_fr}->{nomAcc};
+    $codeAcc = $parsed_json->{aptitude_fr}->{codeAcc};
     $Caracteristique = $parsed_json->{aptitude_fr}->{Caracteristique};
     $Valeur = $parsed_json->{aptitude_fr}->{Valeur};
     $Unite = $parsed_json->{aptitude_fr}->{Unite};
@@ -36,7 +38,9 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     /* données */
     $title = $parsed_json->{aptitude_en}->{title};
     $nomVar = $parsed_json->{aptitude_en}->{nomVar};
+    $codeVar = $parsed_json->{aptitude_en}->{codeVar};
     $nomAcc = $parsed_json->{aptitude_en}->{nomAcc};
+    $codeAcc = $parsed_json->{aptitude_en}->{codeAcc};
     $Caracteristique = $parsed_json->{aptitude_en}->{Caracteristique};
     $Valeur = $parsed_json->{aptitude_en}->{Valeur};
     $Unite = $parsed_json->{aptitude_en}->{Unite};
@@ -81,8 +85,8 @@ $nompdf = $Title . $resultat['codeAptitude'] . ".pdf"; //Nomme le pdf que l'on t
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:56%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:9%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['codeAptitude'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:50%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "></font></td><td style="border:none;width:23%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['codeAptitude'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -110,29 +114,33 @@ $nompdf = $Title . $resultat['codeAptitude'] . ".pdf"; //Nomme le pdf que l'on t
             <td style="width: 14%;"><?php echo $Partenaire ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Partenaire'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
-            <td style="width: 14%;"><?php echo $JourExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CollecteurAnt'] ?></td>
+            <td style="width: 14%;"><?php echo $codeVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeVar'] ?></td>
+            <td style="width: 14%;"><?php echo $JourExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['JourExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Caracteristique ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Caracteristique'] ?></td>
+            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
             <td style="width: 14%;"><?php echo $MoisExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['MoisExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Valeur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Valeur'] ?></td>
+            <td style="width: 14%;"><?php echo $codeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
             <td style="width: 14%;"><?php echo $AnneeExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AnneeExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Unite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Unite'] ?></td>
+            <td style="width: 14%;"><?php echo $Caracteristique ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Caracteristique'] ?></td>
             <td style="width: 14%;"><?php echo $LieuExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['LieuExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Ponderation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Ponderation'] ?></td>
+            <td style="width: 14%;"><?php echo $Valeur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Valeur'] ?></td>
             <td style="width: 14%;"><?php echo $SiteExp ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SiteExp'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Experimentateur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Experimentateur'] ?></td>
+            <td style="width: 14%;"><?php echo $Unite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Unite'] ?></td>
             <td style="width: 14%;"><?php echo $EmplacementExp ?></td><td style="width:36%;color:#000;;">&nbsp;<?php echo $resultat['EmplacementExp'] ?></td>
-        </tr> 
+        </tr>
+        <tr>
+            <td style="width: 14%;"><?php echo $Ponderation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Ponderation'] ?></td>
+            <td style="width: 14%;"><?php echo $Experimentateur ?></td><td style="width:36%;color:#000;;">&nbsp;<?php echo $resultat['Experimentateur'] ?></td>
+        </tr>
     </table>
 </page>
 <?php
@@ -146,7 +154,7 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
+
 ?>
 
 

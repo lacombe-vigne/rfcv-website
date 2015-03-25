@@ -10,8 +10,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_fr}->{Code};
     /* données */
     $title = $parsed_json->{emplacement_fr}->{title};
+    $nomVar = $parsed_json->{emplacement_fr}->{nomVar};
+    $codeVar = $parsed_json->{emplacement_fr}->{codeVar};
     $nomAcc = $parsed_json->{emplacement_fr}->{nomAcc};
-    $CodeAcc = $parsed_json->{emplacement_fr}->{CodeAcc};
+    $codeAcc = $parsed_json->{emplacement_fr}->{codeAcc};
     $Site = $parsed_json->{emplacement_fr}->{Site};
     $Zone = $parsed_json->{emplacement_fr}->{Zone};
     $Parcelle = $parsed_json->{emplacement_fr}->{Parcelle};
@@ -43,8 +45,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_en}->{Code};
     /* données */
     $title = $parsed_json->{emplacement_en}->{title};
+    $nomVar = $parsed_json->{emplacement_en}->{nomVar};
+    $codeVar = $parsed_json->{emplacement_en}->{codeVar};
     $nomAcc = $parsed_json->{emplacement_en}->{nomAcc};
-    $CodeAcc = $parsed_json->{emplacement_en}->{CodeAcc};
+    $codeAcc = $parsed_json->{emplacement_en}->{codeAcc};
     $Site = $parsed_json->{emplacement_en}->{Site};
     $Zone = $parsed_json->{emplacement_en}->{Zone};
     $Parcelle = $parsed_json->{emplacement_en}->{Parcelle};
@@ -98,8 +102,8 @@ $nompdf = $title . $resultat['CodeEmplacemen'] . ".pdf"; //Nomme le pdf que l'on
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:30%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:30%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeEmplacemen'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:25%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "></font></td><td style="border:none;width:34%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeEmplacemen'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -123,49 +127,53 @@ $nompdf = $title . $resultat['CodeEmplacemen'] . ".pdf"; //Nomme le pdf que l'on
     <!--Contenu du pdf-->
     <table>
         <tr>
-            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $nomVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NomVar'] ?></td>
+            <td style="width: 14%;"><?php echo $NbreEtatTresFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatTresFaible'] ?></td>
+        </tr>
+        <tr>
+            <td style="width: 14%;"><?php echo $codeVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeVar'] ?></td>
             <td style="width: 14%;"><?php echo $NbreEtatMort ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatMort'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
             <td style="width: 14%;"><?php echo $Rang ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Rang'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Site ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Site'] ?></td>
+            <td style="width: 14%;"><?php echo $codeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
             <td style="width: 14%;"><?php echo $TypeSouche ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['TypeSouche'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Zone ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Zone'] ?></td>
+            <td style="width: 14%;"><?php echo $Site ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Site'] ?></td>
             <td style="width: 14%;"><?php echo $PremiereSouche ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PremiereSouche'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Parcelle ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Parcelle'] ?></td>
+            <td style="width: 14%;"><?php echo $Zone ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Zone'] ?></td>
             <td style="width: 14%;"><?php echo $DerniereSouche ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DerniereSouche'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $SousPartie ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SousPartie'] ?></td>
+            <td style="width: 14%;"><?php echo $Parcelle ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Parcelle'] ?></td>
             <td style="width: 14%;"><?php echo $AnneePlantation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AnneePlantation'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $NbreEtatNormal ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatNormal'] ?></td>
+            <td style="width: 14%;"><?php echo $SousPartie ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SousPartie'] ?></td>
             <td style="width: 14%;"><?php echo $AnneeElimination ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AnneeElimination'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $NbreEtatMoyen ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatMoyen'] ?></td>
+            <td style="width: 14%;"><?php echo $NbreEtatNormal ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatNormal'] ?></td>
             <td style="width: 14%;"><?php echo $CategMateriel ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CategMateriel'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $NbreEtatMoyFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatMoyFaible'] ?></td>
+            <td style="width: 14%;"><?php echo $NbreEtatMoyen ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatMoyen'] ?></td>
             <td style="width: 14%;"><?php echo $Greffe ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Greffe'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $NbreEtatFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatFaible'] ?></td>
+            <td style="width: 14%;"><?php echo $NbreEtatMoyFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatMoyFaible'] ?></td>
             <td style="width: 14%;"><?php echo $PorteGreffe ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PorteGreffe'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $NbreEtatTresFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatTresFaible'] ?></td>
+            <td style="width: 14%;"><?php echo $NbreEtatFaible ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NbreEtatFaible'] ?></td>
             <td style="width: 14%;"><?php echo $NumCloneCTPS ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NumCloneCTPS'] ?></td>
-        </tr>
+        </tr><?php //$NbreEtatTresFaible NbreEtatTresFaible?>
     </table>    
 </page>
 <?php
@@ -179,5 +187,4 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>

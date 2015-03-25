@@ -161,5 +161,4 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>

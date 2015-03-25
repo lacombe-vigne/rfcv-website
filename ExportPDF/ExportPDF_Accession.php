@@ -267,23 +267,43 @@ $nompdf = $Title . $resultat['CodeIntro'] . ".pdf"; //Nomme le pdf que l'on tél
     <table>
         <tr>
             <td style="width: 14%"><?php echo $Partenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Partenaire'] ?></b></td>
-            <td style="width: 14%"><?php echo $AnneeAgrement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AnneeAgrement'] ?></b></td>
-        </tr>
-        <tr>
             <td style="width: 14%"><?php echo $codeIntroPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CodeIntroPartenaire'] ?></b></td>
-            <td style="width: 14%"><?php echo $PayP ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['PayP'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $Statut ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Statut'] ?></b></td>
-            <td style="width: 14%"><?php echo $CommuneP ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CommuneProvenance'] ?></b></td>
         </tr>
         <tr>
             <td style="width: 14%"><?php echo $UniteIntro ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['UniteIntro'] ?></b></td>
-            <td style="width: 14%"><?php echo $AdresseP ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AdresProvenance'] ?></b></td>
+            <td style="width: 14%"><?php echo $NomVar ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomVar'] ?></b></td>
+        </tr>
+    </table><br>
+    <!--Agrement-->
+    <table>
+        <tr>
+            <td style="border:none;"><h4><?php echo $Atitle ?></h4></td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <td style="width: 14%"><?php echo $Aagrement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Agrement'] ?></b></td>
+            <td style="width: 14%"><?php echo $AanneeNonCertifiable ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AnneeNonCertifiable'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $NomVar ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomVar'] ?></b></td>
-            <td style="width: 14%"><?php echo $Collecteur ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Collecteur'] ?></b></td>
+            <td style="width: 14%"><?php echo $AfamilleSanitaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['FamilleSanitaire'] ?></b></td>
+            <td style="width: 14%"><?php echo $AlieuDepotMatInitial ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['LieuDepotMatInitial'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $AagrementCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AgrementCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AsurfMulti ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['SurfMulti'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $AnumTempCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NumTempCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AdelegONIVINS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['DelegONIVINS'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $AnumAgreCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NumCloneCTPS'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnomPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomPartenaire'] ?></b></td>
+        </tr>
+        <tr>
+            <td style="width: 14%"><?php echo $AanneeAgrement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AnneeAgrement'] ?></b></td>
+            <td style="width: 14%"><?php echo $AnomPartenaire2 ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomPartenaire2'] ?></b></td>
         </tr>
     </table><br>
     <!--Provenance directe-->
@@ -338,8 +358,10 @@ $nompdf = $Title . $resultat['CodeIntro'] . ".pdf"; //Nomme le pdf que l'on tél
             <td style="width: 14%"><?php echo $PDissuTraitement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['IssuTraitement'] ?></b></td>
         </tr>
         <tr>
+            <td style="width: 14%"><?php echo $PDremarques ?></td><td style="width: 36%;text-align:justify;" colspan="3"><b>&nbsp;<?php echo $resultat['RemarquesProvenance'] ?></b></td>
+        </tr>
+        <tr>
             <td style="width: 14%"><?php echo $PDcoloneTraite ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CloneTraite'] ?></b></td>
-            <td style="width: 14%"><?php echo $PDremarques ?></td><td style="width: 36%;text-align:justify;"><b>&nbsp;<?php echo $resultat['RemarquesProvenance'] ?></b></td>
         </tr>
     </table><br>
     <!--Provenance antérieure-->
@@ -412,38 +434,6 @@ $nompdf = $Title . $resultat['CodeIntro'] . ".pdf"; //Nomme le pdf que l'on tél
             <td style="width: 14%"><?php echo $CIremarque ?></td><td style="width: 36%;text-align:justify;"><b>&nbsp;<?php echo $resultat['RemarqueAccessionName'] ?></b></td>
         </tr>
     </table><br>
-    <!--Agrement-->
-    <table>
-        <tr>
-            <td style="border:none;"><h4><?php echo $Atitle ?></h4></td>
-        </tr>
-    </table><br>
-    <table>
-        <tr>
-            <td style="width: 14%"><?php echo $Aagrement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Agrement'] ?></b></td>
-            <td style="width: 14%"><?php echo $AanneeNonCertifiable ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AnneeNonCertifiable'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $AfamilleSanitaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['FamilleSanitaire'] ?></b></td>
-            <td style="width: 14%"><?php echo $AlieuDepotMatInitial ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['LieuDepotMatInitial'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $AagrementCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AgrementCTPS'] ?></b></td>
-            <td style="width: 14%"><?php echo $AsurfMulti ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['SurfMulti'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $AnumTempCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NumTempCTPS'] ?></b></td>
-            <td style="width: 14%"><?php echo $AdelegONIVINS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['DelegONIVINS'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $AnumAgreCTPS ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NumCloneCTPS'] ?></b></td>
-            <td style="width: 14%"><?php echo $AnomPartenaire ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomPartenaire'] ?></b></td>
-        </tr>
-        <tr>
-            <td style="width: 14%"><?php echo $AanneeAgrement ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['AnneeAgrement'] ?></b></td>
-            <td style="width: 14%"><?php echo $AnomPartenaire2 ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['NomPartenaire2'] ?></b></td>
-        </tr>
-    </table><br>
     <!--Remarques-->
     <table>
         <tr>
@@ -456,7 +446,7 @@ $nompdf = $Title . $resultat['CodeIntro'] . ".pdf"; //Nomme le pdf que l'on tél
             <td style="width: 14%"><?php echo $RremarqueDiffusion ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['RestrictionDiffusion'] ?></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $RremarqueIntro ?></td><td style="width: 36%;text-align:justify;"><b>&nbsp;<?php echo $resultat['RemarquesIntro'] ?></b></td>
+            <td style="width: 14%"><?php echo $RremarqueIntro ?></td><td style="width: 36%;text-align:justify;" colspan="3"><b>&nbsp;<?php echo $resultat['RemarquesIntro'] ?></b></td>
         </tr>
     </table>
 </page>
@@ -471,5 +461,4 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>

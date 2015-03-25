@@ -189,10 +189,6 @@ $nompdf = $Title . $resultat['CodeVar'] .".pdf"; //Nomme le pdf que l'on téléc
             <td style="width: 14%;;"><?php echo $Utilite?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Utilite']?></td>
             <td style="width: 14%;;"><?php echo $Pepins?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Pepins']?></td>
         </tr>
-        <tr>
-            <td style="width: 14%;;"><?php echo $OIpays?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['OIpays']?></td>
-            <td style="width: 14%;;"><?php echo $Obtenteneur?></td><td style="width: 36%;color:#000;;">&nbsp;<?php echo $resultat['Obtenteur']?></td>
-        </tr>
     </table><br>
     <!--Origine et inscription-->
     <table>
@@ -275,6 +271,5 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>
 

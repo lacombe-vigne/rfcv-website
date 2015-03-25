@@ -1517,7 +1517,7 @@ class BibliothequeDAO {
             $Em_Contents = array();
             for ($j = 0; $j < (mysql_num_rows($resultat_emplacement)); $j = $j + 1) {
                 $dico = mysql_fetch_assoc($resultat_emplacement);
-                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                 $Em_Content = supprNull($EM->getListeEmplaclemnt());
                 array_push($Em_Contents, $Em_Content);
             }
@@ -1616,10 +1616,10 @@ class BibliothequeDAO {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
                 if ($_SESSION['language_Vigne'] == "FR") {
-                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 if ($_SESSION['language_Vigne'] == "EN") {
-                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 $content = supprNull($MOR->getListeMorphologique());
                 array_push($contents, $content);
@@ -1711,7 +1711,7 @@ class BibliothequeDAO {
             $contents_genetique = array();
             for ($i = 0; $i < (mysql_num_rows($resultat_genetique)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat_genetique);
-                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                 $content_genetique = $genetique_class->getListeGenetique();
                 array_push($contents_genetique, $content_genetique);
             }
@@ -2821,10 +2821,10 @@ class BibliothequeDAO {
                         for ($i = 0; $i < (mysql_num_rows($resultat_mor)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_mor);
                             if ($_SESSION['language_Vigne'] == "FR") {
-                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                             }
                             if ($_SESSION['language_Vigne'] == "EN") {
-                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                             }
                             $content = supprNull($MOR->getFicherMorphologique());
                         }
@@ -2850,7 +2850,7 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_emp) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_emp);
-                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                             $Em_Content = supprNull($EM->getFicherEmplacement());
                         }
                         deconnexion_bbd();
@@ -2916,7 +2916,7 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_gen) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_gen)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_gen);
-                            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                             $content_genetique = supprNull($genetique_class->getFicherGenetique());
                         }
                         deconnexion_bbd();
@@ -3202,7 +3202,7 @@ class BibliothequeDAO {
         if (mysql_num_rows($resultat) > 0) {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
-                $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['RemarquesVar']);
+                $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->collect($dico['evdb_20-SAMPSTAT'], $langue) ,$dico['RemarquesVar']);
                 $detail = $VAR->getFicherVarieteTab();
             }
             deconnexion_bbd();
@@ -6809,7 +6809,7 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
             $Em_Content = supprNull($EM->getListeEmplaclemnt());
             $Em_Content['NomVar'] = $DAO->nomVar($dico['CodeVar']);
         }
@@ -6863,10 +6863,10 @@ class BibliothequeDAO {
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
             if ($_SESSION['language_Vigne'] == "FR") {
-                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             }
             if ($_SESSION['language_Vigne'] == "EN") {
-                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             }
             $content = supprNull($MOR->getSelectionMorphologique());
             $content['CodeVar'] = $dico['CodeVar'];
@@ -6918,7 +6918,7 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
             $content_genetique = $genetique_class->getSelectionGenetique();
             $content_genetique['CodeVar'] = $dico['CodeVar'];
             $content_genetique['NomVar'] = $DAO->nomVar($dico['CodeVar']);
@@ -7047,6 +7047,30 @@ class BibliothequeDAO {
         }
         return $utilite;
     }
+    
+    public function collect($a, $langue) { // statut en collection
+        $sql = "SELECT * FROM ListeDeroulante_SAMPSTAT_JY WHERE SAMPSTAT ='" . $a . "'";
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            $utilite = "";
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                if ($langue == "FR") {
+                    $collect = $dico['SAMPSTAT_TEXT'];
+                }
+                if ($langue == "EN") {
+                    $collect = $dico['SAMPSTAT_TEXT_en'];
+                }
+            }
+        }
+        return $collect;
+    }
 
     public function exportpdf($code, $langue, $section) {// Permet d'exporter les données en PDF
         $DAO = new BibliothequeDAO();
@@ -7067,7 +7091,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat);
-                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['RemarquesVar']);
+                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->collect($dico['evdb_20-SAMPSTAT'], $langue) ,$dico['RemarquesVar']);
                     $detail = $VAR->getFichePDFVariete();
                     $detail = supprNull($detail);
                 }
@@ -7193,10 +7217,10 @@ class BibliothequeDAO {
                 for ($i = 0; $i < (mysql_num_rows($resultat_mor)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_mor);
                     if ($langue == "FR") {
-                        $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                     }
                     if ($langue == "EN") {
-                        $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeAcc'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                     }
                 }
                 $detail = $MOR->getFicherMorphologique();
@@ -7286,7 +7310,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_emp) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_emp);
-                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                 }
                 $detail = $EM->getFicherEmplacement();
                 $detail = supprNull($detail);
@@ -7310,7 +7334,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_gen) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_gen)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_gen);
-                    $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                    $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                 }
                 $detail = $genetique_class->getFicherGenetique();
                 $detail = supprNull($detail);

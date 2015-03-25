@@ -9,10 +9,13 @@ class Genetique {
 	private $Partenaire = null;
 	private $Date_gen = null;
 	
+        private $nomVar = null;
+	private $CodeVar = null;
 	private $nomAcc = null;
 	private $CodeAcc = null;
 	private $EmplacemRecolte = null;
 	private $SouchePrelev = null;
+        private $DateRecolte = null;
 	private $IdProtocoleRecolte = null;
 	private $TypeOrgane = null;
 	private $IdStockADN = null;
@@ -29,10 +32,13 @@ class Genetique {
 	public function getPartenaire(){return $this->Partenaire;}
 	public function getDate_gen(){return $this->Date_gen;}
 	
+        public function getnomVar(){return $this->nomVar;}
+	public function getCodeVar(){return $this->CodeVar;}
 	public function getnomAcc(){return $this->nomAcc;}
 	public function getCodeAcc(){return $this->CodeAcc;}
 	public function getEmplacemRecolte(){return $this->EmplacemRecolte;}
 	public function getSouchePrelev(){return $this->SouchePrelev;}
+        public function getDateRecolte(){return $this->DateRecolte;}
 	public function getIdProtocoleRecolte(){return $this->IdProtocoleRecolte;}
 	public function getTypeOrgane(){return $this->TypeOrgane;}
 	public function getIdStockADN(){return $this->IdStockADN;}
@@ -41,7 +47,7 @@ class Genetique {
 	public function getDateRun(){return $this->DateRun;}
 	public function getCodePartenaire(){return $this->CodePartenaire;}
 	
-	function __construct($Code,$Margueur,$Allele1,$Allele2,$Partenaire,$Date_gen ,$nomAcc,$CodeAcc,$EmplacemRecolte,$SouchePrelev,$IdProtocoleRecolte,$TypeOrgane,$IdStockADN,$IdProtocolePCR,$DatePCR,$DateRun,$CodePartenaire){
+	function __construct($Code,$Margueur,$Allele1,$Allele2,$Partenaire,$Date_gen,$nomVar,$CodeVar ,$nomAcc,$CodeAcc,$EmplacemRecolte,$SouchePrelev,$DateRecolte,$IdProtocoleRecolte,$TypeOrgane,$IdStockADN,$IdProtocolePCR,$DatePCR,$DateRun,$CodePartenaire){
 		$this->Code = $Code;
 		$this->Margueur = $Margueur;
 		$this->Allele1 = $Allele1;
@@ -49,10 +55,13 @@ class Genetique {
 		$this->Partenaire = $Partenaire;
 		$this->Date_gen = $Date_gen;
 		
+                $this->nomVar = $nomVar;
+		$this->CodeVar = $CodeVar;
 		$this->nomAcc = $nomAcc;
 		$this->CodeAcc = $CodeAcc;
 		$this->EmplacemRecolte = $EmplacemRecolte;
 		$this->SouchePrelev = $SouchePrelev;
+                $this->DateRecolte = $DateRecolte;
 		$this->IdProtocoleRecolte = $IdProtocoleRecolte;
 		$this->TypeOrgane = $TypeOrgane;
 		$this->IdStockADN = $IdStockADN;
@@ -75,6 +84,8 @@ class Genetique {
 	function getFicherGenetique(){
 		$contents=array();
 		$contents['Code']=$this->getCode();
+                $contents['nomVar']=$this->getnomVar();
+		$contents['CodeVar']=$this->getCodeVar();
 		$contents['nomAcc']=$this->getnomAcc();
 		$contents['CodeAcc']=$this->getCodeAcc();
 		$contents['Marqueur']=$this->getMargueur();
@@ -82,7 +93,7 @@ class Genetique {
 		$contents['ValeurCodee2']=$this->getAllele2();
 		$contents['EmplacemRecolte']=$this->getEmplacemRecolte();
 		$contents['SouchePrelev']=$this->getSouchePrelev();
-		$contents['DateRecolte']=$this->getIdProtocoleRecolte();
+		$contents['DateRecolte']=$this->getDateRecolte();
 		$contents['IdProtocoleRecolte']=$this->getIdProtocoleRecolte();
 		$contents['TypeOrgane']=$this->getTypeOrgane();
 		$contents['IdStockADN']=$this->getIdStockADN();

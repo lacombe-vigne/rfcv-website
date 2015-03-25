@@ -58,7 +58,7 @@
 			"OIdeparte":"Département : ",
 			"OIinscriptionFrance":"Inscription France : ",
 			"OIanneeInscriptionFrance":"Année inscription France : ",
-			"OInumVarOnivins":"Numéro FranceAgriMer/CTPS : ",
+			"OInumVarOnivins":"Numéro FranceAgriMer / CTPS : ",
 			"OIinscriptionEurop":"Inscription Europe : ",
 			"Ptitle":"Parenté",
 			"Pobtenteur":"Obtenteur : ",
@@ -104,7 +104,7 @@
 			"OIdeparte":"Department: ",
 			"OIinscriptionFrance":"Registration France: ",
 			"OIanneeInscriptionFrance":"Year registration  France: ",
-			"OInumVarOnivins":"Number FranceAgriMer/CTPS: ",
+			"OInumVarOnivins":"Number FranceAgriMer / CTPS: ",
 			"OIinscriptionEurop":"Registration Europe: ",
 			"Ptitle":"Parentage",
 			"Pobtenteur":"Obtenteur: ",
@@ -133,7 +133,7 @@
 			"PayP":"Pays provenance : ",
 			"CommuneP":"Ville provenance : ",
 			"AdresseP":"Adresse provenance : ",
-			"Collecteur":"Collecteur/donateur: ",
+			"Collecteur":"Collecteur / donateur : ",
 			"cate1":"Détails provenance et agrément",
 			"cate2":"Aptitudes",
 			"cate3":"Description morphologique",
@@ -150,7 +150,7 @@
 			"PDsite":"Site : ",
 			"PDadresse":"Adresse : ",
 			"PDpropirete":"Propriétaire : ",
-			"PDcollecteure":"Collecteur/donateur : ",
+			"PDcollecteure":"Collecteur / donateur : ",
 			"PDparcelle":"Parcelle : ",
 			"PDrang":"Rang : ",
 			"PDsouche":"Souche : ",
@@ -224,7 +224,7 @@
 			"PayP":"Country provenance: ",
 			"CommuneP":"City Provenance: ",
 			"AdresseP":"Address Provenance: ",
-			"Collecteur":"Collector/donor: ",
+			"Collecteur":"Collector / donor: ",
 			"cate1":"Details provenance and registration",
 			"cate2":"Aptitudes",
 			"cate3":"Morphological description",
@@ -241,7 +241,7 @@
 			"PDsite":"Location: ",
 			"PDadresse":"Address: ",
 			"PDpropirete":"Owner: ",
-			"PDcollecteure":"Collector/donor: ",
+			"PDcollecteure":"Collector / donor: ",
 			"PDparcelle":"Parcel: ",
 			"PDrang":"Row: ",
 			"PDsouche":"Plant: ",
@@ -307,7 +307,9 @@
 		{
 			"title":"Notation aptitude",
 			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
+                        "codeAcc":"Code accession : ",
 			"Caracteristique":"Caractéristique : ",
 			"Valeur":"Valeur : ",
 			"Unite":"Unité : ",
@@ -325,7 +327,9 @@
 		{
 			"title":"Aptitude notation",
 			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
+                        "codeAcc":"Accession code: ",
 			"Caracteristique":"Characteristic: ",
 			"Valeur":"Value: ",
 			"Unite":"Unity: ",
@@ -342,7 +346,10 @@
 	"morphologique_fr":
 		{
 			"title":"Notation morphologique",
+			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
+                        "codeAcc":"Code accession : ",
 			"Descripteur":"Descripteur : ",
 			"CodeDescripteur":"Code descripteur : ",
 			"Caractere":"Caractère : ",
@@ -359,7 +366,10 @@
 	"morphologique_en":
 		{
 			"title":"Morphological notation",
+			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
+                        "codeAcc":"Accession code: ",
 			"Descripteur":"Descriptor: ",
 			"CodeDescripteur":"Code descriptor: ",
 			"Caractere":"Character: ",
@@ -376,8 +386,10 @@
 	"emplacement_fr":
 		{
 			"title":"Emplacement en collection",
+			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
-			"CodeAcc":"Code accession : ",
+                        "codeAcc":"Code accession : ",
 			"Site":"Site : ",
 			"Zone":"Zone : ",
 			"Parcelle":"Parcelle : ",
@@ -402,8 +414,10 @@
 	"emplacement_en":
 		{
 			"title":"Location in collection",
+			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
-			"CodeAcc":"Accession code: ",
+                        "codeAcc":"Accession code: ",
 			"Site":"Place: ",
 			"Zone":"Zone: ",
 			"Parcelle":"Parcel: ",
@@ -428,8 +442,10 @@
 	"sanitaire_fr":
 		{
 			"title":"Test sanitaire",
+			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
-			"CodeAcc":"Code accession : ",
+                        "codeAcc":"Code accession : ",
 			"PathogeneTeste":"Pathogène testé : ",
 			"ResultatTest":"Résultat : ",
 			"CategorieTest":"Catégorie test : ",
@@ -443,8 +459,10 @@
 	"sanitaire_en":
 		{
 			"title":"Sanitary test",
+			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
-			"CodeAcc":"Accession code: ",
+                        "codeAcc":"Accession code: ",
 			"PathogeneTeste":"Pathogen tested: ",
 			"ResultatTest":"Résult: ",
 			"CategorieTest":"Category test:",
@@ -458,8 +476,10 @@
 	"genetique_fr":
 		{
 			"title":"Marqueur génétique",
+			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
-			"CodeAcc":"Code accession : ",
+                        "codeAcc":"Code accession : ",
 			"Marqueur":"Marqueur : ",
 			"ValeurCodee1":"Valeur allèle 1 : ",
 			"ValeurCodee2":"Valeur allèle 2 : ",
@@ -477,8 +497,10 @@
 	"genetique_en":
 		{
 			"title":"Genetic marker",
+			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
-			"CodeAcc":"Accession code: ",
+                        "codeAcc":"Accession code: ",
 			"Marqueur":"Marker: ",
 			"ValeurCodee1":"Value allele 1: ",
 			"ValeurCodee2":"Value allele 2: ",
@@ -497,7 +519,9 @@
 		{
 			"title":"Citation Bibliographique",
 			"nomVar":"Nom variété : ",
+                        "codeVar":"Code variété :",
 			"nomAcc":"Nom accession : ",
+                        "codeAcc":"Code accession : ",
 			"TypeDoc":"Type document : ",
 			"Title":"Titre : ",
 			"Author":"Auteur(s) : ",
@@ -519,7 +543,9 @@
 		{
 			"title":"Bibliographic citation",
 			"nomVar":"Variety name: ",
+                        "codeVar":"Variety code: ",
 			"nomAcc":"Accession name: ",
+                        "codeAcc":"Accession code: ",
 			"TypeDoc":"Type document: ",
 			"Title":"Title: ",
 			"Author":"Author(s): ",

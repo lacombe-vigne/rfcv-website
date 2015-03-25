@@ -11,8 +11,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_fr}->{Code};
     /* données */
     $title = $parsed_json->{genetique_fr}->{title};
+    $nomVar = $parsed_json->{genetique_fr}->{nomVar};
+    $codeVar = $parsed_json->{genetique_fr}->{codeVar};
     $nomAcc = $parsed_json->{genetique_fr}->{nomAcc};
-    $CodeAcc = $parsed_json->{genetique_fr}->{CodeAcc};
+    $codeAcc = $parsed_json->{genetique_fr}->{codeAcc};
     $Marqueur = $parsed_json->{genetique_fr}->{Marqueur};
     $ValeurCodee1 = $parsed_json->{genetique_fr}->{ValeurCodee1};
     $ValeurCodee2 = $parsed_json->{genetique_fr}->{ValeurCodee2};
@@ -37,8 +39,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_en}->{Code};
     /* données */
     $title = $parsed_json->{genetique_en}->{title};
+    $nomVar = $parsed_json->{genetique_en}->{nomVar};
+    $codeVar = $parsed_json->{genetique_en}->{codeVar};
     $nomAcc = $parsed_json->{genetique_en}->{nomAcc};
-    $CodeAcc = $parsed_json->{genetique_en}->{CodeAcc};
+    $codeAcc = $parsed_json->{genetique_en}->{codeAcc};
     $Marqueur = $parsed_json->{genetique_en}->{Marqueur};
     $ValeurCodee1 = $parsed_json->{genetique_en}->{ValeurCodee1};
     $ValeurCodee2 = $parsed_json->{genetique_en}->{ValeurCodee2};
@@ -85,8 +89,8 @@ $nompdf = $title . $resultat['Code'] . ".pdf"; //Nomme le pdf que l'on télécha
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:33%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:35%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['Code'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:30%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "></font></td><td style="border:none;width:39%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['Code'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -110,35 +114,39 @@ $nompdf = $title . $resultat['Code'] . ".pdf"; //Nomme le pdf que l'on télécha
     <!--Contenu du pdf-->
     <table>
         <tr>
-            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $nomVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomVar'] ?></td>
+            <td style="width: 14%;"><?php echo $DateRecolte ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DateRecolte'] ?></td>
+        </tr>
+        <tr>
+            <td style="width: 14%;"><?php echo $codeVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeVar'] ?></td>
             <td style="width: 14%;"><?php echo $IdProtocoleRecolte ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['IdProtocoleRecolte'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
             <td style="width: 14%;"><?php echo $TypeOrgane ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['TypeOrgane'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Marqueur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Marqueur'] ?></td>
-            <td style="width: 14%;"><?php echo $$IdStockADN ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['IdStockADN'] ?></td>
+            <td style="width: 14%;"><?php echo $codeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $IdStockADN ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['IdStockADN'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $ValeurCodee1 ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ValeurCodee1'] ?></td>
+            <td style="width: 14%;"><?php echo $Marqueur ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Marqueur'] ?></td>
             <td style="width: 14%;"><?php echo $IdProtocolePCR ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['IdProtocolePCR'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $ValeurCodee2 ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ValeurCodee2'] ?></td>
+            <td style="width: 14%;"><?php echo $ValeurCodee1 ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ValeurCodee1'] ?></td>
             <td style="width: 14%;"><?php echo $DatePCR ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DatePCR'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $EmplacemRecolte ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['EmplacemRecolte'] ?></td>
+            <td style="width: 14%;"><?php echo $ValeurCodee2 ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ValeurCodee2'] ?></td>
             <td style="width: 14%;"><?php echo $DateRun ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DateRun'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $SouchePrelev ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SouchePrelev'] ?></td>
+            <td style="width: 14%;"><?php echo $EmplacemRecolte ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['EmplacemRecolte'] ?></td>
             <td style="width: 14%;"><?php echo $Partenaire ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Partenaire'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $DateRecolte ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['DateRecolte'] ?></td>
+            <td style="width: 14%;"><?php echo $SouchePrelev ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['SouchePrelev'] ?></td>
         </tr>
     </table>    
 </page>
@@ -153,6 +161,5 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>
 

@@ -11,7 +11,9 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     /* données */
     $title = $parsed_json->{bibliographique_fr}->{title};
     $nomVar = $parsed_json->{bibliographique_fr}->{nomVar};
+    $codeVar = $parsed_json->{bibliographique_fr}->{codeVar};
     $nomAcc = $parsed_json->{bibliographique_fr}->{nomAcc};
+    $codeAcc = $parsed_json->{bibliographique_fr}->{codeAcc};
     $TypeDoc = $parsed_json->{bibliographique_fr}->{TypeDoc};
     $Title = $parsed_json->{bibliographique_fr}->{Title};
     $Author = $parsed_json->{bibliographique_fr}->{Author};
@@ -39,7 +41,9 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     /* données */
     $title = $parsed_json->{bibliographique_en}->{title};
     $nomVar = $parsed_json->{bibliographique_en}->{nomVar};
+    $codeVar = $parsed_json->{bibliographique_en}->{codeVar};
     $nomAcc = $parsed_json->{bibliographique_en}->{nomAcc};
+    $codeAcc = $parsed_json->{bibliographique_en}->{codeAcc};
     $TypeDoc = $parsed_json->{bibliographique_en}->{TypeDoc};
     $Title = $parsed_json->{bibliographique_en}->{Title};
     $Author = $parsed_json->{bibliographique_en}->{Author};
@@ -88,8 +92,8 @@ $nompdf = $title . $resultat['Code'] . ".pdf"; //Nomme le pdf que l'on télécha
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:30%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:30%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['Code'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:40%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "></font></td><td style="border:none;width:23%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['Code'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -117,36 +121,40 @@ $nompdf = $title . $resultat['Code'] . ".pdf"; //Nomme le pdf que l'on télécha
             <td style="width: 14%;"><?php echo $ISBN ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['ISBN'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $codeVar ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeVar'] ?></td>
             <td style="width: 14%;"><?php echo $Language ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Language'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $TypeDoc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['TypeDoc'] ?></td>
+            <td style="width: 14%;"><?php echo $nomAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['nomAcc'] ?></td>
             <td style="width: 14%;"><?php echo $NumberOfVolumes ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NumberOfVolumes'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Title ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Title'] ?></td>
+            <td style="width: 14%;"><?php echo $codeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
             <td style="width: 14%;"><?php echo $PagesDoc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PagesDoc'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Author ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Author'] ?></td>
+            <td style="width: 14%;"><?php echo $TypeDoc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['TypeDoc'] ?></td>
             <td style="width: 14%;"><?php echo $CallNumber ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CallNumber'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Year ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Year'] ?></td>
+            <td style="width: 14%;"><?php echo $Title ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Title'] ?></td>
             <td style="width: 14%;"><?php echo $VolumeCitation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['VolumeCitation'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Edition ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Edition'] ?></td>
+            <td style="width: 14%;"><?php echo $Author ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Author'] ?></td>
             <td style="width: 14%;"><?php echo $PagesCitation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PagesCitation'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $Publisher ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Publisher'] ?></td>
+            <td style="width: 14%;"><?php echo $Year ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Year'] ?></td>
             <td style="width: 14%;"><?php echo $AuteurCitation ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['AuteurCitation'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $PlacePublished ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PlacePublished'] ?></td>
+            <td style="width: 14%;"><?php echo $Edition ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Edition'] ?></td>
             <td style="width: 14%;"><?php echo $NomVigneCite ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['NomvigneCite'] ?></td>
+        </tr>
+        <tr>
+            <td style="width: 14%;"><?php echo $Publisher ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['Publisher'] ?></td>
+            <td style="width: 14%;"><?php echo $PlacePublished ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['PlacePublished'] ?></td>
         </tr>
     </table>    
 </page>
@@ -161,6 +169,5 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>
 

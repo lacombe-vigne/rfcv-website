@@ -9,6 +9,8 @@ class Morphologique {
 	private $CaractereOIV = null;
 	
 	private $CodeAmpelo = null;
+        private $nomVar = null;
+	private $CodeVar = null;
 	private $nomAcc = null;
 	private $CodeAcc = null;
 	private $Descripteur = null;
@@ -33,6 +35,8 @@ class Morphologique {
 	public function getCaractereOIV(){return $this->CaractereOIV;}
 	
 	public function getCodeAmpelo(){return $this->CodeAmpelo;}
+        public function getnomVar(){return $this->nomVar;}
+	public function getCodeVar(){return $this->CodeVar;}
 	public function getnomAcc(){return $this->nomAcc;}
 	public function getCodeAcc(){return $this->CodeAcc;}
 	public function getDescripteur(){return $this->Descripteur;}
@@ -50,7 +54,7 @@ class Morphologique {
 	public function getCodeSite(){return $this->CodeSite;}
 	public function getEmplamcement(){return $this->Emplamcement;}
 	
-	function __construct($id,$Code,$Description,$Critaire,$CaractereOIV,$CodeAmpelo,$nomAcc,$CodeAcc,$Descripteur,$CodeDescripteur,$Caractere,$CodeCaractere,$Experimentateur,$Partenaire,$CodePartenaire,$JourExp,$MoisExp,$AnneeExp,$LieuExp,$SiteExp,$CodeSite,$Emplamcement){
+	function __construct($id,$Code,$Description,$Critaire,$CaractereOIV,$CodeAmpelo,$nomVar,$CodeVar,$nomAcc,$CodeAcc,$Descripteur,$CodeDescripteur,$Caractere,$CodeCaractere,$Experimentateur,$Partenaire,$CodePartenaire,$JourExp,$MoisExp,$AnneeExp,$LieuExp,$SiteExp,$CodeSite,$Emplamcement){
 		$this->id = $id;
 		$this->Code = $Code;
 		$this->Description = $Description;
@@ -58,6 +62,8 @@ class Morphologique {
 		$this->CaractereOIV = $CaractereOIV;
 		
 		$this->CodeAmpelo = $CodeAmpelo;
+                $this->nomVar = $nomVar;
+		$this->CodeVar = $CodeVar;
 		$this->nomAcc = $nomAcc;
 		$this->CodeAcc = $CodeAcc;
 		$this->Descripteur = $Descripteur;
@@ -88,6 +94,8 @@ class Morphologique {
 	function getFicherMorphologique(){
 		$contents=array();
 		$contents['CodeAmpelo']=$this->getCodeAmpelo();
+                $contents['nomVar']=$this->getnomVar();
+		$contents['CodeVar']=$this->getCodeVar();
 		$contents['nomAcc']=$this->getnomAcc();
 		$contents['CodeAcc']=$this->getCodeAcc();
 		$contents['Descripteur']=$this->getDescripteur();

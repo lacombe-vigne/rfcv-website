@@ -11,8 +11,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_fr}->{Code};
     /* données */
     $title = $parsed_json->{sanitaire_fr}->{title};
+    $nomVar = $parsed_json->{sanitaire_fr}->{nomVar};
+    $codeVar = $parsed_json->{sanitaire_fr}->{codeVar};
     $nomAcc = $parsed_json->{sanitaire_fr}->{nomAcc};
-    $CodeAcc = $parsed_json->{sanitaire_fr}->{CodeAcc};
+    $codeAcc = $parsed_json->{sanitaire_fr}->{codeAcc};
     $PathogeneTeste = $parsed_json->{sanitaire_fr}->{PathogeneTeste};
     $ResultatTest = $parsed_json->{sanitaire_fr}->{ResultatTest};
     $CategorieTest = $parsed_json->{sanitaire_fr}->{CategorieTest};
@@ -33,8 +35,10 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_en}->{Code};
     /* données */
     $title = $parsed_json->{sanitaire_en}->{title};
+    $nomVar = $parsed_json->{sanitaire_en}->{nomVar};
+    $codeVar = $parsed_json->{sanitaire_en}->{codeVar};
     $nomAcc = $parsed_json->{sanitaire_en}->{nomAcc};
-    $CodeAcc = $parsed_json->{sanitaire_en}->{CodeAcc};
+    $codeAcc = $parsed_json->{sanitaire_en}->{codeAcc};
     $PathogeneTeste = $parsed_json->{sanitaire_en}->{PathogeneTeste};
     $ResultatTest = $parsed_json->{sanitaire_en}->{ResultatTest};
     $CategorieTest = $parsed_json->{sanitaire_en}->{CategorieTest};
@@ -78,8 +82,8 @@ $nompdf = $title . $resultat['CodeSanitaire'] . ".pdf"; //Nomme le pdf que l'on 
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:59%"></td>
-                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "><?php echo $Code ?></font></td><td style="border:none;width:12%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeSanitaire'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#696969; font-weight:bold; "><?php echo '&nbsp;&nbsp;' . $title . '' ?> </font></td><td style="border:none;width:48%"></td>
+                <td style="border:none;"><font style="font-size: 18px; color:#696969; font-weight:bold; "></font></td><td style="border:none;width:30%"><font style="font-size:18px; color:#000; font-weight: bold"><?php echo $resultat['CodeSanitaire'] ?></font></td>
             </tr>
         </table>
     </page_header>
@@ -107,7 +111,7 @@ $nompdf = $title . $resultat['CodeSanitaire'] . ".pdf"; //Nomme le pdf que l'on 
             <td style="width: 14%;"><?php echo $CategorieTest ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CategorieTest'] ?></td>
         </tr>
         <tr>
-            <td style="width: 14%;"><?php echo $CodeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
+            <td style="width: 14%;"><?php echo $codeAcc ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['CodeAcc'] ?></td>
             <td style="width: 14%;"><?php echo $MatTeste ?></td><td style="width:36%;color:#000;">&nbsp;<?php echo $resultat['MatTeste'] ?></td>
         </tr>
         <tr>
@@ -138,5 +142,4 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>

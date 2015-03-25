@@ -14,6 +14,8 @@ class Sanitaire {
 	private $NomTest = null;
 	
 	private $CodeSanitaire = null;
+        private $nomVar = null;
+	private $CodeVar = null;
 	private $nomAcc = null;
 	private $CodeAcc = null;
 	private $PathogeneTeste = null;
@@ -35,6 +37,8 @@ class Sanitaire {
 
 	
 	public function getCodeSanitaire(){return $this->CodeSanitaire;}
+        public function getnomVar(){return $this->nomVar;}
+	public function getCodeVar(){return $this->CodeVar;}
 	public function getnomAcc(){return $this->nomAcc;}
 	public function getCodeAcc(){return $this->CodeAcc;}
 	public function getPathogeneTeste(){return $this->PathogeneTeste;}
@@ -55,6 +59,8 @@ class Sanitaire {
 		$this->NomTest = $NomTest;
 		
 		$this->CodeSanitaire = $CodeSanitaire;
+                $this->nomVar = $nomVar;
+		$this->CodeVar = $CodeVar;
 		$this->nomAcc = $nomAcc;
 		$this->CodeAcc = $CodeAcc;
 		$this->PathogeneTeste = $PathogeneTeste;
@@ -80,6 +86,8 @@ class Sanitaire {
 	function getFicherSanitaire(){
 		$contents=array();
 		$contents['CodeSanitaire']=$this->getCodeSanitaire();
+                $contents['nomVar']=$this->getnomVar();
+		$contents['CodeVar']=$this->getCodeVar();
 		$contents['nomAcc']=$this->getnomAcc();
 		$contents['CodeAcc']=$this->getCodeAcc();
 		$contents['PathogeneTeste']=$this->getPathogeneTeste();

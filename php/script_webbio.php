@@ -544,8 +544,8 @@ switch($fun){
 		$case_s=$_POST['case_s'];
                 $_SESSION['typerecherche']=$case_s;
 		$model=$_POST['model'];
-		$langue=$_POST['langue_value'];
-                //$langue=$_SESSION['language_Vigne'];
+		//$langue=$_POST['langue_value'];
+                $langue=$_SESSION['language_Vigne'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];

@@ -10,6 +10,7 @@ class Emplacement {
 	private $DerniereSouche = null;
 	private $NomIntro = null;
 	private $CodeIntro = null;
+        private $NomVar = null;
 	private $CodeVar = null;
 	private $CodeIntroPartenaire = null;
 	private $NumCloneCTPS = null;
@@ -41,6 +42,7 @@ class Emplacement {
 	public function getDerniereSouche(){return $this->DerniereSouche;}
 	public function getNomIntro(){return $this->NomIntro;}
 	public function getCodeIntro(){return $this->CodeIntro;}
+        public function getNomVar(){return $this->NomVar;}
 	public function getCodeVar(){return $this->CodeVar;}
 	public function getCodeIntroPartenaire(){return $this->CodeIntroPartenaire;}
 	public function getNumCloneCTPS(){return $this->NumCloneCTPS;}
@@ -63,7 +65,7 @@ class Emplacement {
 	public function getGreffe(){return $this->Greffe;}
 	public function getPorteGreffe(){return $this->PorteGreffe;}
 	
-	function __construct($CodeEmplacem,$CodeSite,$Parcelle,$Rang,$PremiereSouche,$DerniereSouche,$NomIntro,$CodeIntro,$CodeVar,$CodeIntroPartenaire,$NumCloneCTPS,$AnneePlantation,$nomAcc,$CodeAcc,$Site,$Zone,$SousPartie,$NbreEtatNormal,$NbreEtatMoyen,$NbreEtatMoyFaible,$NbreEtatFaible,$NbreEtatTresFaible,$NbreEtatMort,$TypeSouche,$AnneeElimination,$CategMateriel,$Greffe,$PorteGreffe){
+	function __construct($CodeEmplacem,$CodeSite,$Parcelle,$Rang,$PremiereSouche,$DerniereSouche,$NomIntro,$CodeIntro,$NomVar,$CodeVar,$CodeIntroPartenaire,$NumCloneCTPS,$AnneePlantation,$nomAcc,$CodeAcc,$Site,$Zone,$SousPartie,$NbreEtatNormal,$NbreEtatMoyen,$NbreEtatMoyFaible,$NbreEtatFaible,$NbreEtatTresFaible,$NbreEtatMort,$TypeSouche,$AnneeElimination,$CategMateriel,$Greffe,$PorteGreffe){
 		$this->CodeEmplacem = $CodeEmplacem;
 		$this->CodeSite = $CodeSite;
 		$this->Parcelle = $Parcelle;
@@ -72,6 +74,7 @@ class Emplacement {
 		$this->DerniereSouche = $DerniereSouche;
 		$this->NomIntro = $NomIntro;
 		$this->CodeIntro = $CodeIntro;
+                $this->NomVar = $NomVar;
 		$this->CodeVar = $CodeVar;
 		$this->CodeIntroPartenaire = $CodeIntroPartenaire;
 		$this->NumCloneCTPS = $NumCloneCTPS;
@@ -116,6 +119,8 @@ class Emplacement {
 		$contents['CodeEmplacemen']=$this->getCodeEmplacem();
 		$contents['nomAcc']=$this->getnomAcc();
 		$contents['CodeAcc']=$this->getCodeAcc();
+                $contents['CodeVar']=$this->getCodeVar();
+		$contents['NomVar']=$this->getNomVar();
 		$contents['Site']=$this->getSite();
 		$contents['CodeSite']=$this->getCodeSite();
 		$contents['Zone']=$this->getZone();

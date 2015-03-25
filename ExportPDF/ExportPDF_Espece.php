@@ -47,7 +47,7 @@ $nompdf = $Title . $resultat['CodeEsp'] . ".pdf"; //Nomme le pdf que l'on télé
 <style type="text/css">
     table{width:100%;color:#888;border-collapse: collapse}
     h4{color:#808;}
-    b{color:#000; font-weight:normal}
+    b{color:#000; font-weight:normal;}
     td{display: inline-block;vertical-align: top;text-align: left;border: 1px;border-color:#aaa
     }
 </style>
@@ -63,7 +63,7 @@ $nompdf = $Title . $resultat['CodeEsp'] . ".pdf"; //Nomme le pdf que l'on télé
         </table>
         <table style="background-color:#DDA0DD;border-radius:10px;">
             <tr>
-                <td style="border:none;"><font style="font-size: 22px; color:#808; font-weight:bold "><?php echo '&nbsp;&nbsp;' . $Title . '' ?> </font></td><td style="border:none;width: 64%"><font style="font-size: 22px; color:#000; font-weight:bold"><?php echo $resultat['Espece'] ?></font></td>
+                <td style="border:none;"><font style="font-size: 22px; color:#808; font-weight:bold "><?php echo '&nbsp;&nbsp;' . $Title . '' ?> </font></td><td style="border:none;width: 64%"><font style="font-size: 22px; color:#000; font-weight:bold; font-style:italic "><?php echo $resultat['Espece'] ?></font></td>
                 <td style="border:none;"><font style="font-size: 14px; color:#808; font-weight:bold "><?php echo $Code ?></font></td><td style="border:none;width:15%"><font style="font-size:14px; color:#000; font-weight: bold"><?php echo $resultat['CodeEsp'] ?></font></td>
             </tr>
         </table>
@@ -89,14 +89,14 @@ $nompdf = $Title . $resultat['CodeEsp'] . ".pdf"; //Nomme le pdf que l'on télé
     <table>
         <tr>
             <td style="width: 14%"><?php echo $Botaniste ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Botaniste'] ?></b></td>
-            <td style="width: 14%"><?php echo $Genre ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['Genre'] ?></b></td>
+            <td style="width: 14%"><?php echo $Genre ?></td><td style="width: 36%"><b><i>&nbsp;<?php echo $resultat['Genre'] ?></i></b></td>
         </tr>
         <tr>
             <td style="width: 14%"><?php echo $CompoGenet ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['CompoGenet'] ?></b></td>
-            <td style="width: 14%"><?php echo $SousGenre ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['SousGenre'] ?></b></td>
+            <td style="width: 14%"><?php echo $SousGenre ?></td><td style="width: 36%"><b><i>&nbsp;<?php echo $resultat['SousGenre'] ?></i></b></td>
         </tr>
         <tr>
-            <td style="width: 14%"><?php echo $RemarqueEsp ?></td><td style="width: 36%"><b>&nbsp;<?php echo $resultat['RemarqueEsp'] ?></b></td>
+            <td style="width: 14%"><?php echo $RemarqueEsp ?></td><td style="width: 36%" colspan="3"><b>&nbsp;<?php echo $resultat['RemarqueEsp'] ?></b></td>
         </tr>
     </table>
 </page>
@@ -111,5 +111,4 @@ try {
 } catch (HTML2PDF_Exception $ex) { // Exception qui permet d'afficher les erreurs de HTML2PDF
     die($ex);
 }
-session_destroy();
 ?>
