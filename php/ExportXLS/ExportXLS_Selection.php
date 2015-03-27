@@ -15,6 +15,19 @@ $DAO = new BibliothequeDAO();
 $json = file_get_contents('../../json/selection.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 //Permet de récupérer les bon json en fonction de la langue
+
+$jsonXLS = file_get_contents('../../json/xls.json');
+$parsed_jsonXLS = json_decode($jsonXLS); // Permet de lire le fichier JSON avec PHP.
+//Permet de récupérer les bon json en fonction de la langue
+if($langue== "FR"){
+    $Title=utf8_decode($parsed_jsonXLS->{xls_fr}->{Title});
+    $Donnees=utf8_decode($parsed_jsonXLS->{xls_fr}->{Donnees});
+    $Compteur=utf8_decode($parsed_jsonXLS->{xls_fr}->{Compteur});
+}else if($langue== "EN"){
+    $Title=utf8_decode($parsed_jsonXLS->{xls_en}->{Title});
+    $Donnees=utf8_decode($parsed_jsonXLS->{xls_en}->{Donnees});
+    $Compteur=utf8_decode($parsed_jsonXLS->{xls_en}->{Compteur});
+}
 switch ($section) {
 
     case "Espece":
@@ -379,15 +392,14 @@ $Date = & $workbook->addformat();
 
 $Label = & $workbook->addformat();
 $Label->set_bold();
-$Label->set_bg_color("grey");
+$Label->set_bg_color("silver"); // couleur gris clair
 
 $Données = & $workbook->addformat();
-//
-
-$worksheet->write(0, 0, utf8_decode("BDD du RFCV(URL)"), $Titre);
-$worksheet->write(1, 0, utf8_decode("Données extraites le 10/03"), $Date);
-
+$worksheet->write(0, 0, $Title, $Titre);
+$worksheet->write(1, 0, $Donnees . date("d-m-Y"), $Date);
+$worksheet->write(2, 0, $Compteur . count($resultat), $Données);
 $worksheet->write(3, 0, $labeljson, $Label);
+
 $j = 0;
 foreach ($data as $value) {
     $i = 0;

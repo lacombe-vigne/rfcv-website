@@ -80,7 +80,7 @@ switch($fun){
 	case "login_resultat_ficher":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$username=$_GET['nom'];
-		$password=sha1($_GET['password']);
+		$password=$_GET['password'];
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
@@ -109,7 +109,7 @@ switch($fun){
 	case "login_resultat":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
 		$username=$_GET['nom'];
-		$password=sha1($_GET['password']);
+		$password=$_GET['password'];
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
@@ -135,7 +135,7 @@ switch($fun){
 	break;
 	case "login_resultat_avance":
 		$username=$_GET['nom'];
-		$password=sha1($_GET['password']);
+		$password=$_GET['password'];
 		$dataString_avance=str_replace("*","&",$_POST['dataString_avance']);
 		$resultat=$DAO->login_resultat($username,$password,$dataString_avance);
 		echo json_encode($resultat);

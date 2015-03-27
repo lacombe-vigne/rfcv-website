@@ -308,7 +308,7 @@
 				}else{
 					echo"
 					<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25' onclick='$.selection(\"Espece\")';/></a>
 						<a id='export_pdf_fiche' href='ExportPDF/ExportPDF_Espece.php' target=_blank><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
@@ -316,7 +316,7 @@
 				echo "
 					<div class='title_FichierEsp'>
 						<img src='images/espece_fichier.png' />
-						<span id='esp_FichierEsp'></span>&nbsp &nbsp".$Espece."
+						<span id='esp_FichierEsp'></span>&nbsp &nbsp<i>".$Espece."</i>
 						<span id='codeEsp_FichierEsp'><span id='code_fiche'></span> ".$CodeEsp."</span>
 					</div>
 					<div class='carte_FichierEsp'>
@@ -324,11 +324,11 @@
 								<input id='fichier_code_espece' type='hidden' value='".$CodeEsp."' />	
 							<tr>
 								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Botaniste_lable_esp'></span></td><td width='30%' class='res_esp'>".$Botaniste."</td>
-								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Genre_lable_esp'></span></td><td width='35%' class='res_esp'>".$Genre."</td>
+								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='Genre_lable_esp'></span></td><td width='35%' class='res_esp'><i>".$Genre."</i></td>
 							</tr>
 							<tr>
 								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='CompoGenet_lable_esp'></span></td><td width='30%' class='res_esp'>".$CompoGenet."</td>
-								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='SousGenre_lable_esp'></span></td><td width='35%' class='res_esp'>".$SousGenre."</td>
+								<td width='15%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='SousGenre_lable_esp'></span></td><td width='35%' class='res_esp'><i>".$SousGenre."</i></td>
 							</tr>
 							<tr>
 								<td width='20%' class='lable_carte_acc'><img src='images/poin_espece.png' width='10' height='10'/><span id='RemarqueEsp_lable_esp'></span></td><td width='30%' colspan='4' class='res_esp'>".$RemarqueEsp."</td>

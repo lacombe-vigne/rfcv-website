@@ -86,7 +86,7 @@ return $str;
 }
 //header('Content-Type: text/html; charset=utf-8');
 $username=suppr_accents_connexion($_POST['user']);
-$password=sha1($_POST['password']);
+$password=$_POST['password'];
 //$langue=$_POST['langue'];
 //$_SESSION['language']= $langue;
 $DAO=new BibliothequeDAO();

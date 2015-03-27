@@ -14,18 +14,18 @@ $(document).ready(function(){
 				$('#welcom_title').append(welcom_title);
 			}
 			if(key==="menu_main_en"){
-				var menu_main = '<a href="Home.php"><li>'+value.Accueil+'</li></a>'+
+				var menu_main = '<a style="cursor:hand" href="Home.php"><li>'+value.Accueil+'</li></a>'+
 								'<input type="hidden" value="'+value.Accueil+'" id="mainMenu_Home">'+
-								'<a><li class="menu_rechercher">'+value.Rechercher+''+
+								'<a style="cursor:hand"><li class="menu_rechercher">'+value.Rechercher+''+
 									'<a class="sous_menu">'+
 									'</a>'+
 								'</li></a>'+
-								'<a  href="MySelection.php"><li>'+value.Selection+'</li></a>';
+								'<a style="cursor:hand" href="MySelection.php"><li>'+value.Selection+'</li></a>';
 				$('#menu_main').append(menu_main);
 			}
 			if(key==="search_en"){
-				var sous_menu =   '<a href="SearchS.php?"><li>'+value.ss+'</li></a>'+
-									'<a href="SearchA.php"><li>'+value.as+'</li></a>';
+				var sous_menu =   '<a style="cursor:hand" href="SearchS.php?"><li>'+value.ss+'</li></a>'+
+									'<a style="cursor:hand" href="SearchA.php"><li>'+value.as+'</li></a>';
 				$('.sous_menu').append(sous_menu);
 			}
 			if(key==="accueil_part1_en"){
@@ -63,7 +63,7 @@ $(document).ready(function(){
 				var table_link= '';
 				var link=value.link;
 				$.each(link,function(entryIndex, entry){
-					table_link = table_link + '<li><a href="'+entry['add']+'">'+entry['name']+'</a></li>';
+					table_link = table_link + '<li><a style="cursor:hand" href="'+entry['add']+'">'+entry['name']+'</a></li>';
 				});
 				$('.footer_lien').append(site_link);
 				$('#lien_useful_contents').append(table_link);
@@ -72,27 +72,27 @@ $(document).ready(function(){
 				var list_footer='';
 				var footer=value;
 				$.each(footer,function(entryIndex, entry){
-					list_footer = list_footer + '<li><a href="'+entry["add"]+'">'+entry["name"]+'</a></li>';
+					list_footer = list_footer + '<li><a style="cursor:hand" href="'+entry["add"]+'">'+entry["name"]+'</a></li>';
 				});
 				$('#footer_lien_contents').append(list_footer);
 			}
 			if(key==="login_page_en"){
-				var site_loginpage = '	<form action="./php/login.php" method="post" >'+
+				var site_loginpage = '	<form>'+
 											'<table class="site-login-form">'+
 												'<tr>'+
 													'<td colspan="2" class="title-login">'+value.title+'</td>'+
 												'</tr>'+
 												'<tr>'+
 													'<td>'+value.username+'</td>'+
-													'<td><input type="text" name="user" class="login-input"/></td>'+
+													'<td><input type="text" name="user" id="login_name" class="login-input"/></td>'+
 												'</tr>'+
 													'<td>'+value.password+'</td>'+
-													'<td><input type="password" name="password" class="login-input"/><input type="hidden" value="FR" name="langue"></td>'+
+													'<td><input type="password" name="password" id="login_pass" class="login-input"/><input type="hidden" id="login_langue" value="EN" name="langue"></td>'+
 													
 												'<tr>'+
 												'<tr>'+
 													'<td></td>'+
-													'<td  align="center"><input type="submit" value="'+value.button+'" class="button"/></td>'+
+													'<td  align="center"><input type="submit" onclick="$.login()" value="'+value.button+'" class="button"/></td>'+
 												'</tr>'+
 												'</tr>'+
 											'</table>'+
@@ -166,15 +166,13 @@ $(document).ready(function(){
 			if(key==="site_searchS_en"){
 				var site_search='<fieldset><legend><img src="images/search_icon.png" alt="Search" width="40" height="40"/>'+value.title+'</legend>'+
 					'<form method="post" action="">'+
-						'<table class="table-ss" >'+
+						'<table class="table-ss" style="width:80%;">'+
 							'<tr>'+
-								'<td class="ss-radio"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="especes" />'+value.model_especes+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="varietes" />'+value.model_varietes+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="accession" />'+value.model_accession+'</td>'+
+								'<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
 							'</tr>'+
 							'<tr>'+
-								'<td colspan=2>'+
+                                                        '<td class="ss-radio" style="width:27%;" ><input type="radio" name="model" value="especes" />'+value.model_especes+'</td>'+
+								'<td rowspan=2 style="width:14%;">'+
 									'<select name="case" class="case_select">'+
 										'<option value="fuzzy">'+value.case_fuzzy+'</option>'+
 										'<option value="complet">'+value.case_complet+'</option>'+
@@ -183,13 +181,19 @@ $(document).ready(function(){
 										
 									'</select>'+
 								'</td>'+
-								'<td colspan=2 align=right>'+
-									'<input type="text" name="search" class="search-input"/><input type="hidden" value="FR" id="langue_simple" />'+
+								'<td rowspan=2 style="width:45%;text-align:center">'+
+									'<input type="text" name="search" class="search-input" size="35"/><input type="hidden" value="EN" id="langue_simple" />'+
+								'</td>'+
+                                                                '<td rowspan=2 style="width:14%;">'+
+									'<a style="cursor:hand"  class="button" id="button_simple_search" onclick="$.search_simple();return false;" style="cursor:hand">'+value.button+'</a>'+
 								'</td>'+
 							'</tr>'+
-							'</tr>'+			
-								'<td colspan=3></td>'+
-								'<td ><a class="button" id="button_simple_search" onclick="$.search_simple();return false;" style="cursor:hand">'+value.button+'</a></td>'+
+                                                        '<tr>'+			
+								'<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="varietes" />'+value.model_varietes+'</td>'+
+								
+							'</tr>'+
+							'<tr>'+
+                                                                '<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="accession" />'+value.model_accession+'</td>'+
 							'</tr>'+
 						'</table>'+
 					'</form></fieldset>'+

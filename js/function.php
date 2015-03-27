@@ -10504,7 +10504,7 @@ and open the template in the editor.
 							}
 							if(statue==2){
 								if(value.langue=='FR'){
-									var login=window.confirm('Vous allez connectez votre compte?');
+									var login=window.confirm('Vous allez vous connecter à votre compte?');
 								}else{
 									var login=window.confirm('You will connect your account?');
 								}
@@ -10565,7 +10565,7 @@ and open the template in the editor.
 							}
 							if(statue==2){
 								if(value.langue='FR'){
-									var login=window.confirm('Vous allez connectez votre compte?');
+									var login=window.confirm('Vous allez vous connecter à votre compte?');
 								}else{
 									var login=window.confirm('You will connect your account?');
 								}
@@ -10664,7 +10664,7 @@ and open the template in the editor.
 							}
 							if(statue==2){
 								if(value.langue='FR'){
-									var login=window.confirm('Vous allez connectez votre compte?');
+									var login=window.confirm('Vous allez vous connecter à votre compte?');
 								}else{
 									var login=window.confirm('You will connect your account?');
 								}
@@ -16576,7 +16576,7 @@ and open the template in the editor.
 				data:DataString,
 				beforeSend: function(){ 
 					$(".site-login-form").empty();
-					$('<div id="msg" />').addClass("loading").html("Connexion au cours...").css("color","#999").appendTo('.site-login-form'); 
+					$('<div id="msg" />').addClass("loading").html("Connexion en cours...").css("color","#999").appendTo('.site-login-form'); 
 				},
 				success: function(data){
 					console.log(data);
@@ -16584,8 +16584,9 @@ and open the template in the editor.
 					$(".site-login-form").empty(); 
 					if(data==1){
 						console.log('1');
-						var div='<div id="message_login"></div>';
-                                                window.location = "./Home.php";
+						//var div='<div id="message_login"></div>'; // recupère le json correspondant
+                                                //alert("Vous êtes maintenant connecté");
+                                                //window.location = './Home.php';
 					}
 					if(data==2){
 						console.log('2');
@@ -16615,6 +16616,8 @@ and open the template in the editor.
 							if(key==="login_fr"){
 								var message_login=value;
 								$('#message_login').append(message_login);
+                                                                alert(message_login);
+                                                                window.location = './Home.php'; // Methode comprise
 							}
 							if(key==="problemFillin_fr"){
 								var message_problemFilling=value;
@@ -16624,6 +16627,7 @@ and open the template in the editor.
 								var message_logout=value;
 								$('#message_logout').append(message_logout);
 							}
+                                                        
 						});
 					});
 					$(".site-login-form").append(div);

@@ -1,0 +1,14 @@
+{
+    "xls_fr":
+            {
+                "Title": "Base de données du réseau français des conservatoires de Vigne",
+                "Donnees":"Donnees extraite le : ",
+                "Compteur":"Nombre d'enregistrements : "
+            },
+    "xls_en":
+            {
+                "Title": "Base de données du réseau français des conservatoires de Vigne",
+                "Donnees":"Donnees extraite le : ",
+                "Compteur":"Nombre d'enregistrements : "
+            }
+}

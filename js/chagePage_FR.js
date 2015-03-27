@@ -169,15 +169,13 @@ $(document).ready(function(){
 			if(key==="site_searchS_fr"){
 				var site_search='<fieldset><legend><img src="images/search_icon.png" alt="Search" width="40" height="40"/>'+value.title+'</legend>'+
 					'<form method="post" action="">'+
-						'<table class="table-ss" >'+
+						'<table class="table-ss" style="width:80%;" >'+
 							'<tr>'+
-								'<td class="ss-radio"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="especes" />'+value.model_especes+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="varietes" />'+value.model_varietes+'</td>'+
-								'<td class="ss-radio" ><input type="radio" name="model" value="accession" />'+value.model_accession+'</td>'+
+								'<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
 							'</tr>'+
 							'<tr>'+
-								'<td colspan=2>'+
+                                                        '<td class="ss-radio" style="width:27%;" ><input type="radio" name="model" value="especes" />'+value.model_especes+'</td>'+
+								'<td rowspan=2 style="width:14%;">'+
 									'<select name="case" class="case_select">'+
 										'<option value="fuzzy">'+value.case_fuzzy+'</option>'+
 										'<option value="complet">'+value.case_complet+'</option>'+
@@ -186,13 +184,19 @@ $(document).ready(function(){
 										
 									'</select>'+
 								'</td>'+
-								'<td colspan=2 align=right>'+
-									'<input type="text" name="search" class="search-input"/><input type="hidden" value="FR" id="langue_simple" />'+
+								'<td rowspan=2 style="width:45%;text-align:center">'+
+									'<input type="text" name="search" class="search-input" size="35"/><input type="hidden" value="FR" id="langue_simple" />'+
+								'</td>'+
+                                                                '<td rowspan=2 style="width:14%;">'+
+									'<a style="cursor:hand"  class="button" id="button_simple_search" onclick="$.search_simple();return false;" style="cursor:hand">'+value.button+'</a>'+
 								'</td>'+
 							'</tr>'+
-							'</tr>'+			
-								'<td colspan=3></td>'+
-								'<td ><a style="cursor:hand"  class="button" id="button_simple_search" onclick="$.search_simple();return false;" style="cursor:hand">'+value.button+'</a></td>'+
+                                                        '<tr>'+			
+								'<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="varietes" />'+value.model_varietes+'</td>'+
+								
+							'</tr>'+
+							'<tr>'+
+                                                                '<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="accession" />'+value.model_accession+'</td>'+
 							'</tr>'+
 						'</table>'+
 					'</form></fieldset>'+

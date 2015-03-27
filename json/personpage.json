@@ -1,228 +1,228 @@
 {
 	"MesInfo_fr":
 		{
-			"title":"Votre informations",
+			"title":"Vos informations personnelles",
 			"vient":"vient de",
-			"button":"Modifiez"
+			"button":"Modifier"
 		},
 	"MesInfo_en":
 		{
-			"title":"Your Information",
+			"title":"Your personal data",
 			"vient":"from",
 			"button":"Save"
 		},
 	"GestionUser_fr":
 		{
-			"title":"Gestion des utilisateur",
-			"add":"Ajoutez un nouveau utilisateur",
-			"list":"Lister des Utilisateur"
+			"title":"Gestion des utilisateurs",
+			"add":"Ajouter un nouvel utilisateur",
+			"list":"Liste des utilisateurs"
 		},
 	"GestionUser_en":
 		{
-			"title":"Managing User",
+			"title":"Management of users",
 			"add":"Add a new user",
-			"list":"List of Users"
+			"list":"List of users"
 		},
 	"ListUser_fr":
 		{
-			"title":"List des utilisateurs",
+			"title":"Liste des utilisateurs",
 			"nom":"Nom",
-			"prenom":"Prenom",
+			"prenom":"Prénom",
 			"partenaire":"Partenaire",
 			"fonction":"Fonction",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"dateFin":"Date De Fin"
+			"mail":"Courriel",
+			"dateFin":"Date fin droits"
 		},
 	"ListUser_en":
 		{
 			"title":"List of users",
 			"nom":"Name",
-			"prenom":"First Name",
+			"prenom":"First name",
 			"partenaire":"Partner",
-			"fonction":"Function",
+			"fonction":"Position",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"dateFin":"Finish Date"
+			"mail":"Email",
+			"dateFin":"Date end rights"
 		},
 	"NewUser_fr":
 		{
-			"title":"Nouveau Utilisateur",
-			"Code":"CodePersonne",
+			"title":"Nouvel utilisateur",
+			"Code":"Identifiant",
 			"Nom":"Nom",
-			"Prenom":"Prenom",
+			"Prenom":"Prénom",
 			"Fonction":"Fonction",
-			"Profil":"Profil de utilisateur",
+			"Profil":"Profil d'utilisateur",
 			"Partenaire":"Partenaire",
-			"DomCompet":"Contenu de travaille",
+			"DomCompet":"Domaine de compétence",
 			"Tel":"Tel",
 			"Fax":"Fax",
-			"Mail":"Mail",
-			"DateFin":"Date De Fin",
-			"Button":"Enregistrez"
+			"Mail":"Courriel",
+			"DateFin":"Date fin droits",
+			"Button":"Enregistrer"
 		},
 	"NewUser_en":
 		{
 			"title":"New User",
-			"Code":"CodePersonne",
+			"Code":"Login",
 			"Nom":"Name",
 			"Prenom":"First Name",
-			"Fonction":"Function",
-			"Profil":"User Profile",
+			"Fonction":"Position",
+			"Profil":"User profile",
 			"Partenaire":"Partner",
-			"DomCompet":"Content of Work",
+			"DomCompet":"Area of expertise",
 			"Tel":"Tel",
 			"Fax":"Fax",
-			"Mail":"Mail",
-			"DateFin":"Finish Date",
+			"Mail":"Email",
+			"DateFin":"Date end rights",
 			"Button":"Save"
 		},
 	"ResUser_fr":
 		{
-			"title":"Resultat de List de utilisateur",
+			"title":"Résultat de recherche d'utilisateur",
 			"nom":"Nom",
-			"prenom":"Prenom",
+			"prenom":"Prénom",
 			"partenaire":"Partenaire",
-			"fonction":"Function",
+			"fonction":"Fonction",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"dataFin":"Date De Fin"
+			"mail":"Courriel",
+			"dataFin":"Date fin droits"
 		},
 	"ResUser_en":
 		{
-			"title":"Result List User",
+			"title":"Result search of users",
 			"nom":"Name",
 			"prenom":"First Name",
-			"partenaire":"Partenaire",
-			"fonction":"Function",
+			"partenaire":"Partner",
+			"fonction":"Position",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"dataFin":"Finish Date"
+			"mail":"Email",
+			"dataFin":"Date end rights"
 		},
 	"SesInfo_fr":
 		{
-			"title":"Votre informations",
+			"title":"Vos informations personnelles",
 			"vient":"vient de",
-			"reset":"Reset sa mot de passe",
-			"Modif":"Modifiez"
+			"reset":"Reset mot de passe",
+			"Modif":"Modifier"
 		},
 	"SesInfo_en":
 		{
-			"title":"Your information",
+			"title":"Your personal data",
 			"vient":"from",
-			"reset":"Reset the password",
+			"reset":"Reset password",
 			"Modif":"Save"
 		},
 	"ModiMesInfo_fr":
 		{
-			"title":"Modifiez mes informations",
+			"title":"Modifier mes informations personnelles",
 			"nom":"Nom",
-			"prenom":"Prenom",
-			"NewPassword":"Nouveau Mot de Pass",
-			"ReNewPassword":"Nouveau Mot de Pass à nouveau",
+			"prenom":"Prénom",
+			"NewPassword":"Nouveau mot de passe",
+			"ReNewPassword":"Confirmer nouveau mot de passe",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"button":"Enregistrez"
+			"mail":"Courriel",
+			"button":"Enregistrer"
 		},
 	"ModiMesInfo_en":
 		{
-			"title":"Change my information",
+			"title":"Change my personal data",
 			"nom":"Name",
 			"prenom":"First Name",
-			"NewPassword":"New Password",
-			"ReNewPassword":"New Password again",
+			"NewPassword":"New password",
+			"ReNewPassword":"Confirm new password",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
+			"mail":"Email",
 			"button":"Save"
 		},
 	"ModiSesInfo_fr":
 		{
-			"title":"Modifiez ses Informations",
+			"title":"Modifier les informations de l'utilisateur",
 			"nom":"Nom",
-			"prenom":"Prenom",
+			"prenom":"Prénom",
 			"fonction":"Fonction",
-			"dateFIn":"Date De Fin",
+			"dateFIn":"Date fin droits",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
-			"button":"Enregistrez"
+			"mail":"Courrier",
+			"button":"Enregistrer"
 		},
 	"ModiSesInfo_en":
 		{
-			"title":"Edit his information",
+			"title":"Change user data",
 			"nom":"Name",
 			"prenom":"First Name",
-			"fonction":"Function²",
-			"dateFIn":"Finish Date",
+			"fonction":"Position",
+			"dateFIn":"Date end right",
 			"tel":"Tel",
 			"fax":"Fax",
-			"mail":"Mail",
+			"mail":"Email",
 			"button":"Save"
 		},
 	"Modi_MesInfo_Tips_fr":
 		{
-			"nom":"Ce champ ne peut pas être vide!",
-			"prenom":"Ce champs ne peut pas être vide!",
-			"password":"Si vous ne voulez pas changer le mot de pass, vous pouvez lasser ce champ vide.",
-			"repassword":"Ce champ doit comrespond au champ 'Nouveau Mot de Pass'.",
-			"tel":"Le format de numéro de telephone doit être 'xx xx xx xx xx'",
-			"fax":"Le format de numéro de fax doit être 'xx xx xx xx xx'",
-			"mail":"Vous n'avez pas donné une adresse email valide."
+			"nom":"Saisie d'information obligatoire !",
+			"prenom":"Saisie d'information obligatoire !",
+			"password":"Si vous ne voulez pas changer le mot de pass, laisser ce champ vide.",
+			"repassword":"Cette information doit correspondre à celle saisie pour 'Nouveau mot de passe'.",
+			"tel":"Format de numéro de téléphone de type '11 22 33 44 55'",
+			"fax":"Format de numéro de fax de type '11 22 33 44 55'",
+			"mail":"Vous n'avez pas donné une adresse électronique valide."
 		},
 	"Modi_MesInfo_Tips_en":
 		{
-			"nom":"This field can not be empty!",
-			"prenom":"This field can not be empty!",
-			"password":"If you do not want to change the pass word, you can leave this field empty.",
-			"repassword":"This field must comrespond field 'New Password'.",
-			"tel":"The format of telephone number must be 'xx xx xx xx xx'",
-			"fax":"The format of fax number must be 'xx xx xx xx xx'",
-			"mail":"You do not have given a correct email address."
+			"nom":"This field cannot be empty!",
+			"prenom":"This field cannot be empty!",
+			"password":"If you don't want to change the password, leave this field empty.",
+			"repassword":"This field must correspond to the field 'New password'.",
+			"tel":"Format of telephone number must be '11 22 33 44 55'",
+			"fax":"Format of fax number must be '11 22 33 44 55'",
+			"mail":"You din't gave a correct email address."
 		},
 	"Modi_SesInfo_Tips_fr":
 		{
-			"nom":"Ce champ ne peut pas être vide!",
-			"prenom":"Ce champ ne peut pas être vide!",
-			"dateFin":"Le format de date doit être 'yyyy-mm-jj'",
-			"tel":"Le format de numéro de telephone doit être 'xx xx xx xx xx'",
-			"fax":"Le format de numéro de fax doit être 'xx xx xx xx xx'",
-			"mail":"Vous n'avez pas donné une adresse email valide."
+			"nom":"Saisie d'information obligatoire !",
+			"prenom":"Saisie d'information obligatoire !",
+			"dateFin":"Format de date de type 'aaaa-mm-jj'",
+			"tel":"Format de numéro de téléphone de type '11 22 33 44 55'",
+			"fax":"Format de numéro de fax de type '11 22 33 44 55'",
+			"mail":"Vous n'avez pas donné une adresse électronique valide."
 		},
 	"Modi_SesInfo_Tips_en":
 		{
-			"nom":"This field can not be empty!",
-			"prenom":"This field can not be empty!",
+			"nom":"This field cannot be empty!",
+			"prenom":"This field cannot be empty!",
 			"dateFin":"The date format must be 'yyyy-mm-dd'",
-			"tel":"The format of telephone number must be 'xx xx xx xx xx'",
-			"fax":"The format of fax number must be 'xx xx xx xx xx'",
-			"mail":"You do not have given a correct email address."
+			"tel":"Format of telephone number must be '11 22 33 44 55'",
+			"fax":"Format of fax number must be '11 22 33 44 55'",
+			"mail":"You din't gave a correct email address."
 		},
 	"NewUser_Tips_fr":
 		{
-			"code":"Ce codePersonne est déjà exist dans la base de donnée, vous devez donner un nouveau.",
-			"nom":"Ce champ ne peut pas être vide!",
-			"prenom":"Ce champ ne peut pas être vide!",
-			"profil":"Le profil d'un utilisateur doit être un des 'A,B,C,D'.",
-			"tel":"Le format de numéro de telephone doit être 'xx xx xx xx xx'",
-			"fax":"Le format de numéro de fax doit être 'xx xx xx xx xx'",
-			"mail":"Vous n'avez pas donné une adresse email valide.",
-			"dateFin":"Le format de date doit être 'yyyy-mm-jj'"
+			"code":"Cet identifiant d'utilisateur existe déjà. Vous devez en saisir un nouveau.",
+			"nom":"Saisie d'information obligatoire !",
+			"prenom":"Saisie d'information obligatoire !",
+			"profil":"Le profil d'un utilisateur doit être A, B, C ou D.",
+			"tel":"Format de numéro de téléphone de type '11 22 33 44 55'",
+			"fax":"Format de numéro de fax de type '11 22 33 44 55'",
+			"mail":"Vous n'avez pas donné une adresse électronique valide.",
+			"dateFin":"Format de date de type 'aaaa-mm-jj'"
 		},
 	"NewUser_Tips_en":
 		{
-			"code":"This codePersonne already exist in the database, you need a new one.",
-			"nom":"This field can not be empty!",
-			"prenom":"This field can not be empty!",
-			"profil":"The profile of a user must be one of the 'A, B, C, D'.",
-			"tel":"The format of telephone number must be 'xx xx xx xx xx'",
-			"fax":"The format of fax number must be 'xx xx xx xx xx'",
-			"mail":"You do not have given a correct email address.",
+			"code":"This user login already exists. You must enter a new one.",
+			"nom":"This field cannot be empty!",
+			"prenom":"This field cannot be empty!",
+			"profil":"The user profile must be A, B, C or D.",
+			"tel":"Format of telephone number must be '11 22 33 44 55'",
+			"fax":"Format of fax number must be '11 22 33 44 55'",
+			"mail":"You din't gave a correct email address.",
 			"dateFin":"The date format must be 'yyyy-mm-dd'"
 		}
 }

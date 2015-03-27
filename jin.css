@@ -40,6 +40,17 @@ del { text-decoration: line-through; }
 /* tables still need 'cellspacing="0"' in the markup */
 table { border-collapse: collapse; border-spacing: 0; }
 
+.json{ //Propriétés graphiques des liens présents dans les json
+    cursor:hand;
+    color:blue;
+    font-family: Arial,Helvetica,sans-serif;
+    TEXT-DECORATION: underline;
+    font-size: 12px;
+}
+.json:hover,.json:active{
+    color:red;
+    cursor:hand;
+}
 a{
     color:#7B0043;
     TEXT-DECORATION: none;
@@ -448,59 +459,35 @@ legend img {
     font-size:20px;
 }
 #site-search fieldset table .search-input{
-    /*background:#e1e1e1;
-    border-radius: 20px;
-    border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
-    color: #d7d7d7;
-    padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
-    width: 80%;
-    margin: auto 1% auto auto;*/
+    color: #000;   
+    padding: 2px 0px 2px 0px;
 }
 #site-search fieldset table .search-input:focus{
-    /*background:#fcfcfc;
-    border-radius: 20px;
     color: #000;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin: auto 1% auto auto;*/
+    padding: 2px 0px 2px 0px;
 }
 #site-search fieldset table .ss-radio {
     color: #000;
     font-size: 14px;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
-    padding: 1% 0 2% 0%;
+    //padding: 1% 0 2% 0%;
 }
 #site-search fieldset table td {
-    padding-bottom: 2%;
+    //padding-bottom: 2%;
 }
 #site-search .ss-radio{
     width:25%;
 }
-#site-search fieldset table select{
-    width: 60%;
-    padding: 1px 5px 6px 5px;
+#site-search fieldset table select .case_search{
+    //width: 60%;
+    padding: 3px 0px 3px 0px;
     border: 0 none;
     color: #000;
     background: #e1e1e1;
     text-align:left;
     font-size: 14px;
-    font-weight:bold;
-    font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
+    -webkit-appearance: none;
 }
 #site-search fieldset table #button_simple_search{
     color: #000 !important;
@@ -2287,8 +2274,9 @@ avar,aesp,aclo{
 }
 /*cate1 variete*/
 #list1_cate_var{
-    margin: auto;
     padding: 10px;
+    margin-bottom: -14px;
+    margin-top: -14px;
 }
 
 /*cate2 variete*/
@@ -3225,6 +3213,10 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
     float:right;
     margin: -2% 3% 0 0 ;
     color:#9F9EB0;
+}
+
+.SynoMajeur_FichierAcc{
+    font-size:19px;
 }
 
 /* 4.0 site Message */

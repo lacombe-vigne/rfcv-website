@@ -8,9 +8,22 @@ $workbook = &new writeexcel_workbook($fname);
 $worksheet = &$workbook->addworksheet();
 
 session_start(); //Permet de récupérer le contenu des variables de session
+$langue = $_SESSION['language_Vigne'];
 $json = file_get_contents('../../json/search.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 //Permet de récupérer les bon json en fonction de la langue
+$jsonXLS = file_get_contents('../../json/xls.json');
+$parsed_jsonXLS = json_decode($jsonXLS); // Permet de lire le fichier JSON avec PHP.
+//Permet de récupérer les bon json en fonction de la langue
+if($langue== "FR"){
+    $Title=utf8_decode($parsed_jsonXLS->{xls_fr}->{Title});
+    $Donnees=utf8_decode($parsed_jsonXLS->{xls_fr}->{Donnees});
+    $Compteur=utf8_decode($parsed_jsonXLS->{xls_fr}->{Compteur});
+}else if($langue== "EN"){
+    $Title=utf8_decode($parsed_jsonXLS->{xls_en}->{Title});
+    $Donnees=utf8_decode($parsed_jsonXLS->{xls_en}->{Donnees});
+    $Compteur=utf8_decode($parsed_jsonXLS->{xls_en}->{Compteur});
+}
 if ($_GET["section"] == "variete") {
     if ($_SESSION['language_Vigne'] == "FR") {
         $labeljson = array(
@@ -74,34 +87,7 @@ require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $DAO = new BibliothequeDAO();
 
-$t1=microtime();
-$t1=explode(" ",$t1);
-$t2=explode(".",$t1[0]);
-$t2=$t1[1].".".$t2[1];
-
-//$resultat = $DAO->exportxls($_SESSION['language_Vigne'],$_SESSION['search'],"variete",$_SESSION['typerecherche']);
 $resultat = $DAO->exportxls($_SESSION['language_Vigne'], $_GET["section"]);
-//$resultat = $DAO->searchSimple($_SESSION['search'], $_SESSION['search'], "fuzzy", "variete", $_SESSION['language_Vigne'], 1, 20, 1, 20, 1, 20, "tri_espece_asc", 1, "CodeEsp", "tri_variete_asc", 1, "CodeVar", "tri_accession_asc", 1, "CodeIntro");
-/* foreach ($resultat as &$value) {
-  foreach ($value as &$i) {
-  $i = utf8_decode($i);
-  if ($i == ' ? ' || $i == ' ?') {
-  $i = '-';
-  }
-  }
-  } */
-
-/*$i=0;
-while($i<count($resultat)){
-$resultat[$i]['utilite']=$DAO->utilitebis($resultat[$i]['utilite'], $_SESSION['language_Vigne'], $_SESSION['PDO']);    
-$resultat[$i]['couleurPel']=$DAO->couleurPelBis($resultat[$i]['couleurPel'],$_SESSION['language_Vigne'],$_SESSION['PDO']);
-$resultat[$i]['saveur']=$DAO->saveurBis($resultat[$i]['saveur'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
-$resultat[$i]['pepins']=$DAO->pepinsBis($resultat[$i]['pepins'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
-$resultat[$i]['sexe']=$DAO->sexeBis($resultat[$i]['sexe'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
-$resultat[$i]['paysorigine']=$DAO->paysorigineBis($resultat[$i]['paysorigine'], $_SESSION['language_Vigne'], $_SESSION['PDO']);
-$i++;
-}*/
-//$_SESSION['PDO']->closeCursor();
 //CSS du tableur
 $Titre = & $workbook->addformat();
 $Titre->set_bold();
@@ -110,15 +96,13 @@ $Date = & $workbook->addformat();
 
 $Label = & $workbook->addformat();
 $Label->set_bold();
-$Label->set_bg_color("grey");
+$Label->set_bg_color("silver"); // couleur gris clair
 
 $Données = & $workbook->addformat();
-//
 
-$worksheet->write(0, 0, utf8_decode("BDD du RFCV(URL)"), $Titre);
-$worksheet->write(1, 0, utf8_decode("Données extraites le 10/03"), $Date);
-
-
+$worksheet->write(0, 0, $Title, $Titre);
+$worksheet->write(1, 0, $Donnees . date("d-m-Y"), $Date);
+$worksheet->write(2, 0, $Compteur . count($resultat), $Données);
 $worksheet->write(3, 0, $labeljson, $Label);
 $j = 0;
 foreach ($resultat as $value) {
@@ -134,21 +118,6 @@ foreach ($resultat as $value) {
     $j++;
 }
 
-
-$t3=microtime();
-$t3=explode(" ",$t3);
-$t4=explode(".",$t3[0]);
-$t4=$t3[1].".".$t4[1];
-$t5=$t4-$t2;
-$t5=$t5*1000;
-$worksheet->write(2 , 1 ,count($resultat),$Données);
-$worksheet->write(2 , 0 , $t5, $Données);
-
-/* $j = 0;
-  foreach ($resultat as $value) {
-  echo $value;
-  $j++;
-  } */
 //\'data.xls\''
 $workbook->close();
 header("Content-Type: application/x-msexcel; name=\"data.xls\"");
