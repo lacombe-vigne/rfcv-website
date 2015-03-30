@@ -397,7 +397,7 @@ $Label->set_bg_color("silver"); // couleur gris clair
 $Données = & $workbook->addformat();
 $worksheet->write(0, 0, $Title, $Titre);
 $worksheet->write(1, 0, $Donnees . date("d-m-Y"), $Date);
-$worksheet->write(2, 0, $Compteur . count($resultat), $Données);
+$worksheet->write(2, 0, $Compteur . count($data), $Données);
 $worksheet->write(3, 0, $labeljson, $Label);
 
 $j = 0;

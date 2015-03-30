@@ -4078,22 +4078,22 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
-							html+="<input type='hidden' name='NomIntro' value='"+value.NomIntro+"'>";
-							html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
+							html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
 							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
 							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
 							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
 							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
 							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-							html+="<input type='hidden' name='Statut' value='"+value.Statut+"'>";
+							html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
 							html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
 							html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
-							html+="<input type='hidden' name='PayP' value='"+value.PayP+"'>";
-							html+="<input type='hidden' name='CommuneProvenance' value='"+value.CommuneProvenance+"'>";
-							html+="<input type='hidden' name='AdresProvenance' value='"+value.AdresProvenance+"'>";
+							html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+							html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+							html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
 							html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
 						}
 					}
@@ -4103,8 +4103,8 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-							html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
-							html+="<input type='hidden' name='SynoMajeur' value='"+value.SynoMajeur+"'>";
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
 							html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
 							html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
 							html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
@@ -4116,7 +4116,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
 							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
 							html+="<input type='hidden' name='Obtenteur' value='"+value.Obtenteur+"'>";
-							html+="<input type='hidden' name='OIpays' value='"+value.OIpays+"'>";
+							html+='<input type="hidden" name="OIpays" value="'+value.OIpays+'">';
 							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
 							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
 							
@@ -4143,16 +4143,16 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
 							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
 							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
 							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
@@ -4168,14 +4168,14 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
 							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
 							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
 							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
@@ -4191,9 +4191,9 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+="<input type='hidden' name='Site' value='"+value.Site+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
 							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
 							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
 							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
@@ -4221,7 +4221,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
 							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
@@ -4231,7 +4231,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
 							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
 							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 						}
 					}
@@ -4240,7 +4240,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
 							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
@@ -4254,7 +4254,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
 							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
 							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 						}
 					}
@@ -4263,17 +4263,17 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
 							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
-							html+="<input type='hidden' name='Title' value='"+value.Title+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
 							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
 							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
 							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
-							html+="<input type='hidden' name='Publisher' value='"+value.Publisher+"'>";
-							html+="<input type='hidden' name='PlacePublished' value='"+value.PlacePublished+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
 							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
 							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
 							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
@@ -4282,7 +4282,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
 							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
 							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
-							html+="<input type='hidden' name='NomVigneCite' value='"+value.NomVigneCite+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
 						}
 					}
 					
@@ -4290,17 +4290,17 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
-							html+="<input type='hidden' name='NomPartenaire' value='"+value.NomPartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
 							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
-							html+="<input type='hidden' name='SectionRegionaleENTAV' value='"+value.SectionRegionaleENTAV+"'>";
-							html+="<input type='hidden' name='RegionPartenaire' value='"+value.RegionPartenaire+"'>";
-							html+="<input type='hidden' name='DepartPartenaire' value='"+value.DepartPartenaire+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
+							html+='<input type="hidden" name="RegionPartenaire" value="'+value.RegionPartenaire+'">';
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
 							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
 							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
 							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
-							html+="<input type='hidden' name='AdressePartenaire' value='"+value.AdressePartenaire+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
 							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
-							html+="<input type='hidden' name='CommunePartenaire' value='"+value.CommunePartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
 						}
 					}
 					
@@ -4308,15 +4308,15 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
-							html+="<input type='hidden' name='RegionSite' value='"+value.RegionSite+"'>";
-							html+="<input type='hidden' name='DepartSite' value='"+value.DepartSite+"'>";
-							html+="<input type='hidden' name='CommuneSite' value='"+value.CommuneSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
 							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
-							html+="<input type='hidden' name='AdresseSite' value='"+value.AdresseSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
 							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
 							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
 							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
-							html+="<input type='hidden' name='SecRegENTAV' value='"+value.SecRegENTAV+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
 							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
 							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
 							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
@@ -4325,7 +4325,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
 							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
 							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
-							html+="<input type='hidden' name='PresentationSite' value='"+value.PresentationSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
 						}
 					}
 					
@@ -4422,21 +4422,22 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
-							html+="<input type='hidden' name='NomIntro' value='"+value.NomIntro+"'>";
-							html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
 							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
 							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
 							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
 							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-							html+="<input type='hidden' name='Statut' value='"+value.Statut+"'>";
+							html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
 							html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
 							html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
-							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-							html+="<input type='hidden' name='PayP' value='"+value.PayP+"'>";
-							html+="<input type='hidden' name='CommuneProvenance' value='"+value.CommuneProvenance+"'>";
-							html+="<input type='hidden' name='AdresProvenance' value='"+value.AdresProvenance+"'>";
+							html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+							html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+							html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
 							html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
 						}
 					}
@@ -4446,8 +4447,8 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-							html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
-							html+="<input type='hidden' name='SynoMajeur' value='"+value.SynoMajeur+"'>";
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
 							html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
 							html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
 							html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
@@ -4459,7 +4460,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
 							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
 							html+="<input type='hidden' name='Obtenteur' value='"+value.Obtenteur+"'>";
-							html+="<input type='hidden' name='OIpays' value='"+value.OIpays+"'>";
+							html+='<input type="hidden" name="OIpays" value="'+value.OIpays+'">';
 							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
 							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
 							
@@ -4486,14 +4487,14 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
 							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
 							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
 							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
@@ -4507,13 +4508,13 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
 							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
 							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
 							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
@@ -4527,9 +4528,9 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+="<input type='hidden' name='Site' value='"+value.Site+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
 							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
 							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
 							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
@@ -4556,7 +4557,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
 							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
@@ -4566,7 +4567,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
 							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
 							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 						}
 					}
 					
@@ -4574,7 +4575,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
 							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
@@ -4588,7 +4589,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
 							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
 							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 						}
 					}
 					
@@ -4596,15 +4597,15 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
-							html+="<input type='hidden' name='Title' value='"+value.Title+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
 							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
 							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
 							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
-							html+="<input type='hidden' name='Publisher' value='"+value.Publisher+"'>";
-							html+="<input type='hidden' name='PlacePublished' value='"+value.PlacePublished+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
 							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
 							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
 							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
@@ -4613,7 +4614,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
 							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
 							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
-							html+="<input type='hidden' name='NomVigneCite' value='"+value.NomVigneCite+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
 						}
 					}
 					
@@ -4621,17 +4622,17 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
-							html+="<input type='hidden' name='NomPartenaire' value='"+value.NomPartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
 							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
-							html+="<input type='hidden' name='SectionRegionaleENTAV' value='"+value.SectionRegionaleENTAV+"'>";
-							html+="<input type='hidden' name='RegionPartenaire' value='"+value.RegionPartenaire+"'>";
-							html+="<input type='hidden' name='DepartPartenaire' value='"+value.DepartPartenaire+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
+							html+='<input type="hidden" name="RegionPartenaire" value="'+value.RegionPartenaire+'">';
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
 							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
 							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
 							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
-							html+="<input type='hidden' name='AdressePartenaire' value='"+value.AdressePartenaire+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
 							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
-							html+="<input type='hidden' name='CommunePartenaire' value='"+value.CommunePartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
 						}
 					}
 					
@@ -4639,15 +4640,15 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
-							html+="<input type='hidden' name='RegionSite' value='"+value.RegionSite+"'>";
-							html+="<input type='hidden' name='DepartSite' value='"+value.DepartSite+"'>";
-							html+="<input type='hidden' name='CommuneSite' value='"+value.CommuneSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
 							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
-							html+="<input type='hidden' name='AdresseSite' value='"+value.AdresseSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
 							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
 							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
 							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
-							html+="<input type='hidden' name='SecRegENTAV' value='"+value.SecRegENTAV+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
 							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
 							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
 							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
@@ -4656,7 +4657,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
 							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
 							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
-							html+="<input type='hidden' name='PresentationSite' value='"+value.PresentationSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
 						}
 					}	
 					if(key==="search"){
@@ -4730,21 +4731,22 @@ and open the template in the editor.
 					if(value!=null){
 						html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
 						html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
-						html+="<input type='hidden' name='NomIntro' value='"+value.NomIntro+"'>";
-						html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
-						html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+						html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+						html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+						html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+						html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+						html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 						html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
 						html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
 						html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
 						html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
 						html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-						html+="<input type='hidden' name='Statut' value='"+value.Statut+"'>";
+						html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
 						html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
 						html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
-						html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-						html+="<input type='hidden' name='PayP' value='"+value.PayP+"'>";
-						html+="<input type='hidden' name='CommuneProvenance' value='"+value.CommuneProvenance+"'>";
-						html+="<input type='hidden' name='AdresProvenance' value='"+value.AdresProvenance+"'>";
+						html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+                                                html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+						html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
 						html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
 						html+="<input type='hidden' name='UniteIntro' value='"+value.UniteIntro+"'>";
 						html+="<input type='hidden' name='AnneeAgrement' value='"+value.AnneeAgrement+"'>";
@@ -4757,8 +4759,8 @@ and open the template in the editor.
 					if(value!=null){
 						html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
 						html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-						html+="<input type='hidden' name='NomVar' value='"+value.NomVar+"'>";
-						html+="<input type='hidden' name='SynoMajeur' value='"+value.SynoMajeur+"'>";
+						html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+						html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
 						html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
 						html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
 						html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
@@ -4787,14 +4789,14 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
 							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
 							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
 							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
@@ -4808,13 +4810,13 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
 							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
 							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
 							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
@@ -4828,9 +4830,9 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+="<input type='hidden' name='Site' value='"+value.Site+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
 							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
 							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
 							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
@@ -4857,7 +4859,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
 							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
@@ -4867,7 +4869,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
 							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
 							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 						}
 					}
 					
@@ -4875,7 +4877,7 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
 							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
@@ -4889,7 +4891,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
 							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
 							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
-							html+="<input type='hidden' name='Partenaire' value='"+value.Partenaire+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
 						}
 					}
 					
@@ -4897,15 +4899,15 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+="<input type='hidden' name='nomAcc' value='"+value.nomAcc+"'>";
-							html+="<input type='hidden' name='nomVar' value='"+value.nomVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
-							html+="<input type='hidden' name='Title' value='"+value.Title+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
 							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
 							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
 							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
-							html+="<input type='hidden' name='Publisher' value='"+value.Publisher+"'>";
-							html+="<input type='hidden' name='PlacePublished' value='"+value.PlacePublished+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
 							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
 							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
 							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
@@ -4914,7 +4916,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
 							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
 							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
-							html+="<input type='hidden' name='NomVigneCite' value='"+value.NomVigneCite+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
 						}
 					}
 					
@@ -4922,17 +4924,17 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
-							html+="<input type='hidden' name='NomPartenaire' value='"+value.NomPartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
 							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
-							html+="<input type='hidden' name='SectionRegionaleENTAV' value='"+value.SectionRegionaleENTAV+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
 							html+="<input type='hidden' name='RegionPartenaire' value='"+value.RegionPartenaire+"'>";
-							html+="<input type='hidden' name='DepartPartenaire' value='"+value.DepartPartenaire+"'>";
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
 							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
 							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
 							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
-							html+="<input type='hidden' name='AdressePartenaire' value='"+value.AdressePartenaire+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
 							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
-							html+="<input type='hidden' name='CommunePartenaire' value='"+value.CommunePartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
 						}
 					}
 					
@@ -4940,15 +4942,15 @@ and open the template in the editor.
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
-							html+="<input type='hidden' name='RegionSite' value='"+value.RegionSite+"'>";
-							html+="<input type='hidden' name='DepartSite' value='"+value.DepartSite+"'>";
-							html+="<input type='hidden' name='CommuneSite' value='"+value.CommuneSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
 							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
-							html+="<input type='hidden' name='AdresseSite' value='"+value.AdresseSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
 							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
 							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
 							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
-							html+="<input type='hidden' name='SecRegENTAV' value='"+value.SecRegENTAV+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
 							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
 							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
 							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
@@ -4957,7 +4959,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
 							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
 							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
-							html+="<input type='hidden' name='PresentationSite' value='"+value.PresentationSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
 						}
 					}	
 				if(key==="search"){

@@ -484,7 +484,7 @@ $(document).ready(function(){
 				$('#emp_FichierEmp').append(value.title);
 				$('#nomAcc_lable_emp').append(value.nomAcc);
 				$('#Rang_lable_emp').append(value.Rang);
-				$('#CodeAcc_lable_emp').append(value.CodeAcc);
+				$('#CodeAcc_lable_emp').append(value.codeAcc);
 				$('#TypeSouche_lable_emp').append(value.TypeSouche);
 				$('#Site_lable_emp').append(value.Site);
 				$('#PremiereSouche_lable_emp').append(value.PremiereSouche);
@@ -509,7 +509,7 @@ $(document).ready(function(){
 				$('#san_FichierSan').append(value.title);
 				$('#nomAcc_lable_san').append(value.nomAcc);
 				$('#CategorieTest_lable_san').append(value.CategorieTest);
-				$('#CodeAcc_lable_san').append(value.CodeAcc);
+				$('#CodeAcc_lable_san').append(value.codeAcc);
 				$('#MatTeste_lable_san').append(value.MatTeste);
 				$('#PathogeneTeste_lable_san').append(value.PathogeneTeste);
 				$('#CodeEmplacem_lable_san').append(value.CodeEmplacem);
@@ -526,7 +526,7 @@ $(document).ready(function(){
 				$('#gen_FichierGen').append(value.title);
 				$('#nomAcc_lable_gen').append(value.nomAcc);
 				$('#IdStockADN_lable_gen').append(value.IdStockADN);
-				$('#CodeAcc_lable_gen').append(value.CodeAcc);
+				$('#CodeAcc_lable_gen').append(value.codeAcc);
 				$('#IdProtocolePCR_lable_gen').append(value.IdProtocolePCR);
 				$('#Marqueur_lable_gen').append(value.Marqueur);
 				$('#DatePCR_lable_gen').append(value.DatePCR);
