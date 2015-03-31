@@ -371,7 +371,7 @@ switch($fun){
 	break;
 	case "cate5_var":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
-		$code=$DAO->listCodeIntro($_POST['code']);
+		$code=$_POST['code'];
 		$page_emplacement=$_POST['curpage'];
 		$pagesize_emplacement=$_POST['pagesize'];
 		$langue=$_SESSION['language_Vigne'];

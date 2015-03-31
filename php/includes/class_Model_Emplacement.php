@@ -104,14 +104,11 @@ class Emplacement {
 		$Em_Contents['CodeSite']=$this->getCodeSite();
 		$Em_Contents['Parcelle']=$this->getParcelle();
 		$Em_Contents['Rang']=$this->getRang();
-		$Em_Contents['PremiereSouche']=$this->getPremiereSouche();
-		$Em_Contents['DerniereSouche']=$this->getDerniereSouche();
+		$Em_Contents['AnneePlantation']=$this->getAnneePlantation();
 		$Em_Contents['NomIntro']=$this->getNomIntro();
 		$Em_Contents['CodeIntro']=$this->getCodeIntro();
-		$Em_Contents['CodeVar']=$this->getCodeVar();
 		$Em_Contents['CodeIntroPartenaire']=$this->getCodeIntroPartenaire();
-		$Em_Contents['NumCloneCTPS']=$this->getNumCloneCTPS();
-		$Em_Contents['AnneePlantation']=$this->getAnneePlantation();
+		
 		return $Em_Contents;
 	}
 	function getFicherEmplacement(){

@@ -107,7 +107,26 @@ switch ($section) {
         break;
     case "":
         break;
-    case "":
+    case "bibliographie":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{CodeCit}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{CodeVar}),        
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{Title}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{Author}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{Year}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{PagesCitation}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{VolumeCitation}));
+        } else if ($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{CodeCit}),
+                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{CodeVar}),
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{Title}),
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{Author}),
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{Year}),
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{PagesCitation}),
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{VolumeCitation}));
+        }
         break;
 }
 require('../includes/bibliFonc.php'); //Accès à la base de données

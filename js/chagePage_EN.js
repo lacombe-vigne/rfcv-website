@@ -526,7 +526,7 @@ $(document).ready(function(){
 				$('#san_FichierSan').append(value.title);
 				$('#nomAcc_lable_san').append(value.nomAcc);
 				$('#CategorieTest_lable_san').append(value.CategorieTest);
-				$('#CodeAcc_lable_san').append(value.odeAcc);
+				$('#CodeAcc_lable_san').append(value.codeAcc);
 				$('#MatTeste_lable_san').append(value.MatTeste);
 				$('#PathogeneTeste_lable_san').append(value.PathogeneTeste);
 				$('#CodeEmplacem_lable_san').append(value.CodeEmplacem);
@@ -537,10 +537,12 @@ $(document).ready(function(){
 				$('#DateTest_lable_san').append(value.DateTest);
 			}
 			if(key==="genetique_en"){
+                                $('#TypeOrgane_lable_gen').append(value.TypeOrgane);
+                                $('#IdProtocoleRecolte_lable_gen').append(value.IdProtocoleRecolte);
 				$('#gen_FichierGen').append(value.title);
 				$('#nomAcc_lable_gen').append(value.nomAcc);
 				$('#IdStockADN_lable_gen').append(value.IdStockADN);
-				$('#CodeAcc_lable_gen').append(value.codeAcc);
+				$('#CodeAcc_lable_gen').append(value.CodeAcc);
 				$('#IdProtocolePCR_lable_gen').append(value.IdProtocolePCR);
 				$('#Marqueur_lable_gen').append(value.Marqueur);
 				$('#DatePCR_lable_gen').append(value.DatePCR);
@@ -601,12 +603,10 @@ $(document).ready(function(){
 				$('#TelSite_lable_site').append(value.TelSite);
 				$('#LatSite_lable_site').append(value.LatSite);
 				$('#FaxSite_lable_site').append(value.FaxSite);
-				$('#LatSite_lable_site').append(value.LatSite);
-				$('#FaxSite_lable_site').append(value.FaxSite);
 				$('#LongSite_lable_site').append(value.LongSite);
 				$('#MailSite_lable_site').append(value.MailSite);
 				$('#AltSite_lable_site').append(value.AltSite);
-				$('#AnneeCreationSite').append(value.AnneeCreationSite);
+				$('#AnneeCreationSite_lable_site').append(value.AnneeCreationSite);
 				$('#VarMajoritairesSite_lable_site').append(value.VarMajoritairesSite);
 				$('#PresentationSite_lable_site').append(value.PresentationSite);
 			}

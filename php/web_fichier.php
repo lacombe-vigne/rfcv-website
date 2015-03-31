@@ -617,7 +617,7 @@
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodeAcc."\",\"accession\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/>><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
+								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc''><img src='images/poin_par.png' width='10' height='10'/><span id='Caracteristique_lable_apt'></span></td><td width='30%' class='res_acc'>".$Caracteristique."</td>

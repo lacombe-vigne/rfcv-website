@@ -125,7 +125,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays 
                                     where (upper(NomIntro)=upper('" . $search_complet . "') OR upper(CodeIntro)=upper('" . $search_complet . "'))";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' ||$_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
@@ -153,7 +153,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (upper(NomIntro)=upper('" . $search_complet . "') OR upper(CodeIntro)=upper('" . $search_complet . "'))";
-                                } else{ //utilisateur D
+                                } else { //utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -348,7 +348,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (upper(NomIntro)=upper('" . $search_complet . "') OR upper(CodeIntro)=upper('" . $search_complet . "'))";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' ||$_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
@@ -376,7 +376,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (upper(NomIntro)=upper('" . $search_complet . "') OR upper(CodeIntro)=upper('" . $search_complet . "'))";
-                                } else{ //utilisateur D
+                                } else { //utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -507,7 +507,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '^" . $search . "' OR CodeIntro REGEXP '^" . $search . "')";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
@@ -536,7 +536,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '^" . $search . "' OR CodeIntro REGEXP '^" . $search . "')";
-                                } else{//utilisateur D
+                                } else {//utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -733,7 +733,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '^" . $search . "' OR CodeIntro REGEXP '^" . $search . "')";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' ||$_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
@@ -762,7 +762,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '^" . $search . "' OR CodeIntro REGEXP '^" . $search . "')";
-                                } else{//utilisateur D
+                                } else {//utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -893,7 +893,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "') ";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
@@ -921,7 +921,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "')";
-                                } else{ // utilisateur D
+                                } else { // utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -951,7 +951,6 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "')";
-                                    
                                 }
                             } else {
                                 //espece
@@ -1113,7 +1112,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "')";
-                                }  else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
@@ -1141,7 +1140,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "')";
-                                } else{ // utilisateur D
+                                } else { // utilisateur D
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -1171,7 +1170,6 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "' OR CodeIntro REGEXP '" . $search . "')";
-                                    
                                 }
                             } else {
                                 $startPage_accession = ($page_accession - 1) * $pagesize_accession;
@@ -1271,7 +1269,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "$' OR CodeIntro REGEXP '" . $search . "$')";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire SiregalPresenceEnColl = 'oui' and(
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
@@ -1328,7 +1326,6 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "$' OR CodeIntro REGEXP '" . $search . "$')";
-                                    
                                 }
                             } else {
                                 //espece
@@ -1488,7 +1485,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "$' OR CodeIntro REGEXP '" . $search . "$')";
-                                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                     //utilisateur admin_partenaire SiregalPresenceEnColl = 'oui' and(
                                     $startPage_accession = ($page_accession - 1) * $pagesize_accession;
                                     $sql_accession = "select * from `NV-INTRODUCTIONS`
@@ -1545,7 +1542,6 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays where (NomIntro REGEXP '" . $search . "$' OR CodeIntro REGEXP '" . $search . "$')";
-                                    
                                 }
                             } else {
                                 $startPage_accession = ($page_accession - 1) * $pagesize_accession;
@@ -1760,7 +1756,7 @@ class BibliothequeDAO {
             $Em_Contents = array();
             for ($j = 0; $j < (mysql_num_rows($resultat_emplacement)); $j = $j + 1) {
                 $dico = mysql_fetch_assoc($resultat_emplacement);
-                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                 $Em_Content = supprNull($EM->getListeEmplaclemnt());
                 array_push($Em_Contents, $Em_Content);
             }
@@ -1954,7 +1950,7 @@ class BibliothequeDAO {
             $contents_genetique = array();
             for ($i = 0; $i < (mysql_num_rows($resultat_genetique)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat_genetique);
-                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                 $content_genetique = $genetique_class->getListeGenetique();
                 array_push($contents_genetique, $content_genetique);
             }
@@ -2987,7 +2983,7 @@ class BibliothequeDAO {
                     if (isset($_SESSION['codePersonne'])) {
                         if ($_SESSION['ProfilPersonne'] == 'A') {
                             $sql_accession = "Select * from `NV-INTRODUCTIONS` where CodeIntro='" . $code . "'";
-                        } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                             $sql_accession = "Select * from `NV-INTRODUCTIONS` where (CodeIntro='" . $code . "' and IdReseau1='a')
 																			or (CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'
 																			or (CodeIntro='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
@@ -3020,12 +3016,12 @@ class BibliothequeDAO {
                         for ($i = 0; $i < (mysql_num_rows($resultat_accession)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_accession);
                             //$_SESSION['NomIntro']=$dico['NomIntro'];
-                            $ACC = new Accession($dico['CodeIntro'],$dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenancevAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                            $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenancevAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
                             $content_accession = supprNull($ACC->getFicherAccession());
                         }
                         deconnexion_bbd();
                     }
-                    $_SESSION['2']=$resultat['contents_acc'];
+                    $_SESSION['2'] = $resultat['contents_acc'];
                     $resultat['contents_acc'] = $content_accession;
 
                     break;
@@ -3089,7 +3085,13 @@ class BibliothequeDAO {
                 case("emplacement"):
                     connexion_bbd();
                     mysql_query('SET NAMES UTF8');
-                    $sql = "select * from `NV-EMPLACEMENTS` e,`Emplacements_theoriques` t,`NV-INTRODUCTIONS` i where e.CodeEmplacem='" . $code . "' and e.CodeEmplacem=t.CodeEmplacem and i.CodeIntro=e.CodeIntro";
+                     $sql = "SELECT *
+                            FROM `NV-EMPLACEMENTS` e
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                            INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
+                            WHERE e.CodeEmplacem='" . $code . "'";
                     $resultat_emp = mysql_query($sql) or die(mysql_error());
                     if (!$resultat_emp) {
                         deconnexion_bbd();
@@ -3103,7 +3105,7 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_emp) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_emp);
-                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                             $Em_Content = supprNull($EM->getFicherEmplacement());
                         }
                         deconnexion_bbd();
@@ -3169,7 +3171,7 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_gen) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_gen)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_gen);
-                            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                             $content_genetique = supprNull($genetique_class->getFicherGenetique());
                         }
                         deconnexion_bbd();
@@ -3333,12 +3335,12 @@ class BibliothequeDAO {
 
     public function accession($code, $page_accession, $pagesize_accession, $langue, $section, $colone, $tri, $section_fiche) {
         /*
-        
-         
+
+
          */
-        
-        
-        
+
+
+
         $DAO = new BibliothequeDAO();
         if ($section == 1) {
             $tri_accession = "order by " . $colone . " asc";
@@ -3354,7 +3356,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE `NV-INTRODUCTIONS`.CodeVar = '" . $code . "'";
-            
+
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
                     $sql_limit = "select * FROM `NV-INTRODUCTIONS`
@@ -3367,7 +3369,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE `NV-INTRODUCTIONS`.CodeVar = '" . $code . "'";
-                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C'){
+                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                     $sql_limit = "select * FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                         LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -3430,20 +3432,20 @@ class BibliothequeDAO {
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
-                                    WHERE CodeEsp = '" . $code . "' ". $tri_accession."";
+                                    WHERE CodeEsp = '" . $code . "' " . $tri_accession . "";
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
                     $sql_limit = "select * FROM `NV-INTRODUCTIONS`
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
-                                    WHERE CodeEsp = '" . $code . "' ". $tri_accession." limit " . $startPage_accession . "," . $pagesize_accession;
+                                    WHERE CodeEsp = '" . $code . "' " . $tri_accession . " limit " . $startPage_accession . "," . $pagesize_accession;
                     $sql_possible = "select * FROM `NV-INTRODUCTIONS`
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
-                                    WHERE CodeEsp = '" . $code . "' ". $tri_accession."";
-                } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                                    WHERE CodeEsp = '" . $code . "' " . $tri_accession . "";
+                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                     $sql_limit = "select * FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                         LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -3454,7 +3456,7 @@ class BibliothequeDAO {
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_accession . " limit " . $startPage_accession . "," . $pagesize_accession;
-                    
+
                     $sql_possible = "select * FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                         LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -3465,7 +3467,7 @@ class BibliothequeDAO {
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))" . $tri_accession;
-                } else{ // Utilisateur D
+                } else { // Utilisateur D
                     $sql_limit = "select * FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                         LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -3477,7 +3479,7 @@ class BibliothequeDAO {
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))) " . $tri_accession . " limit " . $startPage_accession . "," . $pagesize_accession;
-                    
+
                     $sql_possible = "select * FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                         LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -3571,7 +3573,7 @@ class BibliothequeDAO {
         if (mysql_num_rows($resultat) > 0) {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
-                $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->sampstat($dico['evdb_20-SAMPSTAT'], $langue) ,$dico['RemarquesVar']);
+                $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->sampstat($dico['evdb_20-SAMPSTAT'], $langue), $dico['RemarquesVar']);
                 $detail = $VAR->getFicherVarieteTab();
             }
             deconnexion_bbd();
@@ -3747,7 +3749,7 @@ class BibliothequeDAO {
             if ($section == 2) {
                 $tri_emplacement = "order by i." . $colone . " desc";
             }
-        } else if ($colone = 'AnneePlantation') {
+        } else if ($colone == 'AnneePlantation') {
             if ($section == 1) {
                 $tri_emplacement = "order by e." . $colone . " asc";
             }
@@ -3766,58 +3768,111 @@ class BibliothequeDAO {
         $startPage_emplacement = ($page_emplacement - 1) * $pagesize_emplacement;
         if ($code != "") {
             if ($section_fiche == "Variete") {
-                $sql_total = "select * from `NV-EMPLACEMENTS` e,`Emplacements_theoriques` t,`NV-INTRODUCTIONS` i where e.CodeIntro in (" . $code . ") and e.CodeEmplacem=t.CodeEmplacem and i.CodeIntro=e.CodeIntro";
+                $sql_total = "SELECT *
+                            FROM `NV-EMPLACEMENTS` e
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                            WHERE CodeVar = '" . $code . "' AND e.`Elimination`='non'";
                 if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A' || $_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
-                        $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                        $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") " . $tri_emplacement;
-                    } else {
-                        $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") and e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                        $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") and e.AffichEmplacInternet='O' " . $tri_emplacement;
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql_limit = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' " . $tri_emplacement;
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql_limit = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O') " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O') " . $tri_emplacement;
+                    } else { // Utilisateur D
+                        $sql_limit = "SELECT *
+                                    FROM `NV-EMPLACEMENTS` e 
+                                    INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                    INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                    WHERE CodeVar = '" . $code . "' AND e.`Elimination`='non' AND e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT *
+                                    FROM `NV-EMPLACEMENTS` e 
+                                    INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                    INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                    WHERE CodeVar = '" . $code . "' AND e.`Elimination`='non' AND e.AffichEmplacInternet='O' " . $tri_emplacement;
                     }
                 } else {
-                    $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") and e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                    $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro in (" . $code . ") and e.AffichEmplacInternet='O' " . $tri_emplacement;
+                    $sql_limit = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e 
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                    $sql_possible = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e 
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND e.AffichEmplacInternet='O' " . $tri_emplacement;
                 }
             }
             if ($section_fiche == "Accession") {
-                $sql_total = "select * from `NV-EMPLACEMENTS` e,`Emplacements_theoriques` t,`NV-INTRODUCTIONS` i where e.CodeIntro='" . $code . "' and e.CodeEmplacem=t.CodeEmplacem and i.CodeIntro=e.CodeIntro";
+                $sql_total = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non'";
                 if (isset($_SESSION['codePersonne'])) {
-                    if ($_SESSION['ProfilPersonne'] == 'A' || $_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
-                        $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                        $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t  on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' ";
-                        $resultat['emplacement']['tri'] = $tri;
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql_limit = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non'" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non'";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql_limit = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O')" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O')";
                     } else {
-                        $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' and e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                        $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' and e.AffichEmplacInternet='O' ";
+                        $sql_limit = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                        $sql_possible = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'";
                     }
                 } else {
-                    $sql_limit = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t   on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' and e.AffichEmplacInternet='O' " . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
-                    $sql_possible = "select * from `NV-EMPLACEMENTS` e inner join `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
-																	inner join `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
-																	and e.CodeIntro='" . $code . "' and e.AffichEmplacInternet='O' ";
+                    $sql_limit = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                    $sql_possible = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'";
                 }
             }
         }
@@ -3836,7 +3891,7 @@ class BibliothequeDAO {
         if (isset($_SESSION['codePersonne'])) {
             if ($_SESSION['ProfilPersonne'] == 'A') {
                 $sql = "select CodeIntro from `NV-INTRODUCTIONS` where CodeVar='" . $code . "'";
-            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                 $sql = "select CodeIntro from `NV-INTRODUCTIONS` where 
 									CodeVar='" . $code . "' and IdReseau1='a')  or 
 									CodeVar='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or 
@@ -7171,7 +7226,13 @@ class BibliothequeDAO {
 
     public function emplacement_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `NV-EMPLACEMENTS` e,`Emplacements_theoriques` t,`NV-INTRODUCTIONS` i where e.CodeEmplacem='" . $code . "' and e.CodeEmplacem=t.CodeEmplacem and i.CodeIntro=e.CodeIntro";
+        $sql = "SELECT *
+                FROM `NV-EMPLACEMENTS` e
+                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
+                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
+                WHERE e.CodeEmplacem='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -7187,9 +7248,8 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['nomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
             $Em_Content = supprNull($EM->getListeEmplaclemnt());
-            $Em_Content['NomVar'] = $DAO->nomVar($dico['CodeVar']);
         }
         return $Em_Content;
     }
@@ -7296,7 +7356,7 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
             $content_genetique = $genetique_class->getSelectionGenetique();
             $content_genetique['CodeVar'] = $dico['CodeVar'];
             $content_genetique['NomVar'] = $DAO->nomVar($dico['CodeVar']);
@@ -7445,7 +7505,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat);
-                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->sampstat($dico['evdb_20-SAMPSTAT'], $langue) ,$dico['RemarquesVar']);
+                    $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->sampstat($dico['evdb_20-SAMPSTAT'], $langue), $dico['RemarquesVar']);
                     $detail = $VAR->getFichePDFVariete();
                     $detail = supprNull($detail);
                 }
@@ -7650,7 +7710,13 @@ class BibliothequeDAO {
         } else if ($section == "emplacement") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = "select * from `NV-EMPLACEMENTS` e,`Emplacements_theoriques` t,`NV-INTRODUCTIONS` i where e.CodeEmplacem='" . $code . "' and e.CodeEmplacem=t.CodeEmplacem and i.CodeIntro=e.CodeIntro";
+             $sql = "SELECT *
+                FROM `NV-EMPLACEMENTS` e
+                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
+                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
+                WHERE e.CodeEmplacem='" . $code . "'";
             $resultat_emp = mysql_query($sql) or die(mysql_error());
             if (!$resultat_emp) {
                 deconnexion_bbd();
@@ -7664,7 +7730,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_emp) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_emp);
-                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->nomVar($dico['CodeVar']),$dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                 }
                 $detail = $EM->getFicherEmplacement();
                 $detail = supprNull($detail);
@@ -7688,7 +7754,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_gen) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_gen)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_gen);
-                    $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'],$dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                    $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                 }
                 $detail = $genetique_class->getFicherGenetique();
                 $detail = supprNull($detail);
@@ -7722,7 +7788,7 @@ class BibliothequeDAO {
         }
     }
 
-    public function exportxls($langue, $section) {
+    public function exportxls_search($langue, $section) {
         if ($section == "variete") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
@@ -8076,7 +8142,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree 
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8088,7 +8154,7 @@ class BibliothequeDAO {
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
-                            } else{ //Utilisateur D
+                            } else { //Utilisateur D
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree 
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8122,7 +8188,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8168,7 +8234,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree 
                                         FROM `NV-INTRODUCTIONS`
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8192,7 +8258,7 @@ class BibliothequeDAO {
 										((upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') or upper(CodeIntro)=upper('" . $search_complet . "')) and ((idreseau1 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";    
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                             }
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
@@ -8214,7 +8280,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8238,7 +8304,7 @@ class BibliothequeDAO {
 										((NomIntro REGEXP '" . $_SESSION['search'] . "$' or CodeIntro REGEXP '" . $_SESSION['search'] . "$') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";                               
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                             }
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
@@ -8263,7 +8329,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "' OR CodeIntro REGEXP '" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8275,7 +8341,7 @@ class BibliothequeDAO {
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
-                            } else{ //Utilisateur D
+                            } else { //Utilisateur D
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8309,7 +8375,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '^" . $_SESSION['search'] . "' OR CodeIntro REGEXP '^" . $_SESSION['search'] . "')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8355,7 +8421,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') OR upper(CodeIntro)=upper('" . $_SESSION['searchcomplet'] . "'))
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS`
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8379,7 +8445,7 @@ class BibliothequeDAO {
 										((upper(NomIntro)=upper('" . $_SESSION['searchcomplet'] . "') or upper(CodeIntro)=upper('" . $search_complet . "')) and ((idreseau1 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";    
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                             }
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
@@ -8401,7 +8467,7 @@ class BibliothequeDAO {
                                         LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                         WHERE (NomIntro REGEXP '" . $_SESSION['search'] . "$' OR CodeIntro REGEXP '" . $_SESSION['search'] . "$')
                                         ORDER BY CodeIntro;";
-                            } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                            } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                                 $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8425,7 +8491,7 @@ class BibliothequeDAO {
 										((NomIntro REGEXP '" . $_SESSION['search'] . "$' or CodeIntro REGEXP '" . $_SESSION['search'] . "$') and ((idreseau1 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";                               
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                             }
                         } else {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
@@ -8455,7 +8521,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat)); $i++) {
                     $dico = mysql_fetch_assoc($resultat);
-                    $dico['CodeIntro']="'".$dico['CodeIntro'];
+                    $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
                     $dico = supprNull($dico);
                     array_push($result, $dico);
                 }
@@ -8636,8 +8702,8 @@ class BibliothequeDAO {
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE CodeEsp = '" . $code . "'
                                     ORDER BY CodeIntro;";
-                    } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
-                        
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+
                         $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree 
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8684,7 +8750,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE CodeEsp = '" . $code . "'
                                     ORDER BY CodeIntro;";
-                    } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                         "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8740,10 +8806,10 @@ class BibliothequeDAO {
                 $dico = mysql_fetch_assoc($resultat);
                 $dico = supprNull($dico);
                 array_push($result, $dico);
-                $result[$i]['CodeIntro'] = "'".$dico['CodeIntro'];
+                $result[$i]['CodeIntro'] = "'" . $dico['CodeIntro'];
             }
             deconnexion_bbd();
-        }       
+        }
         $res = $result;
         return $res;
     }
@@ -8763,7 +8829,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE `NV-INTRODUCTIONS`.CodeVar = '" . $code . "'
                                     ORDER BY CodeIntro;";
-                        } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysFrancais, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8810,7 +8876,7 @@ class BibliothequeDAO {
                                     LEFT JOIN `ListeDeroulante_pays` ON `NV-INTRODUCTIONS`.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
                                     WHERE `NV-INTRODUCTIONS`.CodeVar = '" . $code . "'
                                     ORDER BY CodeIntro;";
-                        } else if($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C'){
+                        } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
                                         LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
@@ -8823,7 +8889,6 @@ class BibliothequeDAO {
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))
                                         ORDER BY CodeIntro;";
-                            
                         } else { // utilisateur D 
                             $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                         FROM `NV-INTRODUCTIONS` 
@@ -8864,7 +8929,7 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i++) {
                         $dico = mysql_fetch_assoc($resultat);
-                        $dico['CodeIntro']="'".$dico['CodeIntro'];
+                        $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
                         $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $dico['NomVar'], $dico['NomPartenaire'], $dico['NomPaysLocal'], $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['PepinsIntro'], $dico['SaveurIntro'], $dico['SexeIntro'], $dico['Statut'], $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $dico['PaysProvenance'], $dico['RegionProvenance'], $dico['DepartProvenance'], $langue, $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $dico['PaysProvAnt'], $dico['RegionProvAnt'], $dico['DepartProvAnt'], $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['SaveurIntro'], $dico['PepinsIntro'], $dico['SexeIntro'], $dico['NumTempCTPS'], $dico['DelegONIVINS'], $dico['Statut'], $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
                         $content_accession = supprNull($ACC->getListeAccession());
                         array_push($result, $content_accession);
@@ -8895,7 +8960,6 @@ class BibliothequeDAO {
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))
                                     ORDER BY CodeAptitude;";
-                            
                         }
                     } else {
                         $sql = "SELECT *
@@ -8903,7 +8967,6 @@ class BibliothequeDAO {
                                 LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract                              
                                 WHERE `Aptitudes`.CodeVar='" . $code . "' and `Aptitudes`.IdReseau1='a'
                                 ORDER BY CodeAptitude;";
-                        
                     }
                 } else if ($langue == "EN") {
                     if (isset($_SESSION['codePersonne'])) {
@@ -8942,6 +9005,57 @@ class BibliothequeDAO {
                 }
                 break;
             case "emplacement":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' ";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT *
+                                FROM `NV-EMPLACEMENTS` e
+                                INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                                INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                                WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O') ";
+                    } else { // Utilisateur D
+                        $sql = "SELECT *
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                            WHERE CodeVar = '" . $code . "' AND e.`Elimination`='non' AND e.AffichEmplacInternet='O'";
+                    }
+                } else {
+                    $sql = "SELECT *
+                        FROM `NV-EMPLACEMENTS` e 
+                        INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                        INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
+                        WHERE CodeVar = '" . $code . "' AND `Elimination`='non' AND e.AffichEmplacInternet='O'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $dico['CodeIntro']="'".$dico['CodeIntro'];
+                        $dico['CodeIntroPartenaire']="'".$dico['CodeIntroPartenaire'];
+                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                        $detail = $EM->getListeEmplaclemnt();
+                        $detail = supprNull($detail);
+                        array_push($result, $detail);
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
             case "":
                 break;
@@ -8955,12 +9069,47 @@ class BibliothequeDAO {
                 break;
             case "":
                 break;
-            case "":
+            case "bibliographie":
+                if (isset($_SESSION['codePersonne'])) {
+                    //Si on est connecté
+                    $sql = "SELECT *
+                                    FROM (`Bibliographie_citations`,`Bibliographie_documents`)
+                                    LEFT JOIN `NV-VARIETES` ON `Bibliographie_citations`.CodeVar = `NV-VARIETES`.CodeVar
+                                    WHERE `Bibliographie_citations`.CodeDoc=`Bibliographie_documents`.CodeDoc AND `Bibliographie_citations`.CodeVar='" . $code . "'";
+                } else { // Public
+                    $sql = "SELECT *
+                            FROM (`Bibliographie_citations`,`Bibliographie_documents`)
+                            LEFT JOIN `NV-VARIETES` ON `Bibliographie_citations`.CodeVar = `NV-VARIETES`.CodeVar
+                            WHERE `Bibliographie_citations`.CodeDoc=`Bibliographie_documents`.CodeDoc AND `Bibliographie_citations`.CodeVar='" . $code . "' AND `Bibliographie_citations`.JY_Public='O' AND `Bibliographie_documents`.Public='O' ";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array(); // On initialise le tableau qui contiendra les données
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) { //Si il n'y a pas de résultat
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) { // s'il y'a au moins 1 résultat
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        // création de l'objet bibliographie
+                        $BI = new Bibliograhpie($dico['CodeCit'], $dico['CodeVar'], $dico['Title'], $dico['Author'], $dico['Year'], $dico['PagesCitation'], $dico['VolumeCitation'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeIntro'], $dico['TypeDoc'], $dico['Edition'], $dico['Publisher'], $dico['PlacePublished'], $dico['ISBN'], $dico['Language'], $dico['NumberOfVolumes'], $dico['PagesDoc'], $dico['CallNumber'], $dico['AuteurCitation'], $dico['NomVigneCite']);
+                        $detail = $BI->getListeBibliographie();
+                        $detail = supprNull($detail); // On replace les vide par des tirets
+                        array_push($result, $detail); // On ajoute la ligne à la fin de notre tableau
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
         }
     }
 
-    public function exportxls_accession($langue, $section, $code){
+    public function exportxls_accession($langue, $section, $code) {
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         switch ($section) {
@@ -8985,7 +9134,6 @@ class BibliothequeDAO {
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))
                                     ORDER BY CodeAptitude;";
-                            
                         }
                     } else {
                         $sql = "SELECT *
@@ -8993,7 +9141,6 @@ class BibliothequeDAO {
                                 LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract                              
                                 WHERE `Aptitudes`.CodeIntro='" . $code . "' and `Aptitudes`.IdReseau1='a'
                                 ORDER BY CodeAptitude;";
-                        
                     }
                 } else if ($langue == "EN") {
                     if (isset($_SESSION['codePersonne'])) {
@@ -9015,7 +9162,6 @@ class BibliothequeDAO {
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))
                                     ORDER BY CodeAptitude;";
-                            
                         }
                     } else {
                         $sql = "SELECT *
@@ -9023,7 +9169,6 @@ class BibliothequeDAO {
                                 LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract                              
                                 WHERE `Aptitudes`.CodeIntro='" . $code . "' and `Aptitudes`.IdReseau1='a'
                                 ORDER BY CodeAptitude;";
-                        
                     }
                 }
                 $resultat = mysql_query($sql) or die(mysql_error());
@@ -9053,6 +9198,57 @@ class BibliothequeDAO {
                 }
                 break;
             case "emplacement":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non'";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O')";
+                    } else {
+                        $sql = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'";
+                    }
+                } else {
+                    $sql = "SELECT * 
+                            FROM `NV-EMPLACEMENTS` e 
+                            INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
+                            INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
+                            WHERE Elimination='non' AND AffichEmplacInternet='O'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $dico['CodeIntro']="'".$dico['CodeIntro'];
+                        $dico['CodeIntroPartenaire']="'".$dico['CodeIntroPartenaire'];
+                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                        $detail = $EM->getListeEmplaclemnt();
+                        $detail = supprNull($detail);
+                        array_push($result, $detail);
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
             case "":
                 break;
@@ -9066,12 +9262,102 @@ class BibliothequeDAO {
                 break;
             case "":
                 break;
-            case "":
+            case "bibliographie":
+                if (isset($_SESSION['codePersonne'])) {
+                    //Si on est connecté
+                    $sql = "SELECT *
+                                    FROM (`Bibliographie_citations`,`Bibliographie_documents`) 
+                                    LEFT JOIN `NV-INTRODUCTIONS` ON `Bibliographie_citations`.CodeIntro=`NV-INTRODUCTIONS`.CodeIntro  
+                                    WHERE `Bibliographie_citations`.CodeDoc=d.CodeDoc AND `Bibliographie_citations`.CodeIntro='" . $code . "'";
+                } else { // Public
+                    $sql = "SELECT *
+                                    FROM (`Bibliographie_citations`,`Bibliographie_documents`) 
+                                    LEFT JOIN `NV-INTRODUCTIONS` ON `Bibliographie_citations`.CodeIntro=`NV-INTRODUCTIONS`.CodeIntro  
+                                    WHERE `Bibliographie_citations`.CodeDoc=`Bibliographie_documents`.CodeDoc AND `Bibliographie_citations`.CodeIntro='" . $code . "' AND `Bibliographie_citations`.JY_Public='O' AND `Bibliographie_documents`.Public='O' ";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array(); // On initialise le tableau qui contiendra les données
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) { //Si il n'y a pas de résultat
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) { // s'il y'a au moins 1 résultat
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        // création de l'objet bibliographie
+                        $BI = new Bibliograhpie($dico['CodeCit'], $dico['CodeVar'], $dico['Title'], $dico['Author'], $dico['Year'], $dico['PagesCitation'], $dico['VolumeCitation'], $dico['NomIntro'], $dico['CodeVar'], $dico['CodeIntro'], $dico['TypeDoc'], $dico['Edition'], $dico['Publisher'], $dico['PlacePublished'], $dico['ISBN'], $dico['Language'], $dico['NumberOfVolumes'], $dico['PagesDoc'], $dico['CallNumber'], $dico['AuteurCitation'], $dico['NomVigneCite']);
+                        $detail = $BI->getListeBibliographie();
+                        $detail = supprNull($detail); // On replace les vide par des tirets
+                        array_push($result, $detail); // On ajoute la ligne à la fin de notre tableau
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
-            
         }
     }
+
 }
+
+/*
+ *
+ * if ($ficher_section == "Accession") {
+            $sql_total = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeIntro='" . $code . "' and c.CodeDoc=d.CodeDoc";
+            $startPage_bibliographie = ($page_bibliographie - 1) * $pagesize_bibliographie;
+            if (isset($code)) {
+                if (isset($_SESSION['codePersonne'])) {
+                    $sql_limit = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeIntro='" . $code . "' and c.CodeDoc=d.CodeDoc " . $tri_bibliographie . " limit " . $startPage_bibliographie . "," . $pagesize_bibliographie;
+                    $sql_possible = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeIntro='" . $code . "' and c.CodeDoc=d.CodeDoc " . $tri_sanitaire;
+                } else {
+                    $sql_limit = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeIntro='" . $code . "' and c.CodeDoc=d.CodeDoc and c.JY_Public='O' and d.Public='O' " . $tri_bibliographie . " limit " . $startPage_bibliographie . "," . $pagesize_bibliographie;
+                    $sql_possible = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeIntro='" . $code . "' and c.CodeDoc=d.CodeDoc and c.JY_Public='O' and d.Public='O' " . $tri_sanitaire;
+                }
+            }
+        }
+
+        if ($ficher_section == "Variete") {
+            $sql_total = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeVar='" . $code . "' and c.CodeDoc=d.CodeDoc";
+            $startPage_bibliographie = ($page_bibliographie - 1) * $pagesize_bibliographie;
+            if (isset($code)) {
+                if (isset($_SESSION['codePersonne'])) {
+                    $sql_limit = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeVar='" . $code . "' and c.CodeDoc=d.CodeDoc " . $tri_bibliographie . " limit " . $startPage_bibliographie . "," . $pagesize_bibliographie;
+                    $sql_possible = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeVar='" . $code . "' and c.CodeDoc=d.CodeDoc " . $tri_sanitaire;
+                } else {
+                    $sql_limit = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeVar='" . $code . "' and c.CodeDoc=d.CodeDoc and c.JY_Public='O' and d.Public='O' " . $tri_bibliographie . " limit " . $startPage_bibliographie . "," . $pagesize_bibliographie;
+                    $sql_possible = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeVar='" . $code . "' and c.CodeDoc=d.CodeDoc and c.JY_Public='O' and d.Public='O' " . $tri_sanitaire;
+                }
+            }
+        }
+
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+ * $resultat_bib = mysql_query($sql) or die(mysql_error());
+            if (!$resultat_bib) {
+                deconnexion_bbd();
+                echo "<script>alert('erreur de base de donnes')</script>";
+                exit;
+            }
+            if (mysql_num_rows($resultat_bib) == 0) {
+                $detail = null;
+                deconnexion_bbd();
+            }
+            if (mysql_num_rows($resultat_bib) > 0) {
+                for ($i = 0; $i < (mysql_num_rows($resultat_bib)); $i = $i + 1) {
+                    $dico = mysql_fetch_assoc($resultat_bib);
+                    $BI = new Bibliograhpie($dico['CodeCit'], $dico['CodeVar'], $dico['Title'], $dico['Author'], $dico['Year'], $dico['PagesCitation'], $dico['VolumeCitation'], $DAO->nomAcc($dico['CodeIntro']), $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $dico['TypeDoc'], $dico['Edition'], $dico['Publisher'], $dico['PlacePublished'], $dico['ISBN'], $dico['Language'], $dico['NumberOfVolumes'], $dico['PagesDoc'], $dico['CallNumber'], $dico['AuteurCitation'], $dico['NomVigneCite']);
+                }
+                $detail = $BI->getFicherBibliographie();
+                $detail = supprNull($detail);
+                deconnexion_bbd();
+            }
+            return $detail;
+        } 
+ */
 
 /*
  * $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);

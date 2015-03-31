@@ -526,7 +526,7 @@ $(document).ready(function(){
 				$('#gen_FichierGen').append(value.title);
 				$('#nomAcc_lable_gen').append(value.nomAcc);
 				$('#IdStockADN_lable_gen').append(value.IdStockADN);
-				$('#CodeAcc_lable_gen').append(value.codeAcc);
+				$('#CodeAcc_lable_gen').append(value.CodeAcc);
 				$('#IdProtocolePCR_lable_gen').append(value.IdProtocolePCR);
 				$('#Marqueur_lable_gen').append(value.Marqueur);
 				$('#DatePCR_lable_gen').append(value.DatePCR);
