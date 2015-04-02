@@ -176,7 +176,7 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{LibelleDescrip}),
                 utf8_decode($parsed_json->{selection_fr}->{LibelleCritere}),
                 utf8_decode($parsed_json->{selection_fr}->{CaractereOIV}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_morphologieque}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_morphologique}),
                 utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_morphologique}));
         } else if ($langue == "EN") {
             $labeljson = array(
@@ -184,7 +184,7 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{LibelleDescrip}),
                 utf8_decode($parsed_json->{selection_en}->{LibelleCritere}),
                 utf8_decode($parsed_json->{selection_en}->{CaractereOIV}),
-                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_morphologieque}),
+                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_morphologique}),
                 utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_morphologique}));
         }
 

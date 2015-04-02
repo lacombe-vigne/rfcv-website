@@ -73,14 +73,10 @@ class Sanitaire {
 		$San_Contents=array();
 		$San_Contents['IdTest']=$this->getIdTest();
 		$San_Contents['CodeIntro']=$this->getCodeIntro();
-		$San_Contents['ResultatTest']=$this->getResultatTest();
-		$San_Contents['CategorieTest']=$this->getCategorieTest();
-		$San_Contents['MatTest']=$this->getMatTest();
-		$San_Contents['Laboratoire']=$this->getLaboratoire();
-		$San_Contents['dateTest']=$this->getdateTest();
-		$San_Contents['LieuTest']=$this->getLieuTest();
-		$San_Contents['SoucheTestee']=$this->getSoucheTestee();
-		$San_Contents['NomTest']=$this->getNomTest();
+                $San_Contents['NomTest']=$this->getNomTest();
+                $San_Contents['CategorieTest']=$this->getCategorieTest();
+		$San_Contents['ResultatTest']=$this->getResultatTest();		
+                $San_Contents['Laboratoire']=$this->getLaboratoire();
 		return $San_Contents;
 	}
 	function getFicherSanitaire(){

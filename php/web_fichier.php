@@ -458,7 +458,7 @@
 					</div>
 					<div id='cate9_FichierVar'>
 						<div id='title_cate9_FichierVar' class='vide'>
-							<span><a id='click_cate9_FichierVar'>Profil génétique</a></span>
+							<span><a id='click_cate9_FichierVar'></a></span>
 						</div>
 						<div id='contents_cate3_FichierVar' display='none'>
 						</div>
@@ -564,7 +564,7 @@
 					</div>
 					<div id='cate8_FichierAcc'>
 						<div id='title_cate8_FichierAcc' class='vide'>
-							<span><a id='click_cate8_FichierAcc'>Profil Génétique</a></span>
+							<span><a id='click_cate8_FichierAcc'></a></span>
 						</div>
 						<div id='contents_cate8_FichierAcc' display='none'>
 						</div>

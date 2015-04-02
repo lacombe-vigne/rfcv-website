@@ -1,135 +1,135 @@
 {
 	"page_principale_fr":
 		{
-			"title_recherche_avancee":"Recherche Avancée",
-			"fieldset_conditions_legend":"Votre Condition De Recherche",
+			"title_recherche_avancee":"Recherche avancée",
+			"fieldset_conditions_legend":"Choix des critères de recherche",
 			"titile_section":"Section",
-			"titile_Champ":"Champ",
-			"titile_Modele":"Modele",
-			"titile_Condition":"Condition",
-			"titile_Supprimer":"Fonction",
+			"titile_Champ":"Information",
+			"titile_Modele":"Opérateur",
+			"titile_Condition":"Critère",
+			"titile_Supprimer":"Condition",
 			"go_searchA":"Recherche",
-			"recherche_avancee_titleAttention":"Attention: ",
-			"recherche_avancee_Attention":"tehtehtehtehtethethethethtehteh",
-			"titleResultat_rechreche_avancee":"Resultat"
+			"recherche_avancee_titleAttention":"AVERTISSEMENT: ",
+			"recherche_avancee_Attention":"Les informations diffusées sont la propriété des partenaires du Réseau. Toute copie totale ou partielle ne peut se faire sans l'accord des animateurs du Réseau. Toute citation de la base ou des informations diffusées doit mentionner obligatoirement le crédit \"Base de données du Réseau Français des Conservatoires de Vigne, © INRA-IFV-SupAgro 2005-2015\" ainsi que le nom des partenaires propriétaires des données utilisées. Les utilisateurs sont seuls responsables des interrogations qu'ils formulent ainsi que de l'interprétation et de l'utilisation qu'ils font des résultats.",
+			"titleResultat_rechreche_avancee":"Résultats"
 		},
 	"page_principale_en":
 		{
 			"title_recherche_avancee":"Advanced search",
-			"fieldset_conditions_legend":"Your conditions of search",
+			"fieldset_conditions_legend":"Selection of search criteria",
 			"titile_section":"Section",
-			"titile_Champ":"Field",
-			"titile_Modele":"Model",
-			"titile_Condition":"Condition",
-			"titile_Supprimer":"Function",
+			"titile_Champ":"Information",
+			"titile_Modele":"Operator",
+			"titile_Condition":"Criterion",
+			"titile_Supprimer":"Condition",
 			"go_searchA":"Search",
-			"recherche_avancee_titleAttention":"Attention: ",
-			"recherche_avancee_Attention":"tehtehtehtehtethethethethtehteh",
+			"recherche_avancee_titleAttention":"WARNING: ",
+			"recherche_avancee_Attention":"The information disseminated are the property of the Network's Partners. Total or partial copy can not be done without the agreement of the leaders of the Network. Any citation of the database or the information disseminated must mention credit \"Database Network of French Vine Conservatories © INRA-SupAgro IFV-2005-2015\" and the names of Partners owners of the data used. Users are solely responsible for the searches they formulate as well as the interpretation and use they make of the results.",
 			"titleResultat_rechreche_avancee":"Results"
 		},
 	"section_fr":
 		{
-			"section_espece_RA":"Espece",
-			"section_variete_RA":"Variete",
-			"section_accession_RA":"Accession",
-			"section_emplacement_RA":"Emplacement",
-			"section_sanitaire_RA":"Sanitaire",
-			"section_description_RA":"Description Morphologique",
-			"section_aptitude_RA":"Aptitude",
+			"section_espece_RA":"Espèces",
+			"section_variete_RA":"Variétés",
+			"section_accession_RA":"Accessions",
+			"section_emplacement_RA":"Emplacements en collection",
+			"section_sanitaire_RA":"Etat sanitaire",
+			"section_description_RA":"Description morphologique",
+			"section_aptitude_RA":"Aptitudes agro-technologiques",
 			"section_genetique_RA":"Profil génétique",
 			"section_phototheque_RA":"Photothèque",
-			"section_documentation_RA":"Documentation PDF/DOC",
+			"section_documentation_RA":"Documentation",
 			"section_bibliographie_RA":"Bibliographie",
 			"section_partenaire_RA":"Partenaire"
 		},
 	"section_en":
 		{
-			"section_espece_RA":"Espece",
-			"section_variete_RA":"Variete",
-			"section_accession_RA":"Accession",
-			"section_emplacement_RA":"Emplacement",
-			"section_sanitaire_RA":"Sanitaire",
-			"section_description_RA":"Description Morphologique",
-			"section_aptitude_RA":"Aptitude",
-			"section_genetique_RA":"Profil génétique",
-			"section_phototheque_RA":"Photothèque",
-			"section_documentation_RA":"Documentation PDF/DOC",
-			"section_bibliographie_RA":"Bibliographie",
-			"section_partenaire_RA":"Partenaire"
+			"section_espece_RA":"Species",
+			"section_variete_RA":"Varieties",
+			"section_accession_RA":"Accessions",
+			"section_emplacement_RA":"Location in collections",
+			"section_sanitaire_RA":"Sanitary status",
+			"section_description_RA":"Morphological description",
+			"section_aptitude_RA":"Aptitudes",
+			"section_genetique_RA":"Genetic profile",
+			"section_phototheque_RA":"Pictures",
+			"section_documentation_RA":"Documentation",
+			"section_bibliographie_RA":"Bibliography",
+			"section_partenaire_RA":"Partner"
 		},
 	"model_fr":
 		{
-			"section_model_like":"like",
-			"section_model_exact":"exact",
-			"section_model_start":"start",
-			"section_model_finish":"finish"
+			"section_model_like":"contient",
+			"section_model_exact":"est",
+			"section_model_start":"commence par",
+			"section_model_finish":"se termine par"
 		},
 	"model_en":
 		{
-			"section_model_like":"like",
-			"section_model_exact":"exact",
-			"section_model_start":"start",
-			"section_model_finish":"finish"
+			"section_model_like":"contains",
+			"section_model_exact":"is",
+			"section_model_start":"starts with",
+			"section_model_finish":"ends with"
 		},
 	"champ_espece_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"CodeEsp":"Code",
-			"Espece":"Nom Espèce"
+			"Espece":"Nom espèce"
 		},
 	"champ_espece_en":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifferent---",
 			"CodeEsp":"Code",
-			"Espece":"Species Name"
+			"Espece":"Species name"
 		},
 	"champ_variete_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"CodeVar":"Code",
 			"NomVar":"Nom variété",
 			"SynoMajeur":"Synonyme majeur",
 			"CodeType":"Type",
 			"UniteVar":"Unité",
 			"Utilite":"Utilisation",
-			"PaysOrigine":"Pays Origine",
+			"PaysOrigine":"Pays origine",
 			"RegionOrigine":"Région",
 			"DepartOrigine":"Département",
 			"CouleurPel":"Couleur",
-			"CouleurPulp":"Couleur Pulpe",
+			"CouleurPulp":"Couleur pulpe",
 			"Saveur":"Saveur",
 			"Pepins":"Pépins",
 			"Obtenteur":"Obtenteur",
-			"MereObt":"Mère Obtenteur",
-			"PereObt":"Père Obtenteur",
-			"InscriptionFrance":"Inscription France",
-			"InscriptionEurope":"Inscription Europe"
+			"MereObt":"Mère selon obtenteur",
+			"PereObt":"Père selon obtenteur",
+			"InscriptionFrance":"Inscription en France",
+			"InscriptionEurope":"Inscription en Europe"
 		},
 	"champ_variete_en":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifferent---",
 			"CodeVar":"Code",
-			"NomVar":"Nom variété",
-			"SynoMajeur":"Synonyme majeur",
+			"NomVar":"Variety name",
+			"SynoMajeur":"Main synonym",
 			"CodeType":"Type",
-			"UniteVar":"Unité",
-			"Utilite":"Utilisation",
-			"PaysOrigine":"Pays Origine",
-			"RegionOrigine":"Région",
-			"DepartOrigine":"Département",
-			"CouleurPel":"Couleur",
-			"CouleurPulp":"Couleur Pulpe",
-			"Saveur":"Saveur",
-			"Pepins":"Pépins",
-			"Obtenteur":"Obtenteur",
-			"MereObt":"Mère Obtenteur",
-			"PereObt":"Père Obtenteur",
-			"InscriptionFrance":"Inscription France",
-			"InscriptionEurope":"Inscription Europe"
+			"UniteVar":"Unity",
+			"Utilite":"Use",
+			"PaysOrigine":"Country origin",
+			"RegionOrigine":"Region",
+			"DepartOrigine":"Department",
+			"CouleurPel":"Colour skin",
+			"CouleurPulp":"Colour pulp",
+			"Saveur":"Flavour",
+			"Pepins":"Seeds",
+			"Obtenteur":"Breeder",
+			"MereObt":"Mother accord. breeder",
+			"PereObt":"Father accord. breeder",
+			"InscriptionFrance":"Registration in France",
+			"InscriptionEurope":"Registration in Europe"
 		},
 	"champ_accession_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"CodeIntro":"Code",
 			"NomIntro":"Nom Accession",
 			"Statut":"Statut",
@@ -145,125 +145,125 @@
 		},
 	"champ_accession_en":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifferent---",
 			"CodeIntro":"Code",
-			"NomIntro":"Nom Accession",
+			"NomIntro":"Nom accession",
 			"Statut":"Statut",
-			"UniteIntro":"Unité Matériel",
-			"PaysProvenance":"Pays Provenance",
-			"RegionProvenance":"Région Provenance",
-			"DepartProvenance":"Department Provenance",
-			"CommuneProvenance":"Ville Provenance",
-			"AdresProvenance":"Adresse Provenance",
+			"UniteIntro":"Unité mat. vég.",
+			"PaysProvenance":"Pays provenance",
+			"RegionProvenance":"Région provenance",
+			"DepartProvenance":"Departement provenance",
+			"CommuneProvenance":"Ville provenance",
+			"AdresProvenance":"Adresse provenance",
 			"AnneeEntree":"Année",
 			"Agrement":"Agrément",
-			"NumCloneCTPS":"NumCloneCTPS"
+			"NumCloneCTPS":"Num. agrément CTPS"
 		},
 	"champ_emplacement_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"CodeEmplacem":"Code",
 			"CodeSite":"Site",
 			"Parcelle":"Parcelle",
 			"Rang":"Rang",
-			"TypeSouche":"TypeSouche",
+			"TypeSouche":"Type souche",
 			"PremiereSouche":"Première Souche"
 		},
 	"champ_emplacement_en":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifferent---",
 			"CodeEmplacem":"Code",
 			"CodeSite":"Site",
-			"Parcelle":"Parcelle",
-			"Rang":"Rang",
-			"TypeSouche":"TypeSouche",
-			"PremiereSouche":"Première Souche"
+			"Parcelle":"Parcel",
+			"Rang":"Row",
+			"TypeSouche":"Type plant",
+			"PremiereSouche":"First plant"
 		},
 	"champ_sanitaire_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"NomTest":"Pathogène",
-			"CategorieTest":"CategorieTest",
+			"CategorieTest":"Categorie test",
 			"ResultatTest":"Résultat"
 		},
 	"champ_sanitaire_en":
 		{
-			"indifferent":"---indifférent---",
-			"NomTest":"Pathogène",
-			"CategorieTest":"CategorieTest",
-			"ResultatTest":"Résultat"
+			"indifferent":"--- Indifferent---",
+			"NomTest":"Pathogen",
+			"CategorieTest":"Test category",
+			"ResultatTest":"Result"
 		},
 	
 	"champ_aptitude_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"CodeCaract":"Aptitude",
 			"ValeurCaractNum":"Valeur"
 		},
 	"champ_aptitude_en":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifferent---",
 			"CodeCaract":"Aptitude",
-			"ValeurCaractNum":"Valeur"
+			"ValeurCaractNum":"Value"
 		},
 	"champ_phototheque_fr":
 		{
-			"indifferent":"---indifférent---",
-			"OrganePhoto":"Organge",
-			"CouleurPhoto":"CouleurPhoto",
+			"indifferent":"--- Indifférent ---",
+			"OrganePhoto":"Organe",
+			"CouleurPhoto":"Couleur photo",
 			"TypePhoto":"Type"
 		},
 	"champ_phototheque_en":
 		{
-			"indifferent":"---indifférent---",
-			"OrganePhoto":"Organge",
-			"CouleurPhoto":"CouleurPhoto",
+			"indifferent":"--- Indifferent---",
+			"OrganePhoto":"Organ",
+			"CouleurPhoto":"Picture colour",
 			"TypePhoto":"Type"
 		},
 	"champ_documentation_fr":
 		{
-			"indifferent":"---indifférent---",
-			"TypeDoc":"Type Doc",
+			"indifferent":"--- Indifférent ---",
+			"TypeDoc":"Type document",
 			"Titre":"Title",
 			"Auteurs":"Auteur"
 		},
 	"champ_documentation_en":
 		{
-			"indifferent":"---indifférent---",
-			"TypeDoc":"Type Doc",
+			"indifferent":"--- Indifferent---",
+			"TypeDoc":"Type document",
 			"Titre":"Title",
-			"Auteurs":"Auteur"
+			"Auteurs":"Author"
 		},
 	"champ_bibliographie_fr":
 		{
-			"indifferent":"---indifférent---",
-			"TypeDoc":"Type Doc",
+			"indifferent":"--- Indifférent ---",
+			"TypeDoc":"Type document",
 			"Title":"Title",
 			"Author":"Auteur"
 		},
 	"champ_bibliographie_en":
 		{
-			"indifferent":"---indifférent---",
-			"TypeDoc":"Type Doc",
+			"indifferent":"--- Indifferent---",
+			"TypeDoc":"Type document",
 			"Title":"Title",
-			"Author":"Auteur"
+			"Author":"Author"
 		},
 	"champ_partenaire_fr":
 		{
-			"indifferent":"---indifférent---",
+			"indifferent":"--- Indifférent ---",
 			"NomPartenaire":"Nom",
 			"SiglePartenaire":"Sigle",
-			"SectionRegionaleENTAV":"Section Régional",
-			"RegionPartenaire":"Region",
+			"SectionRegionaleENTAV":"Section régionale",
+			"RegionPartenaire":"Région",
 			"DepartPartenaire":"Département"
 		},
 	"champ_partenaire_en":
 		{
-			"indifferent":"---indifférent---",
-			"NomPartenaire":"Nom",
-			"SiglePartenaire":"Sigle",
-			"SectionRegionaleENTAV":"Section Régional",
-			"RegionPartenaire":"Region",
-			"DepartPartenaire":"Département"
+			"indifferent":"--- Indifferent---",
+			"NomPartenaire":"Name",
+			"SiglePartenaire":"Acronym",
+			"SectionRegionaleENTAV":"Regional section",
+			"RegionPartenaire":"Région",
+			"DepartPartenaire":"Départment"
 		}
 }

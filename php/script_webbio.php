@@ -322,7 +322,7 @@ switch($fun){
 	break;
 	case "cate6_var":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
-		$code=$DAO->listCodeIntro($_POST['code']);
+		$code=$_POST['code'];
 		$page_sanitaire=$_POST['curpage'];
 		$pagesize_sanitaire=$_POST['pagesize'];
 		$langue=$_SESSION['language_Vigne'];
@@ -431,7 +431,7 @@ switch($fun){
 		$section=$_POST['section'];
 		$colone=$_POST['colone'];
 		$tri=array('classname'=>$classname,'section'=>$section,'colone'=>$colone);
-		$resultat=$DAO->morphologieque($code,$page,$pagesize,$langue,$section,$colone,$tri,"Variete");
+		$resultat=$DAO->morphologique($code,$page,$pagesize,$langue,$section,$colone,$tri,"Variete");
 		echo json_encode($resultat);
 	break;
 	case "cate3_acc":
@@ -444,7 +444,7 @@ switch($fun){
 		$section=$_POST['section'];
 		$colone=$_POST['colone'];
 		$tri=array('classname'=>$classname,'section'=>$section,'colone'=>$colone);
-		$resultat=$DAO->morphologieque($code,$page,$pagesize,$langue,$section,$colone,$tri,"Accession");
+		$resultat=$DAO->morphologique($code,$page,$pagesize,$langue,$section,$colone,$tri,"Accession");
 		echo json_encode($resultat);
 	break;
 	case "cate2_esp":

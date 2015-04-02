@@ -290,5 +290,16 @@
 			"contents_parti2":"It stands on the lower reaches of the river Loire, between Orléans and the Atlantic coast. Touraine, the region around Tours, is known for its wines, the alleged perfection (as perceived by some speakers) of its local spoken French, and the Battle of Tours in 732. It is also the site of the Paris–Tours road bicycle race. Tours is the largest city in the Centre region of France, although it is not the regional capital, which is the region's second-largest city, Orléans. In 2006, the city itself had 138,268 inhabitants and the metropolitan area had 546,105 .",
 			"title_parti3":"title_parti3",
 			"contents_parti3":"The city of Tours has a population of 140,000 and is called \"Le Jardin de la France\" (\"The Garden of France\"). There are several parks located within the city. Tours is located between two rivers, the Loire to the north and the Cher to the south. The buildings of Tours are white with blue slate (called Ardoise) roofs; this style is common in the north of France, while most buildings in the south of France have terracotta roofs ."
-		}
+		},
+        "footer2_fr":
+                {
+                        "footer":" © INRA - IFV - SupAgro",
+                        "bdd":"Mise a jour base de données : 01-04-2015"
+                },
+        "footer2_en":
+                {
+                        "footer":" © INRA - IFV - SupAgro",
+                        "bdd":"Database update: 01-04-2015"
+                }
+                
 }

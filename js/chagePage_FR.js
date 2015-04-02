@@ -161,6 +161,12 @@ $(document).ready(function(){
 				$('#title_parti3_rights_duties').append(value.title_parti3);
 				$('#contents_parti3_rights_duties').append(value.contents_parti3);
 			}
+                        if(key==="footer2_fr"){
+                            var footer =value.footer;
+                            $('#footer').append(footer);
+                            var bdd =value.bdd;                            
+                            $('#bdd').append(bdd);
+                        }
 		});
 	});
 //page search simple/advence
@@ -354,6 +360,7 @@ $(document).ready(function(){
 				$('#click_cate6_FichierVar').append(value.cate6);
 				$('#click_cate7_FichierVar').append(value.cate7);
 				$('#click_cate8_FichierVar').append(value.cate8);
+                                $('#click_cate9_FichierVar').append(value.cate9);
 				
 			}
 			if(key==="accession_fr"){
@@ -375,9 +382,9 @@ $(document).ready(function(){
 				$('#click_cate5_FichierAcc').append(value.cate5);
 				$('#click_cate6_FichierAcc').append(value.cate6);
 				$('#click_cate7_FichierAcc').append(value.cate7);
+                                $('#click_cate8_FichierAcc').append(value.cate8);
 				
 				$('#tabs-1-acc').append(value.PDtitle);
-				$('#PaysProvenance_tab1_acc').append(value.PDpays);
 				$('#RegionProvenance_tab1_acc').append(value.PDregion);
 				$('#DepartProvenance_tab1_acc').append(value.PDdepart);
 				$('#CommuneProvenance_tab1_acc').append(value.PDcommune);
@@ -710,7 +717,7 @@ $(document).ready(function(){
 				$('#LibelleDescrip').append(value.LibelleDescrip);
 				$('#LibelleCritere').append(value.LibelleCritere);
 				$('#CaractereOIV').append(value.CaractereOIV);
-				$('#CodeAcc_selection_morphologieque').append(value.CodeAcc_selection_morphologieque);
+				$('#CodeAcc_selection_morphologique').append(value.CodeAcc_selection_morphologique);
 				$('#CodeVar_selection_morphologique').append(value.CodeVar_selection_morphologique);
 				$('#click_Aptitude_selection').append(value.click_Aptitude_selection);
 				$('#CodeAptitude').append(value.CodeAptitude);

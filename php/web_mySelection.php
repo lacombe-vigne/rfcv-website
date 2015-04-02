@@ -457,7 +457,7 @@
 										<th><span id="LibelleDescrip"></span></th>
 										<th width="20%" ><span id="LibelleCritere"></span></th>
 										<th width="15%"><span id="CaractereOIV"></span></th>
-										<th width="5%"><span id="CodeAcc_selection_morphologieque"></span></th>
+										<th width="5%"><span id="CodeAcc_selection_morphologique"></span></th>
 										<th width="5%"><span id="CodeVar_selection_morphologique"></span></th>
 										<th width="5%"><span id="more_colonne"></span></th>
 										<th width="5%"><span id="Export_pdf"></span></th>

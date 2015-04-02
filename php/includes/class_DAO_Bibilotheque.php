@@ -1795,28 +1795,54 @@ class BibliothequeDAO {
             $nombreDeResultatPossibleSanitaire = mysql_num_rows($resultat_possible_sanitaire);
             $sanitaire['nombreDeResultatPossible'] = $nombreDeResultatPossibleSanitaire;
             $San_Contents = array();
-            for ($j = 0; $j < (mysql_num_rows($resultat_sanitaire)); $j = $j + 1) {
-                $dico = mysql_fetch_assoc($resultat_sanitaire);
-                if ($dico['JourTest'] == "") {
-                    $jour = '00';
-                } else {
-                    $jour = $dico['JourTest'];
+            if ($langue == 'FR') {
+                for ($j = 0; $j < (mysql_num_rows($resultat_sanitaire)); $j = $j + 1) {
+                    $dico = mysql_fetch_assoc($resultat_sanitaire);
+                    if ($dico['JourTest'] == "") {
+                        $jour = '00';
+                    } else {
+                        $jour = $dico['JourTest'];
+                    }
+                    if ($dico['MoisTest'] == "") {
+                        $mois = '00';
+                    } else {
+                        $mois = $dico['MoisTest'];
+                    }
+                    if ($dico['AnneeTest'] == "") {
+                        $annee = '0000';
+                    } else {
+                        $annee = $dico['AnneeTest'];
+                    }
+                    $dateTest = $jour . '-' . $mois . '-' . $annee;
+                    $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                    $San_Content = supprNull($SAN->getListeSanitaire());
+                    array_push($San_Contents, $San_Content);
                 }
-                if ($dico['MoisTest'] == "") {
-                    $mois = '00';
-                } else {
-                    $mois = $dico['MoisTest'];
+            } else {
+                for ($j = 0; $j < (mysql_num_rows($resultat_sanitaire)); $j = $j + 1) {
+                    $dico = mysql_fetch_assoc($resultat_sanitaire);
+                    if ($dico['JourTest'] == "") {
+                        $jour = '00';
+                    } else {
+                        $jour = $dico['JourTest'];
+                    }
+                    if ($dico['MoisTest'] == "") {
+                        $mois = '00';
+                    } else {
+                        $mois = $dico['MoisTest'];
+                    }
+                    if ($dico['AnneeTest'] == "") {
+                        $annee = '0000';
+                    } else {
+                        $annee = $dico['AnneeTest'];
+                    }
+                    $dateTest = $jour . '-' . $mois . '-' . $annee;
+                    $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                    $San_Content = supprNull($SAN->getListeSanitaire());
+                    array_push($San_Contents, $San_Content);
                 }
-                if ($dico['AnneeTest'] == "") {
-                    $annee = '0000';
-                } else {
-                    $annee = $dico['AnneeTest'];
-                }
-                $dateTest = $jour . '-' . $mois . '-' . $annee;
-                $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $DAO->ResultatTest($dico['ResultatTest'], $langue), $DAO->CategorieTest($dico['CategorieTest'], $langue), $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $DAO->nomTest($dico['NomTest'], $langue), $dico['IdTest'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->PathogeneTeste($dico['NomTest']), $dico['CodeEmplacem'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire']);
-                $San_Content = supprNull($SAN->getListeSanitaire());
-                array_push($San_Contents, $San_Content);
             }
+
             $sanitaire['contents'] = $San_Contents;
             $sanitaire['langue'] = $langue;
         }
@@ -1855,10 +1881,10 @@ class BibliothequeDAO {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
                 if ($_SESSION['language_Vigne'] == "FR") {
-                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 if ($_SESSION['language_Vigne'] == "EN") {
-                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 $content = supprNull($MOR->getListeMorphologique());
                 array_push($contents, $content);
@@ -1950,7 +1976,7 @@ class BibliothequeDAO {
             $contents_genetique = array();
             for ($i = 0; $i < (mysql_num_rows($resultat_genetique)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat_genetique);
-                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                 $content_genetique = $genetique_class->getListeGenetique();
                 array_push($contents_genetique, $content_genetique);
             }
@@ -3085,7 +3111,7 @@ class BibliothequeDAO {
                 case("emplacement"):
                     connexion_bbd();
                     mysql_query('SET NAMES UTF8');
-                     $sql = "SELECT *
+                    $sql = "SELECT *
                             FROM `NV-EMPLACEMENTS` e
                             INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
                             INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
@@ -3928,53 +3954,203 @@ class BibliothequeDAO {
         $startPage_sanitaire = ($page_sanitaire - 1) * $pagesize_sanitaire;
         if ($code != "") {
             if ($section_fiche == "Variete") {
-                $sql_total = "select * from `Tests_sanitaires` where CodeIntro in (" . $code . ")";
+                $sql_total = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "'";
                 if (isset($_SESSION['codePersonne'])) {
                     if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql_limit = "select * from `Tests_sanitaires` where CodeIntro in (" . $code . ") " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                        $sql_possible = "select * from `Tests_sanitaires` where CodeIntro in (" . $code . ") " . $tri_sanitaire;
+                        $sql_limit = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "' " . $tri_sanitaire;
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql_limit = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                                    WHERE (CodeVar='" . $code . "' AND s.IdReseau1='a') or (CodeVar='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (CodeVar='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                                    WHERE (CodeVar='" . $code . "' AND s.IdReseau1='a') or (CodeVar='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (CodeVar='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire;
                     } else {
-                        $sql_limit = "select * from `Tests_sanitaires` where (CodeIntro in (" . $code . ") and IdReseau1='a')
-																		or (CodeIntro in (" . $code . ") and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
-																		or (CodeIntro in (" . $code . ")  and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																							(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                        $sql_possible = "select * from `Tests_sanitaires` where (CodeIntro in (" . $code . ") and IdReseau1='a')
-																		or (CodeIntro in (" . $code . ") and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
-																		or (CodeIntro in (" . $code . ")  and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																							(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire;
+                        $sql_limit = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "' AND s.IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "' AND s.IdReseau1='a' " . $tri_sanitaire;
                     }
                 } else {
-                    $sql_limit = "select * from `Tests_sanitaires` where CodeIntro in (" . $code . ") and IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                    $sql_possible = "select * from `Tests_sanitaires` where CodeIntro in (" . $code . ") and IdReseau1='a'" . $tri_sanitaire;
+                    $sql_limit = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        WHERE CodeVar='" . $code . "' AND s.IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                    $sql_possible = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        WHERE CodeVar='" . $code . "' AND s.IdReseau1='a' " . $tri_sanitaire;
                 }
             }
             if ($section_fiche == "Accession") {
-                $sql_total = "select * from `Tests_sanitaires` where CodeIntro='" . $code . "'";
+                $sql_total = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "'";
                 if (isset($_SESSION['codePersonne'])) {
                     if ($_SESSION['ProfilPersonne'] == 'A') {
-                        $sql_limit = "select * from `Tests_sanitaires` where CodeIntro='" . $code . "' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                        $sql_possible = "select * from `Tests_sanitaires` where CodeIntro='" . $code . "' " . $tri_sanitaire;
+                        $sql_limit = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "' " . $tri_sanitaire;
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql_limit = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                                    WHERE (s.CodeIntro='" . $code . "' AND s.IdReseau1='a') or (s.CodeIntro='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (s.CodeIntro='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                                    WHERE (s.CodeIntro='" . $code . "' AND s.IdReseau1='a') or (s.CodeIntro='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (s.CodeIntro='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire;
                     } else {
-                        $sql_limit = "select * from `Tests_sanitaires` where (CodeIntro='" . $code . "' and IdReseau1='a')
-																		or (CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
-																		or (CodeIntro='" . $code . "'  and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																							(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                        $sql_possible = "select * from `Tests_sanitaires` where (CodeIntro='" . $code . "' and IdReseau1='a')
-																		or (CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
-																		or (CodeIntro='" . $code . "'  and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																							(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																							(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_sanitaire;
+                        $sql_limit = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                            where s.CodeIntro='" . $code . "' and s.IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                        $sql_possible = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                            where s.CodeIntro='" . $code . "' and s.IdReseau1='a'" . $tri_sanitaire;
                     }
                 } else {
-                    $sql_limit = "select * from `Tests_sanitaires` where CodeIntro='" . $code . "' and IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
-                    $sql_possible = "select * from `Tests_sanitaires` where CodeIntro='" . $code . "' and IdReseau1='a'" . $tri_sanitaire;
+                    $sql_limit = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "' and s.IdReseau1='a' " . $tri_sanitaire . " limit " . $startPage_sanitaire . "," . $pagesize_sanitaire;
+                    $sql_possible = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "' and s.IdReseau1='a'" . $tri_sanitaire;
                 }
             }
         }
@@ -4085,7 +4261,7 @@ class BibliothequeDAO {
         return $PathogeneTeste;
     }
 
-    public function morphologieque($code, $page, $pagesize, $langue, $section, $colone, $tri, $section_fiche) {
+    public function morphologique($code, $page, $pagesize, $langue, $section, $colone, $tri, $section_fiche) {
         $DAO = new BibliothequeDAO();
         if ($colone != 'LibelleCritereFRA' && $colone != 'LibelleCritereENG' && $colone != 'CaractereOIV') {
             if ($section == 1) {
@@ -4103,29 +4279,193 @@ class BibliothequeDAO {
             }
         }
         if ($section_fiche == "Variete") {
+            $total = "SELECT *
+                      FROM `Ampelographie` a 
+                      LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                      LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                      LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                      LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                      LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                      LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                      LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                      LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                      WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                      GROUP BY d.CodeOIV";
             if (isset($_SESSION['codePersonne'])) {
-                $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
-                $total = "select* from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
+                if ($_SESSION['ProfilPersonne'] == 'A') {
+                    $startPage = ($page - 1) * $pagesize;
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                    $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                } else { // Profil B, C ou D
+                    $startPage = ($page - 1) * $pagesize;
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                    $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                }
             } else {
                 $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV and a.Public!='N' GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV and a.Public!='N' GROUP BY d.CodeOIV ";
-                $total = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
+                $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
             }
         }
         if ($section_fiche == "Accession") {
+            $total = "SELECT *
+                      FROM `Ampelographie` a 
+                      LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                      LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                      LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                      LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                      LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                      LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                      LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                      LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                      WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                      GROUP BY d.CodeOIV";
             if (isset($_SESSION['codePersonne'])) {
-                $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
-                $total = "select* from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
+                if ($_SESSION['ProfilPersonne'] == 'A') {
+                    $startPage = ($page - 1) * $pagesize;
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                    $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                } else { // Profil B, C ou D
+                    $startPage = ($page - 1) * $pagesize;
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                    $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                }
             } else {
                 $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV and a.Public!='N' GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV and a.Public!='N' GROUP BY d.CodeOIV ";
-                $total = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV GROUP BY d.CodeOIV";
+                $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV " . $tri_description . " limit " . $startPage . "," . $pagesize . "";
+                $sql_possible = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
             }
         }
         connexion_bbd();
@@ -4221,49 +4561,145 @@ class BibliothequeDAO {
         }
         $startPage = ($page - 1) * $pagesize;
         if ($section_fiche == "Variete") {
-            $sql_total = "select * from `BM-donnees_resume` where CodeVar=" . $code . "";
+            $sql_total = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "'";
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
-                    $sql_limit = "select * from `BM-donnees_resume` where CodeVar='" . $code . "' " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                    $sql_possible = "select * from `BM-donnees_resume` where CodeVar='" . $code . "'";
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "'";
+                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeVar='" . $code . "' and g.IdReseau1='a') or (g.CodeVar='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeVar='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeVar='" . $code . "' and g.IdReseau1='a') or (g.CodeVar='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeVar='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
                 } else {
-                    $sql_limit = "select * from `BM-donnees_resume` where (CodeVar='" . $code . "' and IdReseau1='0') or (CodeVar='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(CodeVar='" . $code . "'
-																			and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																								(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                    $sql_possible = "select * from `BM-donnees_resume` where (CodeVar='" . $code . "' and IdReseau1='0') or (CodeVar='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(CodeVar='" . $code . "'
-																			and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																								(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a'";
                 }
             } else {
-                $sql_limit = "select * from `BM-donnees_resume` where CodeVar='" . $code . "' and IdReseau1='0' " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                $sql_possible = "select * from `BM-donnees_resume` where CodeVar='" . $code . "' and IdReseau1='0'";
+                $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a'";
             }
         }
         if ($section_fiche == "Accession") {
-            $sql_total = "select * from `BM-donnees_resume` where CodeIntro='" . $code . "'";
+            $sql_total = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "'";
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
-                    $sql_limit = "select * from `BM-donnees_resume` where CodeIntro='" . $code . "' " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                    $sql_possible = "select * from `BM-donnees_resume` where CodeIntro='" . $code . "'";
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "'";
+                } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeIntro='" . $code . "' and g.IdReseau1='a') or (g.CodeIntro='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeIntro='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeIntro='" . $code . "' and g.IdReseau1='a') or (g.CodeIntro='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeIntro='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
                 } else {
-                    $sql_limit = "select * from `BM-donnees_resume` where (CodeIntro='" . $code . "' and IdReseau1='0') or (CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(CodeVar='" . $code . "'
-																			and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																								(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                    $sql_possible = "select * from `BM-donnees_resume` where (CodeIntro='" . $code . "' and IdReseau1='0') or (CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(CodeVar='" . $code . "'
-																			and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
-																								(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																								(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
+                    $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a'";
                 }
             } else {
-                $sql_limit = "select * from `BM-donnees_resume` where CodeIntro='" . $code . "' and IdReseau1='0' " . $tri_description . " limit " . $startPage . "," . $pagesize;
-                $sql_possible = "select * from `BM-donnees_resume` where CodeIntro='" . $code . "' and IdReseau1='0'";
+                $sql_limit = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a' " . $tri_description . " limit " . $startPage . "," . $pagesize;
+                $sql_possible = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a'";
             }
         }
         connexion_bbd();
@@ -7256,7 +7692,14 @@ class BibliothequeDAO {
 
     public function sanitaire_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Tests_sanitaires` where IdTest='" . $code . "'";
+        $sql = "select * from `Tests_sanitaires` s
+                LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire   
+                where s.IdTest='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $langue = $_SESSION['language_Vigne'];
@@ -7272,43 +7715,58 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $DAO->ResultatTest($dico['ResultatTest'], $langue), $DAO->CategorieTest($dico['CategorieTest'], $langue), $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $DAO->nomTest($dico['NomTest'], $langue), $dico['IdTest'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->PathogeneTeste($dico['NomTest']), $dico['CodeEmplacem'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire']);
-            $San_Content = supprNull($SAN->getListeSanitaire());
-            $San_Content['CodeVar'] = $DAO->codeVar($dico['CodeIntro']);
-            $San_Content['NomVar'] = $DAO->nomVar($San_Content['CodeVar']);
-            $San_Content['NomAcc'] = $DAO->nomAcc($dico['CodeIntro']);
+            if ($langue == 'FR') {
+                $dico = mysql_fetch_assoc($resultat);
+                $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                $San_Content = supprNull($SAN->getListeSanitaire());
+                $San_Content['CodeVar'] = $dico['CodeVar'];
+                $San_Content['NomVar'] = $DAO->nomVar($San_Content['CodeVar']);
+            } else {
+                $dico = mysql_fetch_assoc($resultat);
+                $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                $San_Content = supprNull($SAN->getListeSanitaire());
+                $San_Content['CodeVar'] = $dico['CodeVar'];
+                $San_Content['NomVar'] = $DAO->nomVar($San_Content['CodeVar']);
+            }
         }
         return $San_Content;
     }
 
     public function morphologique_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE CodeAmpelo='" . $code . "' AND a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV";
+        $langue = $_SESSION['language_Vigne'];
+        $sql = "SELECT *
+                      FROM `Ampelographie` a 
+                      LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                      LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                      LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                      LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                      LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                      LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                      LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                      LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur 
+                      WHERE CodeAmpelo='" . $code . "' AND a.CaractereOIV IS NOT NULL ";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             deconnexion_bbd();
-            echo "<script>alert('erreur de base de donnes')</script>";
+            echo "<script>alert('Error system')</script>";
             exit;
         }
         if (mysql_num_rows($resultat) == 0) {
             deconnexion_bbd();
-            echo "<script>alert('erreur de base de donnes')</script>";
+            echo "<script>alert('Error system')</script>";
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            if ($_SESSION['language_Vigne'] == "FR") {
-                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
-            }
-            if ($_SESSION['language_Vigne'] == "EN") {
-                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+            if ($langue == "FR") {
+                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+            } else { // Anglais/EN
+                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             }
             $content = supprNull($MOR->getSelectionMorphologique());
-            $content['CodeVar'] = $dico['CodeVar'];
-            $content['NomVar'] = $DAO->nomVar($dico['CodeVar']);
         }
         return $content;
     }
@@ -7340,7 +7798,12 @@ class BibliothequeDAO {
 
     public function genetique_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `BM-donnees_resume` where IdAnalyse='" . $code . "'";
+        $sql = "SELECT *
+                FROM `BM-donnees_resume` g
+                LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                WHERE g.IdAnalyse='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -7356,10 +7819,8 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
-            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
             $content_genetique = $genetique_class->getSelectionGenetique();
-            $content_genetique['CodeVar'] = $dico['CodeVar'];
-            $content_genetique['NomVar'] = $DAO->nomVar($dico['CodeVar']);
         }
         return $content_genetique;
     }
@@ -7710,7 +8171,7 @@ class BibliothequeDAO {
         } else if ($section == "emplacement") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-             $sql = "SELECT *
+            $sql = "SELECT *
                 FROM `NV-EMPLACEMENTS` e
                 INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
                 INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
@@ -8817,6 +9278,7 @@ class BibliothequeDAO {
     public function exportxls_variete($langue, $section, $code) {
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
+        $DAO = new BibliothequeDAO();
         switch ($section) {
             case "accession":
                 if ($langue == "FR") {
@@ -9046,8 +9508,8 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                         $dico = mysql_fetch_assoc($resultat);
-                        $dico['CodeIntro']="'".$dico['CodeIntro'];
-                        $dico['CodeIntroPartenaire']="'".$dico['CodeIntroPartenaire'];
+                        $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
+                        $dico['CodeIntroPartenaire'] = "'" . $dico['CodeIntroPartenaire'];
                         $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                         $detail = $EM->getListeEmplaclemnt();
                         $detail = supprNull($detail);
@@ -9057,11 +9519,224 @@ class BibliothequeDAO {
                 }
                 return $result;
                 break;
-            case "":
+            case "sanitaire":
+
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+
+                        $sql = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                        LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                        LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                        LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where CodeVar='" . $code . "' ";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire        
+                                    WHERE (CodeVar='" . $code . "' AND s.IdReseau1='a') or (CodeVar='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (CodeVar='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) ";
+                    } else {
+                        $sql = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire        
+                            where CodeVar='" . $code . "' and s.IdReseau1='a'";
+                    }
+                } else {
+                    $sql = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                            where CodeVar='" . $code . "' and s.IdReseau1='a'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                $dateTest = '0000-00-00';
+
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    if ($langue == 'FR') {
+                        $j = 0;
+                        while ($j < (mysql_num_rows($resultat))) {
+                            $dico = mysql_fetch_assoc($resultat);
+                            $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                            $detail = supprNull($SAN->getListeSanitaire());
+                            array_push($result, $detail);
+                            $j++;
+                        }
+                        deconnexion_bbd();
+                    } else {
+                        $j = 0;
+                        while ($j < (mysql_num_rows($resultat))) {
+                            $dico = mysql_fetch_assoc($resultat);
+                            $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                            $detail = supprNull($SAN->getListeSanitaire());
+                            array_push($result, $detail);
+                            $j++;
+                        }
+
+                        deconnexion_bbd();
+                    }
+                }
+                return $result;
                 break;
-            case "":
+            case "morphologique":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                    } else { // Profil B, C ou D
+                        $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                    }
+                } else {
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeVar =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        if ($langue == "FR") {
+                            $dico['CodeOIV'] = "'" . $dico['CodeOIV']; // Permet de conserver les codes
+                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        } else { // Anglais/EN
+                            $dico['CodeOIV'] = "'" . $dico['CodeOIV']; // Permet de conserver les codes
+                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        }
+                        $detail = supprNull($MOR->getListeMorphologique()); // contenu de l'objet
+                        array_push($result, $detail); // On ajoute ligne par ligne à notre tableau
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
-            case "":
+            case "genetique":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "'";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeVar='" . $code . "' and g.IdReseau1='a') or (g.CodeVar='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeVar='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
+                    } else {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a'";
+                    }
+                } else {
+                    $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeVar='" . $code . "' and g.IdReseau1='a'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $GEN = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                        $detail = supprNull($GEN->getListeGenetique());
+                        array_push($result, $detail);
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
             case "":
                 break;
@@ -9112,6 +9787,7 @@ class BibliothequeDAO {
     public function exportxls_accession($langue, $section, $code) {
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
+        $DAO = new BibliothequeDAO();
         switch ($section) {
             case "aptitude":
                 if ($langue == "FR") {
@@ -9239,8 +9915,8 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                         $dico = mysql_fetch_assoc($resultat);
-                        $dico['CodeIntro']="'".$dico['CodeIntro'];
-                        $dico['CodeIntroPartenaire']="'".$dico['CodeIntroPartenaire'];
+                        $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
+                        $dico['CodeIntroPartenaire'] = "'" . $dico['CodeIntroPartenaire'];
                         $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
                         $detail = $EM->getListeEmplaclemnt();
                         $detail = supprNull($detail);
@@ -9250,11 +9926,222 @@ class BibliothequeDAO {
                 }
                 return $result;
                 break;
-            case "":
+            case "sanitaire":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                        FROM `Tests_sanitaires` s
+                        LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                        LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                        LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                        LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                        where s.CodeIntro='" . $code . "' ";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT *
+                                    FROM `Tests_sanitaires` s
+                                    LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                                    WHERE (s.CodeIntro='" . $code . "' AND s.IdReseau1='a') or (s.CodeIntro='" . $code . "' and s.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')
+                                                                                        or (s.CodeIntro='" . $code . "' and 
+                                                                                                                ((s.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+                                                                                                                (s.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+                                                                                                                (s.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) ";
+                    } else {
+                        $sql = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                            where s.CodeIntro='" . $code . "' and s.IdReseau1='a'";
+                    }
+                } else {
+                    $sql = "SELECT *
+                            FROM `Tests_sanitaires` s
+                            LEFT JOIN `Type_pathogene` ph ON s.NomTest = ph.NomTest
+                            LEFT JOIN `ListeDeroulante_categoriesTest` ct ON s.CategorieTest=ct.CategorieTest
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire    
+                            where s.CodeIntro='" . $code . "' and s.IdReseau1='a'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                $dateTest = '0000-00-00';
+
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    if ($langue == 'FR') {
+                        $j = 0;
+                        while ($j < (mysql_num_rows($resultat))) {
+                            $dico = mysql_fetch_assoc($resultat);
+                            $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                            $detail = supprNull($SAN->getListeSanitaire());
+                            array_push($result, $detail);
+                            $j++;
+                        }
+                        deconnexion_bbd();
+                    } else {
+                        $j = 0;
+                        while ($j < (mysql_num_rows($resultat))) {
+                            $dico = mysql_fetch_assoc($resultat);
+                            $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                            $detail = supprNull($SAN->getListeSanitaire());
+                            array_push($result, $detail);
+                            $j++;
+                        }
+
+                        deconnexion_bbd();
+                    }
+                }
+                return $result;
                 break;
-            case "":
+            case "morphologique":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                    } else { // Profil B, C ou D
+                        $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND (a.Public='O' OR a.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                    }
+                } else {
+                    $sql = "SELECT *
+                            FROM `Ampelographie` a 
+                            LEFT JOIN `NV-VARIETES` v ON a.CodeVar = v.CodeVar
+                            LEFT JOIN `NV-INTRODUCTIONS` i ON a.CodeIntro = i.CodeIntro
+                            LEFT JOIN `Partenaires` p ON a.CodePartenaire = p.CodePartenaire
+                            LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                            LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                            LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                            LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                            LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                            WHERE a.CodeIntro =  '" . $code . "' AND a.Public='O' AND a.CaractereOIV IS NOT NULL 
+                            GROUP BY d.CodeOIV ";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        if ($langue == "FR") {
+                            $dico['CodeOIV'] = "'" . $dico['CodeOIV']; // Permet de conserver les codes
+                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        } else { // Anglais/EN
+                            $dico['CodeOIV'] = "'" . $dico['CodeOIV']; // Permet de conserver les codes
+                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        }
+                        $detail = supprNull($MOR->getListeMorphologique()); // contenu de l'objet
+                        array_push($result, $detail); // On ajoute ligne par ligne à notre tableau
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
-            case "":
+            case "genetique":
+                if (isset($_SESSION['codePersonne'])) {
+                    if ($_SESSION['ProfilPersonne'] == 'A') {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "'";
+                    } else if ($_SESSION['ProfilPersonne'] == 'B' || $_SESSION['ProfilPersonne'] == 'C') {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE (g.CodeIntro='" . $code . "' and g.IdReseau1='a') or (g.CodeIntro='" . $code . "' and g.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or(g.CodeIntro='" . $code . "'
+																			and ((g.idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
+																			(g.idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
+																			(g.idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
+                    } else {
+                        $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a'";
+                    }
+                } else {
+                    $sql = "SELECT *
+                        FROM `BM-donnees_resume` g
+                        LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
+                        LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
+                        LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
+                        WHERE g.CodeIntro='" . $code . "' and g.IdReseau1='a'";
+                }
+                $resultat = mysql_query($sql) or die(mysql_error());
+                $result = array();
+                if (!$resultat) {
+                    deconnexion_bbd();
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    deconnexion_bbd();
+                    return $result;
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $GEN = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                        $detail = supprNull($GEN->getListeGenetique());
+                        array_push($result, $detail);
+                    }
+                    deconnexion_bbd();
+                }
+                return $result;
                 break;
             case "":
                 break;

@@ -73,11 +73,58 @@ switch ($section) {
                 utf8_decode($parsed_json->{resultat_emplacement_en}->{CodeIntroPartenaire}));
         }
         break;
-    case "":
+    case "sanitaire":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{IdTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{CodeIntro}),        
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{Pathogene}),
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{CategorieTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{ResultatTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_fr}->{Laboratoire}));
+        } else if ($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{IdTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{CodeIntro}),
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{Pathogene}),
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{CategorieTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{ResultatTest}),
+                utf8_decode($parsed_json->{resultat_sanitaire_en}->{Laboratoire}));
+        }
         break;
-    case "":
+    case "morphologique":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_fr}->{Code}),
+                utf8_decode($parsed_json->{resultat_description_fr}->{Description}),        
+                utf8_decode($parsed_json->{resultat_description_fr}->{Critaire}),
+                utf8_decode($parsed_json->{resultat_description_fr}->{CaractereOIV}));
+        } else if ($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_en}->{Code}),
+                utf8_decode($parsed_json->{resultat_description_en}->{Description}),
+                utf8_decode($parsed_json->{resultat_description_en}->{Critaire}),
+                utf8_decode($parsed_json->{resultat_description_en}->{CaractereOIV}));
+        }
         break;
-    case "":
+    case "genetique":
+        if ($langue == "FR") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{IdAnalyse}),
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{Marqueur}),        
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{ValeurCodee1}),
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{ValeurCodee2}),
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{CodePartenaire}),
+                utf8_decode($parsed_json->{resultat_genetique_fr}->{DatePCR}));
+        } else if ($langue == "EN") {
+            $labeljson = array(
+                utf8_decode($parsed_json->{resultat_genetique_en}->{IdAnalyse}),
+                utf8_decode($parsed_json->{resultat_genetique_en}->{Marqueur}),
+                utf8_decode($parsed_json->{resultat_genetique_en}->{ValeurCodee1}),
+                utf8_decode($parsed_json->{resultat_genetique_en}->{ValeurCodee2}),
+                utf8_decode($parsed_json->{resultat_genetique_en}->{CodePartenaire}),
+                utf8_decode($parsed_json->{resultat_genetique_en}->{DatePCR}));
+        }
         break;
     case "":
         break;
@@ -94,7 +141,7 @@ switch ($section) {
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{resultat_bibliographie_en}->{CodeCit}),
-                utf8_decode($parsed_json->{resultat_bibliographie_fr}->{CodeVar}),        
+                utf8_decode($parsed_json->{resultat_bibliographie_en}->{CodeVar}),        
                 utf8_decode($parsed_json->{resultat_bibliographie_en}->{Title}),
                 utf8_decode($parsed_json->{resultat_bibliographie_en}->{Author}),
                 utf8_decode($parsed_json->{resultat_bibliographie_en}->{Year}),

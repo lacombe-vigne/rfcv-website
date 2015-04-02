@@ -2,38 +2,38 @@
 	"site_searchS_fr":
 		{
 			"title":"Recherche simple par nom de vigne",
-			"case_complet":"Est",
-			"case_start":"Commence par",
-			"case_end":"Fini par",
-			"case_fuzzy":"Contient",
+			"case_complet":"est",
+			"case_start":"commence par",
+			"case_end":"se termine par",
+			"case_fuzzy":"contient",
 			"model_tous":"Toutes les vignes",
 			"model_especes":"Espèces",
 			"model_varietes":"Variétés",
-			"model_accession":"Accessions / Clones",
+			"model_accession":"Accessions / clones",
 			"button":"Rechercher"
 		},
 	"site_searchS_en":
 		{
-			"title":"Simple search by grapevine name",
-			"case_complet":"Is",
-			"case_start":"Begins with",
-			"case_end":"Ends with",
-			"case_fuzzy":"Contains",
+			"title":"Quick search by grapevine name",
+			"case_complet":"is",
+			"case_start":"starts with",
+			"case_end":"ends with",
+			"case_fuzzy":"contains",
 			"model_tous":"All grapevines",
 			"model_especes":"Species",
 			"model_varietes":"Varieties",
-			"model_accession":"Accessions / Clons",
+			"model_accession":"Accessions / clons",
 			"button":"Search"
 		},
 	"search_notice_fr":
 		{
-			"title":"Attention : ",
-			"contents":"les contenu les contenu les contenu les contenu"
+			"title":"AVERTISSEMENT : ",
+			"contents":"Les informations diffusées sont la propriété des partenaires du Réseau. Toute copie totale ou partielle ne peut se faire sans l'accord des animateurs du Réseau. Toute citation de la base ou des informations diffusées doit mentionner obligatoirement le crédit \"Base de données du Réseau Français des Conservatoires de Vigne, © INRA-IFV-SupAgro 2005-2015\" ainsi que le nom des partenaires propriétaires des données utilisées. Les utilisateurs sont seuls responsables des interrogations qu'ils formulent ainsi que de l'interprétation et de l'utilisation qu'ils font des résultats."
 		},
 	"search_notice_en":
 		{
-			"title":"Attention : ",
-			"contents":"the content the content the content the content"
+			"title":"WARNING: ",
+			"contents":"The information disseminated are the property of the Network's Partners. Total or partial copy can not be done without the agreement of the leaders of the Network. Any citation of the database or the information disseminated must mention credit \"Database Network of French Vine Conservatories © INRA-SupAgro IFV-2005-2015\" and the names of Partners owners of the data used. Users are solely responsible for the searches they formulate as well as the interpretation and use they make of the results."
 		},
 	"resultat_espece_fr":
 		{
