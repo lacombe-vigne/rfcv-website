@@ -71,6 +71,7 @@
 		</div>
 	</div>
 	<div id="resultat">
+                <?php echo 'Requête exécutée(Permet de tester la recherche avancée) : '.$_SESSION['sql'] //Affiche la requête générée par la recherche avancée ?>
 		<div id="title_Resultat">
 			<img src="images/result_advance.png" alt="Search" width="40" height="40">
 			<h3 id="titleResultat_rechreche_avancee"></h3>

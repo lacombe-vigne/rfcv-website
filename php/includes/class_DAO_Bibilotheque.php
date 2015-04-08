@@ -2656,7 +2656,7 @@ class BibliothequeDAO {
                 exit;
             }
             if (mysql_num_rows($resultat) == 0) {
-                $alert = 4;
+                $alert = 2;
                 // $alert='<div id="message_emptyCompte"></div>';
                 // $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
             }
@@ -3015,7 +3015,7 @@ class BibliothequeDAO {
 																			or (CodeIntro='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                         } else { // utilisateur D SiregalPresenceEnColl = 'oui' and(
                             $sql_accession = "Select * from `NV-INTRODUCTIONS` where
                                     SiregalPresenceEnColl = 'oui' and( (CodeIntro='" . $code . "' and IdReseau1='a')
@@ -3023,7 +3023,7 @@ class BibliothequeDAO {
 																			or (CodeIntro='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																						(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																						(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
-																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
+																						(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))))";
                         }
                     } else {
                         $sql_accession = "Select * from `NV-INTRODUCTIONS` where CodeIntro='" . $code . "' and IdReseau1='a' and SiregalPresenceEnColl = 'oui'";
@@ -6280,6 +6280,7 @@ class BibliothequeDAO {
         return $res . $option;
     }
 
+    //Début requête Recherche avancée
     public function searchAdevance($parametre) {
         $DAO = new BibliothequeDAO();
         foreach ($parametre as $key => $value) {
@@ -6504,7 +6505,7 @@ class BibliothequeDAO {
                                             $condition_total = $condition_total . " ";
                                         }
                                     }
-                                    $section_nameLast = 'section_' . ${$array}[count($$array) - 1];
+                                     $section_nameLast = 'section_' . ${$array}[count($$array) - 1];
                                     $model_nameLast = 'model_' . ${$array}[count($$array) - 1];
                                     $champ_nameLast = 'champ_' . ${$array}[count($$array) - 1];
                                     $condition_nameLastc = 'condition_' . ${$array}[count($$array) - 1];
@@ -6828,7 +6829,7 @@ class BibliothequeDAO {
         // }
 
         $resultat['sql_possible'] = $sql_possible;
-        $resultat['sql_total'] = $sql_total;
+        $resultat['sql_total'] = $sql_total;        
 
         if (count($Emplacement) != 0) {
             $resultat['Emplacement'] = "Emplacement";
@@ -7347,7 +7348,7 @@ class BibliothequeDAO {
                 $sql_possible = "select var.*" . $sql_possible . " " . $DAO->group('Variete', $tri_section, $tri_colone);
                 connexion_bbd();
                 mysql_query('SET NAMES UTF8');
-                $res = $DAO->chargeContentVariete($sql_limite, $sql_total, $_SESSION['language_Vigne'], $curpage, $pagesize, $sql_possible);
+                $res = $DAO->chargeContentVariete($sql_limite, $sql_total, $langue, $curpage, $pagesize, $sql_possible);
                 deconnexion_bbd();
                 break;
             case "Accession":
@@ -7446,6 +7447,7 @@ class BibliothequeDAO {
                 deconnexion_bbd();
                 break;
         }
+        $_SESSION['sql']=$sql_possible;
         // return array($sql_limite=>$sql_total,"poss"=>$sql_possible);
         return $res;
     }
@@ -7585,7 +7587,8 @@ class BibliothequeDAO {
         $startPage = ($curpage - 1) * $pagesize;
         return $limit = " limit " . $startPage . "," . $pagesize;
     }
-
+    //Fin requête recherche avancée
+    //Début requête selection
     public function espece_selection($code) {
         $DAO = new BibliothequeDAO();
         $sql = "select * from `NV-ESPECES` where CodeEsp='" . $code . "'";

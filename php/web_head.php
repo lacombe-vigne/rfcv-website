@@ -5,7 +5,7 @@
 			<div id="site_title"></div>
 		</div>
 	<!-- END #site-logo_title -->
-	<!-- BEGIN .langue -->
+	<!-- BEGIN .langue -->                
 		<div class="langue">
 			<ul>
 				<li><a style="cursor:hand" id="langue_fr"><img src="images/french.png"/></a></li>

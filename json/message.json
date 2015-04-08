@@ -6,5 +6,7 @@
 	"problemFillin_fr":"Votre saisie est incorrecte",
 	"problemFillin_en":"You don't have filled correctly",
 	"logout_fr":"Vous êtes déconnecté",
-	"logout_en":"You are disconnected"
+	"logout_en":"You are disconnected",
+        "bdd_fr":"Erreur de base de données",
+        "bdd_en":"Database error"
 }

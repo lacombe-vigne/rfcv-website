@@ -748,7 +748,7 @@ and open the template in the editor.
 	
 
 
-//des function pour un rechercher simple
+//Fonctions pour la recherche simple
 	$.extend({'search_simple':
 		function(){	
 			creatAjax();
@@ -2405,7 +2405,7 @@ and open the template in the editor.
 							if(value.nombreDeResultatPossible===0){
 								
 								var SearchS_Espece= '<fieldset>'+
-													'<legend><img src="images/espece_resultat.png" width="40" height="40" /><span class="h4_espece"></span> <aEsp href="#" onclick="$.checkLogin()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aEsp><a onmouseover="$.aide_nombre_resultat(1);" id="aide_nombre_resultat1" ><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend><img src="images/espece_resultat.png" width="40" height="40" /><span class="h4_espece"></span> <a href="#" class="rr" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(2);" id="aide_nombre_resultat2">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 													'<div id="contents-Res-EspeceS">'+
 													'</div>'+
 													'</fieldset>';
@@ -2440,7 +2440,7 @@ and open the template in the editor.
 								});
 							}else{
 								var SearchS_Espece= '<fieldset>'+
-													'<legend><img src="images/espece_resultat.png" width="40" height="40" /><span class="h4_espece"></span> <aEsp href="#" onclick="$.checkLogin()">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aEsp><a onmouseover="$.aide_nombre_resultat(2);" id="aide_nombre_resultat2"><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend><img src="images/espece_resultat.png" width="40" height="40" /><span class="h4_espece"></span><a href="#" class="resultat_recherche" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(2);" id="aide_nombre_resultat2">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 													'<div id=contents-Res-EspeceS>'+
 															'<table id="table_espece_total">'+
 															'<tr class="function_ligne_espece">'+
@@ -2573,7 +2573,7 @@ and open the template in the editor.
 							if(value.nombreDeResultatPossible==0){
 								
 								var SearchS_Variete='<fieldset>'+
-													'<legend ><img src="images/variete_resultat.png"/ width="40" height="40"><span class="h4_variete"></span> <aVar href="#" onclick="$.checkLogin()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aVar><a onmouseover="$.aide_nombre_resultat(2);" id="aide_nombre_resultat2" ><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend ><img src="images/variete_resultat.png"/ width="40" height="40"><span class="h4_variete"></span> <a href="#" class="rr" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(3);" id="aide_nombre_resultat3">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 													'<div id=contents-Res-VarieteS>'+
 													'</div>'+
 													'</fieldset>';
@@ -2617,7 +2617,7 @@ and open the template in the editor.
 								});
 							}else{
 								var SearchS_Variete='<fieldset>'+
-													'<legend ><img src="images/variete_resultat.png"/ width="40" height="40"> <span class="h4_variete"></span> <aVar href="#" onclick="$.checkLogin()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aVar><a onmouseover="$.aide_nombre_resultat(3);" id="aide_nombre_resultat3" ><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend ><img src="images/variete_resultat.png"/ width="40" height="40"> <span class="h4_variete"></span> <a href="#" class="rr" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(3);" id="aide_nombre_resultat3">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 														'<div id=contents-Res-VarieteS>'+
 															'<table id="table_variete_total">'+
 															'<tr class="function_ligne_variete">'+
@@ -2852,7 +2852,7 @@ and open the template in the editor.
 							}
 							if(value.nombreDeResultatPossible==0){
 								var SearchS_Accession='<fieldset>'+
-													'<legend ><img src="images/accession_resultat.png"/ width="40" height="40"> <span class="h4_accession"></span> <aClo href="#" onclick="$.checkLogin()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aClo><a id="aide_nombre_resultat4" onmouseover="$.aide_nombre_resultat(4);" ><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend ><img src="images/accession_resultat.png"/ width="40" height="40"> <span class="h4_accession"></span> <a href="#" class="rr" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(4);" id="aide_nombre_resultat4">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 													'<div id=contents-Res-AccessionS>'+
 													'</div>'+
 													'</fieldset>';
@@ -2891,7 +2891,7 @@ and open the template in the editor.
 								});									
 							}else{
 								var SearchS_Accession='<fieldset>'+
-													'<legend ><img src="images/accession_resultat.png"/ width="40" height="40"><span class="h4_accession"></span> <aClo href="#" onclick="$.checkLogin()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</aClo><a id="aide_nombre_resultat5" onmouseover="$.aide_nombre_resultat(5);" ><img src="images/help1.png" width="20" height="20"/></a></legend>'+
+													'<legend ><img src="images/accession_resultat.png"/ width="40" height="40"><span class="h4_accession"></span> <a href="#" class="rr" onclick="$.checkLogin()" onmouseover="$.aide_nombre_resultat(4);" id="aide_nombre_resultat4">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a></legend>'+
 														'<div id=contents-Res-VarieteS>'+
 															'<table id="table_accession_total">'+
 															'<tr class="function_ligne_accession">'+
@@ -16581,58 +16581,126 @@ and open the template in the editor.
 					$('<div id="msg" />').addClass("loading").html("Connexion en cours...").css("color","#999").appendTo('.site-login-form'); 
 				},
 				success: function(data){
+                                        var langue='<?php echo $langue;?>';
 					console.log(data);
 					$('<div id="msg" />').remove();
 					$(".site-login-form").empty(); 
 					if(data==1){
-						console.log('1');
-						//var div='<div id="message_login"></div>'; // recupère le json correspondant
-                                                //alert("Vous êtes maintenant connecté");
-                                                //window.location = './Home.php';
+                                            if(langue=='FR'){
+                                                console.log('1');
+                                            var div='<div id="message_login"></div>'; // recupère le json correspondant
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="login_fr"){
+                                                        var message_login=value;
+							$('#message_login').append(message_login);
+                                                        alert(message_login);
+                                                        window.location='./Home.php';
+                                                    }  
+						});
+                                            });
+                                            } else {
+                                                console.log('1');
+                                            var div='<div id="message_login"></div>'; // recupère le json correspondant
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="login_en"){
+                                                        var message_login=value;
+							$('#message_login').append(message_login);
+                                                        alert(message_login);
+                                                        window.location='./Home.php';
+                                                    }  
+						});
+                                            });
+                                            }    
+                                            
 					}
 					if(data==2){
-						console.log('2');
-						var div='<div id="message_emptyCompte"></div>';
-                                                
-					}
-					if(data==3){
-						console.log('3');
-						var div="<div id='message_problemFilling'></div>";
-                                                
-					}
-					if(data==4){
-						console.log('4');
-						var div='<div id="message_emptyCompte"></div>';
-                                                
-					}
-					if(data=="erreur"){
-						var div="<div id='message_login'>erreur de base de donnes</div>";
-                                                
-					}
-					$.getJSON("./json/message.json",function(data){
-						$.each(data,function(key, value){
-							if(key==="emptyCompte_fr"){
-								var message_emptyCompte=value;
-								$('#message_emptyCompte').append(message_emptyCompte);
-							}
-							if(key==="login_fr"){
-								var message_login=value;
-								$('#message_login').append(message_login);
-                                                                alert(message_login);
-                                                                window.location = './Home.php'; // Methode comprise
-							}
-							if(key==="problemFillin_fr"){
-								var message_problemFilling=value;
-								$('#message_problemFilling').append(message_problemFilling);
-							}
-							if(key==="logout_fr"){
-								var message_logout=value;
-								$('#message_logout').append(message_logout);
-							}
-                                                        
+                                            if(langue=='FR'){
+                                                console.log('2');
+                                            var div='<div id="message_emptyCompte"></div>';
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="emptyCompte_fr"){
+							var message_emptyCompte=value;
+							$('#message_emptyCompte').append(message_emptyCompte);
+                                                        alert(message_emptyCompte);
+                                                        window.location='./Login.php';
+                                                    }  
 						});
-					});
+                                            });
+                                            } else {
+                                                console.log('2');
+                                            var div='<div id="message_emptyCompte"></div>';
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="emptyCompte_en"){
+							var message_emptyCompte=value;
+							$('#message_emptyCompte').append(message_emptyCompte);
+                                                        alert(message_emptyCompte);
+                                                        window.location='./Login.php';
+                                                    }  
+						});
+                                            });
+                                            }
+                                            
+                                        }
+					if(data==3){
+                                            if(langue=='FR'){
+                                                console.log('3');
+                                            var div="<div id='message_problemFilling'></div>";
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="problemFillin_fr"){
+							var message_problemFilling=value;
+							$('#message_problemFilling').append(message_problemFilling);
+                                                        alert(message_problemFilling);
+                                                        window.location='./Login.php';
+                                                    }
+						});
+                                            });
+                                            } else {
+                                                console.log('3');
+                                            var div="<div id='message_problemFilling'></div>";
+                                            $.getJSON("./json/message.json",function(data){
+                                                $.each(data,function(key, value){
+                                                    if(key==="problemFillin_en"){
+							var message_problemFilling=value;
+							$('#message_problemFilling').append(message_problemFilling);
+                                                        alert(message_problemFilling);
+                                                        window.location='./Login.php';
+                                                    }
+						});
+                                            });
+                                            }
+                                        }
+					if(data=="erreur"){
+                                            if(langue=='FR'){
+                                                var div="<div id='message_bdd'></div>";
+                                                $.getJSON("./json/message.json",function(data){
+                                                    $.each(data,function(key, value){
+                                                        if(key==="bdd_fr"){
+                                                            var message_bdd=value;
+                                                            $('#message_bdd').append(message_bdd);
+                                                        }
+                                                    });
+                                                });
+                                            } else {
+                                                var div="<div id='message_bdd'></div>";
+                                                $.getJSON("./json/message.json",function(data){
+                                                    $.each(data,function(key, value){
+                                                        if(key==="bdd_en"){
+                                                            var message_bdd=value;
+                                                            $('#message_bdd').append(message_bdd);
+                                                        }
+                                                    });
+                                                });
+                                            }       
+					}
+					
+                                        
 					$(".site-login-form").append(div);
+                                       
 					console.log(data);
 				}
 				/*
