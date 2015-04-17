@@ -62,14 +62,16 @@
 			"section_model_like":"contient",
 			"section_model_exact":"est",
 			"section_model_start":"commence par",
-			"section_model_finish":"se termine par"
+			"section_model_finish":"se termine par",
+                        "section_model_notexact":"n'est pas"
 		},
 	"model_en":
 		{
 			"section_model_like":"contains",
 			"section_model_exact":"is",
 			"section_model_start":"starts with",
-			"section_model_finish":"ends with"
+			"section_model_finish":"ends with",
+                        "section_model_notexact":"not is"
 		},
 	"champ_espece_fr":
 		{

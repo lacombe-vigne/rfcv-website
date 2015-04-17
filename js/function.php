@@ -4062,6 +4062,7 @@ and open the template in the editor.
 	});
 	$.extend({'passerFicher':
 		function(a,b){
+                    var langue = '<?php echo $langue;?>';
 			console.log(a,b);
 			var dataString=searcheSimplePrarams();
 			creatAjax();
@@ -4339,10 +4340,10 @@ and open the template in the editor.
 						htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
 					}
 					
-					if($('#mainMenu_Home').val()==="Accueil"){
+					if(langue=='FR'){
 						htmlll+="<input type='hidden' name='langue_value' value='FR'>";
 					}
-					if($('#mainMenu_Home').val()==="Home"){
+					if(langue=='EN'){
 						htmlll+="<input type='hidden' name='langue_value' value='EN'>";
 					}
 					if(key==="tri_espece"){
@@ -4390,7 +4391,7 @@ and open the template in the editor.
 			var case_s=$("#case_s_value").val();
 			var search=$("#search_value").val();
 			var model=$("#model_value").val();
-			var langue=value.langue;
+			//var langue=value.langue;
 			var page_espece=$('#espece_curpage_value').val();
 			var pagesize_espece=$('#select_pagesize_espece').val();	
 			var page_variete=$('#variete_curpage_value').val();
@@ -4670,10 +4671,10 @@ and open the template in the editor.
 						htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
 					}
 					if(key=="langue"){
-						if(value=="FR"){
+						if(langue=="FR"){
 							htmlll+="<input type='hidden' name='langue_value' value='FR'>";
 						}
-						if(value=="EN"){
+						if(langue=="EN"){
 							htmlll+="<input type='hidden' name='langue_value' value='EN'>";
 						}
 					}
@@ -11004,26 +11005,33 @@ and open the template in the editor.
 	//rechercher avancer
 	//ajouter une condition
 	$.extend({'fieldset_conditions_legend_img':
+        /*
+        * Permet d'ajouter autant de conditiion que l'on souhaite
+         */
 		function(){
-			var v=$('#contents_condition')[0];
-			var Ptr=v.getElementsByTagName("tr");
-			var id_number=Ptr.length+1;
-			var tr='<tr id="tr_'+id_number+'">'+
+                        $.getJSON("json/searchAd.json",function(data){
+                            $.each(data,function(key, value){
+				if($('#mainMenu_Home').val()==="Accueil"){
+                                    if(key==="section_fr"){
+                                        var v=$('#contents_condition')[0];
+                                        var Ptr=v.getElementsByTagName("tr");
+                                        var id_number=Ptr.length+1;
+                                        var tr='<tr id="tr_'+id_number+'">'+
 						'<td width="20%">'+
 							'<select id="section_'+id_number+'"  style="width:150" onchange="$.searchA_changeSection('+id_number+')">'+
 								'<option value=" "> </option>'+
-								'<option value="Espece">Espece</option>'+
-								'<option value="Variete">Variete</option>'+
-								'<option value="Accession">Accession</option>'+
-								'<option value="Emplacement">Emplacement</option>'+
-								'<option value="Sanitaire">Sanitaire</option>'+
-								'<option value="Morphologique">Description Morphologique</option>'+
-								'<option value="Aptitude">Aptitude</option>'+
-								'<option value="Genetique">Profil génétique</option>'+
-								'<option value="Phototheque">Photothèque</option>'+
-								'<option value="Documentation">Documentation PDF/DOC</option>'+
-								'<option value="Bibliographie">Bibliographie</option>'+
-								'<option value="Partenaire">Partenaire</option>'+
+								'<option value="Espece">'+value.section_espece_RA+'</option>'+
+								'<option value="Variete">'+value.section_variete_RA+'</option>'+
+								'<option value="Accession">'+value.section_accession_RA+'</option>'+
+								'<option value="Emplacement">'+value.section_emplacement_RA+'</option>'+
+								'<option value="Sanitaire">'+value.section_sanitaire_RA+'</option>'+
+								'<option value="Morphologique">'+value.section_description_RA+'</option>'+
+								'<option value="Aptitude">'+value.section_aptitude_RA+'</option>'+
+								'<option value="Genetique">'+value.section_genetique_RA+'</option>'+
+								'<option value="Phototheque">'+value.section_phototheque_RA+'</option>'+
+								'<option value="Documentation">'+value.section_documentation_RA+' PDF/DOC</option>'+
+								'<option value="Bibliographie">'+value.section_bibliographie_RA+'</option>'+
+								'<option value="Partenaire">'+value.section_partenaire_RA+'</option>'+
 							'</select>'+
 						'</td>'+
 						'<td  width="25%">'+
@@ -11046,8 +11054,58 @@ and open the template in the editor.
 							'<a id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
 						'</td>'+
 					'</tr>';
-			$("#contents_condition").append(tr);
-		}
+			$("#contents_condition").append(tr);                    
+                                    }
+                                }else{
+                                    if(key==="section_en"){
+                                            var v=$('#contents_condition')[0];
+                                            var Ptr=v.getElementsByTagName("tr");
+                                            var id_number=Ptr.length+1;
+                                            var tr='<tr id="tr_'+id_number+'">'+
+						'<td width="20%">'+
+							'<select id="section_'+id_number+'"  style="width:150" onchange="$.searchA_changeSection('+id_number+')">'+
+								'<option value=" "> </option>'+
+								'<option value="Espece">'+value.section_espece_RA+'</option>'+
+								'<option value="Variete">'+value.section_variete_RA+'</option>'+
+								'<option value="Accession">'+value.section_accession_RA+'</option>'+
+								'<option value="Emplacement">'+value.section_emplacement_RA+'</option>'+
+								'<option value="Sanitaire">'+value.section_sanitaire_RA+'</option>'+
+								'<option value="Morphologique">'+value.section_description_RA+'</option>'+
+								'<option value="Aptitude">'+value.section_aptitude_RA+'</option>'+
+								'<option value="Genetique">'+value.section_genetique_RA+'</option>'+
+								'<option value="Phototheque">'+value.section_phototheque_RA+'</option>'+
+								'<option value="Documentation">'+value.section_documentation_RA+' PDF/DOC</option>'+
+								'<option value="Bibliographie">'+value.section_bibliographie_RA+'</option>'+
+								'<option value="Partenaire">'+value.section_partenaire_RA+'</option>'+
+							'</select>'+
+						'</td>'+
+						'<td  width="25%">'+
+							'<select id="champ_'+id_number+'"  style="width:150" onchange="$.searchA_changeChamp('+id_number+')">'+
+							'</select>'+
+						'</td>'+
+						'<td  width="10%">'+
+							'<select style="width:100" id="model_'+id_number+'">'+
+								'<option value="like">like</option>'+
+								'<option value="exact">exact</option>'+
+								'<option value="start">start</option>'+
+								'<option value="finish">finish</option>'+
+							'</select>'+
+						'</td>'+
+						'<td id="codition_td_'+id_number+'">'+
+							'<input type="test" style="width:200" id="condition_'+id_number+'"/>'+
+						'</td>'+
+						'<td  width="5%" id="lien_'+id_number+'" >'+
+							'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a> '+
+							'<a id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
+						'</td>'+
+					'</tr>';
+			$("#contents_condition").append(tr);             
+                                    }
+                                }    
+			
+                            });
+                        });
+                    }
 	});
 	//supprimer une condition
 	$.extend({'sup_condition':
@@ -11480,9 +11538,9 @@ and open the template in the editor.
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
 									var option='<option value="like">'+value.section_model_like+'</option>'+
-											'<option value="start">'+value.section_model_exact+'</option>'+
-											'<option value="exact">'+value.section_model_start+'</option>'+
-											'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 									$('#codition_td_'+id_number).empty();
 									$('.condition1').remove();
 									$('#codition_td_'+id_number).append('<input type="test" col="50" id="condition_'+id_number+'"/>');
@@ -11492,9 +11550,9 @@ and open the template in the editor.
 							}else{
 								if(key==="model_en"){
 									var option='<option value="like">'+value.section_model_like+'</option>'+
-											'<option value="start">'+value.section_model_exact+'</option>'+
-											'<option value="exact">'+value.section_model_start+'</option>'+
-											'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 									$('#codition_td_'+id_number).empty();
 									$('.condition1').remove();
 									$('#codition_td_'+id_number).append('<input type="test" col="50" id="condition_'+id_number+'"/>');
@@ -11522,8 +11580,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11536,8 +11594,8 @@ and open the template in the editor.
 								}else{
 									if(key==="model_en"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11556,14 +11614,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';;
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';;
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11594,14 +11654,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11616,8 +11678,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11629,8 +11691,8 @@ and open the template in the editor.
 								}else{
 									if(key==="model_en"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11659,14 +11721,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11681,8 +11745,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11694,8 +11758,8 @@ and open the template in the editor.
 								}else{
 									if(key==="model_en"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11725,9 +11789,9 @@ and open the template in the editor.
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
 									var option='<option value="like">'+value.section_model_like+'</option>'+
-											'<option value="start">'+value.section_model_exact+'</option>'+
-											'<option value="exact">'+value.section_model_start+'</option>'+
-											'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									$('#listeDeroulante_'+id_number).remove();
@@ -11738,9 +11802,9 @@ and open the template in the editor.
 							}else{
 								if(key==="model_en"){
 									var option='<option value="like">'+value.section_model_like+'</option>'+
-											'<option value="start">'+value.section_model_exact+'</option>'+
-											'<option value="exact">'+value.section_model_start+'</option>'+
-											'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									$('#listeDeroulante_'+id_number).remove();
@@ -11767,14 +11831,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11809,14 +11875,16 @@ and open the template in the editor.
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                   '<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									listeDeroulante(champ,id_number);
 								}
 							}else{
 								if(key==="model_en"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                   '<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									listeDeroulante(champ,id_number);
@@ -11840,14 +11908,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11862,8 +11932,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11875,8 +11945,8 @@ and open the template in the editor.
 								}else{
 									if(key==="model_en"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11905,14 +11975,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11927,8 +11999,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -11970,14 +12042,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -11992,8 +12066,8 @@ and open the template in the editor.
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -12005,8 +12079,8 @@ and open the template in the editor.
 								}else{
 									if(key==="model_en"){
 										var option='<option value="like">'+value.section_model_like+'</option>'+
-												'<option value="start">'+value.section_model_exact+'</option>'+
-												'<option value="exact">'+value.section_model_start+'</option>'+
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
 												'<option value="finish">'+value.section_model_finish+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
@@ -12070,14 +12144,16 @@ and open the template in the editor.
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                   '<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									listeDeroulante(champ,id_number);
 								}
 							}else{
 								if(key==="model_en"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                   '<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									listeDeroulante(champ,id_number);
@@ -12101,14 +12177,16 @@ and open the template in the editor.
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
 									}
 								}else{
 									if(key==="model_en"){
-										var option='<option value="exact">'+value.section_model_exact+'</option>';
+										var option='<option value="exact">'+value.section_model_exact+'</option>'+
+                                                                                           '<option value="notexact">'+value.section_model_notexact+'</option>';
 										$('#model_'+id_number).empty();
 										$('#model_'+id_number).append(option);
 										listeDeroulante(champ,id_number);
@@ -12124,9 +12202,9 @@ and open the template in the editor.
 									if($('#mainMenu_Home').val()==="Accueil"){
 										if(key==="model_fr"){
 											var option='<option value="like">'+value.section_model_like+'</option>'+
-													'<option value="start">'+value.section_model_exact+'</option>'+
-													'<option value="exact">'+value.section_model_start+'</option>'+
-													'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 											$('#model_'+id_number).empty();
 											$('#model_'+id_number).append(option);
 											$('#listeDeroulante_'+id_number).remove();
@@ -12137,9 +12215,9 @@ and open the template in the editor.
 									}else{
 										if(key==="model_en"){
 											var option='<option value="like">'+value.section_model_like+'</option>'+
-													'<option value="start">'+value.section_model_exact+'</option>'+
-													'<option value="exact">'+value.section_model_start+'</option>'+
-													'<option value="finish">'+value.section_model_finish+'</option>';
+												'<option value="exact">'+value.section_model_exact+'</option>'+
+												'<option value="start">'+value.section_model_start+'</option>'+
+												'<option value="finish">'+value.section_model_finish+'</option>';
 											$('#model_'+id_number).empty();
 											$('#model_'+id_number).append(option);
 											$('#listeDeroulante_'+id_number).remove();
@@ -12193,7 +12271,7 @@ and open the template in the editor.
 	function listeDeroulante(champ,id_number){
 		// var option=""
 		creatAjax();
-		dataString='function=listeDeroulante&champ='+champ+'&id_number='+id_number;
+		dataString='&function=listeDeroulante&champ='+champ+'&id_number='+id_number;
 		console.log(dataString);
 		$.ajax({
 			type: "Post",
@@ -12204,7 +12282,7 @@ and open the template in the editor.
 				var option=""
 				$.each(data,function(key,value){
 					var id_number=0;
-					if(key=='id_number'){
+					if(key==='id_number'){
 						$('#condition_'+value).remove();
 						$('#condition_date_'+value).remove();
 						$('#condition_mois_'+value).remove();
@@ -12214,14 +12292,14 @@ and open the template in the editor.
 						$('#codition_td_'+value).append('<select style="width:200" id="listeDeroulante_'+value+'"></select>');
 						id_number=value;
 					}
-					if(key=='FR'){
+					if(key==='FR'){
 						$.each(value,function(entryIndex,entry){
 							if(entry['fr']!=null){
 								option+='<option value="'+entry['code']+'">'+entry['fr']+'</option>';
 							}
 						});
 					}
-					if(key=='EN'){
+					if(key==='EN'){
 						$.each(value,function(entryIndex,entry){
 							if(entry['en']!=null){
 								option+='<option value="'+entry['code']+'">'+entry['en']+'</option>';
@@ -12250,7 +12328,11 @@ and open the template in the editor.
 			var condition_name = 'condition_'+i;
 			var condition_genetique_name1 = 'condition_ValeurCodee1_'+i;
 			var condition_genetique_name2 = 'condition_ValeurCodee2_'+i;
-			if($('#champ_'+i).val()==' '){
+			/*
+                         * Permet de vériffier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
+                         */
+            
+                        if($('#champ_'+i).val()==' '){
 				faute+=1;
 			}else{
 				faute=faute;
@@ -12278,7 +12360,48 @@ and open the template in the editor.
 				dataString+="&"+condition_name+"="+$('#condition_'+i).val();
 			}
 		}
-		if(faute==0 && v_a!=0){
+                var idem = false; //booléen qui vérifie s'il y'a 2 conditons identiques
+                var indiff = false; // booléen qui verfiie s'il y'a 2 conditions identiques
+                /*
+                 * Permet de vérifier s'il n'y a pas de condition identiques
+                 */
+                var section = new Array(); // Tableau qui va contenir les différentes section de la reecherche avancée de l'utilisateur
+                for(var i=1 ; i<=Ptr.length; i++){                    
+                    section.push($('#section_'+i).val()); // on ajoute les sections au fur et à mesure
+                    for(var j=i+1 ; j<=Ptr.length; j++){
+                        if(($('#section_'+i).val()==$('#section_'+j).val()) && ($('#champ_'+i).val()==$('#champ_'+j).val()) && ($('#model_'+i).val()==$('#model_'+j).val()) && ($('#condition_'+i).val()==$('#condition_'+j).val())){
+                            /*
+                             * On vérifie que chaque colonne est identique
+                             * Si c'est le cas, on sort de la boucle et le booleen devient true
+                             */
+                            idem = true;
+                            break;
+                        }if(($('#section_'+i).val()==$('#section_'+j).val()) && (($('#champ_'+i).val()=="indifferent") || ($('#champ_'+j).val()=="indifferent"))){
+                            /*
+                             * On vérifie que l'on obtient pas 2 conditons sur la même section 
+                             * avec une condition "indifférent" 
+                             * et une conditon sur un champ de la section
+                             */
+                            indiff = true;
+                            break;
+                        }
+                    }
+                }
+                function cleanArray(array){
+                    /*
+                     * Fonction qui permet de supprimer les doublon dans un tableau
+                     */
+                    var i, j, len = array.length, out = [], obj = {};
+                    for (i = 0; i < len; i++) {
+                        obj[array[i]] = 0;
+                    }   
+                    for (j in obj) {
+                        out.push(j);
+                    }
+                    return out;
+                };
+                section=cleanArray(section); // tableau des différentes sections sans doublon                
+		if(faute==0 && v_a!=0 && !idem && (section.length <= 4) && !indiff){
 			console.log(dataString);
 			searchAdvance(dataString);
 		}else if(faute!=0){
@@ -12297,7 +12420,13 @@ and open the template in the editor.
 			}else{
 				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
 			}
-		}
+		}else if(idem){ // si 2 conditons sont identiques
+                    alert('Vous avez 2 lignes identiques');
+                }else if(section.length > 4){ // si nous avons plus de 4 sections différentes
+                    alert('Vous ne pouvez pas effectuer une recherche sur plus de 4 sections différentes');
+                }else if(indiff){
+                    alert("Incohérence des données recherchées");
+                }
 	});
 	function searchAdvance(dataString){
 		creatAjax();

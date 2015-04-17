@@ -574,7 +574,7 @@ switch($fun){
 		$search_complet=$_POST['search'];
 		$case_s=$_POST['case_s'];
 		$model=$_POST['model'];
-		$langue=$_POST['langue_value'];
+		$langue=$_POST['langue'];
 		$page_espece=$_POST['page_espece'];
 		$pagesize_espece=$_POST['pagesize_espece'];
 		$page_variete=$_POST['page_variete'];
@@ -590,7 +590,7 @@ switch($fun){
 		$tri_accession_classname=$_POST['tri_accession_classname'];
 		$tri_accession_section=$_POST['tri_accession_section'];
 		$tri_accession_colone=$_POST['tri_accession_colone'];
-		$langue=$_SESSION['language_Vigne'];
+		//$langue=$_SESSION['language_Vigne'];
 		$resultat=$DAO->ficher($section,$code,$search_complet,$case_s,$model,$langue,$page_espece,$pagesize_espece,$page_variete,$pagesize_variete,$page_accession,$pagesize_accession,$tri_espece_classname,$tri_espece_section,$tri_espece_colone,$tri_variete_classname,$tri_variete_section,$tri_variete_colone,$tri_accession_classname,$tri_accession_section,$tri_accession_colone);
 		echo json_encode($resultat);
 	break;
@@ -653,7 +653,7 @@ switch($fun){
 				$Partenaire[]=$n;
 			}
 		}
-		$langue=$_SESSION['language_Vigne'];
+		$langue=$_SESSION['language_Vigne'];                
 		$parametre['i']=$i;
 		$parametre['Variete']=$Variete;
 		$parametre['Accession']=$Accession;
@@ -672,7 +672,8 @@ switch($fun){
 		echo json_encode($resultat);
 	break;
 	case "charge_champ_Morphologique":
-		$langue=$_POST['langue_value'];
+		//$langue=$_POST['langue_value'];
+                $langue=$_SESSION['language_Vigne'];
 		$resultat=$DAO->charge_champ_Morphologique($langue);
 		echo $resultat;
 	break;
@@ -709,7 +710,8 @@ switch($fun){
 	break;
 	case "searchAdvance_requete":
 		$section=$_POST['section'];
-		$langue=$_POST['langue_value'];
+		//$langue=$_POST['langue'];
+                $langue=$_SESSION['language_Vigne'];
 		$sql_possible=$_POST['sql_possible'];
 		$sql_total=$_POST['sql_total'];
 		$pagesize=$_POST['pagesize'];

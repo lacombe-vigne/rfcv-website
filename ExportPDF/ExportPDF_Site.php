@@ -4,6 +4,8 @@ session_start(); //Permet de récupérer le contenu des variables de session
 $json = file_get_contents('../json/fichier.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 /* Permet de récuperer le label correspondant en anglais ou en français */
+$jsonHeader = file_get_contents('../json/home.json');
+$parsed_jsonHeader = json_decode($jsonHeader); // pour récuperer le contenu de home.json
 if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_fr}->{Code};
     /* données */

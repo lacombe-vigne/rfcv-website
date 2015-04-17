@@ -256,7 +256,7 @@ li.menu_rechercher {
     color:#000;
     font-weight: normal;
     font-size: 16px;
-    width:260px;
+    //width:260px;
 }
 .center .home_part1 #sous_title_part1,#sous_title_part2,#sous_title_part3{
     margin: -10px 0px 5px 85px;
@@ -274,13 +274,13 @@ li.menu_rechercher {
 }
 .center .home_part2 #contents_part2{
     width: 700px;
-    margin: -60px 0px 10px 400px;
+    margin: -37px 0px 10px 400px;
     text-align: justify;
     font-size:14px;
 }
 .center .home_part3 #contents_part3{
     width: 700px;
-    margin: -60px 0px 10px 400px;
+    margin: -37px 0px 10px 400px;
     text-align: justify;
     font-size:14px;
 }
@@ -322,7 +322,7 @@ li.menu_rechercher {
     font-size: 14px;
     line-height: 25px;
     padding-left: 10px;
-    text-transform: uppercase;
+    //text-transform: uppercase;
 }
 #demo5 .events_intro p {
     line-height: 1.5;
