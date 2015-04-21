@@ -841,6 +841,26 @@
 			"lable_Photographe":"Photograph: ",
 			"lable_Partenaire":"Partner: "
 		},
+        "resultat_partenaire_fr":
+                {
+                    "Title":"Partenaire",
+                    "parPage":"Nombre d'enregistrements par page :",
+                    "page":"page",
+                    "CodePartenaire":"Code",
+                    "SiglePartenaire":"Sigle",
+                    "NomPartenaire":"Nom",
+                    "sectionPartenaire":"Section régionale"
+                },
+        "resultat_partenaire_en":
+                {
+                    "Title":"Partner",
+                    "parPage":"Number of records by page:",
+                    "page":"page",
+                    "CodePartenaire":"Code",
+                    "siglePartenaire":"Acronym",
+                    "NomPartenaire":"Name",
+                    "sectionPartenaire":"Regional section"
+                },
         "pdf_fr":
                 {
                   "document":"Document édité le "  

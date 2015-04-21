@@ -782,6 +782,7 @@ $(document).ready(function(){
 				$('#titile_Condition').append(value.titile_Condition);
 				$('#titile_Supprimer').append(value.titile_Supprimer);
 				$('#go_searchA').append(value.go_searchA);
+                                $('#reset_searchA').append(value.reset_searchA);
 				$('#recherche_avancee_titleAttention').append(value.recherche_avancee_titleAttention);
 				$('#recherche_avancee_Attention').append(value.recherche_avancee_Attention);
 				$('#titleResultat_rechreche_avancee').append(value.titleResultat_rechreche_avancee);

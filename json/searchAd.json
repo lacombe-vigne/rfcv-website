@@ -8,7 +8,8 @@
 			"titile_Modele":"Opérateur",
 			"titile_Condition":"Critère",
 			"titile_Supprimer":"Condition",
-			"go_searchA":"Recherche",
+			"go_searchA":"Rechercher",
+                        "reset_searchA":"Réinitialiser",
 			"recherche_avancee_titleAttention":"AVERTISSEMENT: ",
 			"recherche_avancee_Attention":"Les informations diffusées sont la propriété des partenaires du Réseau. Toute copie totale ou partielle ne peut se faire sans l'accord des animateurs du Réseau. Toute citation de la base ou des informations diffusées doit mentionner obligatoirement le crédit \"Base de données du Réseau Français des Conservatoires de Vigne, © INRA-IFV-SupAgro 2005-2015\" ainsi que le nom des partenaires propriétaires des données utilisées. Les utilisateurs sont seuls responsables des interrogations qu'ils formulent ainsi que de l'interprétation et de l'utilisation qu'ils font des résultats.",
 			"titleResultat_rechreche_avancee":"Résultats"
@@ -23,6 +24,7 @@
 			"titile_Condition":"Criterion",
 			"titile_Supprimer":"Condition",
 			"go_searchA":"Search",
+                        "reset_searchA":"Refresh",
 			"recherche_avancee_titleAttention":"WARNING: ",
 			"recherche_avancee_Attention":"The information disseminated are the property of the Network's Partners. Total or partial copy can not be done without the agreement of the leaders of the Network. Any citation of the database or the information disseminated must mention credit \"Database Network of French Vine Conservatories © INRA-SupAgro IFV-2005-2015\" and the names of Partners owners of the data used. Users are solely responsible for the searches they formulate as well as the interpretation and use they make of the results.",
 			"titleResultat_rechreche_avancee":"Results"
@@ -267,5 +269,5 @@
 			"SectionRegionaleENTAV":"Regional section",
 			"RegionPartenaire":"Région",
 			"DepartPartenaire":"Départment"
-		}
+		}        
 }

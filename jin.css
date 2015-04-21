@@ -808,7 +808,8 @@ avar,aesp,aclo{
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 20px;
-    padding: 1% 5%;
+    padding: 1%;
+    font-size: none;
 }
 #searchA_button_table a:hover{
     color: #666666 !important;
@@ -825,7 +826,8 @@ avar,aesp,aclo{
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 20px;
-    padding: 1% 5%;
+    padding: 1%;
+    font-size: none;
 }
 #notice{
     width:92%;
@@ -1929,8 +1931,6 @@ avar,aesp,aclo{
     margin: 2% auto 0 3%;
     font-weight: normal;
     font-size: 1.5em;
-    color:#87AD3F;
-    text-shadow: 0 2px 2px #B8D362;
 }
 #listPartenaire fieldset #table_Partenaire_function{
     color: #000;
@@ -2295,10 +2295,8 @@ avar,aesp,aclo{
 }
 #list2_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#8c7996;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #cac1ce;
 }
 #list2_cate_var fieldset .function_ligne_aptitude{
     color: #000;
@@ -2356,10 +2354,8 @@ avar,aesp,aclo{
 }
 #list3_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#ffc6b3;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #ffece6;
 }
 #list3_cate_var fieldset .function_ligne_description{
     color: #000;
@@ -2417,10 +2413,8 @@ avar,aesp,aclo{
 }
 #list4_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#C08B30;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #CB9533;
 }
 #list4_cate_var fieldset #table_accession_function{
     color: #040606;
@@ -2478,10 +2472,8 @@ avar,aesp,aclo{
 }
 #list5_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#c03759;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #e195a8;
 }
 #list5_cate_var fieldset #table_emplacement_function{
     color: #000;
@@ -2539,10 +2531,8 @@ avar,aesp,aclo{
 }
 #list6_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#91ABA6;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #71F1D9;
 }
 #list6_cate_var fieldset #table_sanitaire_function{
     color: #000;
@@ -2600,10 +2590,8 @@ avar,aesp,aclo{
 }
 #tabs-3_FichierAcc_MED fieldset legend{
     margin: 2% auto 0 3%;
-    color:#A1A048;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #DEDD80;
 }
 #tabs-3_FichierAcc_MED fieldset #table_lien_function{
     color: #000;
@@ -2657,10 +2645,8 @@ avar,aesp,aclo{
 }
 #tabs-2_FichierAcc_MED fieldset legend{
     margin: 2% auto 0 3%;
-    color:#A1A048;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #DEDD80;
 }
 #tabs-2_FichierAcc_MED fieldset #table_doc_function{
     color: #000;
@@ -2859,10 +2845,8 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 }
 #list8_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#A1A048;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #DEDD80;
 }
 #list8_cate_var fieldset #table_bibliographie_function{
     color: #000;
@@ -2920,10 +2904,8 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 }
 #list8_cate_acc fieldset legend{
     margin: 2% auto 0 3%;
-    color:#A1A048;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #DEDD80;
 }
 #list8_cate_acc fieldset #table_genetique_function{
     color: #000;
@@ -2981,10 +2963,8 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 }
 #list9_cate_var fieldset legend{
     margin: 2% auto 0 3%;
-    color:#A1A048;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #DEDD80;
 }
 #list9_cate_var fieldset #table_genetique_function{
     color: #000;

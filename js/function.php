@@ -47,6 +47,10 @@ and open the template in the editor.
 		$('.modifier_mesInfos').show();
 		
 	});
+        function langue(){
+            var langue='<?php echo $langue;?>';
+            return langue;
+        }
 	//function creation Ajax
 	function creatAjax(){
 		var HttpRequest=false;
@@ -5174,7 +5178,7 @@ and open the template in the editor.
 						$('#tri_variete_section').remove();
 						$('#tri_variete_colone').remove();
 						$('#list1_cate_esp').append('<input id="variete_curpage_value" type="hidden" value="'+value.page.curpage+'" /><input id="variete_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="variete_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
-						$('#list1_cate_esp').append('<input id="tri_variete_classname" type="hidden" value="'+value.tri.classname+'" /><input id="tri_variete_section" type="hidden" value="'+value.tri.section+'" /><input id="tri_variete_colone" type="hidden" value="'+value.tri.colone+'" />');
+						$('#list1_cate_esp').append('<input id="tri_variete_classname" type="hidden" value="'+value.tri.classname+'" /><input id="tri_variete_section" type="hidden" value="'+value.tri.section+'" /><input id="tri_variete_colone" type="hidden" value="'+value.tri.colone+'" /><input id="langue_value" type="hidden" value="'+value.langue+'" />');
 						//title_ligne
 						var langue=value.langue;
 						$('#contents_variete').append('<div id="title_ligne_variete"></div>');
@@ -10838,12 +10842,12 @@ and open the template in the editor.
 																				'<legend id="fieldset_conditions_legend">Votre Condition De Recherche<span></span></legend>'+
 																				'<form>'+
 																					'<table>'+
-																						'<tr><th id="titile_section" width="20%">Section</th><th id="titile_Champ" width="25%">Champ</th><th id="titile_Modele" width="10%">Modele</th><th id="titile_Condition">Condition</th><th id="titile_Supprimer" width="5%">Function</th></tr>'+
+																						'<tr><th id="titile_section" style="text-align:center" width="20%">Section</th><th width="5%"></th><th id="titile_Champ" style="text-align:center" width="20%">Champ</th><th width="5%"></th><th id="titile_Modele" style="text-align:center" width="15%">Modele</th><th width="5%"></th><th id="titile_Condition" style="text-align:center" width="20%">Condition</th><th width="5%"></th><th id="titile_Supprimer" style="text-align:center" width="5%">Function</th></tr>'+
 																						'<tr>'+
 																						'<table id="contents_condition" width="100%">'+
 																							'<tr id="tr_1">'+
 																								'<td width="20%">'+
-																									'<select id="section_1" style="width:150" onchange="$.searchA_changeSection(1)">'+
+																									'<select id="section_1" style="width:200" onchange="$.searchA_changeSection(1)">'+
 																										'<option value=" "> </option>'+
 																										'<option value="Espece">Espece</option>'+
 																										'<option value="Variete">Variete</option>'+
@@ -10859,32 +10863,36 @@ and open the template in the editor.
 																										'<option value="Partenaire">Partenaire</option>'+
 																									'</select>'+
 																								'</td>'+
-																								'<td  width="25%">'+
-																									'<select id="champ_1" style="width:150"  style="width:140" onchange="$.searchA_changeChamp(1)">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td  width="20%">'+
+																									'<select id="champ_1" style="width:200" onchange="$.searchA_changeChamp(1)">'+
 																									'</select>'+
 																								'</td>'+
-																								'<td  width="10%">'+
-																									'<select style="width:100" id="model_1">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td  width="15%">'+
+																									'<select style="width:150" id="model_1">'+
 																										'<option value="like">like</option>'+
 																										'<option value="exact">exact</option>'+
 																										'<option value="start">start</option>'+
 																										'<option value="finish">finish</option>'+
 																									'</select>'+
 																								'</td>'+
-																								'<td id="codition_td_1">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td id="codition_td_1" width="20%">'+
 																									'<input type="test" style="width:200" id="condition_1"/>'+
 																								'</td>'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
 																								'<td  width="5%" id="lien_1" >'+
 																									'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a>'+
 																									'<a id="sup_1" onclick="$.sup_condition(1)"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
 																								'</td>'+
 																							'</tr>'+
-																						'</table>'+
+																						'</table><br>'+
 																						'</tr>'+
 																						'<table id="searchA_button_table">'+
 																						'<tr>'+
-																							'<td width="70%"></td>'+
-																							'<td align="center"><a id="go_searchA">Recherche</a></td>'+
+																							'<td width="50%" align="right"><a id="go_searchA">Recherche</a></td>'+
+																							'<td width="50%" align="right"><a href="javascript:window.location.reload()" id="reset_searchA"></a></td>'+
 																						'</tr>'+
 																						'</table>'+
 																					'</table>'+
@@ -10926,12 +10934,12 @@ and open the template in the editor.
 																				'<legend id="fieldset_conditions_legend">Votre Condition De Recherche<span></span></legend>'+
 																				'<form>'+
 																					'<table>'+
-																						'<tr><th id="titile_section" width="20%">Section</th><th id="titile_Champ" width="25%">Champ</th><th id="titile_Modele" width="10%">Modele</th><th id="titile_Condition">Condition</th><th id="titile_Supprimer" width="5%">Function</th></tr>'+
+																						'<tr><th id="titile_section" style="text-align:center" width="20%">Section</th><th width="5%"></th><th id="titile_Champ" style="text-align:center" width="20%">Champ</th><th width="5%"></th><th id="titile_Modele" style="text-align:center" width="15%">Modele</th><th width="5%"></th><th id="titile_Condition" style="text-align:center" width="20%">Condition</th><th width="5%"></th><th id="titile_Supprimer" style="text-align:center" width="5%">Function</th></tr>'+
 																						'<tr>'+
 																						'<table id="contents_condition" width="100%">'+
 																							'<tr id="tr_1">'+
 																								'<td width="20%">'+
-																									'<select id="section_1" style="width:150" onchange="$.searchA_changeSection(1)">'+
+																									'<select id="section_1" style="width:200" onchange="$.searchA_changeSection(1)">'+
 																										'<option value=" "> </option>'+
 																										'<option value="Espece">Espece</option>'+
 																										'<option value="Variete">Variete</option>'+
@@ -10947,32 +10955,36 @@ and open the template in the editor.
 																										'<option value="Partenaire">Partenaire</option>'+
 																									'</select>'+
 																								'</td>'+
-																								'<td  width="25%">'+
-																									'<select id="champ_1" style="width:150"  style="width:140" onchange="$.searchA_changeChamp(1)">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td  width="20%">'+
+																									'<select id="champ_1" style="width:200" onchange="$.searchA_changeChamp(1)">'+
 																									'</select>'+
 																								'</td>'+
-																								'<td  width="10%">'+
-																									'<select style="width:100" id="model_1">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td  width="15%">'+
+																									'<select style="width:150" id="model_1">'+
 																										'<option value="like">like</option>'+
 																										'<option value="exact">exact</option>'+
 																										'<option value="start">start</option>'+
 																										'<option value="finish">finish</option>'+
 																									'</select>'+
 																								'</td>'+
-																								'<td id="codition_td_1">'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
+																								'<td id="codition_td_1" width="20%">'+
 																									'<input type="test" style="width:200" id="condition_1"/>'+
 																								'</td>'+
+                                                                                                                                                                                                '<td width="5%"></td>'+
 																								'<td  width="5%" id="lien_1" >'+
 																									'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a>'+
 																									'<a id="sup_1" onclick="$.sup_condition(1)"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
 																								'</td>'+
 																							'</tr>'+
-																						'</table>'+
+																						'</table><br>'+
 																						'</tr>'+
 																						'<table id="searchA_button_table">'+
 																						'<tr>'+
-																							'<td width="70%"></td>'+
-																							'<td align="center"><a id="go_searchA">Recherche</a></td>'+
+																							'<td width="50%" align="right"><a id="go_searchA">Recherche</a></td>'+
+																							'<td width="50%" align="right"><a href="javascript:window.location.reload()" id="reset_searchA"></a></td>'+
 																						'</tr>'+
 																						'</table>'+
 																					'</table>'+
@@ -11018,7 +11030,7 @@ and open the template in the editor.
                                         var id_number=Ptr.length+1;
                                         var tr='<tr id="tr_'+id_number+'">'+
 						'<td width="20%">'+
-							'<select id="section_'+id_number+'"  style="width:150" onchange="$.searchA_changeSection('+id_number+')">'+
+							'<select id="section_'+id_number+'"  style="width:200" onchange="$.searchA_changeSection('+id_number+')">'+
 								'<option value=" "> </option>'+
 								'<option value="Espece">'+value.section_espece_RA+'</option>'+
 								'<option value="Variete">'+value.section_variete_RA+'</option>'+
@@ -11034,21 +11046,25 @@ and open the template in the editor.
 								'<option value="Partenaire">'+value.section_partenaire_RA+'</option>'+
 							'</select>'+
 						'</td>'+
-						'<td  width="25%">'+
-							'<select id="champ_'+id_number+'"  style="width:150" onchange="$.searchA_changeChamp('+id_number+')">'+
+                                                '<td width="5%"></td>'+
+						'<td  width="20%">'+
+							'<select id="champ_'+id_number+'"  style="width:200" onchange="$.searchA_changeChamp('+id_number+')">'+
 							'</select>'+
 						'</td>'+
-						'<td  width="10%">'+
-							'<select style="width:100" id="model_'+id_number+'">'+
+                                                '<td width="5%"></td>'+
+						'<td  width="15%">'+
+							'<select style="width:150" id="model_'+id_number+'">'+
 								'<option value="like">like</option>'+
 								'<option value="exact">exact</option>'+
 								'<option value="start">start</option>'+
 								'<option value="finish">finish</option>'+
 							'</select>'+
 						'</td>'+
-						'<td id="codition_td_'+id_number+'">'+
+                                                '<td width="5%"></td>'+
+						'<td id="codition_td_'+id_number+'" width="20%">'+
 							'<input type="test" style="width:200" id="condition_'+id_number+'"/>'+
 						'</td>'+
+                                                '<td width="5%"></td>'+
 						'<td  width="5%" id="lien_'+id_number+'" >'+
 							'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a> '+
 							'<a id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
@@ -11063,7 +11079,7 @@ and open the template in the editor.
                                             var id_number=Ptr.length+1;
                                             var tr='<tr id="tr_'+id_number+'">'+
 						'<td width="20%">'+
-							'<select id="section_'+id_number+'"  style="width:150" onchange="$.searchA_changeSection('+id_number+')">'+
+							'<select id="section_'+id_number+'"  style="width:200" onchange="$.searchA_changeSection('+id_number+')">'+
 								'<option value=" "> </option>'+
 								'<option value="Espece">'+value.section_espece_RA+'</option>'+
 								'<option value="Variete">'+value.section_variete_RA+'</option>'+
@@ -11079,27 +11095,31 @@ and open the template in the editor.
 								'<option value="Partenaire">'+value.section_partenaire_RA+'</option>'+
 							'</select>'+
 						'</td>'+
-						'<td  width="25%">'+
-							'<select id="champ_'+id_number+'"  style="width:150" onchange="$.searchA_changeChamp('+id_number+')">'+
+                                                '<td width="5%"></td>'+
+						'<td  width="20%">'+
+							'<select id="champ_'+id_number+'"  style="width:200" onchange="$.searchA_changeChamp('+id_number+')">'+
 							'</select>'+
 						'</td>'+
-						'<td  width="10%">'+
-							'<select style="width:100" id="model_'+id_number+'">'+
+                                                '<td width="5%"></td>'+
+						'<td  width="15%">'+
+							'<select style="width:150" id="model_'+id_number+'">'+
 								'<option value="like">like</option>'+
 								'<option value="exact">exact</option>'+
 								'<option value="start">start</option>'+
 								'<option value="finish">finish</option>'+
 							'</select>'+
 						'</td>'+
-						'<td id="codition_td_'+id_number+'">'+
+                                                '<td width="5%"></td>'+
+						'<td id="codition_td_'+id_number+'" width="20%">'+
 							'<input type="test" style="width:200" id="condition_'+id_number+'"/>'+
 						'</td>'+
+                                                '<td width="5%"></td>'+
 						'<td  width="5%" id="lien_'+id_number+'" >'+
 							'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a> '+
 							'<a id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
 						'</td>'+
 					'</tr>';
-			$("#contents_condition").append(tr);             
+			$("#contents_condition").append(tr);                    
                                     }
                                 }    
 			
@@ -12108,23 +12128,25 @@ and open the template in the editor.
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'
+                                                                        +'<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									$('#listeDeroulante_'+id_number).remove();
 									$('.condition1').remove();
 									$('#codition_td_'+id_number).empty();
-									$('#codition_td_'+id_number).append('<input type="test" class="condition1" style="width:30%;" id="condition_ValeurCodee1_'+id_number+'"  placeholder="	Allèle 1"/><input type="test" style="width:30%;" class="condition1" id="condition_ValeurCodee2_'+id_number+'" placeholder="	Allèle 2"/>');
+									$('#codition_td_'+id_number).append('<input type="test" class="condition1" style="width:50%;" id="condition_ValeurCodee1_'+id_number+'"  placeholder="	Allèle 1"/><input type="test" style="width:50%;" class="condition1" id="condition_ValeurCodee2_'+id_number+'" placeholder="	Allèle 2"/>');
 								}
 							}else{
 								if(key==="model_en"){
-									var option='<option value="exact">'+value.section_model_exact+'</option>';
+									var option='<option value="exact">'+value.section_model_exact+'</option>'
+                                                                        +'<option value="notexact">'+value.section_model_notexact+'</option>';
 									$('#model_'+id_number).empty();
 									$('#model_'+id_number).append(option);
 									$('#listeDeroulante_'+id_number).remove();
 									$('.condition1').remove();
 									$('#codition_td_'+id_number).empty();
-									$('#codition_td_'+id_number).append('<input type="test" class="condition1" style="width:30%;" id="condition_ValeurCodee1_'+id_number+'"  placeholder="	Allèle 1"/><input type="test" style="width:30%;" class="condition1" id="condition_ValeurCodee2_'+id_number+'" placeholder="	Allèle 2"/>');
+									$('#codition_td_'+id_number).append('<input type="test" class="condition1" style="width:50%;" id="condition_ValeurCodee1_'+id_number+'"  placeholder="	Allèle 1"/><input type="test" style="width:50%;" class="condition1" id="condition_ValeurCodee2_'+id_number+'" placeholder="	Allèle 2"/>');
 								}
 							}
 						});
@@ -13054,7 +13076,7 @@ and open the template in the editor.
 						$('#contents-Res-EspeceS').append('<div class="function_ligne_espece"></div>');
 						var function_ligne= '<table width="100%" id="table_espece_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'Espece\')"/></td>'+
 																'<td width="5%"><a id="aide_myselection27"  onmouseover="$.aide_myselection(27)"><img src="images/new_selection.png" onclick="$.selection(\'Espece\');return false;" width="25" height="25"/></a></td>'+
-																'<td width="5%"><a id="aide_export_xls27"  onmouseover="$.aide_export_xls(27)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+																'<td width="5%"><a id="aide_export_xls27"  onmouseover="$.aide_export_xls(27)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Espece" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 																'<td width="60%"></td>'+
 																'<td ><select id="select_pagesize_espece_avance" onchange="$.select_change_avance_espece();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 																'<td width="15%"><img id="premier_page_espece" src="images/start_page.png" width="25" height="25" onclick="$.search_page_espece_avance(1,\'espece\');"/><img id="precedent_page_espece" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_espece_avance('+(parseInt(value.page.curpage)-1)+',\'espece\');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_espece" src="images/next_page.png" width="25" height="25" onclick="$.search_page_espece_avance('+(parseInt(value.page.curpage)+1)+',\'espece\');"/><img id="fini_page_espece" src="images/end_page.png" width="25" height="25" onclick="$.search_page_espece_avance('+value.page.pagetotal+',\'espece\');"/></td>'+
@@ -13194,7 +13216,7 @@ and open the template in the editor.
 						$('#contents_variete').append('<div class="function_ligne_variete"></div>');
 						var function_ligne= '<table width="100%" id="table_variete_function"><tr><td width="5%"><input  type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'Variete\')""/></td>'+
 														'<td width="5%"><a id="aide_myselection28"  onmouseover="$.aide_myselection(28)" ><img src="images/new_selection.png" onclick="$.selection(\'Variete\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls28"  onmouseover="$.aide_export_xls(28)" ><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls28"  onmouseover="$.aide_export_xls(28)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Variete" target="_blank" ><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_variete_avance" onchange="$.select_change_avance_listvariete();"><option value="20" >20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_variete" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listVariete(1);"/><img id="precedent_page_variete" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listVariete('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_variete" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listVariete('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_variete" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listVariete('+value.page.pagetotal+');"/></td>'+
@@ -13208,10 +13230,11 @@ and open the template in the editor.
 						$('#tri_variete_classname').remove();
 						$('#tri_variete_section').remove();
 						$('#tri_variete_colone').remove();
+                                                var langue=value.langue;
 						$('#list1_cate_esp').append('<input id="variete_curpage_value" type="hidden" value="'+value.page.curpage+'" /><input id="variete_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="variete_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
-						$('#list1_cate_esp').append('<input id="tri_variete_classname" type="hidden" value="'+value.tri.classname+'" /><input id="tri_variete_section" type="hidden" value="'+value.tri.section+'" /><input id="tri_variete_colone" type="hidden" value="'+value.tri.colone+'" />');
+						$('#list1_cate_esp').append('<input id="tri_variete_classname" type="hidden" value="'+value.tri.classname+'" /><input id="tri_variete_section" type="hidden" value="'+value.tri.section+'" /><input id="tri_variete_colone" type="hidden" value="'+value.tri.colone+'" /><input id="langue_value" type="hidden" value="<?php echo $langue ?>" />');
 						//title_ligne
-						var langue=value.langue;
+						
 						$('#contents_variete').append('<div id="title_ligne_variete"></div>');
 						if(value.tri.colone==="CodeVar"){
 							var title_table='<table width="100%" id="table_variete_titles"><th width="5%"><span id="CodeVariete"></span><button id="tri_button_variete_CodeVariete" class="'+value.tri.classname+'" onclick="$.tri_table_variete_avance('+value.tri.section+',\'CodeVar\',\'variete\');"></button></th>'+
@@ -13440,7 +13463,7 @@ and open the template in the editor.
 						$('#contents_accession').append('<div class="function_ligne_accession"></div>');
 						var function_ligne= '<table width="100%" id="table_accession_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'accession\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection29"  onmouseover="$.aide_myselection(29)"><img src="images/new_selection.png" onclick="$.selection(\'Accession\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls29"  onmouseover="$.aide_export_xls(29)" ><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls29"  onmouseover="$.aide_export_xls(29)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Accession" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_accession_avance" onchange="$.select_change_avance_listaccession();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_accession" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listAccession(1);"/><img id="precedent_page_accession" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listAccession('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_accession" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listAccession('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_accession" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listAccession('+value.page.pagetotal+');"/></td>'+
@@ -13638,7 +13661,7 @@ and open the template in the editor.
 						$('#contents_emplacement').append('<div class="function_ligne_emplacement"></div>');
 						var function_ligne= '<table width="100%" id="table_emplacement_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'emplacement\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection30"  onmouseover="$.aide_myselection(30)"><img src="images/new_selection.png" onclick="$.selection(\'Emplacement\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls30"  onmouseover="$.aide_export_xls(30)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls30"  onmouseover="$.aide_export_xls(30)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Emplacement" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_emplacement_avance" onchange="$.select_change_avance_listemplacement();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_emplacement" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listEmplacement(1);"/><img id="precedent_page_emplacement" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listEmplacement('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_emplacement" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listEmplacement('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_emplacement" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listEmplacement('+value.page.pagetotal+');"/></td>'+
@@ -13845,7 +13868,7 @@ and open the template in the editor.
 						$('#contents_sanitaire').append('<div class="function_ligne_sanitaire"></div>');
 						var function_ligne= '<table width="100%" id="table_sanitaire_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'sanitaire\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection31"  onmouseover="$.aide_myselection(31)"><img src="images/new_selection.png" onclick="$.selection(\'Sanitaire\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls31"  onmouseover="$.aide_export_xls(31)" ><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls31"  onmouseover="$.aide_export_xls(31)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Sanitaire" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_sanitaire_avance" onchange="$.select_change_avance_listsanitaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_sanitaire" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listSanitaire(1);"/><img id="precedent_page_sanitaire" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listSanitaire('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_sanitaire" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listSanitaire('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_sanitaire" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listSanitaire('+value.page.pagetotal+');"/></td>'+
@@ -14038,7 +14061,7 @@ and open the template in the editor.
 						$('#contents_description').append('<div class="function_ligne_description"></div>');
 						var function_ligne= '<table width="100%" id="table_description_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'morphologique\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection32"  onmouseover="$.aide_myselection(32)"><img src="images/new_selection.png" onclick="$.selection(\'Morphologique\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls32"  onmouseover="$.aide_export_xls(32)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls32"  onmouseover="$.aide_export_xls(32)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Morphologique" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_description_avance" onchange="$.select_change_avance_listdescription();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_description" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listDescription(1);"/><img id="precedent_page_description" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listDescription('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_description" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listDescription('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_description" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listDescription('+value.page.pagetotal+');"/></td>'+
@@ -14207,7 +14230,7 @@ and open the template in the editor.
 						$('#contents_aptitude').append('<div class="function_ligne_aptitude"></div>');
 						var function_ligne= '<table width="100%" id="table_accession_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'aptitude\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection33" onmouseover="$.aide_myselection(33)" ><img src="images/new_selection.png" onclick="$.selection(\'Aptitude\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls33" onmouseover="$.aide_export_xls(33)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls33" onmouseover="$.aide_export_xls(33)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Aptitude" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_aptitude_avance" onchange="$.select_change_avance_listaptitude();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_aptitude" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude(1);"/><img id="precedent_page_aptitude" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_aptitude" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_aptitude" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+value.page.pagetotal+');"/></td>'+
@@ -14453,7 +14476,7 @@ and open the template in the editor.
 						$('#contents_genetique').append('<div class="function_ligne_genetique"></div>');
 						var function_ligne= '<table width="100%" id="table_genetique_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'genetique\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection34"  onmouseover="$.aide_myselection(34)" ><img src="images/new_selection.png" onclick="$.selection(\'Genetique\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls34"  onmouseover="$.aide_export_xls(34)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls34"  onmouseover="$.aide_export_xls(34)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Genetique" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_genetique_avance" onchange="$.select_change_avance_listgenetique();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_genetique" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listGenetique(1);"/><img id="precedent_page_genetique" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listGenetique('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_genetique" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listGenetique('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_genetique" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listGenetique('+value.page.pagetotal+');"/></td>'+
@@ -14693,7 +14716,7 @@ and open the template in the editor.
 							$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 							var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'documentation\')"/></td>'+
 															'<td width="5%"><a id="aide_myselection35" onmouseover="$.aide_myselection(35)"><img src="images/new_selection.png" onclick="$.selection(\'Documentation\');return false;" width="25" height="25"/></a></td>'+
-															'<td width="5%"><a id="aide_export_xls35" onmouseover="$.aide_export_xls(35)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+															'<td width="5%"><a id="aide_export_xls35" onmouseover="$.aide_export_xls(35)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Documentation" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 															'<td width="50%"></td>'+
 															'<td ><select id="select_pagesize_documentation_avance" onchange="$.select_change_avance_listdoc();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 															'<td width="15%"><img id="premier_page_doc" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listDoc(1);"/><img id="precedent_page_doc" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listDoc('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_doc" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listDoc('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_doc" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listDoc('+value.page.pagetotal+');"/></td>'+
@@ -14856,7 +14879,7 @@ and open the template in the editor.
 						$('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
 						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection36"  onmouseover="$.aide_myselection(36)"><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls36"  onmouseover="$.aide_export_xls(36)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls36"  onmouseover="$.aide_export_xls(36)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Bibliographie" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_bibliographie_avance" onchange="$.select_change_avance_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listBibliographie('+value.page.pagetotal+');"/></td>'+
@@ -15036,7 +15059,7 @@ and open the template in the editor.
 						$('#contents_Partenaire').append('<div class="function_ligne_Partenaire"></div>');
 						var function_ligne= '<table width="100%" id="table_Partenaire_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'partenaire\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection37"  onmouseover="$.aide_myselection(37)"><img src="images/new_selection.png" onclick="$.selection(\'Partenaire\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls37"  onmouseover="$.aide_export_xls(37)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls37"  onmouseover="$.aide_export_xls(37)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Partenaire" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_Partenaire_avance" onchange="$.select_change_avance_listPartenaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_Partenaire" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listPartenaire(1);"/><img id="precedent_page_Partenaire" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listPartenaire('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_Partenaire" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listPartenaire('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_Partenaire" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listPartenaire('+value.page.pagetotal+');"/></td>'+
@@ -15087,7 +15110,7 @@ and open the template in the editor.
 						$.getJSON("json/fichier.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
-									if(key==="resultat_Partenaire_fr"){
+									if(key==="resultat_partenaire_fr"){
 										var h4=value.title;
 										var CodePartenaire=value.CodePartenaire;
 										var siglePartenaire=value.siglePartenaire;
@@ -15101,7 +15124,7 @@ and open the template in the editor.
 									}
 								}
 								if(langue=="EN"){
-									if(key==="resultat_Partenaire_en"){
+									if(key==="resultat_partenaire_en"){
 										var h4=value.title;
 										var CodePartenaire=value.CodePartenaire;
 										var siglePartenaire=value.siglePartenaire;

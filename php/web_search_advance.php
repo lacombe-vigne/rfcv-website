@@ -11,12 +11,12 @@
 					<legend id="fieldset_conditions_legend"><span></span></legend>
 					<form>
 						<table>
-							<tr><th id="titile_section" width="20%"></th><th id="titile_Champ" width="25%"></th><th id="titile_Modele" width="10%"></th><th id="titile_Condition"></th><th id="titile_Supprimer" width="5%"></th></tr>
+							<tr><th id="titile_section" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Champ" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Modele" style="text-align:center" width="15%"></th><th width="5%"></th><th id="titile_Condition" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Supprimer" width="5%"></th></tr>
 							<tr>
 							<table id="contents_condition" width="100%">
 								<tr id="tr_1">
 									<td width="20%">
-										<select id="section_1" style="width:150" onchange="$.searchA_changeSection(1)">
+										<select id="section_1" style="width:200" onchange="$.searchA_changeSection(1)">
 											<option value=" "> </option>
 											<option value="Espece" id="section_espece_RA"></option>
 											<option value="Variete" id="section_variete_RA"></option>
@@ -32,32 +32,36 @@
 											<option value="Partenaire" id="section_partenaire_RA"></option>
 										</select>
 									</td>
-									<td  width="25%">
-										<select id="champ_1" style="width:150"  style="width:140" onchange="$.searchA_changeChamp(1)">
+                                                                        <td width="5%"></td>
+									<td width="20%">
+										<select id="champ_1" style="width:200" onchange="$.searchA_changeChamp(1)">
 										</select>
 									</td>
-									<td  width="10%">
-										<select style="width:100" id="model_1">
+                                                                        <td width="5%"></td>
+									<td width="15%">
+										<select style="width:150" id="model_1">
 											<option value="like" id="section_model_like"></option>
 											<option value="exact" id="section_model_exact"></option>
 											<option value="start" id="section_model_start"></option>
 											<option value="finish" id="section_model_finish"></option>
 										</select>
 									</td>
-									<td id="codition_td_1">
+                                                                        <td width="5%"></td>
+									<td id="codition_td_1" width="20%">
 										<input type="test" style="width:200" id="condition_1"/>
 									</td>
+                                                                        <td width="5%"></td>
 									<td  width="5%" id="lien_1" >
 										<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a>
 										<a id="sup_1" onclick="$.sup_condition(1)"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>
 									</td>
 								</tr>
-							</table>
+                                                        </table><br>
 							</tr>
 							<table id="searchA_button_table">
 							<tr>
-								<td width="70%"></td>
-								<td align="center"><a id="go_searchA"></a></td>
+								<td width="50%" align="right"><a id="go_searchA"></a></td>
+                                                                <td width="50%" align="right" title="Réinitialise les conditions de la recherche"><a href="javascript:window.location.reload()" id="reset_searchA"></a></td>
 							</tr>
 							</table>
 						</table>
@@ -71,7 +75,7 @@
 		</div>
 	</div>
 	<div id="resultat">
-                <?php echo 'Requête exécutée(Permet de tester la recherche avancée) : '.print_r($_SESSION['sql']); //Affiche la requête générée par la recherche avancée ?>
+            <?php echo $_SESSION['sql_par']; ?>
 		<div id="title_Resultat">
 			<img src="images/result_advance.png" alt="Search" width="40" height="40">
 			<h3 id="titleResultat_rechreche_avancee"></h3>
