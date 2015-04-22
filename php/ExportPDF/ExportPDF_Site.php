@@ -1,10 +1,10 @@
 <?php
 session_start(); //Permet de récupérer le contenu des variables de session
 /* Traitement fichier.json */
-$json = file_get_contents('../json/fichier.json');
+$json = file_get_contents('../../json/fichier.json');
 $parsed_json = json_decode($json); // Permet de lire le fichier JSON avec PHP.
 /* Permet de récuperer le label correspondant en anglais ou en français */
-$jsonHeader = file_get_contents('../json/home.json');
+$jsonHeader = file_get_contents('../../json/home.json');
 $parsed_jsonHeader = json_decode($jsonHeader); // pour récuperer le contenu de home.json
 if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     $Code = $parsed_json->{code_fr}->{Code};
@@ -65,8 +65,8 @@ if ($_SESSION['language_Vigne'] == "FR") {/* Français */
     //Footer pdf
     $document = $parsed_json->{pdf_en}->{document};
 }
-require('../php/includes/bibliFonc.php'); /* Accès à la base de données */
-require('../php/includes/class_DAO_Bibilotheque.php'); /* Accès aux requêtes SQL */
+require('../includes/bibliFonc.php'); /* Accès à la base de données */
+require('../includes/class_DAO_Bibilotheque.php'); /* Accès aux requêtes SQL */
 $DAO = new BibliothequeDAO();
 //$resultat = $DAO->exportpdf($_SESSION['CodeAmpelo'], $_SESSION['language_Vigne'], "site");/*Requête SQL*/
 $resultat = $DAO->exportpdf("Vass", "FR", "site"); //test
@@ -85,7 +85,7 @@ $nompdf = $title . $resultat['CodeSite'] . ".pdf"; //Nomme le pdf que l'on tél�
     <page_header>
         <table>
             <tr>
-                <td style="border:none;"><img src="imagesPDF/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
+                <td style="border:none;"><img src="../../images/FEUILLE_DE_VIGNE.jpg" width="50" height="50" /></td>
                 <td style="border:none;width: 78%; vertical-align: middle;"><font style="font-size: 14px; color:#900;"><?php echo $main_title ?></font><br><font style="color:#555;"><?php echo $sous_title ?></font></td>            </tr>
         </table>
         <table style="background-color:#C0C0C0;border-radius:10px;">
@@ -100,7 +100,7 @@ $nompdf = $title . $resultat['CodeSite'] . ".pdf"; //Nomme le pdf que l'on tél�
         <hr style="color:#888" />
         <table>
             <tr>
-                <td style="border:none;width:50%"><img src="imagesPDF/Bandeau.JPG" /></td>
+                <td style="border:none;width:50%"><img src="../../images/Bandeau.JPG" /></td>
 
             </tr>
         </table>
