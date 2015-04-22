@@ -16,9 +16,9 @@
 					<table>
 						<tr><td width="25%" class="nom_person">'.$user['Nom'].'</td><td class="prenom_person" text-align="left" >'.$user['Prenom'].'</td></tr>
 						<tr><td></td><td class="partenaire_person">'.$user['Partenaire'].'</td></tr>
-						<tr><td width="25%" id="tel-mes-info">Tel:</td><td class="tel_person">'.$user['Tel'].'</td></tr>
-						<tr><td width="25%" id="fax-mes-info">Fax:</td><td class="fax_person">'.$user['Fax'].'</td></tr>
-						<tr><td width="25%" id="mail-mes-info">Mail:</td><td class="mail_person">'.$user['mail'].'</td></tr>
+						<tr><td width="25%" id="tel-mes-info"></td><td class="tel_person">'.$user['Tel'].'</td></tr>
+						<tr><td width="25%" id="fax-mes-info"></td><td class="fax_person">'.$user['Fax'].'</td></tr>
+						<tr><td width="25%" id="mail-mes-info"></td><td class="mail_person">'.$user['mail'].'</td></tr>
 						<tr><td></td><td><a id="Modifiez-mes-info" style="cursor:hand"></a></td></tr>
 					</table>
 				</div>';
@@ -152,22 +152,22 @@
 								<legend><img src="images/new_user.png" alt="New user" width="40" height="40"/><span id="NewUser-title"></span></legend>
 								<table>
 								<tr>
-									<td>
+									<td style="width:25%;">
 										<label for="CodePersonne_new" id="NewUser-codepersonne"></label>
 									</td>
-									<td>
+									<td style="width:25%;">
 										<input type="text" name="CodePersonne_new" id="CodePersonne_new"/>
 									</td>
-									<td>
+									<td style="width:10%;">
 										<span id="CodePersonne_new_tip"></span>
 									</td>
-									<td>
+									<td style="width:15%;">
 										<label for="Nom_new" id="NewUser-nom"></label>
 									</td>
-									<td>
+									<td style="width:15%;">
 										<input type="text" name="Nom_new" id="Nom_new"/>
 									</td>
-									<td>
+									<td style="width:10%;">
 										<span id="Nom_new_tip"></span>
 									</td>
 								</tr>
@@ -191,16 +191,44 @@
 										<span id="Function_new_tip"></span>
 									</td>
 								</tr>
-								<tr>
+                                                                <tr>
+									<td>
+										<label for="Password" id="NewUser-password"></label>
+									</td>
+									<td>
+										<input type="password" name="Password_new" id="Password_new"/>
+									</td>
+									<td>
+										<span id="Password_new_tip"></span>
+									</td>
+								</tr>
+                                                                <tr>
 									<td>
 										<label for="Profile_user_new" id="NewUser-profil"></label>
-									</td>
-									<td>
-										<input type="text" name="Profile_user_new" id="Profile_user_new"/>
-									</td>
-									<td>
-										<span id="Profile_user_new_tip"></span>
 									</td>';
+									if($_SESSION['ProfilPersonne']=="A"){
+                                                                            echo' <td>
+                                                                                    <select name="Profile_user_new" id="Profile_user_new">';
+                                                                            $listeProfil = $DAO->ListeProfilA();
+                                                                            for($j=0;$j<count($listeProfil);$j=$j+1){
+										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].'</option>';
+                                                                            }echo'</select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span id="Profile_user_new_tip"></span>
+                                                                                </td>';
+                                                                        }else if($_SESSION['ProfilPersonne']=="B"){
+                                                                            echo' <td>
+                                                                                    <select name="Profile_user_new" id="Profile_user_new">';
+                                                                            $listeProfil = $DAO->ListeProfilB();
+                                                                            for($j=0;$j<count($listeProfil);$j=$j+1){
+										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].'</option>';
+                                                                            }echo'</select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span id="Profile_user_new_tip"></span>
+                                                                                </td>';
+                                                                        }
 									
 									if($_SESSION['ProfilPersonne']=="A"){
 										
@@ -323,97 +351,97 @@
 				echo'
 				<div class="mes-info">
 					<img src="images/info_person.png" alt="My infomations" width="40" height="40"/>
-					<h3 id="title-mes-info">Votre informations</h3>
+					<h3 id="title-mes-info"></h3>
 					<table>
-						<tr><td colspan=2 class="nom_person">'.$user2['Nom'].'</td><td colspan=2 class="prenom_person">'.$user2['Prenom'].'</td><td id="partenaire-mes-info">vient de</td><td class="partenaire_person">'.$user2['Partenaire'].'</td></tr>
-						<tr><td id="tel-mes-info">Tel:</td><td class="tel_person">'.$user2['Tel'].'</td><td id="fax-mes-info">Fax:</td><td class="fax_person">'.$user2['Fax'].'</td><td id="mail-mes-info">Mail:</td><td class="mail_person">'.$user2['mail'].'</td></tr>
-						<tr><td colspan=5> </td><td><a  style="cursor:hand" id="Modifiez-mes-info">Modifiez</a></td></tr>
+						<tr><td colspan=2 class="nom_person">'.$user2['Nom'].'</td><td colspan=2 class="prenom_person">'.$user2['Prenom'].'</td><td id="partenaire-mes-info"></td><td class="partenaire_person">'.$user2['Partenaire'].'</td></tr>
+						<tr><td id="tel-mes-info"></td><td class="tel_person">'.$user2['Tel'].'</td><td id="fax-mes-info"></td><td class="fax_person">'.$user2['Fax'].'</td><td id="mail-mes-info"></td><td class="mail_person">'.$user2['mail'].'</td></tr>
+						<tr><td colspan=5> </td><td><a  style="cursor:hand" id="Modifiez-mes-info"></a></td></tr>
 					</table>
 				</div>';
 				//afficher le formulaire pour modifier mes informations
 				echo'<div class="modifier_mesInfos">
 						<form>
 							<fieldset>
-								<legend><img src="images/modify_myinfos.png" alt="New user" width="40" height="40"/>Modifiez</legend>
+								<legend><img src="images/modify_myinfos.png" alt="New user" width="40" height="40"/><span id="ModifiezMesInfo-title"></span></legend>
 								<table>
 									<tr>
 										<td>
-											<label for="user_nom">Nom</label>
+											<label for="user_nom" id="ModifiezMesInfo-nom"></label>
 										</td>
 										<td>
 											<input type="hidden" name="user_code" value="'.$_SESSION['codePersonne'].'" id="user_code" />
 											<input type="text" name="user_nom" id="user_nom" value="'.$user2['Nom'].'"/>
 										</td>
 										<td>
-											<span id="user_nom_tip">1</span>
+											<span id="user_nom_tip"></span>
 										</td>
 										<td>
-											<label for="user_prenom">Prenom</label>
+											<label for="user_prenom" id="ModifiezMesInfo-prenom"></label>
 										</td>
 										<td>
 											<input type="text" name="user_prenom" id="user_prenom" value="'.$user2['Prenom'].'"/>
 										</td>
 										<td>
-											<span id="user_prenom_tip">2</span>
+											<span id="user_prenom_tip"></span>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<label for="password1">Inserez votre nouveau mot de Passe</label>
+											<label for="password1" id="ModifiezMesInfo-password"></label>
 										</td>
 										<td>
 											<input type="password" name="password1" id="password1"/>
 										</td>
 										<td>
-											<span id="password1_tip">3</span>
+											<span id="password1_tip"></span>
 										</td>
 										<td>
-											<label for="password2">Inserez votre nouveau mot de Passe à nouveau</label>
+											<label for="password2" id="ModifiezMesInfo-repass"></label>
 										</td>
 										<td>
 											<input type="password" name="password2" id="password2"/>
 										</td>
 										<td>
-											<span id="password2_tip">4</span>
+											<span id="password2_tip"></span>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<label for="user_tel">Tel</label>
+											<label for="user_tel" id="ModifiezMesInfo-tel"></label>
 										</td>
 										<td>
 											<input type="text" name="user_tel" id="user_tel" value="'.$user2['Tel'].'"/>
 										</td>
 										<td>
-											<span id="user_tel_tip">5</span>
+											<span id="user_tel_tip"></span>
 										</td>
 										<td>
-											<label for="user_fax">Fax</label>
+											<label for="user_fax" id="ModifiezMesInfo-fax"></label>
 										</td>
 										<td>
 											<input type="text" name="user_fax" id="user_fax" value="'.$user2['Fax'].'"/>
 										</td>
 										<td>
-											<span id="user_fax_tip">6</span>
+											<span id="user_fax_tip"></span>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<label for="user_mail">Mail</label>
+											<label for="user_mail" id="ModifiezMesInfo-mail"></label>
 										</td>
 										<td>
 											<input type="text" name="user_mail" id="user_mail" value="'.$user2['mail'].'"/>
 										</td>
 										<td>
-											<span id="user_mail_tip">7</span>
+											<span id="user_mail_tip"></span>
 										</td>
 										<td colspan=2>
 										</td>
 									</tr>
 									<tr>
 										<td colspan=3></td>
-										<td>
-											<a class="modifier_user_button" style="cursor:hand" >Enregisterr</a>
+										<td align="right">
+											<a class="modifier_user_button" style="cursor:hand" id="ModifiezMesInfo-button"></a>
 										</td>
 									</tr>
 								</table>

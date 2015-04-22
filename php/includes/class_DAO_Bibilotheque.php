@@ -2762,7 +2762,7 @@ class BibliothequeDAO {
                     $DAO->update($dico['Prenom'], $user_prenom, 'Prenom', $codePerson);
                 }
                 if ($password != "") {
-                    $DAO->update($dico['MotDePasse'], sha1($password), 'MotDePasse', $codePerson);
+                    $DAO->update($dico['MotDePasse'], $password, 'MotDePasse', $codePerson);
                 }
                 if ($user_fonction != "") {
                     $DAO->update($dico['Fonction'], $user_fonction, 'Fonction', $codePerson);
@@ -2796,14 +2796,63 @@ class BibliothequeDAO {
             mysql_query($sql_update) or die(mysql_error());
         }
     }
-
-    public function newUser($CodePersonne, $Nom, $Prenom, $Profile, $Partenaire, $PersonneMAJ, $DateFinValide, $password, $DateMAJ_jour, $DateMAJ_mois, $DateMAJ_annee, $function, $Dom, $Tel, $Fax, $Mail) {
+    public function ListeProfilA(){
+        connexion_bbd();
+	mysql_query('SET NAMES UTF8');
+        $sql = "SELECT DISTINCT p.`JY_Profil_Utilisateur`
+                FROM `Personnels` p
+                ORDER BY p.`JY_Profil_Utilisateur` ASC";
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            $Profil = array();
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            $Profil = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $Profil[$i] = array();
+                $Profil[$i]['profil'] = $dico['JY_Profil_Utilisateur'];
+            }
+        }
+        deconnexion_bbd();
+        return $Profil;
+    }
+    public function ListeProfilB(){
+        connexion_bbd();
+	mysql_query('SET NAMES UTF8');
+        $sql = "SELECT DISTINCT p.`JY_Profil_Utilisateur`
+                FROM `Personnels` p
+                WHERE p.`JY_Profil_Utilisateur` != 'A'
+                ORDER BY p.`JY_Profil_Utilisateur` ASC";
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            $Profil = array();
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $Profil[$i] = array();
+                $Profil[$i]['profil'] = $dico['JY_Profil_Utilisateur'];
+            }
+        }
+        deconnexion_bbd();       
+        return $Profil;
+    }
+    public function newUser($CodePersonne, $Nom, $Prenom, $Profile, $Partenaire, $PersonneMAJ, $DateFinValide, $Password, $DateMAJ_jour, $DateMAJ_mois, $DateMAJ_annee, $function, $Dom, $Tel, $Fax, $Mail) {
         if ($_SESSION['ProfilPersonne'] == 'A' || $_SESSION['ProfilPersonne'] == 'B') {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
             $alert = "";
             $sql = "INSERT INTO Personnels (CodePersonne,Nom,Prenom,JourMAJ,MoisMAJ,AnneeMAJ,PersonneMAJ,CodePartenaire,MotDePasse,JY_Profil_Utilisateur)
-						   VALUES('" . $CodePersonne . "','" . $Nom . "','" . $Prenom . "','" . $DateMAJ_jour . "','" . $DateMAJ_mois . "','" . $DateMAJ_annee . "','" . $PersonneMAJ . "','" . $Partenaire . "','" . $password . "','" . $Profile . "')";
+						   VALUES('" . $CodePersonne . "','" . $Nom . "','" . $Prenom . "','" . $DateMAJ_jour . "','" . $DateMAJ_mois . "','" . $DateMAJ_annee . "','" . $PersonneMAJ . "','" . $Partenaire . "','" . $Password . "','" . $Profile . "')";
 
             mysql_query($sql) or die(mysql_error());
             if ($function != "") {
@@ -2876,7 +2925,7 @@ class BibliothequeDAO {
             $sql_list_user = "SELECT * FROM Personnels WHERE 1";
         }
         if ($_SESSION['ProfilPersonne'] == "B") {
-            $sql_list_user = "SELECT * FROM Personnels WHERE CodePartenaire='" . $dico['CodePartenaire'] . "'";
+            $sql_list_user = "SELECT * FROM Personnels WHERE CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'";
         }
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
@@ -4990,14 +5039,14 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) == 1) {
-            $password = sha1(123456);
+            $password = 123456;
             $sql_update = "update Personnels set MotDePasse='" . $password . "' where CodePersonne='" . $codePersonne . "'";
             mysql_query($sql_update) or die(mysql_error());
         }
         if ($_SESSION['language_Vigne'] == "EN") {
             $alert = "You have registered his/her new password!";
         } else {
-            $alert = "Vous avez bien enregistré sa nouvelle mot de passe!";
+            $alert = "Vous avez bien enregistré son nouveau mot de passe!";
         }
         deconnexion_bbd();
         return $alert;

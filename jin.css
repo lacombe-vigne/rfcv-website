@@ -358,14 +358,12 @@ li.menu_rechercher {
 }
 #site-loginpage .login-input{
     background: #B3D270;
-    border-radius: 20px;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -373,13 +371,11 @@ li.menu_rechercher {
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
-    width:60%;
+    width:80%;
     height: 100%;
 }
 #site-loginpage .login-input:focus {
     background:#fcfcfc;
-    border-radius: 20px;
     color: #6a6f75;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
@@ -396,6 +392,7 @@ li.menu_rechercher {
     text-align: left;
     color: #7B0043;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    border : 0px none;
 }
 #site-loginpage .button:hover{
     background: #78B640;
@@ -963,7 +960,6 @@ avar,aesp,aclo{
 }
 .mes-info table td{
     padding: 0 0 1% 0;
-    font-size:20px;
 }
 .prenom_person{
     font-family:Arial, Helvetica, sans-serif;
@@ -972,7 +968,6 @@ avar,aesp,aclo{
 .partenaire_person,.mail_person,.fax_person,.tel_person{
     font-family:Arial, Helvetica, sans-serif;
     text-align:left;
-    font-size:18px;
 }
 .nom_person{
     text-align:center;
@@ -1130,22 +1125,18 @@ avar,aesp,aclo{
 }
 .new-user fieldset table{
     margin:auto auto;
-
-    font-size:20px;
 }
 .new-user fieldset table td{
     width:7%;
 }
 .new-user fieldset table input{
     background:#e1e1e1;
-    border-radius: 20px;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -1153,19 +1144,17 @@ avar,aesp,aclo{
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
-    width: 60%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .new-user fieldset table input:focus{
     background:#fcfcfc;
-    border-radius: 20px;
     color: #6a6f75;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .new-user fieldset table .new_user_button{
@@ -1315,8 +1304,6 @@ avar,aesp,aclo{
 }
 .modifier_mesInfos fieldset table{
     margin:auto auto;
-
-    font-size:20px;
 }
 .modifier_mesInfos fieldset table td{
     width:7%;
@@ -1324,14 +1311,12 @@ avar,aesp,aclo{
 }
 .modifier_mesInfos fieldset table input{
     background:#e1e1e1;
-    border-radius: 20px;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -1340,18 +1325,17 @@ avar,aesp,aclo{
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
-    width: 60%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .modifier_mesInfos fieldset table input:focus{
     background:#fcfcfc;
-    border-radius: 20px;
     color: #6a6f75;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .modifier_mesInfos fieldset table .modifier_user_button{
@@ -1447,34 +1431,27 @@ avar,aesp,aclo{
     cursor:hand;
 }
 
-
-
 .modifier_ses_info fieldset{
     color: #737373;
     background: #fafafa;
     border: 1px solid #fafafa;
-    border-radius: 20px;
-    width:80%;
     padding: 1%;
     margin: 1% auto 1% auto;
 }
 .modifier_ses_info fieldset table{
     margin:auto auto;
-    font-size:20px;
 }
 .modifier_ses_info fieldset table td{
     width:7%;
 }
 .modifier_ses_info fieldset table input{
     background:#e1e1e1;
-    border-radius: 20px;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -1483,18 +1460,17 @@ avar,aesp,aclo{
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
-    width: 60%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .modifier_ses_info fieldset table input:focus{
     background:#fcfcfc;
-    border-radius: 20px;
     color: #6a6f75;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 100%;
     margin: auto 1% auto auto;
 }
 .modifier_ses_info fieldset table .modifier_user_button_sesInfo{
@@ -1532,7 +1508,7 @@ avar,aesp,aclo{
     border-radius: 20px;
 }
 .modifier_ses_info fieldset legend{
-    margin: 5% auto auto -9%;
+    margin: auto;
     color: #000;
     font-weight: normal;
     font-size: 1.5em;

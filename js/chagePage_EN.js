@@ -240,6 +240,9 @@ $(document).ready(function(){
 				$('#title-mes-info').append(value.title);
 				$('#partenaire-mes-info').append(value.vient);
 				$('#Modifiez-mes-info').append(value.button);
+                                $('#tel-mes-info').append(value.tel);
+				$('#fax-mes-info').append(value.fax);
+				$('#mail-mes-info').append(value.mail);
 			}
 			if(key==="GestionUser_en"){
 				$('#title-gestion-users').append(value.title);
@@ -265,6 +268,8 @@ $(document).ready(function(){
 				$('#NewUser-partenaire').append(value.partenaire);
 				$('#NewUser-partenaire-B').append(value.partenaire);
 				$('#NewUser-fonction').append(value.Fonction);
+                                $('#NewUser-password').append(value.Password);
+                                $('#NewUser-passwordconfirm').append(value.PasswordConfirm);
 				$('#NewUser-profil').append(value.Profil);
 				$('#NewUser-dom').append(value.DomCompet);
 				$('#NewUser-tel').append(value.Tel);

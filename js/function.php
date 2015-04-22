@@ -240,11 +240,12 @@ and open the template in the editor.
 		}
 	);
 	//vérifier des formulaire de creation un utilisateur
-	var faute_new=4;
+	var faute_new=8;
 	$('#CodePersonne_new_tip').hide();
 	$('#Nom_new_tip').hide();
 	$('#Prenom_new_tip').hide();
 	$('#Function_new_tip').hide();
+        $('#Password_new_tip').hide();
 	$('#Profile_user_new_tip').hide();
 	$('#Partenaire_new_tip').hide();
 	$('#Dom_Compet_new_tip').hide();
@@ -309,6 +310,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#Tel_new_tip').hide();
+                        faute_new-=1;
 			
 		}else{
 			$(this).addClass('non_Valide');
@@ -322,6 +324,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#Fax_new_tip').hide();
+                        faute_new-=1;
 		
 		}else{
 			$(this).addClass('non_Valide');
@@ -335,6 +338,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/) || $(this).val()==""){
 			$('#Mail_new_tip').hide();
+                        faute_new-=1;
 		
 		}else{
 			$(this).addClass('non_Valide');
@@ -348,6 +352,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^[1-2]{1}[0-9]{3}[-]{1}[0-1]{1}[0-9]{1}[-][0-3]{1}[0-9]{1}/) || $(this).val()==""){
 			$('#DateFinValide_new_tip').hide();
+                        faute_new-=1;
 		
 		}else{
 			$(this).addClass('non_Valide');
@@ -371,21 +376,23 @@ and open the template in the editor.
 	//ajouter un nouveau utilisateur
 	$('.new_user_button').click(function(){
 		//si tous les vérifications sont passe, il ajoute un nouveau utilisateur dans le bbd. sinon on affiche un message error
-		if(faute_new==0 && $("#CodePersonne_new").val()!=""){
+		console.log(faute_new);        
+                if(faute_new<1 && $("#CodePersonne_new").val()!=""){
 			creatAjax();
-			var DataString='function=newUser&CodePersonne='+$("#CodePersonne_new").val()+'&Nom='+$("#Nom_new").val()+'&Prenom='+$("#Prenom_new").val()+'&Function='+$("#Function_new").val()+'&Profile='+$("#Profile_user_new").val()+'&Partenaire='+$("#Partenaire_new").val()+'&Dom='+$("#Dom_Compet_new").val()+'&Tel='+$("#Tel_new").val()+'&Fax='+$("#Fax_new").val()+'&Mail='+$("#Mail_new").val()+'&DateFinValide='+$("#DateFinValide_new").val()+'&PersonneMAJ='+$('#user_code_admin').val();
+			var DataString='function=newUser&CodePersonne='+$("#CodePersonne_new").val()+'&Nom='+$("#Nom_new").val()+'&Prenom='+$("#Prenom_new").val()+'&Function='+$("#Function_new").val()+'&Password='+$("#Password_new").val()+'&Profile='+$("#Profile_user_new").val()+'&Partenaire='+$("#Partenaire_new").val()+'&Dom='+$("#Dom_Compet_new").val()+'&Tel='+$("#Tel_new").val()+'&Fax='+$("#Fax_new").val()+'&Mail='+$("#Mail_new").val()+'&DateFinValide='+$("#DateFinValide_new").val()+'&PersonneMAJ='+$('#user_code_admin').val();
 			$.ajax({
 				type:"Post",
 				url:"./php/script_webbio.php",
 				data:DataString,
 				success:function(data){
-					window.location.reload(1);
-					alert(data);
+					alert("Le compte a bien été créé");
+                                        window.location.reload(1);
 				}		
 			});
 		}else{
 			alert("Vous n'avez pas bien rempli les champs! ");
 		}
+                
 	});
 	//ses infos
 	 $.extend({'ses_carte':function(a){

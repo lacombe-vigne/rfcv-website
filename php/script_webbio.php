@@ -47,7 +47,7 @@ switch($fun){
 		$Partenaire=$_POST['Partenaire'];
 		$PersonneMAJ=$_POST['PersonneMAJ'];
 		$DateFinValide=$_POST['DateFinValide'];
-		$password=$_POST['password'];
+		$Password=$_POST['Password'];
 		$DateMAJ=date("Y-m-d");
 		$DateMAJ_ele=explode("-",$DateMAJ);
 		$DateMAJ_jour=$DateMAJ_ele[2];
@@ -58,7 +58,7 @@ switch($fun){
 		$Tel=$_POST['Tel'];
 		$Fax=$_POST['Fax'];
 		$Mail=$_POST['Mail'];
-		$resultat=$DAO->newUser($CodePersonne,$Nom,$Prenom,$Profile,$Partenaire,$PersonneMAJ,$DateFinValide,$password,$DateMAJ_jour,$DateMAJ_mois,$DateMAJ_annee,$function,$Dom,$Tel,$Fax,$Mail);
+		$resultat=$DAO->newUser($CodePersonne,$Nom,$Prenom,$Profile,$Partenaire,$PersonneMAJ,$DateFinValide,$Password,$DateMAJ_jour,$DateMAJ_mois,$DateMAJ_annee,$function,$Dom,$Tel,$Fax,$Mail);
 		echo $resultat;
 	break;
 

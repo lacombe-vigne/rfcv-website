@@ -3,13 +3,19 @@
 		{
 			"title":"Vos informations personnelles",
 			"vient":"vient de",
-			"button":"Modifier"
+			"button":"Modifier",
+                        "tel":"Tel:",
+                        "fax":"Fax:",
+                        "mail":"Courriel:"
 		},
 	"MesInfo_en":
 		{
 			"title":"Your personal data",
 			"vient":"from",
-			"button":"Save"
+			"button":"Save",
+                        "tel":"Tel:",
+                        "fax":"Fax:",
+                        "mail":"Mail:"
 		},
 	"GestionUser_fr":
 		{
@@ -54,6 +60,8 @@
 			"Nom":"Nom",
 			"Prenom":"Prénom",
 			"Fonction":"Fonction",
+                        "Password":"Mot de passe",
+                        "PasswordConfirm":"Confirmation du mot de passe",
 			"Profil":"Profil d'utilisateur",
 			"Partenaire":"Partenaire",
 			"DomCompet":"Domaine de compétence",
@@ -70,6 +78,8 @@
 			"Nom":"Name",
 			"Prenom":"First Name",
 			"Fonction":"Position",
+                        "Password":"Password",
+                        "PasswordConfirm":"Confirm password",
 			"Profil":"User profile",
 			"Partenaire":"Partner",
 			"DomCompet":"Area of expertise",
