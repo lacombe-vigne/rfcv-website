@@ -2043,7 +2043,7 @@ class BibliothequeDAO {
         return $res;
     }
 
-    public function chargeContentPhototheque($sql_limite, $langue) {
+    public function chargeContentPhototheque($sql_limite, $sql_total, $langue) {
         $DAO = new BibliothequeDAO();
         $resultat_phototheque = mysql_query($sql_limite) or die(mysql_error());
         if (!$resultat_phototheque) {
@@ -2051,23 +2051,34 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat_phototheque) == 0) {
-            $nombreDeResultatPossibleSanitaire = 0;
+            $nombreDeResultatPossiblePhototheque = 0;
             $phototheque = null;
         }
         if (mysql_num_rows($resultat_phototheque) > 0) {
-            $resultat_possible_phototheque = mysql_query($sql_limite) or die(mysql_error());
-            ;
+            $nombreDeResultatPossiblePhototheque = mysql_num_rows($resultat_phototheque);
             $PHO_Contents = array();
             for ($j = 0; $j < (mysql_num_rows($resultat_phototheque)); $j = $j + 1) {
                 $dico = mysql_fetch_assoc($resultat_phototheque);
-                $DatePhoto = $dico['JourMAJ'] . "/" . $dico['MoisMAJ'] . "/" . $dico['AnneeMAJ'];
+                if($langue =='FR'){
+                    $organe = $dico['OrganePhoto_text'];
+                    $type = $dico['typeDoc_fr'];
+                    $fond = $dico['FondPhoto_texte'];        
+                } else if($langue == 'EN') {
+                    $organe = $dico['OrganePhoto_text_en'];
+                    $type = $dico['typeDoc_en'];
+                    $fond = $dico['FondPhoto_texte_en'];
+                }
+                $DatePhoto = $dico['JourPhoto'] . "/" . $dico['MoisPhoto'] . "/" . $dico['AnneePhoto'];
                 $FichierPhoto = "./PhotosVignes/" . $dico['FichierPhoto'];
-                $PHO = new Phototheque($dico['CodePhoto'], $DAO->organePhoto($dico['OrganePhoto'], $langue), $dico['CouleurPhoto'], $DAO->typePhoto($dico['TypePhoto'], $langue), $DAO->fondPhoto($dico['FondPhoto'], $langue), $DAO->site($dico['CodeSite']), $DatePhoto, $FichierPhoto, $dico['Photographe'], $dico['CodePartenaire'], $DAO->Partenaire($dico['CodePartenaire']));
+                $PHO = new Phototheque($dico['CodePhoto'], $organe, $dico['CouleurPhoto'], $type, $fond, $dico['CodeSite'], $DatePhoto, $FichierPhoto, $dico['Photographe'], $dico['CodePartenaire'], $dico['NomPartenaire']);
                 $PHO_Content = supprNull($PHO->getListePhototheque());
                 array_push($PHO_Contents, $PHO_Content);
             }
-            $phototheque['contents'] = $PHO_Contents;
         }
+        $resultat_total = mysql_query($sql_total) or die(mysql_error());
+        $phototheque['contents'] = $PHO_Contents;
+        $phototheque['nombreDeResultatPossible'] = mysql_num_rows($resultat_phototheque);
+        $phototheque['nombreDeResultatTotal'] = mysql_num_rows($resultat_total);
         $res = $phototheque;
         return $res;
     }
@@ -4836,22 +4847,60 @@ class BibliothequeDAO {
     public function phototheque($code, $langue, $section_fiche) {
         $DAO = new BibliothequeDAO();
         if ($section_fiche == "Accession") {
+            $sql_total = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeIntro='" . $code . "' ";
             if (isset($_SESSION['codePersonne'])) {
-                $sql = "select * from Phototheque where CodeIntro='" . $code . "' ";
+                $sql = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeIntro='" . $code . "' ";
             } else {
-                $sql = "select * from Phototheque where CodeIntro='" . $code . "' and Public!='N' ";
+                $sql = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par  ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeIntro='" . $code . "' and Public!='N' ";
             }
         }
         if ($section_fiche == "Variete") {
+            $sql_total = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeVar='" . $code . "' ";
             if (isset($_SESSION['codePersonne'])) {
-                $sql = "select * from Phototheque where CodeVar='" . $code . "' ";
+                $sql = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeVar='" . $code . "' ";
             } else {
-                $sql = "select * from Phototheque where CodeVar='" . $code . "' and Public!='N' ";
+                $sql = "SELECT *
+                        FROM Phototheque pho
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
+                        LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
+                        WHERE pho.CodeVar='" . $code . "' and Public!='N' ";
             }
         }
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
-        $phototheque = $DAO->chargeContentPhototheque($sql, $langue);
+        $phototheque = $DAO->chargeContentPhototheque($sql,$sql_total, $langue);
         deconnexion_bbd();
         return $phototheque;
     }
@@ -7292,7 +7341,10 @@ class BibliothequeDAO {
                 return $join;
             case "Phototheque":
                 $join = $join . "LEFT JOIN `NV-VARIETES` var ON pho.CodeVar = var.CodeVar
-                        LEFT JOIN `NV-INTRODUCTIONS` acc ON pho.CodeIntro = acc.CodeIntro ";
+                        LEFT JOIN `NV-INTRODUCTIONS` acc ON pho.CodeIntro = acc.CodeIntro
+                        LEFT JOIN `ListeDeroulante_JY_OrganePhoto` org ON pho.OrganePhoto=org.OrganePhoto
+                        LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
+                        LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto ";
                 if ($_SESSION['Section']['Espece'] == true) {
                     $join = $join . " LEFT JOIN `NV-ESPECES` esp ON var.CodeEsp = esp.CodeEsp ";
                 }
@@ -7574,7 +7626,7 @@ class BibliothequeDAO {
                 $_SESSION['sql_pho'] = $sql_possible;
                 connexion_bbd();
                 mysql_query('SET NAMES UTF8');
-                $res = $DAO->chargeContentPhototheque($sql_possible, $_SESSION['language_Vigne']);
+                $res = $DAO->chargeContentPhototheque($sql_possible, $sql_total, $_SESSION['language_Vigne']);
                 deconnexion_bbd();
                 break;
             case "Documentation":

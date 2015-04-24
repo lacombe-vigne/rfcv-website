@@ -41,11 +41,11 @@ del { text-decoration: line-through; }
 table { border-collapse: collapse; border-spacing: 0; }
 
 .json{ //Propriétés graphiques des liens présents dans les json
-    cursor:hand;
-    color:blue;
-    font-family: Arial,Helvetica,sans-serif;
-    TEXT-DECORATION: underline;
-    font-size: 12px;
+       cursor:hand;
+       color:blue;
+       font-family: Arial,Helvetica,sans-serif;
+       TEXT-DECORATION: underline;
+       font-size: 12px;
 }
 .json:hover,.json:active{
     color:red;
@@ -1850,12 +1850,12 @@ avar,aesp,aclo{
     margin: 2% auto 0 3%;
     font-weight: normal;
     font-size: 1.5em;
-    color:#87AD3F;
-    text-shadow: 0 2px 2px #B8D362;
+    color:#696969;
+    text-shadow: 0 2px 2px #C0C0C0;
 }
 #doc_cate_var fieldset #table_lien_function,#doc_cate_var fieldset #table_doc_function{
     color: #000;
-    background: #9ACD32;
+    background: #C0C0C0;
     opacity:0.5;
     font-weight:bold;
 }
@@ -1871,6 +1871,7 @@ avar,aesp,aclo{
     background: #a2a2a2;	
     font-weight:bold;
     text-align:left;
+    font-size:12px;
 }
 #doc_cate_var fieldset #contents_ligne_doc{
     background: #ffffff;
@@ -1880,6 +1881,7 @@ avar,aesp,aclo{
 }
 #doc_cate_var fieldset #contents_ligne_doc tr {
     text-align:left;
+    font-size:12px;
 }
 #doc_cate_var fieldset #contents_ligne_doc .t1 {
     background: #fff;
@@ -2686,7 +2688,7 @@ a.clickbox .lightbox:hover .box img, a.clickbox:active .lightbox .box img, a.cli
 a.clickbox .lightbox:hover .box span, a.clickbox:active .lightbox .box span, a.clickbox:focus .lightbox .box span { display:block; font:normal 11px/18px verdana, sans-serif; width:400px; padding:0; margin:10px auto; text-align:center; text-decoration:none; color:#ddd; }
 .clear { clear:left; }
 a.clickbox i { display:block; width:16px; height:16px; position:fixed; right:-100px; top:0; z-index:500; }
-a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10px; top:10px; background:url(images/close.gif); }
+a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5px; top:5px; background:url(images/close.gif); }
 #close { display:block; position:fixed; width:16px; height:16px; right:10px; top:10px; z-index:1000; background:url(trans.gif); cursor:pointer; }
 .liste_Phtot_info li{ float:left; padding:5px;}
 .liste_Phtot_info #lable_Code,.liste_Phtot_info #lable_Organe,.liste_Phtot_info #lable_Date,.liste_Phtot_info #lable_Photographe,.liste_Phtot_info #lable_Partenaire{font-weight:900;}
@@ -2705,14 +2707,14 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 }
 #tabs-3_FichierVar_MED fieldset legend{
     margin: 2% auto 0 3%;
-    color:#080;
+    color:#696969;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #9ACD32;
+    text-shadow: 0 2px 2px #C0C0C0;
 }
 #tabs-3_FichierVar_MED fieldset #table_lien_function{
     color: #000;
-    background: #9ACD32;
+    background: #C0C0C0;
     opacity:0.5;
     font-weight:bold;
 }
@@ -2762,10 +2764,10 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 }
 #tabs-2_FichierVar_MED fieldset legend{
     margin: 2% auto 0 3%;
-    color:#080;
+    color:#696969;
     font-weight: normal;
     font-size: 1.5em;
-    text-shadow: 0 2px 2px #9ACD32;
+    text-shadow: 0 2px 2px #C0C0C0;
 }
 #tabs-2_FichierVar_MED fieldset #table_doc_function{
     color: #000;
@@ -3179,7 +3181,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
 #message_logout,#message_emptyCompte,#message_login,#message_problemFilling {
     color:red;
     margin:20% auto auto auto ;
-    
+
 }
 
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -3189,6 +3191,10 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:10
     font-size: 15px;
     font-family: Arial,Helvetica,sans-serif;
 }
+.fancybox-custom .fancybox-skin {
+    box-shadow: 0 0 50px #222;
+}
+
 
 //Temporaire
 /*

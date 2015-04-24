@@ -8146,7 +8146,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="lien_site"){
 						$("#tabs-3_FichierVar_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_lien"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat21"  onmouseover="$.aide_nombre_resultat(21);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat21"  onmouseover="$.aide_nombre_resultat(21);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierVar').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -8287,7 +8287,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="lien_site"){
 						$("#tabs-3_FichierAcc_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierAcc"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_lien"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat22"  onmouseover="$.aide_nombre_resultat(22);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat22"  onmouseover="$.aide_nombre_resultat(22);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierAcc').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -8428,7 +8428,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="doc"){
 						$("#tabs-2_FichierVar_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_doc"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat23"  onmouseover="$.aide_nombre_resultat(23);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<legend ><a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat23"  onmouseover="$.aide_nombre_resultat(23);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierVar').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -8587,7 +8587,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="doc"){
 						$("#tabs-2_FichierAcc_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierAcc"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_doc"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat24"  onmouseover="$.aide_nombre_resultat(24);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<legend ><a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat24"  onmouseover="$.aide_nombre_resultat(24);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierAcc').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -8786,13 +8786,29 @@ and open the template in the editor.
 					console.log(key,value);
 					if(key==="phototheque"){
 						var image="";
-						var i=1;
+                                                i=1;
+                                                var tab = new Array();
 						$.each(value,function(key,value){
+                                                    console.log(key,value);
 							if(key==="contents"){
 								$.each(value,function(entryIndex,entry){
 									console.log(entryIndex,entry);
-									image=image+'<a class="clickbox" href="#url"> <img src="'+entry['FichierPhoto']+'" alt="" width="80"/> <b class="lightbox"> <b class="light"></b> <b class="box"> <img src="'+entry['FichierPhoto']+'" alt="" width="400"/> <span><ul class="liste_Phtot_info" ><li id="lable_Code'+i+'"></li><li>'+entry['Code_photo']+'</li> <li id="lable_Organe'+i+'"></li><li>'+entry['OrganePhoto']+'</li> <li id="lable_date'+i+'"></li><li>'+entry['DatePhoto']+'</li> <li id="lable_Photographe'+i+'"></li><li>'+entry['Photographe']+'</li><li id="lable_Partenaire'+i+'"></li><li>'+entry['Partenaire']+'</li></ul><br /><i></i></span> </b> </b> </a>';
-									i++;
+                                                                        tab = tab.concat(entry);
+                                                                        console.log(tab);
+                                                                        $('.fancybox').fancybox({
+                                                                            afterLoad : function() {
+                                                                                var langue = '<?php echo $langue ?>';
+                                                                                if(langue=='FR'){
+                                                                                    this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                } else if(langue=='EN') {
+                                                                                    this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                }    
+                                                                            }
+                                                                        });
+                                                                        image=image+' <a class="fancybox" href="'+entry['FichierPhoto']+'" data-fancybox-group="gallery" title=""><img src="'+entry['FichierPhoto']+'" width="100" alt="" /></a>';
+                                                                        i++;
+
+									
 								});
 							}
 							
@@ -8841,7 +8857,7 @@ and open the template in the editor.
 					
 					if(key==="lien_site"){
 						$("#tabs-3_FichierVar_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_lien"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat25"  onmouseover="$.aide_nombre_resultat(25);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat25"  onmouseover="$.aide_nombre_resultat(25);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierVar').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -8962,7 +8978,7 @@ and open the template in the editor.
 					}
 					if(key==="doc"){
 						$("#tabs-2_FichierVar_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_doc"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat26"  onmouseover="$.aide_nombre_resultat(26);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat26"  onmouseover="$.aide_nombre_resultat(26);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierVar').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -9165,14 +9181,29 @@ and open the template in the editor.
 						if(value!=null){
 							var image="";
 							var i=1;
+                                                        var tab = new Array();
 							$.each(value,function(key,value){
 								if(key==="contents"){
-									$.each(value,function(entryIndex,entry){
-										console.log(entryIndex,entry);
-										image=image+'<a class="clickbox" href="#url"> <img src="'+entry['FichierPhoto']+'" alt="" width="80"/> <b class="lightbox"> <b class="light"></b> <b class="box"> <img src="'+entry['FichierPhoto']+'" alt="" width="400"/> <span><ul class="liste_Phtot_info" ><li id="lable_Code'+i+'"></li><li>'+entry['Code_photo']+'</li> <li id="lable_Organe'+i+'"></li><li>'+entry['OrganePhoto']+'</li> <li id="lable_date'+i+'"></li><li>'+entry['DatePhoto']+'</li> <li id="lable_Photographe'+i+'"></li><li>'+entry['Photographe']+'</li><li id="lable_Partenaire'+i+'"></li><li>'+entry['Partenaire']+'</li></ul><br /><i></i></span> </b> </b> </a>';
-										i++;
-									});
-								}
+								$.each(value,function(entryIndex,entry){
+									console.log(entryIndex,entry);
+                                                                        tab = tab.concat(entry);
+                                                                        console.log(tab);
+                                                                        $('.fancybox').fancybox({
+                                                                            afterLoad : function() {
+                                                                                var langue = '<?php echo $langue ?>';
+                                                                                if(langue=='FR'){
+                                                                                    this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                } else if(langue=='EN') {
+                                                                                    this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                }    
+                                                                            }
+                                                                        });
+                                                                        image=image+' <a class="fancybox" href="'+entry['FichierPhoto']+'" data-fancybox-group="gallery" title=""><img src="'+entry['FichierPhoto']+'" width="100" alt="" /></a>';
+                                                                        i++;
+
+									
+								});
+							}
 								
 							});
 							
@@ -14646,15 +14677,33 @@ and open the template in the editor.
 				$('#loding').remove();
 				$.each(data,function(key,value){
 					if(key==="Phototheque"){
-						var div="<div id='image_div' height='200px'></div>"
+                                                var legend='<legend ><img src="images/plus6.png"/ width="40" height="40"><span>Phototheque</span>('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')<a id="aide_nombre_resultat30"  onmouseover="$.aide_nombre_resultat(30);"><img src="images/help1.png" width="20" height="20"/></a></legend>';
 						var image="";
 						var i=1;
-						$.each(value.contents,function(entryIndex,entry){
-							console.log(entryIndex,entry);
-							image=image+'<a class="clickbox" href="#url" > <img src="'+entry['FichierPhoto']+'" alt="" width="80"/> <b class="lightbox"> <b class="light"></b> <b class="box"> <img src="'+entry['FichierPhoto']+'" alt="" width="400"/> <span><ul class="liste_Phtot_info" ><li id="lable_Code'+i+'"></li><li>'+entry['Code_photo']+'</li> <li id="lable_Organe'+i+'"></li><li>'+entry['OrganePhoto']+'</li> <li id="lable_date'+i+'"></li><li>'+entry['DatePhoto']+'</li> <li id="lable_Photographe'+i+'"></li><li>'+entry['Photographe']+'</li><li id="lable_Partenaire'+i+'"></li><li>'+entry['Partenaire']+'</li></ul><br /><i></i></span> </b> </b> </a>';
-							i++;
-						});
-						
+                                                var tab = new Array();
+                                                var content = value.contents;
+                                                if(content == null){
+                                                    content = new Array();
+                                                }    
+						$.each(content,function(entryIndex,entry){
+                                                                        tab = tab.concat(entry);
+                                                                        console.log(tab);
+                                                                        $('.fancybox').fancybox({
+                                                                            afterLoad : function() {
+                                                                                var langue = '<?php echo $langue ?>';
+                                                                                if(langue=='FR'){
+                                                                                    this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                } else if(langue=='EN') {
+                                                                                    this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                }    
+                                                                            }
+                                                                        });
+                                                                        image=image+' <a class="fancybox" href="'+entry['FichierPhoto']+'" data-fancybox-group="gallery" title=""><img src="'+entry['FichierPhoto']+'" width="100" alt="" /></a>';
+                                                                        i++;
+
+									
+								});
+						$('#contents_Phototheque_avance').append(legend);
 						$('#contents_Phototheque_avance').append(image);
 						
 						$.getJSON("json/fichier.json",function(data){

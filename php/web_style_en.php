@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="jin.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="jquery-ui.css" type="text/css" media="all">
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.fancybox.css?v=2.1.5" media="screen" />
 	<!--
 	<link rel="stylesheet" href="css/green.css" type="text/css" media="all" />
 	-->
