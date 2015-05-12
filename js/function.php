@@ -83,6 +83,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().length >= 0 && $(this).val().length <=20 && $(this).val()!=''){
 			$('#user_nom_tip').hide();
+                        faute-=1;
 			
 		}else{
 			$(this).addClass('non_Valide');
@@ -95,6 +96,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().length >= 0 && $(this).val().length <=20 && $(this).val()!=''){
 			$('#user_prenom_tip').hide();
+                        faute-=1;
 		
 		}else{
 			$(this).addClass('non_Valide');
@@ -107,30 +109,20 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().length >= 0 && $(this).val().length <=10 || $(this).val()==""){
 			$('#password1_tip').hide();
+                        faute-=1;
 			
 		}else{
 			$(this).addClass('non_Valide');
 			$('#password1_tip').show();
 			faute+=1;
 		}	                     
-	});	
-	$('#password2').focus(function(){
-		$('#password2_tip').show();
-	}).blur(function(){
-		if($(this).val().length >= 0 && $(this).val().length <=10 && $(this).val() == $('#password1').val()){
-			$('#password2_tip').hide();
-			
-		}else{
-			$(this).addClass('non_Valide');
-			$('#password2_tip').show();
-			faute+=1;
-		}	                     
-	});	
+	});			
 	$('#user_tel').focus(function(){
 		$('#user_tel_tip').show();
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#user_tel_tip').hide();
+                        faute-=1;
 			
 		}else{
 			$(this).addClass('non_Valide');
@@ -143,7 +135,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#user_fax_tip').hide();
-		
+                        faute-=1;		
 		}else{
 			$(this).addClass('non_Valide');
 			$('#user_fax_tip').show();
@@ -155,6 +147,7 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/) || $(this).val()==""){
 			$('#user_mail_tip').hide();
+                        faute-=1;
 		
 		}else{
 			$(this).addClass('non_Valide');
@@ -164,8 +157,8 @@ and open the template in the editor.
 	});	
 	//modifier mes information function appel serveur
 	$('.modifier_user_button').click(function(){
-		//alert(faute);
-		if(faute==0){
+		alert(faute);
+		if(faute<=0){
 			creatAjax();
 			var DataString='function=modifiez_infoPerson&user_nom='+$("#user_nom").val()+'&user_prenom='+$("#user_prenom").val()+'&password='+$("#password1").val()+'&user_tel='+$("#user_tel").val()+'&user_fax='+$("#user_fax").val()+'&user_mail='+$("#user_mail").val()+'&codePerson='+$("#user_code").val();
 			$.ajax({
@@ -12527,9 +12520,6 @@ and open the template in the editor.
 					if(key==="Espece"){
 						$('#Espece').remove();
 						var cate_espece='<div id="Espece"  class="open" >'+
-											'<div id="title_Espece" class="no_vide">'+
-												'<span><a id="click_Espece" onclick="$.click_Espece()">Espèce</a></span>'+
-											'</div>'+
 											'<input  type="hidden" id="Espece_cate_OUINON" value="'+value+'"/>'+
 											'<div id="contents_Espece" style="display: block;">'+
 											
@@ -12558,9 +12548,6 @@ and open the template in the editor.
 					if(key==="Variete"){
 						$('#Variete').remove();
 						var cate_variete='<div id="Variete" class="open" >'+
-											'<div id="title_Variete" class="no_vide">'+
-												'<span><a id="click_Variete" onclick="$.click_Variete()">Variété</a></span>'+
-											'</div>'+
 											'<div id="contents_Variete_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Variete_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12587,9 +12574,6 @@ and open the template in the editor.
 					if(key==="Accession"){
 						$('#Accession').remove();
 						var cate_accession='<div id="Accession" class="open" >'+
-											'<div id="title_Accession" class="no_vide">'+
-												'<span><a id="click_Accession" onclick="$.click_Accession()">Accession</a></span>'+
-											'</div>'+
 											'<div id="contents_Accession_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Accession_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12616,9 +12600,6 @@ and open the template in the editor.
 					if(key==="Emplacement"){
 						$('#Emplacement').remove();
 						var cate_emplacement='<div id="Emplacement" class="open" >'+
-											'<div id="title_Emplacement"  class="no_vide">'+
-												'<span><a id="click_Emplacement" onclick="$.click_Emplacement()">Emplacement</a></span>'+
-											'</div>'+
 											'<div id="contents_Emplacement_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Emplacement_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12645,9 +12626,6 @@ and open the template in the editor.
 					if(key==="Sanitaire"){
 						$('#Sanitaire').remove();
 						var cate_sanitaire='<div id="Sanitaire" class="open" >'+
-											'<div id="title_Sanitaire" class="no_vide">'+
-												'<span><a id="click_Sanitaire" onclick="$.click_Sanitaire()">Sanitaire</a></span>'+
-											'</div>'+
 											'<div id="contents_Sanitaire_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Sanitaire_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12674,9 +12652,6 @@ and open the template in the editor.
 					if(key==="Morphologique"){
 						$('#Morphologique').remove();
 						var cate_morphologique='<div id="Morphologique" class="open"  >'+
-											'<div id="title_Morphologique" class="no_vide">'+
-												'<span><a id="click_Morphologique"  onclick="$.click_Morphologique()">Morphologique</a></span>'+
-											'</div>'+
 											'<div id="contents_Morphologique_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Morphologique_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12703,9 +12678,6 @@ and open the template in the editor.
 					if(key==="Aptitude"){
 						$('#Aptitude').remove();
 						var cate_aptitude='<div id="Aptitude" class="open" >'+
-											'<div id="title_Aptitude" class="no_vide">'+
-												'<span><a id="click_Aptitude"  onclick="$.click_Aptitude()">Aptitude</a></span>'+
-											'</div>'+
 											'<div id="contents_Aptitude_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Aptitude_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12732,9 +12704,6 @@ and open the template in the editor.
 					if(key==="Genetique"){
 						$('#Genetique').remove();
 						var cate_genetique='<div id="Genetique" class="open" >'+
-											'<div id="title_Genetique" class="no_vide">'+
-												'<span><a id="click_Genetique" onclick="$.click_Genetique()">Genetique</a></span>'+
-											'</div>'+
 											'<div id="contents_Genetique_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Genetique_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12761,9 +12730,6 @@ and open the template in the editor.
 					if(key==="Phototheque"){
 						$('#Phototheque').remove();
 						var cate_phototheque='<div id="Phototheque" class="open" >'+
-											'<div id="title_Phototheque"  class="no_vide">'+
-												'<span><a id="click_Phototheque"  onclick="$.click_Phototheque()">Phototheque</a></span>'+
-											'</div>'+
 											'<div id="contents_Phototheque_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Phototheque_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12785,9 +12751,6 @@ and open the template in the editor.
 					if(key==="Documentation"){
 						$('#Documentation').remove();
 						var cate_docmentation='<div id="Documentation" class="open" >'+
-											'<div id="title_Documentation"  class="no_vide">'+
-												'<span><a id="click_Documentation"  onclick="$.click_Documentation()">Documentation</a></span>'+
-											'</div>'+
 											'<div id="contents_Documentation_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Documentation_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12814,9 +12777,6 @@ and open the template in the editor.
 					if(key==="Bibliographie"){
 						$('#Bibliographie').remove();
 						var cate_bibliographie='<div id="Bibliographie"  class="open" >'+
-											'<div id="title_Bibliographie" class="no_vide">'+
-												'<span><a id="click_Bibliographie" onclick="$.click_Bibliographie()">Bibliographie</a></span>'+
-											'</div>'+
 											'<div id="contents_Bibliographie_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Bibliographie_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -12843,9 +12803,6 @@ and open the template in the editor.
 					if(key==="Partenaire"){
 						$('#Partenaire').remove();
 						var cate_partenaire='<div id="Partenaire" class="open" >'+
-											'<div id="title_Partenaire" class="no_vide">'+
-												'<span><a id="click_Partenaire" onclick="$.click_Partenaire()">Partenaire</a> </span>'+
-											'</div>'+
 											'<div id="contents_Partenaire_avance" style="display: block;">'+
 											'<input  type="hidden"  id="Partenaire_cate_OUINON" value="'+value+'"/>'+
 											'</div>'+
@@ -15294,6 +15251,37 @@ and open the template in the editor.
 					console.log(data);
 					console.log(dataString);
 					alert("Vous avez bien ajouté les données dans votre selctions");
+				}
+			});
+		}
+	});
+        $.extend({'selectionFiche':
+		function(section,code){
+			
+			// var name=new Array();
+			var dataString=section;
+			var section_name=section.toLowerCase();
+			dataString=dataString+"_"+code;
+			// alert(name.length==0?'Vous n\'avez aucune selecté.':name);
+			// var dataJson="{section:"+section+"}";
+			// var name={section:section};
+			// section_name.push(name);
+			
+			dataString="dataString="+dataString;
+			// var section_name={section:section,code:name};
+			// var non={"x":"x","s":"s"};
+			// dataJson=JSON.stringify(section_name);
+			creatAjax()
+			// var datax={"data":dataJson};
+			// console.log(dataJson);
+			$.ajax({
+				type: "POST",
+				data:dataString,
+				url:"./php/my_selection.php",
+				success:function(data){
+					console.log(data);
+					console.log(dataString);
+					alert("Vous avez bien ajouté les données dans votre selections");
 				}
 			});
 		}

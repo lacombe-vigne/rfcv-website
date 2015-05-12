@@ -1793,33 +1793,34 @@ avar,aesp,aclo{
     margin: 2% auto 0 3%;
     font-weight: normal;
     font-size: 1.5em;
-    color:#87AD3F;
-    text-shadow: 0 2px 2px #B8D362;
+    color:#800080;
+    text-shadow: 0 2px 2px #DDA0DD;
 }
 #list_avance_esp fieldset #table_espece_function{
     color: #000;
-    background: #D0CECD;
+    background: #DDA0DD;
     opacity:0.5;
     font-weight:bold;
 }
 #list_avance_esp fieldset .function_ligne_espece{
-    width:100%;
     margin: -1% auto auto auto;
-    border-top:1px solid #D0CECD;	
-    border-left:1px solid #D0CECD;	
-    border-right:1px solid #D0CECD;
+    border-top:1px solid #808;	
+    border-left:1px solid #808;	
+    border-right:1px solid #808;
 }
 #list_avance_esp fieldset #table_espece_titles{
     color: #050505;
-    background: #a2a2a2;	
+    background: #a2a2a2;
+    border-left: 1.5px solid #808;
+    border-right: 1.5px solid #808;
     font-weight:bold;
     text-align:left;
 }
 #list_avance_esp fieldset #contents_ligne_espece{
     background: #ffffff;
-    border-left:1.5px solid #D0CECD;	
-    border-right:1.5px solid #D0CECD;
-    border-bottom:1.5px solid #D0CECD;
+    border-left:1.5px solid #808;	
+    border-right:1.5px solid #808;
+    border-bottom:1.5px solid #808;
 }
 #list_avance_esp fieldset #contents_ligne_espece tr {
     text-align:left;
@@ -2151,16 +2152,15 @@ avar,aesp,aclo{
 }
 #list1_cate_esp fieldset #table_variete_function{
     color: #000;
-    background: #D0CECD;
+    background: #B3D270;
     opacity:0.5;
     font-weight:bold;
 }
 #list1_cate_esp fieldset .function_ligne_variete{
-    width:100%;
     margin: -1% auto auto auto;
-    border-top:1px solid #D0CECD;	
-    border-left:1px solid #D0CECD;	
-    border-right:1px solid #D0CECD;
+    border-top:1px solid #080;	
+    border-left:1px solid #080;	
+    border-right:1px solid #080;
 }
 #list1_cate_esp fieldset #table_variete_titles{
     color: #050505;
@@ -2171,9 +2171,9 @@ avar,aesp,aclo{
 }
 #list1_cate_esp fieldset #contents_ligne_variete{
     background: #ffffff;
-    border-left:1.5px solid #D0CECD;	
-    border-right:1.5px solid #D0CECD;
-    border-bottom:1.5px solid #D0CECD;
+    border-left:1.5px solid #080;	
+    border-right:1.5px solid #080;
+    border-bottom:1.5px solid #080;
     font-size:12px;
 }
 #list1_cate_esp fieldset #contents_ligne_variete tr {
@@ -2211,17 +2211,20 @@ avar,aesp,aclo{
     text-shadow: 0 2px 2px #CB9533;
 }
 #list2_cate_esp fieldset #table_accession_function{
+    border-left: 1px solid #FF8C00;
+    border-right: 1px solid #FF8C00;
+    border-top: 1px solid #FF8C00;
     color: #040606;
-    background: #D0CECD;
-    opacity:0.5;
+    background: #FFDEAD;
+    opacity:0.75;
     font-weight:bold;
 }
 #list2_cate_esp fieldset.function_ligne_accession{
     width:100%;
     margin: -1% auto auto auto;
-    border-top:1px solid #D0CECD;	
-    border-left:1px solid #D0CECD;	
-    border-right:1px solid #D0CECD;
+    border-top:1px solid #FF8C00;	
+    border-left:1px solid #FF8C00;	
+    border-right:1px solid #FF8C00;
 }
 #list2_cate_esp fieldset #table_accession_titles{
     color: #050505;
@@ -2232,9 +2235,9 @@ avar,aesp,aclo{
 }
 #list2_cate_esp fieldset #contents_ligne_accession{
     background: #ffffff;
-    border-left:1.5px solid #D0CECD;	
-    border-right:1.5px solid #D0CECD;
-    border-bottom:1.5px solid #D0CECD;
+    border-left:1.5px solid #FF8C00;	
+    border-right:1.5px solid #FF8C00;
+    border-bottom:1.5px solid #FF8C00;
     font-size:12px;
 }
 #list2_cate_esp fieldset #contents_ligne_accession tr {
@@ -3135,7 +3138,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 10px;
     padding: 2px;
-    margin: auto auto auto 85%;
+    margin: auto auto auto 80%;
 }
 /* 3.0 site footer */
 .footer_lien{

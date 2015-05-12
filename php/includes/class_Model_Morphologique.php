@@ -84,7 +84,7 @@ class Morphologique {
 
 	function getListeMorphologique(){
 		$contents=array();
-		//$contents['id']=$this->getid();
+		$contents['id']=$this->getid();
 		$contents['Code']=$this->getCode();
 		$contents['Description']=$this->getDescription();
 		$contents['Critaire']=$this->getCritaire();

@@ -61,7 +61,7 @@
 							<table id="searchA_button_table">
 							<tr>
 								<td width="50%" align="right"><a id="go_searchA"></a></td>
-                                                                <td width="50%" align="right" title="Réinitialise les conditions de la recherche"><a href="javascript:window.location.reload()" id="reset_searchA"></a></td>
+                                                                <td width="50%" align="right" title="Réinitialise les conditions de la recherche"><a href="SearchA.php" id="reset_searchA"></a></td>
 							</tr>
 							</table>
 						</table>
@@ -75,7 +75,6 @@
 		</div>
 	</div>
 	<div id="resultat">
-            <?php echo $_SESSION['sql_par']; ?>
 		<div id="title_Resultat">
 			<img src="images/result_advance.png" alt="Search" width="40" height="40">
 			<h3 id="titleResultat_rechreche_avancee"></h3>

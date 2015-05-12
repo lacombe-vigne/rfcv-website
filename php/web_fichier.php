@@ -300,14 +300,14 @@
 				if($_SESSION['ProfilPersonne']=='A' || $_SESSION['ProfilPersonne']=='B'){//<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a> A rajouter quand la fonction de modification des fiches sera créée
 					echo"
 					<div id='function_ligne'>				
-						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Espece\",\"".$CodeEsp."\")' src='images/selection_espece.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Espece.php' target=_blank><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
 				}else{
 					echo"
 					<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_espece.png'  width='25' height='25' onclick='$.selection(\"Espece\")';/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Espece\",\"".$CodeEsp."\")' src='images/selection_espece.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Espece.php' target=_blank><img src='images/espece_pdf.png'  width='25' height='25'/></a>
 					</div>
 					";
@@ -363,7 +363,7 @@
 					echo "
 					<div id='FichierVar'>
 						<div id='function_ligne'>
-							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
+							<a id='selection_fiche'><img onclick='$.selectionFiche(\"Variete\",\"".$CodeVar."\")' src='images/selection_variete.png'  width='25' height='25'/></a>
 							<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Variete.php' target=_blank><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
@@ -372,7 +372,7 @@
 					echo "
 					<div id='FichierVar'>
 						<div id='function_ligne'>
-							<a id='selection_fiche'><img src='images/selection_variete.png'  width='25' height='25'/></a>
+							<a id='selection_fiche'><img onclick='$.selectionFiche(\"Variete\",\"".$CodeVar."\")' src='images/selection_variete.png'  width='25' height='25'/></a>
 							<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Variete.php' target=_blank><img src='images/variete_pdf.png'  width='25' height='25'/></a>
 						</div>
 						<div class='title_FichierVar'>
@@ -485,13 +485,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Accession\",\"".$CodeIntro."\")' src='images/selection_accession.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Accession.php' target=_blank><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/selection_accession.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Accession\",\"".$CodeIntro."\")' src='images/selection_accession.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Accession.php' target=_blank><img src='images/accession_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -504,7 +504,7 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_intro' value='".$CodeIntro."'>
-								<td width='20%'  class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Partenaire_lable_acc'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier' >".stripslashes($Partenaire)."</a></td>
+								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='Partenaire_lable_acc'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher(\"".$CodePartenaire."\",\"partenaire\")' class='lien_fichier' >".stripslashes($Partenaire)."</a></td>
 								<td width='20%' class='lable_carte_acc'><img src='images/poin_acc.png' width='10' height='10'/><span id='AnneeAgrement_lable_acc'></span></td><td width='30%' class='res_acc'>".$AnneeAgrement."</td>
 							</tr>
 							<tr>
@@ -591,13 +591,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Aptitudes\",\"".$codeAptitude."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Aptitudes.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Aptitudes\",\"".$codeAptitude."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Aptitudes.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -652,13 +652,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Morphologique\",\"".$CodeAmpelo."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Morphologique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Morphologique\",\"".$CodeAmpelo."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Morphologique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -713,13 +713,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$CodeEmplacemen."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$CodeEmplacemen."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -790,13 +790,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Sanitaire\",\"".$CodeSanitaire."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Sanitaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Sanitaire\",\"".$CodeSanitaire."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Sanitaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -847,13 +847,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Genetique\",\"".$Code."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Genetique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Genetique\",\"".$Code."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Genetique.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -916,13 +916,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Bibliographie\",\"".$Code."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Bibliographie.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Bibliographie\",\"".$Code."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Bibliographie.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -1001,13 +1001,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Partenaire\",\"".$CodePartenaire."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Partenaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Partenaire\",\"".$CodePartenaire."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Partenaire.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}
@@ -1054,13 +1054,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Site\",\"".$CodeSite."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Site.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Site\",\"".$CodeSite."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Site.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}

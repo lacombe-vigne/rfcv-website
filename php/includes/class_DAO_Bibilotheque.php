@@ -1884,7 +1884,7 @@ class BibliothequeDAO {
                     $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 if ($_SESSION['language_Vigne'] == "EN") {
-                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                    $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 }
                 $content = supprNull($MOR->getListeMorphologique());
                 array_push($contents, $content);
@@ -1927,8 +1927,13 @@ class BibliothequeDAO {
             $contents = array();
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
+                if($langue = "FR"){
+                    $nomcarac = $dico['NomCaract'];
+                } else {
+                    $nomcarac = $dico['JY_NomCaract_en'];
+                }
                 $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['NomSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 $content = supprNull($APT->getListeAptitude());
                 array_push($contents, $content);
             }
@@ -3126,7 +3131,10 @@ class BibliothequeDAO {
                 case("aptitude"):
                     connexion_bbd();
                     mysql_query('SET NAMES UTF8');
-                    $sql = "Select * from `Aptitudes` where CodeAptitude='" . $code . "'";
+                    $sql = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where CodeAptitude='" . $code . "'";
                     $resultat_apt = mysql_query($sql) or die(mysql_error());
                     if (!$resultat_apt) {
                         deconnexion_bbd();
@@ -3140,8 +3148,13 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_apt) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_apt)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_apt);
+                            if($langue = "FR"){
+                                $nomcarac = $dico['NomCaract'];
+                            } else {
+                                $nomcarac = $dico['JY_NomCaract_en'];
+                            }
                             $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                            $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $dico['CodePersonneExpe'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                            $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                             $content = supprNull($APT->getFicherAptitude());
                         }
                         deconnexion_bbd();
@@ -3152,7 +3165,9 @@ class BibliothequeDAO {
                 case("morphologique"):
                     connexion_bbd();
                     mysql_query('SET NAMES UTF8');
-                    $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeAmpelo='" . $code . "' and a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV ";
+                    $sql = "select *
+                           from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c 
+                           WHERE a.CodeAmpelo='" . $code . "' and a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV ";
                     $resultat_mor = mysql_query($sql) or die(mysql_error());
                     if (!$resultat_mor) {
                         deconnexion_bbd();
@@ -3170,7 +3185,7 @@ class BibliothequeDAO {
                                 $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                             }
                             if ($_SESSION['language_Vigne'] == "EN") {
-                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                                $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $DAO->Personne($dico['CodePersonne']), $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                             }
                             $content = supprNull($MOR->getFicherMorphologique());
                         }
@@ -3768,64 +3783,112 @@ class BibliothequeDAO {
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
                     $startPage = ($page - 1) * $pagesize;
-                    $sql = "select * from `Aptitudes` where CodeVar='" . $code . "' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize;
-                    $sql_possible = "select * from `Aptitudes` where CodeVar='" . $code . "'";
-                    $total = "select * from `Aptitudes` where CodeVar='" . $code . "'";
+                    $sql = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where CodeVar='" . $code . "' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize;
+                    $sql_possible = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where CodeVar='" . $code . "'";
+                    $total = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where CodeVar='" . $code . "'";
                 } else {
                     $startPage = ($page - 1) * $pagesize;
-                    $sql = "select * from `Aptitudes` where 
+                    $sql = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where 
 						(CodeVar='" . $code . "' and IdReseau1='a')  or 
 						(CodeVar='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or 
 						(CodeVar='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
-                    $sql_possible = "select * from `Aptitudes` where 
+                    $sql_possible = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where 
 						(CodeVar='" . $code . "' and IdReseau1='a')  or 
 						(CodeVar='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or 
 						(CodeVar='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
-                    $total = "select* from `Aptitudes` where CodeVar='" . $code . "'";
+                    $total = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where CodeVar='" . $code . "'";
                 }
             } else {
                 $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Aptitudes`  where CodeVar='" . $code . "' and IdReseau1='a' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Aptitudes`  where CodeVar='" . $code . "' and IdReseau1='a'";
-                $total = "select * from `Aptitudes`  where CodeVar='" . $code . "'";
+                $sql = "select *
+                        from `Aptitudes` 
+                        LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                        where CodeVar='" . $code . "' and IdReseau1='a' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
+                $sql_possible = "select *
+                                from `Aptitudes` 
+                                LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                                where CodeVar='" . $code . "' and IdReseau1='a'";
+                $total = "select *
+                        from `Aptitudes` 
+                        LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                        where CodeVar='" . $code . "'";
             }
         }
         if ($section_fiche == "Accession") {
             if (isset($_SESSION['codePersonne'])) {
                 if ($_SESSION['ProfilPersonne'] == 'A') {
                     $startPage = ($page - 1) * $pagesize;
-                    $sql = "select * from `Aptitudes` where CodeIntro='" . $code . "' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
+                    $sql = "select *
+                            from `Aptitudes`
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                            where CodeIntro='" . $code . "' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
                     $sql_possible = "select * from `Aptitudes` where CodeIntro='" . $code . "'";
                     $total = "select * from `Aptitudes` where CodeIntro='" . $code . "'";
                 } else {
                     $startPage = ($page - 1) * $pagesize;
-                    $sql = "select * from `Aptitudes` where 
+                    $sql = "select *
+                            from `Aptitudes` 
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where 
 						(CodeIntro='" . $code . "' and IdReseau1='a')  or 
 						(CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or 
 						(CodeIntro='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))) " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
-                    $sql_possible = "select * from `Aptitudes` where 
+                    $sql_possible = "select * 
+                                    from `Aptitudes`
+                                    LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                                    where 
 						(CodeIntro='" . $code . "' and IdReseau1='a')  or 
 						(CodeIntro='" . $code . "' and CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "') or 
 						(CodeIntro='" . $code . "' and ((idreseau1 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau2 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or 
 																		(idreseau3 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')) or
 																		(idreseau4 in(select idreseau from Participation_aux_reseaux where CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "'))))";
-                    $total = "select* from `Aptitudes` where CodeIntro='" . $code . "'";
+                    $total = "select *
+                            from `Aptitudes`
+                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                            where CodeIntro='" . $code . "'";
                 }
             } else {
                 $startPage = ($page - 1) * $pagesize;
-                $sql = "select * from `Aptitudes`  where CodeIntro='" . $code . "' and IdReseau1='a' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
-                $sql_possible = "select * from `Aptitudes`  where CodeIntro='" . $code . "' and IdReseau1='a'";
-                $total = "select * from `Aptitudes`  where CodeIntro='" . $code . "'";
+                $sql = "select *
+                        from `Aptitudes`
+                        LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                        where CodeIntro='" . $code . "' and IdReseau1='a' " . $tri_aptitude . " limit " . $startPage . "," . $pagesize . "";
+                $sql_possible = "select *
+                        from `Aptitudes`
+                        LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                        where CodeIntro='" . $code . "' and IdReseau1='a'";
+                $total = "select *
+                        from `Aptitudes`
+                        LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract
+                        where CodeIntro='" . $code . "'";
             }
         }
         connexion_bbd();
@@ -6696,7 +6759,8 @@ class BibliothequeDAO {
          * Et de les interpréter pour les inclure dans une requête sql
          */
         if ($champ == "indifferent") {
-            return 1;
+            $con = "'1'='1'";
+            return $con;
         }
         switch ($section) {
             case "Espece":
@@ -7570,7 +7634,7 @@ class BibliothequeDAO {
                 break;
             case "Emplacement":
                 $sql_limite = "select * " . "FROM " . $DAO->table('Emplacement') . " " . $DAO->join('Emplacement') . " " . $sql_possible . " " . $DAO->securite('Emplacement') . " " . $DAO->group('Emplacement', $tri_section, $tri_colone) . $DAO->limit($curpage, $pagesize);
-                $sql_total = "select * " . "FROM " . $DAO->table('Emplacement') . " " . $DAO->join('Emplacement') . " " . $sql_total . " " . $DAO->group('Emplacement', $tri_section, $tri_colone);
+                $sql_total = "select * " . "FROM " . $DAO->table('Emplacement') . " " . $DAO->join('Emplacement') . " " . $sql_total . " AND emp.`Elimination`='non'  " . $DAO->group('Emplacement', $tri_section, $tri_colone);
                 $sql_possible = "select * " . "FROM " . $DAO->table('Emplacement') . " " . $DAO->join('Emplacement') . " " . $sql_possible . " " . $DAO->securite('Emplacement') . " " . $DAO->group('Emplacement', $tri_section, $tri_colone);
                 $_SESSION['sql_emp'] = $sql_possible;
                 connexion_bbd();
@@ -7967,7 +8031,7 @@ class BibliothequeDAO {
                       LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
                       LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
                       LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur 
-                      WHERE CodeAmpelo='" . $code . "' AND a.CaractereOIV IS NOT NULL ";
+                      WHERE a.CodeAmpelo='" . $code . "' AND a.CaractereOIV IS NOT NULL ";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -7985,7 +8049,7 @@ class BibliothequeDAO {
             $dico = mysql_fetch_assoc($resultat);
             if ($langue == "FR") {
                 $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
-            } else { // Anglais/EN
+            } else { // EN
                 $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             }
             $content = supprNull($MOR->getSelectionMorphologique());
@@ -7995,7 +8059,10 @@ class BibliothequeDAO {
 
     public function aptitude_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Aptitudes` where CodeAptitude='" . $code . "'";
+        $sql = "select *
+                from `Aptitudes` 
+                LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                where CodeAptitude='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8011,8 +8078,13 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $dico = mysql_fetch_assoc($resultat);
+            if($langue = "FR"){
+                $nomcarac = $dico['NomCaract'];
+            } else {
+                $nomcarac = $dico['JY_NomCaract_en'];
+            }
             $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-            $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $dico['CodePersonneExpe'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+            $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             $content = supprNull($APT->getSelectionAptitude());
         }
         return $content;
@@ -8275,7 +8347,10 @@ class BibliothequeDAO {
             return $res;
         } else if ($section == "aptitude") {
             $DAO = new BibliothequeDAO();
-            $sql = "select * from `Aptitudes` where CodeAptitude='" . $code . "'";
+            $sql = "select *
+                    from `Aptitudes` 
+                    LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
+                    where CodeAptitude='" . $code . "'";
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
             $resultat = mysql_query($sql) or die(mysql_error());
@@ -8291,8 +8366,13 @@ class BibliothequeDAO {
             }
             if (mysql_num_rows($resultat) > 0) {
                 $dico = mysql_fetch_assoc($resultat);
+                if($langue = "FR"){
+                    $nomcarac = $dico['NomCaract'];
+                } else {
+                    $nomcarac = $dico['JY_NomCaract_en'];
+                }
                 $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $DAO->nomCaract($dico['CodeCaract']), $dico['ValeurCaractNum'], $DAO->uniteCarct($dico['CodeCaract']), $dico['Ponderation'], $dico['CodePersonneExpe'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 $detail = $APT->getFicherAptitude();
                 $detail = supprNull($detail);
                 deconnexion_bbd();
@@ -8301,7 +8381,17 @@ class BibliothequeDAO {
         } else if ($section == "morphologique") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = "select * from `Descripteurs_ampelographiques` d,  `Ampelographie` a,  `Caracteres_ampelographiques` c WHERE a.CodeAmpelo='" . $code . "' and a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV ";
+            $sql = "SELECT *
+                    FROM `Ampelographie` a
+                    LEFT JOIN `NV-INTRODUCTIONS` acc ON mor.CodeIntro = acc.CodeIntro
+                    LEFT JOIN `NV-VARIETES` var ON a.CodeVar = var.CodeVar 
+                    LEFT JOIN `Partenaires` par ON a.CodePartenaire = par.CodePartenaire
+                    LEFT JOIN `Caracteres_ampelographiques` c ON a.CaractereOIV = c.CaractereOIV 
+                    LEFT JOIN `Descripteurs_ampelographiques` d ON c.CodeOIV=d.CodeOIV
+                    LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
+                    LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
+                    LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur
+                    WHERE a.CodeAmpelo='" . $code . "' and a.CaractereOIV = c.CaractereOIV AND d.CodeOIV = c.CodeOIV ";
             $resultat_mor = mysql_query($sql) or die(mysql_error());
             if (!$resultat_mor) {
                 deconnexion_bbd();
@@ -8855,7 +8945,7 @@ class BibliothequeDAO {
 																						(idreseau4 in(select idreseau from Participation_aux_reseaux where `NV-INTRODUCTIONS`.CodePartenaire='" . $_SESSION['CodePartenairePersonne'] . "')))))";
                             }
                         } else {
-                            $sql = "SELECT *
+                            $sql = "SELECT CodeIntro, NomIntro, NomVar, `Partenaires`.NomPartenaire, NomPaysLocal, CommuneProvenance, AnneeEntree
                                     FROM `NV-INTRODUCTIONS`
                                     LEFT JOIN `NV-VARIETES` ON `NV-INTRODUCTIONS`.CodeVar = `NV-VARIETES`.CodeVar
                                     LEFT JOIN `Partenaires` ON `NV-INTRODUCTIONS`.CodePartenaire = `Partenaires`.CodePartenaire
@@ -9681,8 +9771,13 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i++) {
                         $dico = mysql_fetch_assoc($resultat);
+                        if($langue = "FR"){
+                            $nomcarac = $dico['NomCaract'];
+                        } else {
+                            $nomcarac = $dico['JY_NomCaract_en'];
+                        }
                         $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                        $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $dico['NomCaract'], $dico['ValeurCaractNum'], ($dico['uniteCaract']), $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['uniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                         $content = supprNull($APT->getListeAptitude());
                         array_push($result, $content);
                     }
@@ -10085,8 +10180,13 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i++) {
                         $dico = mysql_fetch_assoc($resultat);
+                        if($langue = "FR"){
+                            $nomcarac = $dico['NomCaract'];
+                        } else {
+                            $nomcarac = $dico['JY_NomCaract_en'];
+                        }
                         $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                        $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['uniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['uniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                         $content = supprNull($APT->getListeAptitude());
                         array_push($result, $content);
                     }
@@ -10607,7 +10707,7 @@ class BibliothequeDAO {
                             $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                         }
                         if ($langue == "EN") {
-                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                            $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                         }
                         $contentMor = supprNull($MOR->getListeMorphologique());
                         array_push($result, $contentMor);
@@ -10630,8 +10730,13 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                         $dico = mysql_fetch_assoc($resultat);
+                        if($langue = "FR"){
+                            $nomcarac = $dico['NomCaract'];
+                        } else {
+                            $nomcarac = $dico['JY_NomCaract_en'];
+                        }
                         $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                        $APT = new Aptitude($dico['CodeAptitude'], $dico ['CodeVar'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomCaract'], $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $DAO->Partenaire($dico['CodePartenaire']), $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['NomSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                        $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                         $content = supprNull($APT->getListeAptitude());
                         array_push($result, $content);
                     }

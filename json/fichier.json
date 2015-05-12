@@ -670,6 +670,7 @@
 	"resultat_description_fr":
 		{
 			"title":"Description morphologique",
+                        "ID":"ID",
 			"Code":"Code",
 			"Description":"Descripteur",
 			"Critaire":"Valeur",
@@ -678,6 +679,7 @@
 	"resultat_description_en":
 		{
 			"title":"Morphological description",
+                        "ID":"ID",
 			"Code":"Code",
 			"Description":"Decriptor",
 			"Critaire":"Value ",

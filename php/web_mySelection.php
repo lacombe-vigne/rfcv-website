@@ -71,6 +71,7 @@
 							</table>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'espece\')"></a>
 					</div>
@@ -161,6 +162,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'variete\')"></a>
 					</div>
@@ -243,6 +245,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'accession\')"></a>
 					</div>
@@ -328,6 +331,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'emplacement\')"></a>
 					</div>
@@ -410,6 +414,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'sanitaire\')"></a>
 					</div>
@@ -490,6 +495,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'morphologique\')"></a>
 					</div>
@@ -582,6 +588,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'aptitude\')"></a>
 					</div>
@@ -683,6 +690,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'genetique\')"></a>
 					</div>
@@ -769,6 +777,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
 					</div>
@@ -854,6 +863,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
 					</div>
@@ -928,6 +938,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'partenaire\')"></a>
 					</div>
@@ -1011,6 +1022,7 @@
 							</div>
 						</fieldset>
 					</div>
+                                        <br>
 					<div id="vide_section">
 						<a id="vide_section_button" onclick="$.vide_section(\'lien\')"></a>
 					</div>

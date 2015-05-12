@@ -86,7 +86,6 @@ if ($_GET["section"] == "variete") {
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $DAO = new BibliothequeDAO();
-
 $resultat = $DAO->exportxls_search($_SESSION['language_Vigne'], $_GET["section"]);
 //CSS du tableur
 $Titre = & $workbook->addformat();

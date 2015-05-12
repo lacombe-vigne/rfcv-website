@@ -95,12 +95,14 @@ switch ($section) {
     case "morphologique":
         if ($langue == "FR") {
             $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_en}->{ID}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{Code}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{Description}),        
                 utf8_decode($parsed_json->{resultat_description_fr}->{Critaire}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{CaractereOIV}));
         } else if ($langue == "EN") {
             $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_en}->{ID}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Code}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Description}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Critaire}),
