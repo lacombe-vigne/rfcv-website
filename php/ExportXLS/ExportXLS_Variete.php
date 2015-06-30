@@ -1,17 +1,12 @@
 <?php
-
+/*
+ * Ce fichier gère les exports xls sur les fiches d'une variété
+ */
 require_once "writeexcel/class.writeexcel_workbook.inc.php";
 require_once "writeexcel/class.writeexcel_worksheet.inc.php";
-
-$fname = tempnam("/tmp", "data.xls");
-$workbook = &new writeexcel_workbook($fname);
-$worksheet = &$workbook->addworksheet();
-$section = $_GET["section"];
-
-
+$section = $_GET["section"]; // récupère la section que l'on va exporter
 session_start(); //Permet de récupérer le contenu des variables de session
-
-$langue = $_SESSION['language_Vigne'];
+$langue = $_SESSION['language_Vigne']; // récupère la langue actuelle de la page web
 $json = file_get_contents('../../json/fichier.json');
 $parsed_json = json_decode($json);
 $json2 = file_get_contents('../../json/search.json');
@@ -180,7 +175,11 @@ switch ($section) {
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 
-$code = $_SESSION['CodeVar'];
+$code = $_SESSION['CodeVar']; // récupère le code variété de la fiche
+$name = $code."_".$section.".xls"; // permet de nommer le fichier
+$fname = tempnam("/tmp", $name);
+$workbook = &new writeexcel_workbook($fname);
+$worksheet = &$workbook->addworksheet();
 $DAO = new BibliothequeDAO();
 
 $resultat = $DAO->exportxls_variete($_SESSION['language_Vigne'], $_GET["section"], $code);
@@ -215,8 +214,8 @@ foreach ($resultat as $value) {
 }
 
 $workbook->close();
-header("Content-Type: application/x-msexcel; name=\"data.xls\"");
-header("Content-Disposition: attachment; filename=\"data.xls\"");
+header("Content-Type: application/x-msexcel; name=\"$name\"");
+header("Content-Disposition: attachment; filename=\"$name\"");
 header('Content-Transfer-Encoding: binary');
 header('Content-Description: File Transfer');
 header('Expires: 0');

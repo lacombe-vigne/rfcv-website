@@ -1,9 +1,12 @@
 <?php
-
+/*
+ * Ce fichier gère les exports xls lorsqu'on réalise une recherche simple
+ */
 require_once "writeexcel/class.writeexcel_workbook.inc.php";
 require_once "writeexcel/class.writeexcel_worksheet.inc.php";
-
-$fname = tempnam("/tmp", "data.xls");
+$section = $_GET["section"];
+$name = "search"."_".$section.".xls"; // nomme le fichier xls
+$fname = tempnam("/tmp", $name);
 $workbook = &new writeexcel_workbook($fname);
 $worksheet = &$workbook->addworksheet();
 
@@ -86,7 +89,7 @@ if ($_GET["section"] == "variete") {
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $DAO = new BibliothequeDAO();
-$resultat = $DAO->exportxls_search($_SESSION['language_Vigne'], $_GET["section"]);
+$resultat = $DAO->exportxls_search($_SESSION['language_Vigne'], $section);
 //CSS du tableur
 $Titre = & $workbook->addformat();
 $Titre->set_bold();
@@ -119,8 +122,8 @@ foreach ($resultat as $value) {
 
 //\'data.xls\''
 $workbook->close();
-header("Content-Type: application/x-msexcel; name=\"data.xls\"");
-header("Content-Disposition: attachment; filename=\"data.xls\"");
+header("Content-Type: application/x-msexcel; name=\"$name\"");
+header("Content-Disposition: attachment; filename=\"$name\"");
 header('Content-Transfer-Encoding: binary');
 header('Content-Description: File Transfer');
 header('Expires: 0');

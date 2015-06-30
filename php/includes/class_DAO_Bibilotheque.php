@@ -4080,7 +4080,7 @@ class BibliothequeDAO {
                             FROM `NV-EMPLACEMENTS` e 
                             INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem
                             INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro and e.CodeIntro='" . $code . "'
-                            WHERE ESiregalPresenceEnColl = 'oui'limination='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O')" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
+                            WHERE Elimination='non' AND(codePartenaire='" . $_SESSION['CodePartenairePersonne'] . "' OR AffichEmplacInternet='O')" . $tri_emplacement . " limit " . $startPage_emplacement . "," . $pagesize_emplacement;
                         $sql_possible = "SELECT * 
                             FROM `NV-EMPLACEMENTS` e 
                             INNER JOIN `Emplacements_theoriques` t on  e.CodeEmplacem=t.CodeEmplacem

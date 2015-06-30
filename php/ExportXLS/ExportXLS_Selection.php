@@ -1,15 +1,17 @@
 <?php
-
+/*
+ * Ce fichier gère les exports xls lorsqu'on réalise une selection d'entité
+ */
 require_once "writeexcel/class.writeexcel_workbook.inc.php"; // Fais appel à la librairie qui génère les xls
 require_once "writeexcel/class.writeexcel_worksheet.inc.php";
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
-
-$fname = tempnam("/tmp", "data.xls");
+$section = $_GET["section"];
+$name = "selection_".$section.".xls";
+$fname = tempnam("/tmp", $name);
 $workbook = &new writeexcel_workbook($fname);
 $worksheet = &$workbook->addworksheet();
 session_start(); //Permet de récupérer le contenu des variables de session
-$section = $_GET["section"];
 $langue = $_SESSION['language_Vigne'];
 $DAO = new BibliothequeDAO();
 $json = file_get_contents('../../json/selection.json');
@@ -416,16 +418,13 @@ foreach ($data as $value) {
 }
 
 $workbook->close();
-header("Content-Type: application/x-msexcel; name=\"data.xls\"");
-header("Content-Disposition: attachment; filename=\"data.xls\"");
+header("Content-Type: application/x-msexcel; name=\"$name\"");
+header("Content-Disposition: attachment; filename=\"$name\"");
 header('Content-Transfer-Encoding: binary');
 header('Content-Description: File Transfer');
 header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Pragma: public');
 readfile($fname);
-/* $fh = fopen($fname, "rb");
-  fpassthru($fh);
-  unlink($fname); */
 exit;
 ?>
