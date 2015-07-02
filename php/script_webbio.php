@@ -537,9 +537,9 @@ switch($fun){
 		// echo json_encode($resultat);
 	break;
 	case "searchSimple":
-		$search=suppr_accents($_POST['search']);
+		$search=(suppr_accents($_POST['search']));
                 $_SESSION['search']=$search;
-		$search_complet=$_POST['search'];
+		$search_complet=($_POST['search']);
                 $_SESSION['searchcomplet']=$search_complet;
 		$case_s=$_POST['case_s'];
                 $_SESSION['typerecherche']=$case_s;

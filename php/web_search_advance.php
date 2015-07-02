@@ -75,7 +75,9 @@
 		</div>
 	</div>
 	<div id="resultat">
-		<div id="title_Resultat">
+            <?php //echo print_r($_SESSION["conditionSQL"]);
+            //echo $_SESSION['sql_par']; ?>
+		<div id="title_Resultat">                        
 			<img src="images/result_advance.png" alt="Search" width="40" height="40">
 			<h3 id="titleResultat_rechreche_avancee"></h3>
 		</div>

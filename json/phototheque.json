@@ -1,0 +1,8 @@
+{
+    "auteur": "ramosjea",
+    "1":"Pour changer les labels de la photothèque, recherchez la chaîne de caractère 'this.title +=' dans le fichier function.php",
+    "2":"Il y'a 6 résultat en tout, 3 qui correspondent aux labels français et 3 aux labels anglais ",
+    "3":"Parmis les 6 résultat, il y'en a 2(1 de chaque langue) par section ou est utilisée la photothèque",
+    "4":"Ensuite, vous pouvez changer les labels en modifiant la ligne this.title += ...",
+    "5":"Les mots qu'il faut modifier sont en commentaire juste en dessous de la variable this.title"
+}

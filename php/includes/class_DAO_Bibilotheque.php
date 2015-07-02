@@ -2677,6 +2677,7 @@ class BibliothequeDAO {
                 // $alert=$alert.'<meta http-equiv="Refresh" content="1;url=./Home.php">';
             }
             if (mysql_num_rows($resultat) == 1) {
+                sleep(1);
                 $dico = mysql_fetch_assoc($resultat);
                 $t = time();
                 $jour = date("d", $t);
@@ -5171,7 +5172,7 @@ class BibliothequeDAO {
             $sql = "select * from Personnels where upper(CodePersonne)=upper('" . $username . "') and MotDePasse='" . $password . "'";
             $resultat_log = mysql_query($sql) or die(mysql_error());
             if (!$resultat_log) {
-                
+                $statue = 1;
             }
             if (mysql_num_rows($resultat_log) == 0) {
                 $statue = 1;
@@ -6758,8 +6759,47 @@ class BibliothequeDAO {
         /* Permet d'ajouter les différentes conditions que l'utilisateur a défini dans le formulaire
          * Et de les interpréter pour les inclure dans une requête sql
          */
+        $_SESSION["conditionSQL"] = array();
+        array_push($_SESSION["conditionSQL"], $section, $champ);
         if ($champ == "indifferent") {
-            $con = "'1'='1'";
+            switch ($section) {
+                case "Espece":
+                     $con = "'1'='1'";
+                     break;
+                 case "Variete":
+                     $con = "'1'='1'";
+                     break;
+                 case "Accession":
+                     $con = "'1'='1'";
+                     break;
+                 case "Emplacement":
+                     $con = " emp.CodeIntro IS NOT NULL ";
+                     break;
+                 case "Sanitaire":
+                     $con = " san.CodeIntro IS NOT NULL ";
+                     break;
+                 case "Morphologique":
+                     $con = " (mor.CodeIntro IS NOT NULL OR mor.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Aptitude":
+                     $con = " (apt.CodeIntro IS NOT NULL OR apt.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Genetique":
+                     $con = " (gen.CodeIntro IS NOT NULL OR gen.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Bibliographie":
+                     $con = " (bib.CodeIntro IS NOT NULL OR bib.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Phototheque":
+                     $con = " (pho.CodeIntro IS NOT NULL OR pho.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Documentation":
+                     $con = " (doc.CodeIntro IS NOT NULL OR doc.CodeVar IS NOT NULL) ";
+                     break;
+                 case "Partenaire":
+                     $con = " (acc.CodePartenaire IS NOT NULL OR par.NomPartenaire IS NOT NULL) ";
+                     break;
+            }
             return $con;
         }
         switch ($section) {
@@ -7147,7 +7187,7 @@ class BibliothequeDAO {
     public function join($section) {
         if (count($_SESSION['Section']) == 1) {
             /*
-             * Si 1 seule section, alors c'est forcément une accession ou une varietes
+             * Si 1 seule section, alors c'est forcement une accession ou une varietes
              */
             if ($section == "Accession") {
                 $join = " LEFT JOIN `NV-VARIETES` var ON acc.CodeVar = var.CodeVar
@@ -7162,8 +7202,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_pays` ON var.`PaysOrigine` = `ListeDeroulante_pays`.CodePays ";
             }
             return $join;
-        }
-        switch ($section) {
+        } else {
+            switch ($section) {
             /*
              * Construit l'ensemble des jointures en fonction de la section
              */
@@ -7591,6 +7631,8 @@ class BibliothequeDAO {
                     }
                 }
                 return $join;
+        }
+            
         }
     }
 

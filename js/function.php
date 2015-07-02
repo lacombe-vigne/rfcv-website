@@ -233,7 +233,16 @@ and open the template in the editor.
 		}
 	);
 	//vérifier des formulaire de creation un utilisateur
-	var faute_new=8;
+	//var faute_new=4;
+        var fauteID;
+        var fauteNom;
+        var fautePrenom;
+        var fauteMDP;
+        var fauteTel = true;
+        var fauteFax = true;
+        var fauteMail = true;
+        var fauteFinDroit = true;
+        //Les variables booleenne ci-dessous verifient si les champs sont correctement remplis et s'ils sont obligatoires ou non.
 	$('#CodePersonne_new_tip').hide();
 	$('#Nom_new_tip').hide();
 	$('#Prenom_new_tip').hide();
@@ -262,11 +271,11 @@ and open the template in the editor.
 				console.log(data,statue);
 				if(data==1){
 					$('#CodePersonne_new_tip').hide();
-					faute_new-=1;
+					fauteID = true;
 				}
 				if(data==2){
 					$('#CodePersonne_new_tip').show();
-					faute_new+=1;
+					fauteID = false;
 				}
 			}		
 		});     
@@ -277,11 +286,11 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().length >= 0 && $(this).val().length <=20 && $(this).val()!=''){
 			$('#Nom_new_tip').hide();
-			faute_new-=1;
+			fauteNom = true;
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Nom_new_tip').show();
-			faute_new+=1;
+			fauteNom = false;
 		}	                     
 	});
 	// vérifier le format un nouveau prenom d'un utilisateur, pas possible d'être vide
@@ -290,11 +299,11 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().length >= 0 && $(this).val().length <=20 && $(this).val()!=''){
 			$('#Prenom_new_tip').hide();
-			faute_new-=1;
+			fautePrenom = true;
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Prenom_new_tip').show();
-			faute_new+=1;
+			fautePrenom = false;
 		}	                     
 	});
 	// vérifier le format un nouveau numéro de telephone d'un utilisateur
@@ -303,12 +312,12 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#Tel_new_tip').hide();
-                        faute_new-=1;
+                        fauteTel = true;
 			
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Tel_new_tip').show();
-			faute_new+=1;
+			fauteTel = false;
 		}	                     
 	});
 	// vérifier le format un nouveau numéro de Fax d'un utilisateur
@@ -317,12 +326,12 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^0[0-9]{1} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/) || $(this).val()==""){
 			$('#Fax_new_tip').hide();
-                        faute_new-=1;
+                        fauteFax = true;
 		
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Fax_new_tip').show();
-			faute_new+=1;
+			fauteFax = false;
 		}	                     
 	});
 	// vérifier le format un nouveau address mail d'un utilisateur
@@ -331,12 +340,12 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/) || $(this).val()==""){
 			$('#Mail_new_tip').hide();
-                        faute_new-=1;
+                        fauteMail = true;
 		
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Mail_new_tip').show();
-			faute_new+=1;
+			fauteMail = false;
 		}	                     
 	});
 	// vérifier le format un nouveau DateFinValide d'un utilisateur, le format est "YYYY-MM-JJ"
@@ -345,32 +354,44 @@ and open the template in the editor.
 	}).blur(function(){
 		if($(this).val().match(/^[1-2]{1}[0-9]{3}[-]{1}[0-1]{1}[0-9]{1}[-][0-3]{1}[0-9]{1}/) || $(this).val()==""){
 			$('#DateFinValide_new_tip').hide();
-                        faute_new-=1;
+                        fauteFinDroit = true;
 		
 		}else{
 			$(this).addClass('non_Valide');
 			$('#DateFinValide_new_tip').show();
-			faute_new+=1;
+			fauteFinDroit = false;
 		}	                     
-	});	
+	});
+        //vérifier le format un nouveau nom d'un utilisateur, pas possible d'être vide
+	$('#Password_new').focus(function(){
+		//$('#Nom_new_tip').show();
+	}).blur(function(){
+		if($(this).val()!=''){
+			//$('#Nom_new_tip').hide();
+			fauteMDP = true;
+		}else{
+			$(this).addClass('non_Valide');
+			fauteMDP = false;
+		}	                     
+	});
 	// vérifier le format un nouveau Profile d'un utilisateur, pas possible d'être vide
-	$('#Profile_user_new').focus(function(){
+	/*$('#Profile_user_new').focus(function(){
 		$('#Profile_user_new_tip').show();
 	}).blur(function(){
 		if($(this).val().match(/^[ABCD]{1}/) && $(this).val()!=""){
 			$('#Profile_user_new_tip').hide();
-			faute_new-=1;
+			faute_new = true;
 		}else{
 			$(this).addClass('non_Valide');
 			$('#Profile_user_new_tip').show();
-			faute_new+=1;
+			faute_new = false;
 		}	                     
-	});	
+	});*/	
 	//ajouter un nouveau utilisateur
 	$('.new_user_button').click(function(){
 		//si tous les vérifications sont passe, il ajoute un nouveau utilisateur dans le bbd. sinon on affiche un message error
-		console.log(faute_new);        
-                if(faute_new<1 && $("#CodePersonne_new").val()!=""){
+		console.log(fauteID && fauteNom && fautePrenom && fauteTel && fauteFax && fauteMail && fauteFinDroit && fauteMDP);        
+                if(fauteID && fauteNom && fautePrenom && fauteTel && fauteFax && fauteMail && fauteFinDroit && fauteMDP && $("#CodePersonne_new").val()!=""){
 			creatAjax();
 			var DataString='function=newUser&CodePersonne='+$("#CodePersonne_new").val()+'&Nom='+$("#Nom_new").val()+'&Prenom='+$("#Prenom_new").val()+'&Function='+$("#Function_new").val()+'&Password='+$("#Password_new").val()+'&Profile='+$("#Profile_user_new").val()+'&Partenaire='+$("#Partenaire_new").val()+'&Dom='+$("#Dom_Compet_new").val()+'&Tel='+$("#Tel_new").val()+'&Fax='+$("#Fax_new").val()+'&Mail='+$("#Mail_new").val()+'&DateFinValide='+$("#DateFinValide_new").val()+'&PersonneMAJ='+$('#user_code_admin').val();
 			$.ajax({
@@ -2270,7 +2291,15 @@ and open the template in the editor.
 	});
 	function search_ajax(dataString,search){
 		var data=dataString+"&function=searchSimple";
-                search = " : "+ search;
+                var search = " : " + escapeHtml(search);
+                function escapeHtml(text) {
+                    return text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+                }
 		$.ajax({
 			type:"post",
 			url:"./php/script_webbio.php",
@@ -8778,11 +8807,17 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					console.log(key,value);
 					if(key==="phototheque"){
-						var image="";
+						var result ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                //tabs.append(result);
+                                                console.log(result);
+                                            var image="";
                                                 i=1;
                                                 var tab = new Array();
 						$.each(value,function(key,value){
                                                     console.log(key,value);
+                                                    if(value==null){
+                                                        console.log("pas de photo");
+                                                    } else {
 							if(key==="contents"){
 								$.each(value,function(entryIndex,entry){
 									console.log(entryIndex,entry);
@@ -8793,8 +8828,10 @@ and open the template in the editor.
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
                                                                                     this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en français : Organe,Date,Photographe,Partenaire (cf:photothque.json)   
                                                                                 } else if(langue=='EN') {
                                                                                     this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en anglais : Organ,Date,Photograph,Partner (cf:photothque.json) 
                                                                                 }    
                                                                             }
                                                                         });
@@ -8805,9 +8842,10 @@ and open the template in the editor.
 								});
 							}
 							
-						});
+						}});
 						
-						$('#tabs-1_FichierVar_MED').append(image);
+						$('#tabs-1_FichierVar_MED').append(image);// affiche les images correspondantes à la variété
+                                                $('#tabs-1_FichierVar_MED').append(result); //affiche le nombre de resultat obtenu sur le nombre de resultat possible
 						
 						$.getJSON("json/fichier.json",function(data){
 							$.each(data,function(key, value){
@@ -9173,6 +9211,7 @@ and open the template in the editor.
 					if(key==="phototheque"){
 						if(value!=null){
 							var image="";
+                                                        var result ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
 							var i=1;
                                                         var tab = new Array();
 							$.each(value,function(key,value){
@@ -9186,8 +9225,10 @@ and open the template in the editor.
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
                                                                                     this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en français : Organe,Date,Photographe,Partenaire (cf:photothque.json)   
                                                                                 } else if(langue=='EN') {
                                                                                     this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en anglais : Organ,Date,Photograph,Partner (cf:photothque.json) 
                                                                                 }    
                                                                             }
                                                                         });
@@ -9201,6 +9242,7 @@ and open the template in the editor.
 							});
 							
 							$('#tabs-1_FichierAcc_MED').append(image);
+                                                        $('#tabs-1_FichierAcc_MED').append(result);
 							
 							$.getJSON("json/fichier.json",function(data){
 								$.each(data,function(key, value){
@@ -14634,7 +14676,7 @@ and open the template in the editor.
 				$('#loding').remove();
 				$.each(data,function(key,value){
 					if(key==="Phototheque"){
-                                                var legend='<legend ><img src="images/plus6.png"/ width="40" height="40"><span>Phototheque</span>('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')<a id="aide_nombre_resultat30"  onmouseover="$.aide_nombre_resultat(30);"><img src="images/help1.png" width="20" height="20"/></a></legend>';
+                                                var legend='<fieldset id="photolabel"><legend><img src="images/plus6.png"/ width="40" height="40"><span id="pho_SearchAd">Phototheque</span><a>('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat30"  onmouseover="$.aide_nombre_resultat(30);"><img src="images/help1.png" width="20" height="20"/></a></legend></fieldset>';
 						var image="";
 						var i=1;
                                                 var tab = new Array();
@@ -14650,8 +14692,10 @@ and open the template in the editor.
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
                                                                                     this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en français : Organe,Date,Photographe,Partenaire (cf:photothque.json)  
                                                                                 } else if(langue=='EN') {
                                                                                     this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
+                                                                                    //Label en anglais : Organ,Date,Photograph,Partner (cf:photothque.json) 
                                                                                 }    
                                                                             }
                                                                         });

@@ -896,7 +896,7 @@ avar,aesp,aclo{
     color:#fff;
 }
 #Phototheque{
-    height:200;
+    height:150px;
 }
 .open{
     background:#fafafa;
@@ -1585,9 +1585,9 @@ avar,aesp,aclo{
 .title_FichierApt img,.title_FichierMor img,.title_FichierEmp img,
 .title_FichierSan img,.title_FichierGen img,.title_FichierBib img,
 .title_FichierPar img,.title_FichierSite img{
-    width:70;
-    height:70;
-    margin:auto auto -2.5% auto;
+    width: 50px;
+    height: 50px;
+    margin: auto auto -1.5%;
 }
 #FichierAcc #acc_FichierAcc{
     color:#FF8C00;
@@ -3196,6 +3196,19 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
 }
 .fancybox-custom .fancybox-skin {
     box-shadow: 0 0 50px #222;
+}
+#pho_SearchAd{
+    color:#737373;
+    font-size: 18px;
+}
+#photolabel{
+    margin: 2% auto 0px 3%;
+    padding: 1px 1px 10px 1px;
+    border:none;
+}
+.fancybox{
+    margin: auto auto auto 1%;
+    padding: 1px 1px 1px 1px;
 }
 
 
