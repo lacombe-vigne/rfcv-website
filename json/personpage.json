@@ -12,7 +12,7 @@
 		{
 			"title":"Your personal data",
 			"vient":"from",
-			"button":"Save",
+			"button":"Modify",
                         "tel":"Tel:",
                         "fax":"Fax:",
                         "mail":"Mail:"
@@ -115,6 +115,10 @@
 		},
 	"SesInfo_fr":
 		{
+                        "tel":"Tel:",
+                        "fax":"Fax:",
+                        "mail":"Courriel:",
+                        "dateFin":"Date fin droits:",
 			"title":"Vos informations personnelles",
 			"vient":"vient de",
 			"reset":"Reset mot de passe",
@@ -122,10 +126,14 @@
 		},
 	"SesInfo_en":
 		{
+                        "tel":"Tel :",
+                        "fax":"Fax :",
+                        "mail":"Email :",
+                        "dateFin":"Date end right :",
 			"title":"Your personal data",
 			"vient":"from",
 			"reset":"Reset password",
-			"Modif":"Save"
+			"Modif":"Modify"
 		},
 	"ModiMesInfo_fr":
 		{

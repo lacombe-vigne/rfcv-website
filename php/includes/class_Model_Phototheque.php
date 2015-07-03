@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Phototheque avec ses attributs
+ */
 class Phototheque {
 
 	private $Code_photo = null;

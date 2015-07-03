@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Accession avec ses attributs
+ */
 include_once('bibliFonc.php');
 
 class Accession {

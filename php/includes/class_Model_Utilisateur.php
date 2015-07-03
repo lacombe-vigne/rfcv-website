@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Utilisateur avec ses attributs
+ */
 class Utilisateur {
 
 	private $CodePersonne = null;

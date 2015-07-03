@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Bibliograhpie avec ses attributs
+ */
 class Bibliograhpie {
 
 	private $CodeCit = null;

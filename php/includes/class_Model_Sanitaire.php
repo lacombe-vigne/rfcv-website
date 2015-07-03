@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Sanitaire avec ses attributs
+ */
 class Sanitaire {
 
 	private $IdTest = null;

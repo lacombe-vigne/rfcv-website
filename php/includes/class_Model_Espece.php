@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Espece avec ses attributs
+ */
 class Espece {
 
 	private $CodeEsp = null;

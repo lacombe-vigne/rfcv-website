@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Doc avec ses attributs
+ */
 class Doc {
 	private $Code_doc = null;
 	private $Titre = null;

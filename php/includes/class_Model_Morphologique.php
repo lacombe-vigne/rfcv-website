@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Morphologique avec ses attributs
+ */
 class Morphologique {
 
 	private $id = null;

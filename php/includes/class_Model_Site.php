@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Site avec ses attributs
+ */
 class Site {
 
 	private $CodeSite = null;

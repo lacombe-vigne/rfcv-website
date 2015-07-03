@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Partenaire avec ses attributs
+ */
 class Partenaire {
 
 	private $CodePartenaire = null;

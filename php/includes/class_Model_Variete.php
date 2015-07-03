@@ -1,4 +1,7 @@
 <?php
+/*
+ * Permet la création d'un objet Variete avec ses attributs
+ */
 include_once('bibliFonc.php');
 class Variete {
 

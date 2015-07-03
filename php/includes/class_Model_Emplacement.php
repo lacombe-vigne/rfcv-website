@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Emplacement avec ses attributs
+ */
 class Emplacement {
 
 	private $CodeEmplacem = null;

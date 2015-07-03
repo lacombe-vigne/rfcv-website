@@ -426,11 +426,11 @@ and open the template in the editor.
 					
 						var table='<tr><input type="hidden" id="ses_info_codePersonne"value="'+data.CodePersonne+'" /><td width="25%" class="nom_person">'+data.Nom+'</td><td class="prenom_person">'+data.Prenom+'</td></tr>'+
 							'<tr><td></td><td class="partenaire_person">'+data.Partenaire+'</td></tr>'+
-							'<tr><td id="tel-ses-info" width="25%" >Tel:</td><td class="tel_person">'+data.Tel+'</td></tr>'+
-							'<tr><td id="fax-ses-info" width="25%" >Fax:</td><td class="fax_person">'+data.Fax+'</td></tr>'+
-							'<tr><td id="mail-ses-info" width="25%" >Mail:</td><td class="mail_person">'+data.mail+'</td></tr>'+
-							'<tr><td id="dateFin_ses_info" width="25%" >DateFin: </td><td class="date_person">'+data.DateFin+'</td></tr>'+
-							'<tr><td><a id="reset-password" onclick="$.reset_ses_password(\''+data.CodePersonne+'\');return false;"></a></td><td><a id="Modifiez-ses-info" onclick="$.modifier_ses_info(\''+data.CodePersonne+'\');return false;"></a></td></tr>';
+							'<tr><td id="tel-ses-info" width="25%" ></td><td class="tel_person">'+data.Tel+'</td></tr>'+
+							'<tr><td id="fax-ses-info" width="25%" ></td><td class="fax_person">'+data.Fax+'</td></tr>'+
+							'<tr><td id="mail-ses-info" width="25%" ></td><td class="mail_person">'+data.mail+'</td></tr>'+
+							'<tr><td id="dateFin_ses_info" width="25%" ></td><td class="date_person" style="text-align:left">'+data.DateFin+'</td></tr>'+
+							'<tr><td><a id="Modifiez-ses-info" onclick="$.modifier_ses_info(\''+data.CodePersonne+'\');return false;"></a></td></tr>';
 						$('#ses_info_table').empty()
 						$('#ses_info_table').append(table);
 
@@ -440,15 +440,23 @@ and open the template in the editor.
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="SesInfo_fr"){
-									$('#partenaire-ses-info').append(value.vient);
-									$('#reset-password').append(value.reset);
+                                                                        $('#tel-ses-info').append(value.tel);
+                                                                        $('#fax-ses-info').append(value.fax);
+                                                                        $('#mail-ses-info').append(value.mail);
+                                                                        $('#partenaire-ses-info').append(value.vient);
+									$('#dateFin_ses_info').append(value.dateFin);
+									//$('#reset-password').append(value.reset);
 									$('#Modifiez-ses-info').append(value.Modif);
 								}
 							}
 							if($('#mainMenu_Home').val()==="Home"){
 								if(key==="SesInfo_en"){
+                                                                     $('#tel-ses-info').append(value.tel);
+                                                                        $('#fax-ses-info').append(value.fax);
+                                                                        $('#mail-ses-info').append(value.mail);
 									$('#partenaire-ses-info').append(value.vient);
-									$('#reset-password').append(value.reset);
+                                                                        $('#dateFin_ses_info').append(value.dateFin);
+									//$('#reset-password').append(value.reset);
 									$('#Modifiez-ses-info').append(value.Modif);
 								}
 							}
@@ -638,7 +646,7 @@ and open the template in the editor.
 		if($('#user_prenom_sesInfo').val().length >= 0 && $('#user_prenom_sesInfo').val().length <=20 && $('#user_nom_sesInfo').val()!=''){
 			$('#user_prenom_sesInfo_tip').hide();
 		}else{
-			$$('#user_prenom_sesInfo').addClass('non_Valide');
+			$('#user_prenom_sesInfo').addClass('non_Valide');
 			$('#user_prenom_sesInfo_tip').show();
 			faute_modifier_sesInfo+=1;
 		}
@@ -694,12 +702,12 @@ and open the template in the editor.
 				return false;
 				// alert('tres bien');
 			}else{
-				alert('Vous devez corriger votre champs!');
+				alert('Vous devez corriger votre champs!');//jsonM
 			}
 		}
 	});
 	//reset son mot de passe
-	$.extend({'reset_ses_password':function(a){
+	/*$.extend({'reset_ses_password':function(a){
 			if(confirm("Vous êtez sûr que vous voulez reset ces mot de passes?")){
 				var DataString='function=resetPassword&codePersonne='+a;
 				creatAjax();
@@ -716,7 +724,7 @@ and open the template in the editor.
 			}
 			return false;
 		}
-	});
+	});*/
 	//rechercher des utilisateur
 	$('#rechercher_user').bind('keypress',function(event){
 		if(event.keyCode == "13")    
@@ -2290,6 +2298,7 @@ and open the template in the editor.
 		}
 	});
 	function search_ajax(dataString,search){
+                console.log(dataString);
 		var data=dataString+"&function=searchSimple";
                 var search = " : " + escapeHtml(search);
                 function escapeHtml(text) {
@@ -2489,7 +2498,7 @@ and open the template in the editor.
 								var contents_espece="";
 								var espece_contents=value.contents;
 								$.each(espece_contents,function(entryIndex,entry){
-									contents_espece = contents_espece+'<tr><td width="2%"><input type="checkbox" name="Checkbox_espece[]" value="'+entry['codeEspece']+'" /></td>'+
+									contents_espece = contents_espece+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_espece[]" value="'+entry['codeEspece']+'" /></td>'+
 																	'<td width="13%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['codeEspece']+'</td>'+
 																	'<td width="35%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['nomEspece']+'</td>'+
 																	'<td width="25%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['botaniste']+'</td>'+
@@ -2666,7 +2675,7 @@ and open the template in the editor.
 								var contents_ligne_variete="";
 								$.each(value.contents,function(entryIndex,entry){
 									// console.log(entryIndex, entry);
-									contents_ligne_variete=contents_ligne_variete+'<tr><td width="2%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'" /></td>'+
+									contents_ligne_variete=contents_ligne_variete+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'" /></td>'+
 																					'<td width="5.1%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['codeVar']+'</td>'+
 																					'<td  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['nomVar']+'</td>'+
 																					'<td width="17%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['SynoMajeur']+'</td>'+
@@ -2939,7 +2948,7 @@ and open the template in the editor.
 								$('#SearchS-Accession').append(SearchS_Accession);
 								var contents_ligne_accession="";
 								$.each(value.contents,function(entryIndex,entry){
-									contents_ligne_accession=contents_ligne_accession+'<tr><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'" /></td>'+
+									contents_ligne_accession=contents_ligne_accession+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'" /></td>'+
 																					'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
 																					'<td  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
 																					'<td width="17%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
@@ -4057,12 +4066,12 @@ and open the template in the editor.
 		var search=$("#search_value").val();
 		var model=$("#model_value").val();
 		var langue=$("#langue_value").val();
-		var page_espece=$('#espece_curpage_value').val();
-		var pagesize_espece=$('#select_pagesize_espece').val();	
-		var page_variete=$('#variete_curpage_value').val();
-		var pagesize_variete=$('#select_pagesize_variete').val();
-		var page_accession=$('#accession_curpage_value').val();
-		var pagesize_accession=$('#select_pagesize_accession').val();	
+		var page_espece=$('#espece_curpage_value').val() || 1;
+		var pagesize_espece=$('#select_pagesize_espece').val() || 20;	
+		var page_variete=$('#variete_curpage_value').val() || 1;
+		var pagesize_variete=$('#select_pagesize_variete').val() || 20;
+		var page_accession=$('#accession_curpage_value').val() || 1;
+		var pagesize_accession=$('#select_pagesize_accession').val() || 20;	
 		var tri_espece_classname=$("#tri_espece_classname").val();
 		var tri_espece_section=$("#tri_espece_section").val();
 		var tri_espece_colone=$("#tri_espece_colone").val();
@@ -8474,7 +8483,7 @@ and open the template in the editor.
 						$('#contents_doc').append('<div id="title_ligne_doc"></div>');
 						if(value.tri.colone==="CodeDocPdf"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -8483,7 +8492,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Titre"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -8492,7 +8501,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Auteurs"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -8501,7 +8510,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Date"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -8510,7 +8519,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="TypeDoc"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'TypeDoc\',\'doc\');"></button></th>'+
@@ -9033,7 +9042,7 @@ and open the template in the editor.
 						$('#contents_doc').append('<div id="title_ligne_doc"></div>');
 						if(value.tri.colone==="CodeDocPdf"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -9042,7 +9051,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Titre"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -9051,7 +9060,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Auteurs"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -9060,7 +9069,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Date"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -9069,7 +9078,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="TypeDoc"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_FichierVar(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="'+value.tri.classname+'" onclick="$.tri_table_doc_FichierVar('+value.tri.section+',\'TypeDoc\',\'doc\');"></button></th>'+
@@ -13201,7 +13210,7 @@ and open the template in the editor.
 							var contents_espece="";
 							var espece_contents=value.contents;
 							$.each(espece_contents,function(entryIndex,entry){
-								contents_espece = contents_espece+'<tr><td width="2%"><input type="checkbox" name="Checkbox_espece[]" value="'+entry['codeEspece']+'"/></td>'+
+								contents_espece = contents_espece+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_espece[]" value="'+entry['codeEspece']+'"/></td>'+
 																'<td width="13%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['codeEspece']+'</td>'+
 																'<td width="35%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['nomEspece']+'</td>'+
 																'<td width="25%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['botaniste']+'</td>'+
@@ -13441,7 +13450,7 @@ and open the template in the editor.
 							var contents_ligne_variete="";
 							$.each(value.contents,function(entryIndex,entry){
 								// console.log(entryIndex, entry);
-								contents_ligne_variete=contents_ligne_variete+'<tr><td width="1%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'"/></td>'+
+								contents_ligne_variete=contents_ligne_variete+'<tr style="cursor:pointer"><td width="1%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'"/></td>'+
 																				'<td width="4%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['codeVar']+'</td>'+
 																				'<td  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['nomVar']+'</td>'+
 																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['SynoMajeur']+'</td>'+
@@ -13639,7 +13648,7 @@ and open the template in the editor.
 							$('#contents_accession').append('<table  width="100%" id="contents_ligne_accession"></table>');
 							var contents_ligne_accession="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_accession=contents_ligne_accession+'<tr><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
+								contents_ligne_accession=contents_ligne_accession+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
 																				'<td  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
 																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
@@ -13848,7 +13857,7 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
 																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
@@ -14042,7 +14051,7 @@ and open the template in the editor.
 							$('#contents_sanitaire').append('<table  width="100%" id="contents_ligne_sanitaire"></table>');
 							var contents_ligne_sanitaire="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
+								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['IdTest']+'</td>'+
 																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CodeIntro']+'</td>'+
 																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['NomTest']+'</td>'+
@@ -14213,7 +14222,7 @@ and open the template in the editor.
 							$('#contents_description').append('<table  width="100%" id="contents_ligne_description"></table>');
 							var contents_ligne_description="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_description=contents_ligne_description+'<tr><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['id']+'"/></td>'+
+								contents_ligne_description=contents_ligne_description+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['id']+'"/></td>'+
 																				'<td width="13%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Code']+'</td>'+
 																				'<td onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Description']+'</td>'+
 																				'<td width="20%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Critaire']+'</td>'+
@@ -14456,7 +14465,7 @@ and open the template in the editor.
 								}else{
 									var data="";
 								}
-								contents_ligne_aptitude=contents_ligne_aptitude+'<tr><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'"/></td>'+
+								contents_ligne_aptitude=contents_ligne_aptitude+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'"/></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['CodeDonnee']+'</td>'+
 																				
 																				'<td width="22%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['AptitudeMesure']+'</td>'+
@@ -14629,7 +14638,7 @@ and open the template in the editor.
 							$('#contents_genetique').append('<table  width="100%" id="contents_ligne_genetique"></table>');
 							var contents_ligne_genetique="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_genetique=contents_ligne_genetique+'<tr><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'"/></td>'+
+								contents_ligne_genetique=contents_ligne_genetique+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'"/></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Code']+'</td>'+
 																				'<td width="19%" onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Margueur']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele1']+'</td>'+
@@ -14793,7 +14802,7 @@ and open the template in the editor.
 							
 							if(value.tri.colone==="CodeDocPdf"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -14802,7 +14811,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Titre"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -14811,7 +14820,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Auteurs"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -14820,7 +14829,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="Date"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'TypeDoc\',\'doc\');"></button></th>'+
@@ -14829,7 +14838,7 @@ and open the template in the editor.
 						}
 						if(value.tri.colone==="TypeDoc"){
 							var title_table='<table width="100%" id="table_doc_titles"><th width="10%"><span id="CodeDocPdf_FichierVar"></span><button id="tri_button_doc_CodeDocPdf" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
-													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'CodeDocPdf\',\'doc\');"></button></th>'+
+													'<th  width="35%" ><span id="Titre_doc_FichierVar"></span><button id="tri_button_docTitre" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Titre\',\'doc\');"></button></th>'+
 													'<th  ><span id="Auteurs_doc_FichierVar"></span><button id="tri_button_doc_Auteurs" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Auteurs\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="Date_doc_FichierVar"></span><button id="tri_button_doc_Date" class="tri_doc_asc" onclick="$.tri_table_doc_avance(1,\'Date\',\'doc\');"></button></th>'+
 													'<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span><button id="tri_button_doc_TypeDoc" class="'+value.tri.classname+'" onclick="$.tri_table_doc_avance('+value.tri.section+',\'TypeDoc\',\'doc\');"></button></th>'+
@@ -14881,7 +14890,7 @@ and open the template in the editor.
 								$('#contents_doc').append('<table  width="100%" id="contents_ligne_doc"></table>');
 								var contents_ligne_doc="";
 								$.each(value.contents,function(entryIndex,entry){
-									contents_ligne_doc=contents_ligne_doc+'<tr><td width="2%"><input type="checkbox" name="Checkbox_documentation[]" value="'+entry['Code_doc']+'"/></td>'+
+									contents_ligne_doc=contents_ligne_doc+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_documentation[]" value="'+entry['Code_doc']+'"/></td>'+
 																					'<td width="8%">'+entry['Code_doc']+'</td>'+
 																					'<td width="35%">'+entry['Titre']+'</td>'+
 																					'<td>'+entry['Auteur']+'</td>'+
@@ -15060,7 +15069,7 @@ and open the template in the editor.
 							$('#contents_bibliographie').append('<table  width="100%" id="contents_ligne_bibliographie"></table>');
 							var contents_ligne_bibliographie="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
+								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
 																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
@@ -15201,7 +15210,7 @@ and open the template in the editor.
 							$('#contents_Partenaire').append('<table  width="100%" id="contents_ligne_Partenaire"></table>');
 							var contents_ligne_Partenaire="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_Partenaire=contents_ligne_Partenaire+'<tr><td width="2%"><input type="checkbox" name="Checkbox_partenaire[]" value="'+entry['CodePartenaire']+'"/></td>'+
+								contents_ligne_Partenaire=contents_ligne_Partenaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_partenaire[]" value="'+entry['CodePartenaire']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['CodePartenaire']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['SiglePartenaire']+'</td>'+
 																				'<td width="40%"  onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['NomPartenaire']+'</td>'+
@@ -16818,7 +16827,7 @@ and open the template in the editor.
 				data:DataString,
 				beforeSend: function(){ 
 					$(".site-login-form").empty();
-					$('<div id="msg" />').addClass("loading").html("Connexion en cours...").css("color","#999").appendTo('.site-login-form'); 
+					$('<div id="msg" />').addClass("loading").appendTo('.site-login-form');//$('<div id="msg" />').addClass("loading").html("Connexion en cours...").css("color","#999").appendTo('.site-login-form');  
 				},
 				success: function(data){
                                         var langue='<?php echo $langue;?>';
@@ -16939,7 +16948,7 @@ and open the template in the editor.
 					}
 					
                                         
-					$(".site-login-form").append(div);
+					//$(".site-login-form").append(div);
                                        
 					console.log(data);
 				}

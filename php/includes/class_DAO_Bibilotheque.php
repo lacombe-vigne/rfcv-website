@@ -19,26 +19,32 @@ include_once('bibliFonc.php');
 
 class BibliothequeDAO {
 
+    /*
+     * Classe qui contient toutes les requêtes SQL du site. 
+     * Les données extraites sont considérées comme des objets.
+     * Les différentes classe incluse sont des classe qui permettent la création des objets.
+     */
+
     public function searchSimple($search, $search_complet, $case_s, $model, $langue, $page_espece, $pagesize_espece, $page_variete, $pagesize_variete, $page_accession, $pagesize_accession, $tri_espece_classname, $tri_espece_section, $tri_espece_colone, $tri_variete_classname, $tri_variete_section, $tri_variete_colone, $tri_accession_classname, $tri_accession_section, $tri_accession_colone) {
         // return $search."~~".$search_complet."~~".$case_s."~~".$model."~~".$langue."~~".$page_espece."~~".$pagesize_espece."~~".$page_variete."~~".$pagesize_variete."~~".$page_accession."~~".$pagesize_accession."~~".$tri_espece_classname."~~".$tri_espece_section."~~".$tri_espece_colone."~~".$tri_variete_classname."~~".$tri_variete_section."~~".$tri_variete_colone."~~".$tri_accession_classname."~~".$tri_accession_section."~~".$tri_accession_colone;
         $DAO = new BibliothequeDAO();
         if ($tri_espece_section == 1) {
-            $tri_espece = "order by " . $tri_espece_colone . " asc";
+            $tri_espece = "order by " . "`NV-ESPECES`." . $tri_espece_colone . " asc";
         }
         if ($tri_espece_section == 2) {
-            $tri_espece = "order by " . $tri_espece_colone . " desc";
+            $tri_espece = "order by " . "`NV-ESPECES`." . $tri_espece_colone . " desc";
         }
         if ($tri_variete_section == 1) {
-            $tri_variete = "order by " . $tri_variete_colone . " asc";
+            $tri_variete = "order by " . "`NV-VARIETES`." .$tri_variete_colone . " asc";
         }
         if ($tri_variete_section == 2) {
-            $tri_variete = "order by " . $tri_variete_colone . " desc";
+            $tri_variete = "order by " . "`NV-VARIETES`." .$tri_variete_colone . " desc";
         }
         if ($tri_accession_section == 1) {
-            $tri_accession = "order by " . $tri_accession_colone . " asc";
+            $tri_accession = "order by " . "`NV-INTRODUCTIONS`." . $tri_accession_colone . " asc";
         }
         if ($tri_accession_section == 2) {
-            $tri_accession = "order by " . $tri_accession_colone . " desc";
+            $tri_accession = "order by " . "`NV-INTRODUCTIONS`." . $tri_accession_colone . " desc";
         }
         if ($case_s != "" && $model != "" && $search != "") {
 
@@ -1574,12 +1580,12 @@ class BibliothequeDAO {
                 $_SESSION['resultatEsp'] = $sql_espece_possible;
             }
             if ($sql_variete != "") {
-                $variete = $DAO->chargeContentVariete($sql_variete, $total_variete, $_SESSION['language_Vigne'], $page_variete, $pagesize_variete, $sql_variete_possible);
+                $variete = $DAO->chargeContentVariete($sql_variete, $total_variete, $langue, $page_variete, $pagesize_variete, $sql_variete_possible);
                 //$_SESSION['test'] = $variete;
                 $_SESSION['resultatVar'] = $sql_variete_possible;
             }
             if ($sql_accession != "") {
-                $accession = $DAO->chargeContentAccession($sql_accession, $total_accession, $_SESSION['language_Vigne'], $page_accession, $pagesize_accession, $sql_accession_possible);
+                $accession = $DAO->chargeContentAccession($sql_accession, $total_accession, $langue, $page_accession, $pagesize_accession, $sql_accession_possible);
                 $_SESSION['resultatIntro'] = $sql_accession_possible;
             }
             deconnexion_bbd();
@@ -2816,9 +2822,9 @@ class BibliothequeDAO {
     public function ListeProfilA(){
         connexion_bbd();
 	mysql_query('SET NAMES UTF8');
-        $sql = "SELECT DISTINCT p.`JY_Profil_Utilisateur`
-                FROM `Personnels` p
-                ORDER BY p.`JY_Profil_Utilisateur` ASC";
+        $sql = "SELECT DISTINCT na.`Niveau`,na.`Intitule_FR`
+                FROM `NiveauAcces_JY` na
+                ORDER BY na.`Niveau` ASC";
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             echo "<script>alert('erreur de base de donnes')</script>";
@@ -2832,7 +2838,12 @@ class BibliothequeDAO {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
                 $Profil[$i] = array();
-                $Profil[$i]['profil'] = $dico['JY_Profil_Utilisateur'];
+                $Profil[$i]['profil'] = $dico['Niveau'];
+                if($_SESSION['language_Vigne']=="FR"){
+                    $Profil[$i]['intitule'] = $dico['Intitule_FR'];
+                }else if($_SESSION['language_Vigne']=="EN"){
+                    $Profil[$i]['intitule'] = $dico['Intitule_EN'];
+                }
             }
         }
         deconnexion_bbd();
@@ -2841,10 +2852,10 @@ class BibliothequeDAO {
     public function ListeProfilB(){
         connexion_bbd();
 	mysql_query('SET NAMES UTF8');
-        $sql = "SELECT DISTINCT p.`JY_Profil_Utilisateur`
-                FROM `Personnels` p
-                WHERE p.`JY_Profil_Utilisateur` != 'A'
-                ORDER BY p.`JY_Profil_Utilisateur` ASC";
+        $sql = "SELECT DISTINCT na.`Niveau`,na.`Intitule_FR`
+                FROM `NiveauAcces_JY` na
+                WHERE na.`Niveau` != 'A'
+                ORDER BY na.`Niveau` ASC";
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             echo "<script>alert('erreur de base de donnes')</script>";
@@ -2857,7 +2868,12 @@ class BibliothequeDAO {
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
                 $Profil[$i] = array();
-                $Profil[$i]['profil'] = $dico['JY_Profil_Utilisateur'];
+                $Profil[$i]['profil'] = $dico['Niveau'];
+                if($_SESSION['language_Vigne']=="FR"){
+                    $Profil[$i]['intitule'] = $dico['Intitule_FR'];
+                }else if($_SESSION['language_Vigne']=="EN"){
+                    $Profil[$i]['intitule'] = $dico['Intitule_EN'];
+                }
             }
         }
         deconnexion_bbd();       
@@ -3374,10 +3390,10 @@ class BibliothequeDAO {
         $DAO = new BibliothequeDAO();
 
         if ($section == 1) {
-            $tri_variete = "order by " . $colone . " asc";
+            $tri_variete = "order by " . "`NV-VARIETES`.$colone" . " asc";
         }
         if ($section == 2) {
-            $tri_variete = "order by " . $colone . " desc";
+            $tri_variete = "order by " . "`NV-VARIETES`.$colone" . " desc";
         }
         $sql_total = "SELECT * 
                 FROM `NV-VARIETES`
@@ -3527,10 +3543,10 @@ class BibliothequeDAO {
 
         $DAO = new BibliothequeDAO();
         if ($section == 1) {
-            $tri_accession = "order by " . $colone . " asc";
+            $tri_accession = "order by " . "`NV-INTRODUCTIONS`.$colone" . " asc";
         }
         if ($section == 2) {
-            $tri_accession = "order by " . $colone . " desc";
+            $tri_accession = "order by " . "`NV-INTRODUCTIONS`.$colone" . " desc";
         }
 
         $startPage_accession = ($page_accession - 1) * $pagesize_accession;
@@ -3774,10 +3790,10 @@ class BibliothequeDAO {
     public function aptitude($code, $page, $pagesize, $langue, $section, $colone, $tri, $section_fiche) {
         $DAO = new BibliothequeDAO();
         if ($section == 1) {
-            $tri_aptitude = "order by " . $colone . " asc";
+            $tri_aptitude = "order by " ."`Aptitudes`. $colone". " asc";
         }
         if ($section == 2) {
-            $tri_aptitude = "order by " . $colone . " desc";
+            $tri_aptitude = "order by " ."`Aptitudes`. $colone". " desc";
         }
 
         if ($section_fiche == "Variete") {
@@ -3986,7 +4002,7 @@ class BibliothequeDAO {
             if ($section == 2) {
                 $tri_emplacement = "order by i." . $colone . " desc";
             }
-        } else if ($colone == 'AnneePlantation') {
+        } else if ($colone == 'Anneeplantation') {
             if ($section == 1) {
                 $tri_emplacement = "order by e." . $colone . " asc";
             }
@@ -4155,10 +4171,10 @@ class BibliothequeDAO {
     public function sanitaire($code, $page_sanitaire, $pagesize_sanitaire, $langue, $section, $colone, $tri, $section_fiche) {
         $DAO = new BibliothequeDAO();
         if ($section == 1) {
-            $tri_sanitaire = "order by " . $colone . " asc";
+            $tri_sanitaire = "order by " . "s.$colone" . " asc";
         }
         if ($section == 2) {
-            $tri_sanitaire = "order by " . $colone . " desc";
+            $tri_sanitaire = "order by " . "s.$colone" . " desc";
         }
 
 
@@ -4751,10 +4767,10 @@ class BibliothequeDAO {
     public function genetique($code, $page, $pagesize, $langue, $section, $colone, $tri, $section_fiche) {
         $DAO = new BibliothequeDAO();
         if ($section == 1) {
-            $tri_description = "order by " . $colone . " asc";
+            $tri_description = "order by " . "g.$colone" . " asc";
         }
         if ($section == 2) {
-            $tri_description = "order by " . $colone . " desc";
+            $tri_description = "order by " . "g.$colone" . " desc";
         }
         $startPage = ($page - 1) * $pagesize;
         if ($section_fiche == "Variete") {
@@ -5137,7 +5153,7 @@ class BibliothequeDAO {
         return $contents_list_users;
     }
 
-    public function resetPassword($codePersonne) {
+    /*public function resetPassword($codePersonne) {
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $alert = "";
@@ -5163,7 +5179,7 @@ class BibliothequeDAO {
         }
         deconnexion_bbd();
         return $alert;
-    }
+    }*/
 
     public function login_resultat_ficher($username, $password, $section, $code, $dataString) {
         if ($username != "" && $password != "") {

@@ -54,13 +54,13 @@ table { border-collapse: collapse; border-spacing: 0; }
 a{
     color:#7B0043;
     TEXT-DECORATION: none;
-    cursor:hand;
+    cursor:pointer;
     font-size: 17px;
     font-family: Arial,Helvetica,sans-serif;
 }
 a:hover,a:active{
     color:#fff;
-    cursor:hand;
+    cursor:pointer;
 }
 
 /*------------------------------------------------*/

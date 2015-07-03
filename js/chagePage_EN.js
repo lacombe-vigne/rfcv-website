@@ -16,7 +16,7 @@ $(document).ready(function(){
 			if(key==="menu_main_en"){
 				var menu_main = '<a style="cursor:hand" href="Home.php"><li>'+value.Accueil+'</li></a>'+
 								'<input type="hidden" value="'+value.Accueil+'" id="mainMenu_Home">'+
-								'<a style="cursor:hand"><li class="menu_rechercher">'+value.Rechercher+''+
+								'<a style="cursor:default"><li class="menu_rechercher">'+value.Rechercher+''+
 									'<a class="sous_menu">'+
 									'</a>'+
 								'</li></a>'+
@@ -265,8 +265,8 @@ $(document).ready(function(){
 				$('#NewUser-codepersonne').append(value.Code);
 				$('#NewUser-nom').append(value.Nom);
 				$('#NewUser-prenom').append(value.Prenom);
-				$('#NewUser-partenaire').append(value.partenaire);
-				$('#NewUser-partenaire-B').append(value.partenaire);
+				$('#NewUser-partenaire').append(value.Partenaire);
+				$('#NewUser-partenaire-B').append(value.Partenaire);
 				$('#NewUser-fonction').append(value.Fonction);
                                 $('#NewUser-password').append(value.Password);
                                 $('#NewUser-passwordconfirm').append(value.PasswordConfirm);

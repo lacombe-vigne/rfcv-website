@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Lien avec ses attributs
+ */
 class Lien {
 	private $Code_lien = null;
 	private $Titre = null;

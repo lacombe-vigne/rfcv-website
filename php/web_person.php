@@ -211,7 +211,7 @@
                                                                                     <select name="Profile_user_new" id="Profile_user_new">';
                                                                             $listeProfil = $DAO->ListeProfilA();
                                                                             for($j=0;$j<count($listeProfil);$j=$j+1){
-										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].'</option>';
+										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].' : '.$listeProfil[$j]['intitule'].'</option>';
                                                                             }echo'</select>
                                                                                 </td>
                                                                                 <td>
@@ -222,7 +222,7 @@
                                                                                     <select name="Profile_user_new" id="Profile_user_new">';
                                                                             $listeProfil = $DAO->ListeProfilB();
                                                                             for($j=0;$j<count($listeProfil);$j=$j+1){
-										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].'</option>';
+										echo '<option value="'.$listeProfil[$j]['profil'].'">'.$listeProfil[$j]['profil'].' : '.$listeProfil[$j]['intitule'].'</option>';
                                                                             }echo'</select>
                                                                                 </td>
                                                                                 <td>
@@ -234,7 +234,7 @@
 										
 										echo '
 										<td>
-											<label for="Partenaire_new" id="NewUser-partenaire">Partenaire</label>
+											<label for="Partenaire_new" id="NewUser-partenaire"></label>
 										</td>
 										<td>
 											<select name="Partenaire_new" id="Partenaire_new">';
@@ -253,7 +253,7 @@
 										</td>';
 									}else{
 										echo '<td>
-												<label for="Partenaire_new" id="NewUser-partenaire-B">Partenaire</label>
+												<label for="Partenaire_new" id="NewUser-partenaire-B"></label>
 											</td>
 											<td>';
 										connexion_bbd();

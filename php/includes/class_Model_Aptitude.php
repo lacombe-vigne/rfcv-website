@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Permet la création d'un objet Aptitude avec ses attributs
+ */
 class Aptitude {
 
 	private $CodeDonnee = null;
