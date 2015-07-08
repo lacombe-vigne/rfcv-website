@@ -3,7 +3,7 @@ if($_SESSION['language_Vigne']=="FR"){
 echo '
 <div class="chemin">
 	<ul>
-	<li><a class="lien_chemin" href="./Home.php">Accueil</a></li><li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li><li>Droites et Devoirs </li>
+	<li><a class="lien_chemin" href="./Home.php">Accueil</a></li><li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li><li>Droits et Devoirs</li>
 	</ul>
 </div>
 </div>';

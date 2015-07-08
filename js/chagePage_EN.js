@@ -20,7 +20,7 @@ $(document).ready(function(){
 									'<a class="sous_menu">'+
 									'</a>'+
 								'</li></a>'+
-								'<a style="cursor:hand" href="MySelection.php"><li>'+value.Selection+'</li></a>';
+								'<a style="cursor:hand" href="MySelection.php" id="MySelect"><li>'+value.Selection+'</li></a>';
 				$('#menu_main').append(menu_main);
 			}
 			if(key==="search_en"){
@@ -174,7 +174,7 @@ $(document).ready(function(){
 					'<form method="post" action="">'+
 						'<table class="table-ss" style="width:80%;">'+
 							'<tr>'+
-								'<td class="ss-radio" style="width:27%;"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
+								'<td class="ss-radio" style="width:27%;" id="RS-all"><input type="radio" name="model" value="tous" checked />'+value.model_tous+'</td>'+
 							'</tr>'+
 							'<tr>'+
                                                         '<td class="ss-radio" style="width:27%;" ><input type="radio" name="model" value="especes" />'+value.model_especes+'</td>'+
@@ -636,6 +636,15 @@ $(document).ready(function(){
 				$( "#export_pdf_fiche" ).attr( "title", value.export_pdf_fiche );
 				$( "#PagePerson" ).attr( "title", value.PagePerson );
 				$( "#logout" ).attr( "title", value.logout );
+                                $( "#welcom_title" ).attr( "title", value.login );
+                                $( "#MySelect" ).attr( "title", value.select );
+                                $( "#RS-all" ).attr( "title", value.toutesvigne );
+                                $( "#go_searchA" ).attr( "title", value.boutonRA );
+                                $( "#reset_searchA" ).attr( "title", value.resetRA );
+                                $( "#titile_section" ).attr("title", value.sectionRA);
+                                $( "#list_des_utilisateur" ).attr("title", value.userlist);
+                                $( ".detail_ses_infos" ).attr("title", value.modifuser);
+                                $( "#new_user_create" ).attr("title", value.newuser);
 			}
 		});
 	});

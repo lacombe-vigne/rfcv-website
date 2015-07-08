@@ -260,7 +260,7 @@ li.menu_rechercher {
 }
 .center .home_part1 #sous_title_part1,#sous_title_part2,#sous_title_part3{
     margin: -10px 0px 5px 85px;
-    color:#CCCCCC;
+    color:#999999;
     width:280px;
     font-size: 12px;
 }
@@ -542,14 +542,14 @@ legend img {
 /* 2.4 search simple results */
 
 .tri_accession_asc,.tri_variete_asc,.tri_espece_asc,.tri_aptitude_asc,.tri_description_asc
-,.tri_emplacement_asc,.tri_sanitaire_asc,.tri_bibliographie_asc,.tri_genetique_asc,.tri_lien_asc,.tri_doc_asc{
+,.tri_emplacement_asc,.tri_sanitaire_asc,.tri_bibliographie_asc,.tri_genetique_asc,.tri_lien_asc,.tri_doc_asc,.tri_Partenaire_asc{
     background:url(images/tri_up.png) center top no-repeat; 
     height:20;
     width:20;
 
 }
 .tri_accession_desc,.tri_variete_desc,.tri_espece_desc,.tri_aptitude_desc,.tri_description_desc 
-,.tri_emplacement_desc,.tri_sanitaire_desc,.tri_bibliographie_desc,.tri_genetique_desc,.tri_lien_desc,.tri_doc_desc{
+,.tri_emplacement_desc,.tri_sanitaire_desc,.tri_bibliographie_desc,.tri_genetique_desc,.tri_lien_desc,.tri_doc_desc,.tri_Partenaire_desc{
     background:url(images/tri_down.png) center top no-repeat; 
     height:20;
     width:20;

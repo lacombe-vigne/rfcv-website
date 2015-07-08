@@ -710,8 +710,8 @@ switch($fun){
 	break;
 	case "searchAdvance_requete":
 		$section=$_POST['section'];
-		//$langue=$_POST['langue'];
-                $langue=$_SESSION['language_Vigne'];
+		$langue=$_POST['langue'];
+                //$langue=$_SESSION['language_Vigne'];
 		$sql_possible=$_POST['sql_possible'];
 		$sql_total=$_POST['sql_total'];
 		$pagesize=$_POST['pagesize'];

@@ -334,7 +334,7 @@
 					//L'affichage ses informations
 					echo '
 						<div class="ses-info">
-						<img src="images/info_person.png" alt="INFORMATIONS" width="40" height="40"/>
+						<img src="images/info_person.png" title="INFORMATIONS" width="40" height="40"/>
 						<h3 id="title-ses-info"></h3>
 						<table id="ses_info_table">
 						</table>

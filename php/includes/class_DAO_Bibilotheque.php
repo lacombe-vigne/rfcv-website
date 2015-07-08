@@ -2999,7 +2999,7 @@ class BibliothequeDAO {
                 }
                 $partenaire = $DAO->partenaire($dico['CodePartenaire']);
                 $info = new Utilisateur($dico['CodePartenaire'], $dico['Nom'], $dico['Prenom'], $dico['CodePartenaire'], $dico['JY_Profil_Utilisateur'], $dico['TelBureau'], $dico['FaxBureau'], $dico['MailBureau'], $dico['MotDePasse'], $partenaire, $dico['PersonneMAJ'], $DateFin, $dico['Fonction']);
-                $lien = '<a onclick="$.ses_carte(\'' . $dico['CodePersonne'] . '\');return false;"><input type="hidden" name="codeUser" value="' . $dico['CodePersonne'] . '"/><img class="detail_ses_infos"  src="images/info_person.png" alt="INFORMATIONS" width="17" height="17"/></a>';
+                $lien = '<a onclick="$.ses_carte(\'' . $dico['CodePersonne'] . '\');return false;"><input type="hidden" name="codeUser" value="' . $dico['CodePersonne'] . '"/><img class="detail_ses_infos"  src="images/info_person.png" width="17" height="17"/></a>';
                 $contents_list_user = $info->getSesInfos();
                 $contents_list_user['lien'] = $lien;
                 $contents_list_user = supprNull($contents_list_user);
@@ -6813,7 +6813,7 @@ class BibliothequeDAO {
                      $con = " (doc.CodeIntro IS NOT NULL OR doc.CodeVar IS NOT NULL) ";
                      break;
                  case "Partenaire":
-                     $con = " (acc.CodePartenaire IS NOT NULL OR par.NomPartenaire IS NOT NULL) ";
+                     $con =" (var.CodePartenaire IS NOT NULL OR acc.CodePartenaire IS NOT NULL) " || " (var.CodePartenaire IS NOT NULL) " || " (acc.CodePartenaire IS NOT NULL) ";
                      break;
             }
             return $con;

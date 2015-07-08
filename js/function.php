@@ -214,10 +214,18 @@ and open the template in the editor.
 					this.className=this.tmpClass;
 					};
 				}
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if(key==="infobulle_fr"){
+                                            $( ".detail_ses_infos" ).attr("title", value.modifuser);
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
 		});
+                
 		},
 		function(){
 		$('.list-users').hide();
@@ -767,6 +775,13 @@ and open the template in the editor.
 					},
 					dataType:"json"
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if(key==="infobulle_fr"){
+                                            $( ".detail_ses_infos" ).attr("title", value.modifuser);
+                                        }
+                                    });
+                                });        
 		}
     });
 	$("#search_formule").keydown(function(event) {
@@ -891,9 +906,10 @@ and open the template in the editor.
 			var code=$('#fichier_code_variete').val();
 			var pagesize=$('#select_pagesize_aptitude_FichierVar').val();
 			var curpage=page;
-			var tri_aptitude_classname=$('#tri_accession_classname').val();
-			var tri_aptitude_section=$('#tri_accession_section').val();
-			var tri_aptitude_colone=$('#tri_accession_colone').val();
+			var tri_aptitude_classname=$('#tri_aptitude_classname').val();
+			var tri_aptitude_section=$('#tri_aptitude_section').val();
+			var tri_aptitude_colone=$('#tri_aptitude_colone').val();
+                        console.log(tri_aptitude_colone);
 			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_aptitude_classname+'&section='+tri_aptitude_section+'&colone='+tri_aptitude_colone;
 			$('#nombreR_FV_aptitude').remove();
 			console.log(dataString);
@@ -906,9 +922,9 @@ and open the template in the editor.
 			var code=$('#fichier_code_intro').val();
 			var pagesize=$('#select_pagesize_aptitude_FichierAcc').val();
 			var curpage=page;
-			var tri_aptitude_classname=$('#tri_accession_classname').val();
-			var tri_aptitude_section=$('#tri_accession_section').val();
-			var tri_aptitude_colone=$('#tri_accession_colone').val();
+			var tri_aptitude_classname=$('#tri_aptitude_classname').val();
+			var tri_aptitude_section=$('#tri_aptitude_section').val();
+			var tri_aptitude_colone=$('#tri_aptitude_colone').val();
 			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_aptitude_classname+'&section='+tri_aptitude_section+'&colone='+tri_aptitude_colone;
 			console.log(dataString);
 			$('#nombreR_FA_aptitude').remove();
@@ -1540,8 +1556,8 @@ and open the template in the editor.
 				var tri_espece_classname=$("#tri_espece_classname").val();
 				var tri_espece_section=$("#tri_espece_section").val();
 				var tri_espece_colone=$("#tri_espece_colone").val();
-				var page_espece=$('#espece_curpage_value').val();
-				var pagesize_espece=$('#espece_pagesize_value_hidden').val();
+				var page_espece=$('#espece_curpage_value').val() || 1;
+				var pagesize_espece=$('#espece_pagesize_value_hidden').val() || 20;
 			}
 			if(section=="variete"){
 				if(a===1){
@@ -1562,8 +1578,8 @@ and open the template in the editor.
 				var tri_variete_classname=$("#tri_variete_classname").val();
 				var tri_variete_section=$("#tri_variete_section").val();
 				var tri_variete_colone=$("#tri_variete_colone").val();
-				var page_variete=$('#variete_curpage_value').val();
-				var pagesize_variete=$('#variete_pagesize_value_hidden').val();
+				var page_variete=$('#variete_curpage_value').val() || 1;;
+				var pagesize_variete=$('#variete_pagesize_value_hidden').val() || 20;
 			}
 			if(section=="accession"){
 				if(a===1){
@@ -1586,8 +1602,8 @@ and open the template in the editor.
 				var tri_accession_classname=$("#tri_accession_classname").val();
 				var tri_accession_section=$("#tri_accession_section").val();
 				var tri_accession_colone=$("#tri_accession_colone").val();
-				var page_accession=$('#accession_curpage_value').val();
-				var pagesize_accession=$('#accession_pagesize_value_hidden').val();
+				var page_accession=$('#accession_curpage_value').val() || 1;;
+				var pagesize_accession=$('#accession_pagesize_value_hidden').val() || 20;
 			}
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 			// alert(dataString);
@@ -3107,14 +3123,52 @@ and open the template in the editor.
 					}
 					
 				});
-				
+				$.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_espece" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_espece" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_espece" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_espece" ).attr( "title", value.derpage );
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage )
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_espece" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_espece" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_espece" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_espece" ).attr( "title", value.derpage );
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				}
 				,
 				dataType:"json"
 			});
 		return false;
 	}
-
+                                 
 	function getPageBar(a,b,c){
 		if(c==='espece'){
 			if(a==1){
@@ -3391,12 +3445,12 @@ and open the template in the editor.
 			var search=$("#search_value").val();
 			var model=$("#model_value").val();
 			var langue=$("#langue_value").val();
-			var page_espece=$('#espece_curpage_value').val();
-			var pagesize_espece=$('#select_pagesize_espece').val();	
-			var page_variete=$('#variete_curpage_value').val();
-			var pagesize_variete=$('#select_pagesize_variete').val();
-			var page_accession=$('#accession_curpage_value').val();
-			var pagesize_accession=$('#select_pagesize_accession').val();	
+			var page_espece=$('#espece_curpage_value').val() || 1;
+			var pagesize_espece=$('#select_pagesize_espece').val() || 20;	
+			var page_variete=$('#variete_curpage_value').val() || 1;
+			var pagesize_variete=$('#select_pagesize_variete').val() || 20;	
+			var page_accession=$('#accession_curpage_value').val() || 1;
+			var pagesize_accession=$('#select_pagesize_accession').val() || 20;
 			var tri_espece_classname=$("#tri_espece_classname").val();
 			var tri_espece_section=$("#tri_espece_section").val();
 			var tri_espece_colone=$("#tri_espece_colone").val();
@@ -5176,6 +5230,7 @@ and open the template in the editor.
 		}
 	);
 	*/
+           //Fonctions liées aux fiches de données
 	function fichier_listVariete(dataString){
 		creatAjax();
 		$.ajax({
@@ -5388,7 +5443,7 @@ and open the template in the editor.
 							var contents_ligne_variete="";
 							$.each(value.contents,function(entryIndex,entry){
 								// console.log(entryIndex, entry);
-								contents_ligne_variete=contents_ligne_variete+'<tr><td width="2%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'"/></td>'+
+								contents_ligne_variete=contents_ligne_variete+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'"/></td>'+
 																				'<td width="5.1%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['codeVar']+'</td>'+
 																				'<td  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['nomVar']+'</td>'+
 																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['SynoMajeur']+'</td>'+
@@ -5419,6 +5474,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json",
@@ -5588,7 +5667,7 @@ and open the template in the editor.
 							$('#contents_accession').append('<table  width="100%" id="contents_ligne_accession"></table>');
 							var contents_ligne_accession="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_accession=contents_ligne_accession+'<tr><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
+								contents_ligne_accession=contents_ligne_accession+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
 																				'<td  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
 																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
@@ -5619,7 +5698,30 @@ and open the template in the editor.
 						}
 					}
 				});
-				
+				//Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -5837,7 +5939,7 @@ and open the template in the editor.
 								}else{
 									var data="";
 								}
-								contents_ligne_aptitude=contents_ligne_aptitude+'<tr><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'" /></td>'+
+								contents_ligne_aptitude=contents_ligne_aptitude+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'" /></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['CodeDonnee']+'</td>'+
 																				
 																				'<td width="22%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['AptitudeMesure']+'</td>'+
@@ -5867,6 +5969,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -6086,7 +6212,7 @@ and open the template in the editor.
 								}else{
 									var data="";
 								}
-								contents_ligne_aptitude=contents_ligne_aptitude+'<tr><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'" onclick="$.chkRow(this);return flase;"/></td>'+
+								contents_ligne_aptitude=contents_ligne_aptitude+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'" onclick="$.chkRow(this);return flase;"/></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['CodeDonnee']+'</td>'+
 																				
 																				'<td width="22%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['AptitudeMesure']+'</td>'+
@@ -6116,6 +6242,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -6260,7 +6410,7 @@ and open the template in the editor.
 							$('#contents_description').append('<table  width="100%" id="contents_ligne_description"></table>');
 							var contents_ligne_description="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_description=contents_ligne_description+'<tr><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['id']+'"/></td>'+
+								contents_ligne_description=contents_ligne_description+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['id']+'"/></td>'+
 																				'<td width="13%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Code']+'</td>'+
 																				'<td onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Description']+'</td>'+
 																				'<td width="20%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Critaire']+'</td>'+
@@ -6286,6 +6436,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -6429,7 +6603,7 @@ and open the template in the editor.
 							$('#contents_description').append('<table  width="100%" id="contents_ligne_description"></table>');
 							var contents_ligne_description="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_description=contents_ligne_description+'<tr><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['Code']+'"/></td>'+
+								contents_ligne_description=contents_ligne_description+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['Code']+'"/></td>'+
 																				'<td width="20%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Code']+'</td>'+
 																				'<td onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Description']+'</td>'+
 																				'<td width="20%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Critaire']+'</td>'+
@@ -6456,6 +6630,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -6624,7 +6822,7 @@ and open the template in the editor.
 							$('#contents_accession').append('<table  width="100%" id="contents_ligne_accession"></table>');
 							var contents_ligne_accession="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_accession=contents_ligne_accession+'<tr><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
+								contents_ligne_accession=contents_ligne_accession+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
 																				'<td  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
 																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
@@ -6652,6 +6850,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -6833,7 +7055,7 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'" /></td>'+
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'" /></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
 																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
@@ -6861,6 +7083,31 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
+                                
 				
 			}
 			,
@@ -7043,7 +7290,7 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
 																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
@@ -7071,7 +7318,30 @@ and open the template in the editor.
 						}
 					}
 				});
-				
+				//Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -7238,7 +7508,7 @@ and open the template in the editor.
 							$('#contents_sanitaire').append('<table  width="100%" id="contents_ligne_sanitaire"></table>');
 							var contents_ligne_sanitaire="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
+								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['IdTest']+'</td>'+
 																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CodeIntro']+'</td>'+
 																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['NomTest']+'</td>'+
@@ -7265,6 +7535,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -7431,7 +7725,7 @@ and open the template in the editor.
 							$('#contents_sanitaire').append('<table  width="100%" id="contents_ligne_sanitaire"></table>');
 							var contents_ligne_sanitaire="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
+								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
 																				'<td width="5%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['IdTest']+'</td>'+
 																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CodeIntro']+'</td>'+
 																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['NomTest']+'</td>'+
@@ -7458,6 +7752,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -7610,7 +7928,7 @@ and open the template in the editor.
 							$('#contents_bibliographie').append('<table  width="100%" id="contents_ligne_bibliographie"></table>');
 							var contents_ligne_bibliographie="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'" onclick="$.chkRow(this);return flase;"/></td>'+
+								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'" onclick="$.chkRow(this);return flase;"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
 																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
@@ -7637,6 +7955,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -7788,7 +8130,7 @@ and open the template in the editor.
 							$('#contents_bibliographie').append('<table  width="100%" id="contents_ligne_bibliographie"></table>');
 							var contents_ligne_bibliographie="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
+								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
 																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
 																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
@@ -7815,6 +8157,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -7958,7 +8324,7 @@ and open the template in the editor.
 							$('#contents_genetique').append('<table  width="100%" id="contents_ligne_genetique"></table>');
 							var contents_ligne_genetique="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_genetique=contents_ligne_genetique+'<tr><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'" /></td>'+
+								contents_ligne_genetique=contents_ligne_genetique+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'" /></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Code']+'</td>'+
 																				'<td width="19%" onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Margueur']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele1']+'</td>'+
@@ -7985,6 +8351,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -8129,7 +8519,7 @@ and open the template in the editor.
 							$('#contents_genetique').append('<table  width="100%" id="contents_ligne_genetique"></table>');
 							var contents_ligne_genetique="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_genetique=contents_ligne_genetique+'<tr><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'" /></td>'+
+								contents_ligne_genetique=contents_ligne_genetique+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'" /></td>'+
 																				'<td width="23%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Code']+'</td>'+
 																				'<td width="19%" onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Margueur']+'</td>'+
 																				'<td   onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele1']+'</td>'+
@@ -8156,6 +8546,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -8271,7 +8685,7 @@ and open the template in the editor.
 							$('#contents_lien').append('<table  width="100%" id="contents_ligne_lien"></table>');
 							var contents_ligne_lien="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_lien=contents_ligne_lien+'<tr><td width="2%"><input type="checkbox" name="Checkbox_lien[]" value="'+entry['Code_lien']+'"/></td>'+
+								contents_ligne_lien=contents_ligne_lien+'<tr ><td width="2%"><input type="checkbox" name="Checkbox_lien[]" value="'+entry['Code_lien']+'"/></td>'+
 																				'<td width="8%">'+entry['Code_lien']+'</td>'+
 																				'<td width="25%">'+entry['Titre']+'</td>'+
 																				'<td>'+entry['NomSite']+'</td>'+
@@ -8297,6 +8711,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
@@ -8438,6 +8876,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
@@ -8597,6 +9059,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
@@ -8756,7 +9242,30 @@ and open the template in the editor.
 						}
 					}
 				});
-				
+				//Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -8816,8 +9325,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					console.log(key,value);
 					if(key==="phototheque"){
-						var result ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
-                                                //tabs.append(result);
+                                                var result ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
                                                 console.log(result);
                                             var image="";
                                                 i=1;
@@ -8854,7 +9362,10 @@ and open the template in the editor.
 						}});
 						
 						$('#tabs-1_FichierVar_MED').append(image);// affiche les images correspondantes à la variété
-                                                $('#tabs-1_FichierVar_MED').append(result); //affiche le nombre de resultat obtenu sur le nombre de resultat possible
+                                                
+                                                $('#tabs-1-var_MED').text(result + ' ');
+                                                //var pho = tab.getElementsByTagName('li')[0];
+                                                //pho.textContent = $('#tabs-1-var_MED').text() + '_' + result;                                                //$('#tabs').append(result); //affiche le nombre de resultat obtenu sur le nombre de resultat possible
 						
 						$.getJSON("json/fichier.json",function(data){
 							$.each(data,function(key, value){
@@ -8896,8 +9407,10 @@ and open the template in the editor.
 					}
 					
 					if(key==="lien_site"){
+                                                var resultLiens ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                $('#tabs-3-var_MED').text(resultLiens + ' ');
 						$("#tabs-3_FichierVar_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat25"  onmouseover="$.aide_nombre_resultat(25);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierVar').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -9015,10 +9528,36 @@ and open the template in the editor.
 								};
 							}
 						}
+                                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_lien" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_lien" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_lien" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_lien" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 					}
 					if(key==="doc"){
+                                                var resultDoc ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                $('#tabs-2-var_MED').text(resultDoc + ' ');
 						$("#tabs-2_FichierVar_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat26"  onmouseover="$.aide_nombre_resultat(26);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierVar').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -9155,6 +9694,30 @@ and open the template in the editor.
 							}
 						}
 					}
+                                        //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				});
 				
 				
@@ -9251,7 +9814,7 @@ and open the template in the editor.
 							});
 							
 							$('#tabs-1_FichierAcc_MED').append(image);
-                                                        $('#tabs-1_FichierAcc_MED').append(result);
+                                                        $('#tabs-1-acc_MED').text(result + ' ');
 							
 							$.getJSON("json/fichier.json",function(data){
 								$.each(data,function(key, value){
@@ -11197,8 +11760,8 @@ and open the template in the editor.
 						'</td>'+
                                                 '<td width="5%"></td>'+
 						'<td  width="5%" id="lien_'+id_number+'" >'+
-							'<a onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a> '+
-							'<a id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
+							'<a class="addRA" onclick="$.fieldset_conditions_legend_img()"><img src="images/ajoute_un_contidition.png" alt="Search" width="20" height="20"></a> '+
+							'<a class="suppRA" id="sup_'+id_number+'" onclick="$.sup_condition('+id_number+')"><img src="images/delete_condition.png" alt="Search" width="20" height="20"></a>'+
 						'</td>'+
 					'</tr>';
 			$("#contents_condition").append(tr);                    
@@ -11207,6 +11770,24 @@ and open the template in the editor.
 			
                             });
                         });
+                        $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        var v=$('#contents_condition')[0];
+                                        var Ptr=v.getElementsByTagName("tr");
+                                        var id_number=Ptr.length;
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#lien_"+id_number ).attr( "title", value.ajoutRA );
+                                                $( "#sup_"+id_number ).attr( "title", value.suppRA );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#lien_"+id_number ).attr( "title", value.ajoutRA );
+                                                $( "#sup_"+id_number ).attr( "title", value.suppRA );
+                                            }
+                                        }
+                                    });
+                                });
                     }
 	});
 	//supprimer une condition
@@ -12419,6 +13000,123 @@ and open the template in the editor.
 		// return option;
 	}
 	//Commencer search advance
+        //En appuyant sur la touche entrée
+        $('#ResearchA,body').keypress(function(e){
+        if( e.which == 13 ){
+		var v=$('#contents_condition')[0];
+		var Ptr=v.getElementsByTagName("tr");
+		var dataString=""
+		var faute=0;
+		var v_a=0;
+		for(var i=1; i<=Ptr.length; i++){
+			var section_name = 'section_'+i;
+			var champ_name = 'champ_'+i;
+			var model_name = 'model_'+i;
+			var condition_name = 'condition_'+i;
+			var condition_genetique_name1 = 'condition_ValeurCodee1_'+i;
+			var condition_genetique_name2 = 'condition_ValeurCodee2_'+i;
+			/*
+                         * Permet de vériffier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
+                         */
+            
+                        if($('#champ_'+i).val()==' '){
+				faute+=1;
+			}else{
+				faute=faute;
+			}
+			if($('#section_'+i).val()=='Variete' ||$('#section_'+i).val()=='Accession'){
+				v_a+=1;
+			}
+			// window[section_name]=$('#section_'+i).val();
+			// window[champ_name]=$('#champ_'+i).val();
+			// window[model_name]=$('#model_'+i).val();
+			if(i==1){
+					dataString+=section_name+"="+$('#section_'+i).val()+"&"+champ_name+"="+$('#champ_'+i).val()+"&"+model_name+"="+$('#model_'+i).val();
+			}else{
+				dataString+="&"+section_name+"="+$('#section_'+i).val()+"&"+champ_name+"="+$('#champ_'+i).val()+"&"+model_name+"="+$('#model_'+i).val();
+			}
+			if($('#condition_'+i).val()==undefined){
+				if($('#listeDeroulante_'+i).val()==undefined){
+					var condition_gen=$('#condition_ValeurCodee1_'+i).val()+'_'+$('#condition_ValeurCodee2_'+i).val();
+					dataString+="&"+condition_name+"="+condition_gen;
+				}else{
+					dataString+="&"+condition_name+"="+$('#listeDeroulante_'+i).val();
+				}
+			}else{
+				// window[condition_name]=$('#condition_'+i).value();
+				dataString+="&"+condition_name+"="+$('#condition_'+i).val();
+			}
+		}
+                var idem = false; //booléen qui vérifie s'il y'a 2 conditons identiques
+                var indiff = false; // booléen qui verfiie s'il y'a 2 conditions identiques
+                /*
+                 * Permet de vérifier s'il n'y a pas de condition identiques
+                 */
+                var section = new Array(); // Tableau qui va contenir les différentes section de la reecherche avancée de l'utilisateur
+                for(var i=1 ; i<=Ptr.length; i++){                    
+                    section.push($('#section_'+i).val()); // on ajoute les sections au fur et à mesure
+                    for(var j=i+1 ; j<=Ptr.length; j++){
+                        if(($('#section_'+i).val()==$('#section_'+j).val()) && ($('#champ_'+i).val()==$('#champ_'+j).val()) && ($('#model_'+i).val()==$('#model_'+j).val()) && ($('#condition_'+i).val()==$('#condition_'+j).val())){
+                            /*
+                             * On vérifie que chaque colonne est identique
+                             * Si c'est le cas, on sort de la boucle et le booleen devient true
+                             */
+                            idem = true;
+                            break;
+                        }if(($('#section_'+i).val()==$('#section_'+j).val()) && (($('#champ_'+i).val()=="indifferent") || ($('#champ_'+j).val()=="indifferent"))){
+                            /*
+                             * On vérifie que l'on obtient pas 2 conditons sur la même section 
+                             * avec une condition "indifférent" 
+                             * et une conditon sur un champ de la section
+                             */
+                            indiff = true;
+                            break;
+                        }
+                    }
+                }
+                function cleanArray(array){
+                    /*
+                     * Fonction qui permet de supprimer les doublon dans un tableau
+                     */
+                    var i, j, len = array.length, out = [], obj = {};
+                    for (i = 0; i < len; i++) {
+                        obj[array[i]] = 0;
+                    }   
+                    for (j in obj) {
+                        out.push(j);
+                    }
+                    return out;
+                };
+                section=cleanArray(section); // tableau des différentes sections sans doublon                
+		if(faute==0 && v_a!=0 && !idem && (section.length <= 4) && !indiff){
+			console.log(dataString);
+			searchAdvance(dataString);
+		}else if(faute!=0){
+			if(langue=="FR"){
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}else if(langue=="EN"){
+				alert('You can not leave a vacuum line provided.');
+			}else{
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}
+		}else if(v_a==0){
+			if(langue=="FR"){
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}else if(langue=="EN"){
+				alert('You must choose at least a Variety or Accession section, and you can leave the "- any -".');
+			}else{
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}
+		}else if(idem){ // si 2 conditons sont identiques
+                    alert('Vous avez 2 lignes identiques');
+                }else if(section.length > 4){ // si nous avons plus de 4 sections différentes
+                    alert('Vous ne pouvez pas effectuer une recherche sur plus de 4 sections différentes');
+                }else if(indiff){
+                    alert("Incohérence des données recherchées");
+                }
+            }
+	});
+        //En cliquant sur le bouton
 	$('#go_searchA').click(function(){
 		var v=$('#contents_condition')[0];
 		var Ptr=v.getElementsByTagName("tr");
@@ -13234,6 +13932,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_espece" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_espece" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_espece" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_espece" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_espece" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_espece" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_espece" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_espece" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -13481,6 +14203,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_variete" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_variete" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_variete" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_variete" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -13679,6 +14425,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_accession" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_accession" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_accession" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_accession" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -13886,6 +14656,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_emplacement" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_emplacement" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_emplacement" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_emplacement" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -14079,6 +14873,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_sanitaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_sanitaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_sanitaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_sanitaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -14248,6 +15066,30 @@ and open the template in the editor.
 						}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_description" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_description" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_description" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_description" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -14496,6 +15338,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_aptitude" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_aptitude" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_aptitude" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_aptitude" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -14666,6 +15532,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_genetique" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_genetique" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_genetique" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_genetique" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -14917,6 +15807,26 @@ and open the template in the editor.
 							}
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_doc" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_doc" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_doc" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_doc" ).attr( "title", value.derpage );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -15097,6 +16007,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_bibliographie" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_bibliographie" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_bibliographie" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_bibliographie" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -15149,35 +16083,35 @@ and open the template in the editor.
 							var title_table='<table width="100%" id="table_Partenaire_titles"><th width="10%"><span id="CodePartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'CodePartenaire\',\'Partenaire\');"></button></th>'+
 													'<th ><span id="siglePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'siglePartenaire\',\'Partenaire\');"></button></th>'+
 													'<th width="40%" ><span id="NomPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'NomPartenaire\',\'Partenaire\');"></button></th>'+
-													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'sectionPartenaire\',\'Partenaire\');"></button></th></table>';
+													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'SectionRegionaleENTAV\',\'Partenaire\');"></button></th></table>';
 							$('#title_ligne_Partenaire').append(title_table);
 						}
 						if(value.tri.colone==="siglePartenaire"){
 							var title_table='<table width="100%" id="table_Partenaire_titles"><th width="10%"><span id="CodePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'CodePartenaire\',\'Partenaire\');"></button></th>'+
 													'<th ><span id="siglePartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'siglePartenaire\',\'Partenaire\');"></button></th>'+
 													'<th width="40%" ><span id="NomPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'NomPartenaire\',\'Partenaire\');"></button></th>'+
-													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'sectionPartenaire\',\'Partenaire\');"></button></th></table>';
+													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'SectionRegionaleENTAV\',\'Partenaire\');"></button></th></table>';
 							$('#title_ligne_Partenaire').append(title_table);
 						}
 						if(value.tri.colone==="NomPartenaire"){
 							var title_table='<table width="100%" id="table_Partenaire_titles"><th width="10%"><span id="CodePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'CodePartenaire\',\'Partenaire\');"></button></th>'+
-													'<th ><span id="siglePartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'siglePartenaire\',\'Partenaire\');"></button></th>'+
-													'<th width="40%" ><span id="NomPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'NomPartenaire\',\'Partenaire\');"></button></th>'+
-													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'sectionPartenaire\',\'Partenaire\');"></button></th></table>';
+													'<th ><span id="siglePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'siglePartenaire\',\'Partenaire\');"></button></th>'+
+													'<th width="40%" ><span id="NomPartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'NomPartenaire\',\'Partenaire\');"></button></th>'+
+													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'SectionRegionaleENTAV\',\'Partenaire\');"></button></th></table>';
 							$('#title_ligne_Partenaire').append(title_table);
 						}
-						if(value.tri.colone==="sectionPartenaire"){
+						if(value.tri.colone==="SectionRegionaleENTAV"){
 							var title_table='<table width="100%" id="table_Partenaire_titles"><th width="10%"><span id="CodePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'CodePartenaire\',\'Partenaire\');"></button></th>'+
-													'<th ><span id="siglePartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'siglePartenaire\',\'Partenaire\');"></button></th>'+
+													'<th ><span id="siglePartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'siglePartenaire\',\'Partenaire\');"></button></th>'+
 													'<th width="40%" ><span id="NomPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'NomPartenaire\',\'Partenaire\');"></button></th>'+
-													'<th width="25%" ><span id="sectionPartenaire"></span><button class="tri_Partenaire_asc" onclick="$.tri_table_Partenaire_avance(1,\'sectionPartenaire\',\'Partenaire\');"></button></th></table>';
+													'<th width="25%" ><span id="sectionPartenaire"></span><button class="'+value.tri.classname+'" onclick="$.tri_table_Partenaire_avance('+value.tri.section+',\'SectionRegionaleENTAV\',\'Partenaire\');"></button></th></table>';
 							$('#title_ligne_Partenaire').append(title_table);
 						}
 						$.getJSON("json/fichier.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="resultat_partenaire_fr"){
-										var h4=value.title;
+										var h4=value.Title;
 										var CodePartenaire=value.CodePartenaire;
 										var siglePartenaire=value.siglePartenaire;
 										var NomPartenaire=value.NomPartenaire;
@@ -15191,7 +16125,7 @@ and open the template in the editor.
 								}
 								if(langue=="EN"){
 									if(key==="resultat_partenaire_en"){
-										var h4=value.title;
+										var h4=value.Title;
 										var CodePartenaire=value.CodePartenaire;
 										var siglePartenaire=value.siglePartenaire;
 										var NomPartenaire=value.NomPartenaire;
@@ -15236,6 +16170,30 @@ and open the template in the editor.
 
 					}
 				});
+                                //Infobulles
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#premier_page_Partenaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_Partenaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_Partenaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_Partenaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#premier_page_Partenaire" ).attr( "title", value.prempage );
+                                                $( "#precedent_page_Partenaire" ).attr( "title", value.precpage );
+                                                $( "#suivant_page_Partenaire" ).attr( "title", value.suivpage );
+                                                $( "#fini_page_Partenaire" ).attr( "title", value.derpage );
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			}
 			,
 			dataType:"json"
@@ -15655,6 +16613,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -15736,6 +16713,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
@@ -15815,6 +16811,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -15893,6 +16908,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -15970,6 +17004,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16046,6 +17099,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16130,6 +17202,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16208,6 +17299,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16287,6 +17397,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16365,6 +17494,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16438,6 +17586,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16515,6 +17682,25 @@ and open the template in the editor.
 						}
 					}
 				});
+                                $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 			},
 			dataType:"json"
 		});
@@ -16778,6 +17964,25 @@ and open the template in the editor.
 			};
 		}
 	}
+        $.getJSON("./json/infobulle.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if($('#mainMenu_Home').val()==="Accueil"){
+                                            if(key==="infobulle_fr"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        } else {    
+                                            if(key==="infobulle_en"){
+                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".t1" ).attr( "title", value.result );
+                                                $( ".t2" ).attr( "title", value.result );
+                                            }
+                                        }
+                                    });
+                                });
 	/*suppremer une ligne de selection*/
 	$.extend({"delete_selection":
 		function(id,section){

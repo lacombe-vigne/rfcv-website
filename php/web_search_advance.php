@@ -58,10 +58,10 @@
 								</tr>
                                                         </table><br>
 							</tr>
-							<table id="searchA_button_table">
+							<table>
 							<tr>
-								<td width="50%" align="right"><a id="go_searchA"></a></td>
-                                                                <td width="50%" align="right" title="Réinitialise les conditions de la recherche"><a href="SearchA.php" id="reset_searchA"></a></td>
+								<td width="50%" align="right" id="searchA_button_table"><a id="go_searchA"></a></td>
+                                                                <td width="50%" align="right"><a href="SearchA.php" id="reset_searchA"><img src="images/DeleteAll.png" alt="Search" width="40" height="40"></a></td>
 							</tr>
 							</table>
 						</table>

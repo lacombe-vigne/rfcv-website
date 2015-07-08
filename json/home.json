@@ -147,7 +147,7 @@
 			"title":"Identifiez-vous",
 			"username":"Nom d'utilisateur : ",
 			"password":"Mot de Passe : ",
-			"button":"Validez",
+			"button":"Valider",
 			"notice_title":"Attention :",
 			"notice_contents":"Seuls les partenaires membres de Réseau peuvent utiliser ce type d'accès. Veuillez saisir votre nom d'utilisateur et le mot de passe personnel qui vous a été donné par les administrateurs de la base. Si vous n'êtes pas membre du Réseau, vous pouvez toutefois consulter les données publiques en parcourant directement le menu en haut."
 		},
@@ -156,7 +156,7 @@
 			"title":"Log in",
 			"username":"Username : ",
 			"password":"Password : ",
-			"button":"OK",
+			"button":"Ok",
 			"notice_title":"Warning:",
 			"notice_contents":"Only partners Network members can use this type of access. Please enter your username and personal password that was given to you by the database administrators. If you are not a member of the Network, you can still see public data directly through the menu above."
 		},
@@ -224,7 +224,7 @@
 			"title_parti1":"Documentation de la base de données",
 			"contents_parti1":"[en cours de rédaction]",
 			"title_parti2":"Caractéristiques techniques et fonctionalités",
-			"contents_parti2":"[en cours de rédaction]",
+			"contents_parti2":"Le code du site est hébergé sur <a href=' https://github.com/lacombe-vigne/rfcv-website' target='_blank' class='json'>GitHub</a>.",
 			"title_parti3":"Documents de référence",
 			"contents_parti3":"[en cours de rédaction]"
 		},

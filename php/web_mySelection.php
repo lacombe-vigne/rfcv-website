@@ -58,13 +58,13 @@
 										break;
 									}
 									echo '
-								<tr>
+								<tr style="cursor:pointer;">
 									<td width="13%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['codeEspece'].'</td>
 									<td width="35%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['nomEspece'].'</td>
 									<td width="25%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['botaniste'].'</td>
 									<td  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['tronc'].'</td>
-									<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-									<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeEspece'].'\',\'espece\')" /></td>
+									<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+									<td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeEspece'].'\',\'espece\')" /></td>
 								</tr>';
 								}
 							echo'
@@ -141,7 +141,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="4%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['codeVar'].'</td>
 										<td  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['nomVar'].'</td>
 										<td width="17%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['SynoMajeur'].'</td>
@@ -153,8 +153,8 @@
 										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['paysorigine'].'</td>
 										<td width="5%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['CodeEsp'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeVar'].'\',\'variete\')" /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeVar'].'\',\'variete\')" /></td>
 									</tr>';
 								}
 								echo'
@@ -227,7 +227,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['codeIntro'].'</td>
 										<td  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['NomIntro'].'</td>
 										<td width="17%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['nomVar'].'</td>
@@ -236,8 +236,8 @@
 										<td width="12%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['communeProvenance'].'</td>
 										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['AnneeEntree'].'</td>
 										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeIntro'].'\',\'accession\')"  /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" height="25" onclick="$.delete_selection(\''.$value['codeIntro'].'\',\'accession\')"  /></td>
 									</tr>';
 								}
 								echo'
@@ -312,7 +312,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="23%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeEmplacem'].'</td>
 										<td width="8%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeSite'].'</td>
 										<td width="8%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['Parcelle'].'</td>
@@ -322,8 +322,8 @@
 										<td width="10%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeIntro'].'</td>
 										<td width="10%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeEmplacem'].'\',\'emplacement\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeEmplacem'].'\',\'emplacement\')"   /></td>
 									</tr>';
 								}
 								echo'
@@ -396,7 +396,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="5%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['IdTest'].'</td>
 										<td width="10%" onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeIntro'].'</td>
 										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['NomTest'].'</td>
@@ -405,8 +405,8 @@
 										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['Laboratoire'].'</td>
 										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['IdTest'].'\',\'sanitaire\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['IdTest'].'\',\'sanitaire\')"   /></td>
 									</tr>';
 								}
 								echo'
@@ -478,7 +478,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="13%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Code'].'</td>
 										<td onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Description'].'</td>
 										<td width="20%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Critaire'].'</td>
@@ -486,8 +486,8 @@
 										<td width="20%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeVar'].'</td>
 										<td width="15%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeAcc'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['id'].'\',\'morphologique\')"/></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['id'].'\',\'morphologique\')"/></td>
 									</tr>';
 								}
 								echo'
@@ -568,7 +568,7 @@
 										$date_aptitude="";
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeDonnee'].'</td>
 										<td width="22%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['AptitudeMesure'].'</td>
 										<td width="7%" onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['ValeurMesure'].'</td>
@@ -579,8 +579,8 @@
 										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeAcc'].'</td>
 										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeDonnee'].'\',\'aptitude\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeDonnee'].'\',\'aptitude\')"   /></td>
 									</tr>';
 								}
 								echo'
@@ -671,7 +671,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="23%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Code'].'</td>
 										<td width="19%" onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Margueur'].'</td>
 										<td   onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Allele1'].'</td>
@@ -681,8 +681,8 @@
 										<td width="5%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeAcc'].'</td>
 										<td width="5%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code'].'\',\'genetique\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code'].'\',\'genetique\')"   /></td>
 									</tr>';
 								}
 								echo'
@@ -758,7 +758,7 @@
 									}
 									
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="8%">'.$value['Code_doc'].'</td>
 										<td width="35%">'.$value['Titre'].'</td>
 										<td>'.$value['Auteur'].'</td>
@@ -768,8 +768,8 @@
 										<td width="5%">'.$value['CodeAcc'].'</td>
 										<td width="5%">'.$value['CodeVar'].'</td>
 										<td width="5%">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code_doc'].'\',\'Documentation\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code_doc'].'\',\'Documentation\')"   /></td>
 									</tr>';
 								}
 								echo'
@@ -844,7 +844,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="8%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeCit'].'</td>
 										<td   onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Title'].'</td>
 										<td width="25%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Author'].'</td>
@@ -854,8 +854,8 @@
 										<td width="7%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeAcc'].'</td>
 										<td width="7%" onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">...</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeCit'].'\',\'Bibliographie\')"  /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeCit'].'\',\'Bibliographie\')"  /></td>
 									</tr>';
 								}
 								echo'
@@ -890,7 +890,7 @@
 							<div id="contents_Partenaire">
 								<div class="function_ligne_Partenaire">
 									<table width="100%" id="table_Partenaire_function">
-										<tr>
+										<tr style="cursor:pointer;">
 											<td width="5%"><a id="aide_export_xls11" onmouseover="$.aide_export_xls(11)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Partenaire" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_Partenaire_selection" onchange="$.select_change_selection_listPartenaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
@@ -929,8 +929,8 @@
 										<td   onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SiglePartenaire'].'</td>
 										<td width="40%"  onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['NomPartenaire'].'</td>
 										<td width="25%"  onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SectionRegionaleENTAV'].'</td>
-										<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodePartenaire'].'\',\'partenaire\')"  /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodePartenaire'].'\',\'partenaire\')"  /></td>
 									</tr>';
 								}
 								echo'
@@ -1004,7 +1004,7 @@
 										break;
 									}
 									echo '
-									<tr>
+									<tr style="cursor:pointer;">
 										<td width="8%">'.$value['Code_lien'].'</td>
 										<td width="25%">'.$value['Titre'].'</td>
 										<td>'.$value['NomSite'].'</td>
@@ -1013,8 +1013,8 @@
 										<td>'.$value['CodeIntro'].'</td>
 										<td width="25%">'.$value['CodeVar'].'</td>
 										<td width="5%" >...</td>
-										<td width="5%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>
-										<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code_lien'].'\',\'Lien\')"   /></td>
+										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code_lien'].'\',\'Lien\')"   /></td>
 									</tr>';
 								}
 								echo'

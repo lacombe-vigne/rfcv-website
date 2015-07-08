@@ -849,7 +849,7 @@
                     "parPage":"Nombre d'enregistrements par page :",
                     "page":"page",
                     "CodePartenaire":"Code",
-                    "SiglePartenaire":"Sigle",
+                    "siglePartenaire":"Sigle",
                     "NomPartenaire":"Nom",
                     "sectionPartenaire":"Section régionale"
                 },
