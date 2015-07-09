@@ -12,7 +12,7 @@ and open the template in the editor.
        <?php session_start();
        $langue = $_SESSION['language_Vigne']; ?>
        <script type="text/javascript" charset=utf-8>          
-        $(document).ready(function(){
+        $(document).ready(function(){   
 	//page person, qui ne affiche pas au début de ce page
 	$('.modifier_mesInfos').hide();
 	$('.list-users').hide();
@@ -849,22 +849,22 @@ and open the template in the editor.
 				var page_espece=page;
 				var pagesize_espece=$('#select_pagesize_espece').val();
 			}else{
-				var page_espece=$('#espece_curpage_value').val();
-				var pagesize_espece=$('#espece_pagesize_value_hidden').val();
+				var page_espece=$('#espece_curpage_value').val() || 1;
+				var pagesize_espece=$('#espece_pagesize_value_hidden').val() || 20;
 			}
 			if(section=="variete"){
 				var page_variete=page;
 				var pagesize_variete=$('#select_pagesize_variete').val();
 			}else{
-				var page_variete=$('#variete_curpage_value').val();
-				var pagesize_variete=$('#variete_pagesize_value_hidden').val();
+				var page_variete=$('#variete_curpage_value').val() || 1;
+				var pagesize_variete=$('#variete_pagesize_value_hidden').val() || 20;
 			}
 			if(section=="accession"){
 				var page_accession=page;
 				var pagesize_accession=$('#select_pagesize_accession').val();
 			}else{
-				var page_accession=$('#accession_curpage_value').val();
-				var pagesize_accession=$('#accession_pagesize_value_hidden').val();
+				var page_accession=$('#accession_curpage_value').val() || 1;
+				var pagesize_accession=$('#accession_pagesize_value_hidden').val() || 20;
 			}
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
 			// alert(dataString);
@@ -1492,15 +1492,17 @@ and open the template in the editor.
 				var tri_doc_classname="tri_doc_desc";
 				var tri_doc_section=2;
 				var tri_doc_colone=b;
+                                var sectionfiche="Variete";
 			}
 			if(a===2){
 				var curpage=$('#doc_curpage_value_FichierVar').val();
 				var pagesize=$('#select_pagesize_documentation_FichierVar').val();
 				var tri_doc_classname="tri_doc_asc";
 				var tri_doc_section=1;
+                                var sectionfiche="Variete";
 				var tri_doc_colone=b;
 			}
-			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_doc_classname+'&section='+tri_doc_section+'&colone='+tri_doc_colone;
+			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_doc_classname+'&section='+tri_doc_section+'&colone='+tri_doc_colone+'&sectionfiche='+sectionfiche;;
 			console.log(dataString);
 			fichier_listeDoc_FichierVar(dataString);
 		}
@@ -1515,6 +1517,7 @@ and open the template in the editor.
 				var tri_doc_classname="tri_doc_desc";
 				var tri_doc_section=2;
 				var tri_doc_colone=b;
+                                var sectionfiche="Accession";
 			}
 			if(a===2){
 				var curpage=$('#doc_curpage_value_FichierAcc').val();
@@ -1522,8 +1525,9 @@ and open the template in the editor.
 				var tri_doc_classname="tri_doc_asc";
 				var tri_doc_section=1;
 				var tri_doc_colone=b;
+                                var sectionfiche="Accession";
 			}
-			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_doc_classname+'&section='+tri_doc_section+'&colone='+tri_doc_colone;
+			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_doc_classname+'&section='+tri_doc_section+'&colone='+tri_doc_colone+'&sectionfiche='+sectionfiche;
 			console.log(dataString);
 			fichier_listeDoc_FichierAcc(dataString);
 		}
@@ -1980,6 +1984,7 @@ and open the template in the editor.
 				var tri_lien_classname="tri_lien_desc";
 				var tri_lien_section=2;
 				var tri_lien_colone=b;
+                                var sectionfiche="Variete";
 			}
 			if(a===2){
 				var curpage=$('#lien_curpage_value_FichierVar').val();
@@ -1987,8 +1992,9 @@ and open the template in the editor.
 				var tri_lien_classname="tri_lien_asc";
 				var tri_lien_section=1;
 				var tri_lien_colone=b;
+                                var sectionfiche="Variete";
 			}
-			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_lien_classname+'&section='+tri_lien_section+'&colone='+tri_lien_colone;
+			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_lien_classname+'&section='+tri_lien_section+'&colone='+tri_lien_colone+'&sectionfiche='+sectionfiche;
 			console.log(dataString);
 			fichier_listeLien_FichierVar(dataString);
 		}
@@ -2003,6 +2009,7 @@ and open the template in the editor.
 				var tri_lien_classname="tri_lien_desc";
 				var tri_lien_section=2;
 				var tri_lien_colone=b;
+                                var sectionfiche="Accession";
 			}
 			if(a===2){
 				var curpage=$('#lien_curpage_value_FichierAcc').val();
@@ -2010,8 +2017,9 @@ and open the template in the editor.
 				var tri_lien_classname="tri_lien_asc";
 				var tri_lien_section=1;
 				var tri_lien_colone=b;
+                                var sectionfiche="Accession";
 			}
-			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_lien_classname+'&section='+tri_lien_section+'&colone='+tri_lien_colone;
+			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_lien_classname+'&section='+tri_lien_section+'&colone='+tri_lien_colone+'&sectionfiche='+sectionfiche;
 			console.log(dataString);
 			fichier_listeLien_FichierAcc(dataString);
 		}
@@ -7788,23 +7796,19 @@ and open the template in the editor.
 			url:"./php/script_webbio.php",
 			data:dataString+"&function=cate8_var",
 			beforeSend:function(){
-				$('#cate8_FichierVar').append('<img src="images/ajax-loader.gif" width="30" height="30" id="loding" />');
+				$('#tabs-4_FichierVar_MED').empty();
+				$('#tabs-4_FichierVar_MED').append('<img src="images/ajax-loader.gif" width="30" height="30" id="loding" />');
 			},
 			success:function(data){
 				console.log(data);
-				$("#loding").remove();
-				$('#list8_cate_var').remove();
-				$(".open_cate8_FichierVar").append('<div id="list8_cate_var"><fieldset id="list8_fieldset_FichierVar"></fieldset></div>');
+				$('#loding').remove();
 				$.each(data,function(key,value){
 					if(key==="bibliographie"){
-						//legend
-						var div='<div id="contents_bibliographie"></div>';
-						$('#list8_fieldset_FichierVar').append(div);
-						var legend='<span id="nombreR_FV_bibliographie">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat17"  onmouseover="$.aide_nombre_resultat(17);"><img src="images/help1.png" width="20" height="20"/></a></span>';
-						$('#click_cate8_FichierVar').append(legend);
-						//function_ligne
+                                                $("#tabs-4_FichierVar_MED").append('<div id="bibliographie_cate_var"><fieldset id="bibliographie_cate_var_FichierVar"></fieldset></div>');
+						var legend='<div id="contents_bibliographie"></div>';
+						$('#bibliographie_cate_var_FichierVar').append(legend);
 						$('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
-						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
+                                                var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection15" onmouseover="$.aide_myselection(15)" ><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
 														'<td width="5%"><a id="aide_export_xls15" onmouseover="$.aide_export_xls(15)" href="./php/ExportXLS/ExportXLS_Variete.php?section=bibliographie" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
@@ -7812,7 +7816,7 @@ and open the template in the editor.
 														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+value.page.pagetotal+');"/></td>'+
 														'</tr></table>';
 						$('.function_ligne_bibliographie').append(function_ligne);
-						$("#select_pagesize_bibliographie_FichierVar option[value='"+value.page.pagesize+"']").attr("selected",true);
+                                                $("#select_pagesize_bibliographie_FichierVar option[value='"+value.page.pagesize+"']").attr("selected",true);
 						getPageBar(value.page.curpage,value.page.pagetotal,'bibliographie');
 						$('#bibliographie_curpage_value_FichierVar').remove();
 						$('#bibliographie_pageTotal_value').remove();
@@ -7820,10 +7824,8 @@ and open the template in the editor.
 						$('#tri_bibliographie_classname_FichierVar').remove();
 						$('#tri_bibliographie_section_FichierVar').remove();
 						$('#tri_bibliographie_colone_FichierVar').remove();
-						$('#list8_cate_var').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
-						$('#list8_cate_var').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
-						//title_ligne
-						var langue=value.langue;
+                                                $('#contents_bibliographie').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
+						$('#contents_bibliographie').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
 						$('#contents_bibliographie').append('<div id="title_ligne_bibliographie"></div>');
 						if(value.tri.colone==="CodeCit"){
 							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'CodeCit\',\'bibliographie\');"></button></th>'+
@@ -7990,22 +7992,18 @@ and open the template in the editor.
 			url:"./php/script_webbio.php",
 			data:dataString+"&function=cate7_acc",
 			beforeSend:function(){
-				$('#cate7_FichierAcc').append('<img src="images/ajax-loader.gif" width="30" height="30" id="loding" />');
-			},
+				$('#tabs-4_FichierAcc_MED').empty();
+				$('#tabs-4_FichierAcc_MED').append('<img src="images/ajax-loader.gif" width="30" height="30" id="loding" />');
+                        },        
 			success:function(data){
 				console.log(data);
 				$("#loding").remove();
-				$('#list8_cate_var').remove();
-				$(".open_cate7_FichierAcc").append('<div id="list8_cate_var"><fieldset id="list7_fieldset_FichierAcc"></fieldset></div>');
 				$.each(data,function(key,value){
 					if(key==="bibliographie"){
-						//legend
-						var div='<div id="contents_bibliographie"></div>';
-						$('#list7_fieldset_FichierAcc').append(div);
-						var legend='<span id="nombreR_FA_bibliographie">('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat18"  onmouseover="$.aide_nombre_resultat(18);"><img src="images/help1.png" width="20" height="20"/></a></span>';
-						$('#click_cate7_FichierAcc').append(legend);
-						//function_ligne
-						$('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
+                                                $("#tabs-4_FichierAcc_MED").append('<div id="bibliographie_cate_acc"><fieldset id="bibliographie_cate_acc_FichierAcc"></fieldset></div>');
+                                                var legend='<div id="contents_bibliographie"></div>';
+                                                $('#bibliographie_cate_acc_FichierAcc').append(legend);
+                                                $('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
 						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection16" onmouseover="$.aide_myselection(16)"><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
 														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
@@ -8022,8 +8020,8 @@ and open the template in the editor.
 						$('#tri_bibliographie_classname_FichierVar').remove();
 						$('#tri_bibliographie_section_FichierVar').remove();
 						$('#tri_bibliographie_colone_FichierVar').remove();
-						$('#list8_cate_var').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
-						$('#list8_cate_var').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
+						$('#contents_bibliographie').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
+						$('#contents_bibliographie').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
 						//title_ligne
 						var langue=value.langue;
 						$('#contents_bibliographie').append('<div id="title_ligne_bibliographie"></div>');
@@ -8591,7 +8589,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="lien_site"){
 						$("#tabs-3_FichierVar_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat21"  onmouseover="$.aide_nombre_resultat(21);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierVar').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -8756,7 +8754,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="lien_site"){
 						$("#tabs-3_FichierAcc_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierAcc"></fieldset></div>');
-						var legend='<legend > <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat22"  onmouseover="$.aide_nombre_resultat(22);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+						var legend='<div id="contents_lien"></div>';
 						$('#lien_cate_var_FichierAcc').append(legend);
 						$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -8807,7 +8805,7 @@ and open the template in the editor.
 													'<th  width="25%" ><span id="Titre_lien_FichierAcc"></span><button id="tri_button_lien_Titre" class="tri_lien_asc" onclick="$.tri_table_lien_FichierAcc(1,\'Titre\',\'lien\');"></button></th>'+
 													'<th  ><span id="NomSite_FichierAcc"></span><button id="tri_button_lien_NomSite" class="tri_lien_asc" onclick="$.tri_table_lien_FichierAcc(1,\'NomSite\',\'lien\');"></button></th>'+
 													'<th width="25%" ><span id="Pays_lien_FichierAcc"></span><button id="tri_button_lien_Pays" class="'+value.tri.classname+'" onclick="$.tri_table_lien_FichierAcc('+value.tri.section+',\'Pays\',\'lien\');"></button></th>'+
-													'<th width="15%" ><span id="LienCLICABLE_FFichierAcc"></span></th></table>';
+													'<th width="15%" ><span id="LienCLICABLE_FichierAcc"></span></th></table>';
 							$('#title_ligne_lien').append(title_table);
 						}
 						$.getJSON("json/fichier.json",function(data){
@@ -8921,7 +8919,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="doc"){
 						$("#tabs-2_FichierVar_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierVar"></fieldset></div>');
-						var legend='<legend ><a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat23"  onmouseover="$.aide_nombre_resultat(23);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierVar').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -9104,7 +9102,7 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="doc"){
 						$("#tabs-2_FichierAcc_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierAcc"></fieldset></div>');
-						var legend='<legend ><a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat24"  onmouseover="$.aide_nombre_resultat(24);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+						var legend='<div id="contents_doc"></div>';
 						$('#doc_cate_var_FichierAcc').append(legend);
 						$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 						var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -9288,12 +9286,15 @@ and open the template in the editor.
 								'<li><a href="#tabs-1_FichierVar_MED" id="tabs-1-var_MED"></a></li>'+
 								'<li><a href="#tabs-2_FichierVar_MED" id="tabs-2-var_MED"></a></li>'+
 								'<li><a href="#tabs-3_FichierVar_MED" id="tabs-3-var_MED"></a></li>'+
+                                                                '<li><a href="#tabs-4_FichierVar_MED" id="tabs-4-var_MED"></a></li>'+
 							'</ul>'+
 							'<div id="tabs-1_FichierVar_MED">'+
 							'</div>'+
 							'<div id="tabs-2_FichierVar_MED">'+
 							'</div>'+
 							'<div id="tabs-3_FichierVar_MED">'+
+							'</div>'+
+                                                        '<div id="tabs-4_FichierVar_MED">'+
 							'</div>'+
 						'</div>';
 				$('#list7_cate_var').append(tabs);
@@ -9305,9 +9306,11 @@ and open the template in the editor.
 								var title1=value.title1;
 								var title2=value.title2;
 								var title3=value.title3;
+                                                                var title4=value.title4;
 								$('#tabs-1-var_MED').append(title1);
 								$('#tabs-2-var_MED').append(title2);
 								$('#tabs-3-var_MED').append(title3);
+                                                                $('#tabs-4-var_MED').append(title4);
 							}
 						}
 						if($('#mainMenu_Home').val()==="Home"){
@@ -9315,9 +9318,11 @@ and open the template in the editor.
 								var title1=value.title1;
 								var title2=value.title2;
 								var title3=value.title3;
+                                                                var title4=value.title4;
 								$('#tabs-1-var_MED').append(title1);
 								$('#tabs-2-var_MED').append(title2);
 								$('#tabs-3-var_MED').append(title3);
+                                                                $('#tabs-4-var_MED').append(title4);
 							}
 						}
 					});
@@ -9340,7 +9345,15 @@ and open the template in the editor.
 									console.log(entryIndex,entry);
                                                                         tab = tab.concat(entry);
                                                                         console.log(tab);
+                                                                        image=image+' <a class="fancybox" href="'+entry['FichierPhoto']+'" data-fancybox-group="gallery" title=""><img src="'+entry['FichierPhoto']+'" width="100" alt="" /></a>';
+                                                                        
                                                                         $('.fancybox').fancybox({
+                                                                            beforeShow: function () {
+                                                                            /* Disable right click */
+                                                                                $.fancybox.wrap.bind("contextmenu", function (e) {
+                                                                                    return false; 
+                                                                                });
+                                                                            },
                                                                             afterLoad : function() {
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
@@ -9350,12 +9363,10 @@ and open the template in the editor.
                                                                                     this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
                                                                                     //Label en anglais : Organ,Date,Photograph,Partner (cf:photothque.json) 
                                                                                 }    
-                                                                            }
+                                                                            },
                                                                         });
-                                                                        image=image+' <a class="fancybox" href="'+entry['FichierPhoto']+'" data-fancybox-group="gallery" title=""><img src="'+entry['FichierPhoto']+'" width="100" alt="" /></a>';
-                                                                        i++;
 
-									
+									i++;
 								});
 							}
 							
@@ -9694,6 +9705,162 @@ and open the template in the editor.
 							}
 						}
 					}
+                                        if(key==="bibliographie"){
+                                                console.log(value.nombreDeResultatPossible);
+                                                var resultBiblio ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                $('#tabs-4-var_MED').text(resultBiblio + ' ');
+                                                $("#tabs-4_FichierVar_MED").append('<div id="bibliographie_cate_var"><fieldset id="bibliographie_cate_var_FichierVar"></fieldset></div>');
+						var legend='<div id="contents_bibliographie"></div>';
+						$('#bibliographie_cate_var_FichierVar').append(legend);
+                                                $('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
+                                                var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
+														'<td width="5%"><a id="aide_myselection15" onmouseover="$.aide_myselection(15)" ><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls15" onmouseover="$.aide_export_xls(15)" href="./php/ExportXLS/ExportXLS_Variete.php?section=bibliographie" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="60%"></td>'+
+														'<td ><select id="select_pagesize_bibliographie_FichierVar" onchange="$.select_change_FichierVar_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
+														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_FichierVar_listBibliographie('+value.page.pagetotal+');"/></td>'+
+														'</tr></table>';
+						$('.function_ligne_bibliographie').append(function_ligne);
+                                                $("#select_pagesize_bibliographie_FichierVar option[value='"+value.page.pagesize+"']").attr("selected",true);
+						getPageBar(value.page.curpage,value.page.pagetotal,'bibliographie');
+						$('#bibliographie_curpage_value_FichierVar').remove();
+						$('#bibliographie_pageTotal_value').remove();
+						$('#bibliographie_pagesize_value_hidden').remove();
+						$('#tri_bibliographie_classname_FichierVar').remove();
+						$('#tri_bibliographie_section_FichierVar').remove();
+						$('#tri_bibliographie_colone_FichierVar').remove();
+                                                $('#contents_bibliographie').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
+						$('#contents_bibliographie').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
+						$('#contents_bibliographie').append('<div id="title_ligne_bibliographie"></div>');
+						if(value.tri.colone==="CodeCit"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th  ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Title"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Author"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Year"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="VolumeCitation"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="PagesCitation"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierVar(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierVar('+value.tri.section+',\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						$.getJSON("json/fichier.json",function(data){
+							$.each(data,function(key, value){
+								if($('#mainMenu_Home').val()==="Accueil"){
+									if(key==="resultat_bibliographie_fr"){
+										var h4=value.title;
+										var CodeCit_FichierVar=value.CodeCit;
+										var CodeVar_bibliographie_FichierVar=value.CodeVar;
+										var Title_FichierVar=value.Title;
+										var Author_FichierVar=value.Author;
+										var Year_FichierVar=value.Year;
+										var PagesCitation_FichierVar=value.PagesCitation;
+										var VolumeCitation_FichierVar=value.VolumeCitation;
+										$('.h4_bibliographie').append(h4);
+										$('#CodeCit_FichierVar').append(CodeCit_FichierVar);
+										$('#CodeVar_bibliographie_FichierVar').append(CodeVar_bibliographie_FichierVar);
+										$('#Title_FichierVar').append(Title_FichierVar);
+										$('#Author_FichierVar').append(Author_FichierVar);
+										$('#Year_FichierVar').append(Year_FichierVar);
+										$('#PagesCitation_FichierVar').append(PagesCitation_FichierVar);
+										$('#VolumeCitation_FichierVar').append(VolumeCitation_FichierVar);
+									}
+								}
+								if(langue=="EN"){
+									if(key==="resultat_bibliographie_en"){
+										var h4=value.title;
+										var CodeCit_FichierVar=value.CodeCit;
+										var CodeVar_bibliographie_FichierVar=value.CodeVar;
+										var Title_FichierVar=value.Title;
+										var Author_FichierVar=value.Author;
+										var Year_FichierVar=value.Year;
+										var PagesCitation_FichierVar=value.PagesCitation;
+										var VolumeCitation_FichierVar=value.VolumeCitation;
+										$('.h4_bibliographie').append(h4);
+										$('#CodeCit_FichierVar').append(CodeCit_FichierVar);
+										$('#CodeVar_bibliographie_FichierVar').append(CodeVar_bibliographie_FichierVar);
+										$('#Title_FichierVar').append(Title_FichierVar);
+										$('#Author_FichierVar').append(Author_FichierVar);
+										$('#Year_FichierVar').append(Year_FichierVar);
+										$('#PagesCitation_FichierVar').append(PagesCitation_FichierVar);
+										$('#VolumeCitation_FichierVar').append(VolumeCitation_FichierVar);
+									}
+								}
+							});
+						});
+						//contents_emplacement
+						if(value.contents!=null){
+							$('#contents_bibliographie').append('<table  width="100%" id="contents_ligne_bibliographie"></table>');
+							var contents_ligne_bibliographie="";
+							$.each(value.contents,function(entryIndex,entry){
+								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'" onclick="$.chkRow(this);return flase;"/></td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
+																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
+																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
+																				'<td width="12%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Year']+'</td>'+
+																				'<td width="7%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['VolumeCitation']+'</td>'+
+																				'<td width="7%" onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['PagesCitation']+'</td></tr>';
+							});
+							$('#contents_ligne_bibliographie').append(contents_ligne_bibliographie);
+							var v=$('#contents_ligne_bibliographie')[0];
+							var Ptr2=v.getElementsByTagName("tr");
+							for (i=1;i<Ptr2.length+1;i++) { 
+							Ptr2[i-1].className = (i%2>0)?"t1":"t2"; 
+							}
+							for(var i=0;i<Ptr2.length;i++) {
+								Ptr2[i].onmouseover=function(){
+								this.tmpClass=this.className;
+								this.className = "t3";
+								
+								};
+								Ptr2[i].onmouseout=function(){
+								this.className=this.tmpClass;
+								};
+							}
+						}
+					}
                                         //Infobulles
                                 $.getJSON("./json/infobulle.json",function(data){
                                     $.each(data,function(key, value){
@@ -9744,12 +9911,15 @@ and open the template in the editor.
 								'<li><a href="#tabs-1_FichierAcc_MED" id="tabs-1-acc_MED"></a></li>'+
 								'<li><a href="#tabs-2_FichierAcc_MED" id="tabs-2-acc_MED"></a></li>'+
 								'<li><a href="#tabs-3_FichierAcc_MED" id="tabs-3-acc_MED"></a></li>'+
+                                                                '<li><a href="#tabs-4_FichierAcc_MED" id="tabs-4-acc_MED"></a></li>'+
 							'</ul>'+
 							'<div id="tabs-1_FichierAcc_MED">'+
 							'</div>'+
 							'<div id="tabs-2_FichierAcc_MED">'+
 							'</div>'+
 							'<div id="tabs-3_FichierAcc_MED">'+
+							'</div>'+
+                                                        '<div id="tabs-4_FichierAcc_MED">'+
 							'</div>'+
 						'</div>';
 				$('#list6_cate_acc').append(tabs);
@@ -9761,9 +9931,11 @@ and open the template in the editor.
 								var title1=value.title1;
 								var title2=value.title2;
 								var title3=value.title3;
+                                                                var title4=value.title4;
 								$('#tabs-1-acc_MED').append(title1);
 								$('#tabs-2-acc_MED').append(title2);
 								$('#tabs-3-acc_MED').append(title3);
+                                                                $('#tabs-4-acc_MED').append(title4);
 							}
 						}
 						if($('#mainMenu_Home').val()==="Home"){
@@ -9771,9 +9943,11 @@ and open the template in the editor.
 								var title1=value.title1;
 								var title2=value.title2;
 								var title3=value.title3;
+                                                                var title4=value.title4;
 								$('#tabs-1-acc_MED').append(title1);
 								$('#tabs-2-acc_MED').append(title2);
 								$('#tabs-3-acc_MED').append(title3);
+                                                                $('#tabs-4-acc_MED').append(title4);
 							}
 						}
 					});
@@ -9793,6 +9967,12 @@ and open the template in the editor.
                                                                         tab = tab.concat(entry);
                                                                         console.log(tab);
                                                                         $('.fancybox').fancybox({
+                                                                            beforeShow: function () {
+                                                                            /* Disable right click */
+                                                                                $.fancybox.wrap.bind("contextmenu", function (e) {
+                                                                                    return false; 
+                                                                                });
+                                                                            },
                                                                             afterLoad : function() {
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
@@ -9853,11 +10033,14 @@ and open the template in the editor.
 									}
 								});
 							});
-						}
+                                                    }
+                                                }
 						
 						if(key==="lien_site"){
+                                                        var resultLien ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                        $('#tabs-3-acc_MED').text(resultLien + ' ');
 							$("#tabs-3_FichierAcc_MED").append('<div id="lien_cate_var"><fieldset id="lien_cate_var_FichierAcc"></fieldset></div>');
-							var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_lien"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat27"  onmouseover="$.aide_nombre_resultat(27);" ><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_lien"></div>';
+							var legend='<div id="contents_lien"></div>';
 							$('#lien_cate_var_FichierAcc').append(legend);
 							$('#contents_lien').append('<div class="function_ligne_lien"></div>');
 							var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'lien\')"/></td>'+
@@ -9977,8 +10160,10 @@ and open the template in the editor.
 							}
 						}
 						if(key==="doc"){
+                                                        var resultDoc ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                        $('#tabs-2-acc_MED').text(resultDoc + ' ');
 							$("#tabs-2_FichierAcc_MED").append('<div id="doc_cate_var"><fieldset id="doc_cate_var_FichierAcc"></fieldset></div>');
-							var legend='<legend ><a href="*" onclick=""><img src="images/plus6.png"/ width="40" height="40"></a> <span class="h4_doc"></span> <a href="#" onclick="$.checkLogin_Fiche()" >('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat28"  onmouseover="$.aide_nombre_resultat(28);"><img src="images/help1.png" width="20" height="20"/></a></legend><div id="contents_doc"></div>';
+							var legend='<div id="contents_doc"></div>';
 							$('#doc_cate_var_FichierAcc').append(legend);
 							$('#contents_doc').append('<div class="function_ligne_doc"></div>');
 							var function_ligne= '<table width="100%" id="table_lien_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'documentation\')"/></td>'+
@@ -10115,8 +10300,164 @@ and open the template in the editor.
 								}
 							}
 						}
-					}
-				});
+                                                if(key==="bibliographie"){
+                                                    var resultBib ='('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')';
+                                                    $('#tabs-4-acc_MED').text(resultBib + ' ');
+                                                    $("#tabs-4_FichierAcc_MED").append('<div id="bibliographie_cate_acc"><fieldset id="bibliographie_cate_acc_FichierAcc"></fieldset></div>');
+                                                    var legend='<div id="contents_bibliographie"></div>';
+                                                    $('#bibliographie_cate_acc_FichierAcc').append(legend);
+                                                    $('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
+						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
+														'<td width="5%"><a id="aide_myselection16" onmouseover="$.aide_myselection(16)"><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="60%"></td>'+
+														'<td ><select id="select_pagesize_bibliographie_FichierAcc" onchange="$.select_change_FichierAcc_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
+														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+value.page.pagetotal+');"/></td>'+
+														'</tr></table>';
+						$('.function_ligne_bibliographie').append(function_ligne);
+						$("#select_pagesize_bibliographie_FichierAcc option[value='"+value.page.pagesize+"']").attr("selected",true);
+						getPageBar(value.page.curpage,value.page.pagetotal,'bibliographie');
+						$('#bibliographie_curpage_value_FichierVar').remove();
+						$('#bibliographie_pageTotal_value').remove();
+						$('#bibliographie_pagesize_value_hidden').remove();
+						$('#tri_bibliographie_classname_FichierVar').remove();
+						$('#tri_bibliographie_section_FichierVar').remove();
+						$('#tri_bibliographie_colone_FichierVar').remove();
+						$('#contents_bibliographie').append('<input id="bibliographie_curpage_value_FichierVar" type="hidden" value="'+value.page.curpage+'" /><input id="bibliographie_pageTotal_value" type="hidden" value="'+value.page.pagetotal+'" /><input id="bibliographie_pagesize_value_hidden" type="hidden" value="'+value.page.pagesize+'" />');
+						$('#contents_bibliographie').append('<input id="tri_bibliographie_classname_FichierVar" type="hidden" value="'+value.tri.classname+'" /><input id="tri_bibliographie_section_FichierVar" type="hidden" value="'+value.tri.section+'" /><input id="tri_bibliographie_colone_FichierVar" type="hidden" value="'+value.tri.colone+'" />');
+						//title_ligne
+						var langue=value.langue;
+						$('#contents_bibliographie').append('<div id="title_ligne_bibliographie"></div>');
+						if(value.tri.colone==="CodeCit"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th  ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Title"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Author"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="Year"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="VolumeCitation"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						if(value.tri.colone==="PagesCitation"){
+							var title_table='<table width="100%" id="table_bibliographie_titles"><th width="10%"><span id="CodeCit_FichierVar"></span><button id="tri_button_bibliographie_CodeCit" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'CodeCit\',\'bibliographie\');"></button></th>'+
+													'<th ><span id="Title_FichierVar"></span><button id="tri_button_bibliographie_Title" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Title\',\'bibliographie\');"></button></th>'+
+													'<th width="25%" ><span id="Author_FichierVar"></span><button id="tri_button_bibliographie_Author" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Author\',\'bibliographie\');"></button></th>'+
+													'<th width="12%" ><span id="Year_FichierVar"></span><button id="tri_button_bibliographie_Year" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'Year\',\'bibliographie\');"></button></th>'+
+													'<th width="7%"><span id="VolumeCitation_FichierVar"></span><button id="tri_button_bibliographie_VolumeCitation" class="tri_bibliographie_asc" onclick="$.tri_table_bibliographie_FichierAcc(1,\'VolumeCitation\',\'bibliographie\');"></button></th>'+
+													'<th width="7%" ><span id="PagesCitation_FichierVar"></span><button id="tri_button_bibliographie_PagesCitation" class="'+value.tri.classname+'" onclick="$.tri_table_bibliographie_FichierAcc('+value.tri.section+',\'PagesCitation\',\'bibliographie\');"></button></th></table>';
+							$('#title_ligne_bibliographie').append(title_table);
+						}
+						$.getJSON("json/fichier.json",function(data){
+							$.each(data,function(key, value){
+								if($('#mainMenu_Home').val()==="Accueil"){
+									if(key==="resultat_bibliographie_fr"){
+										var h4=value.title;
+										var CodeCit_FichierVar=value.CodeCit;
+										var CodeVar_bibliographie_FichierVar=value.CodeVar;
+										var Title_FichierVar=value.Title;
+										var Author_FichierVar=value.Author;
+										var Year_FichierVar=value.Year;
+										var PagesCitation_FichierVar=value.PagesCitation;
+										var VolumeCitation_FichierVar=value.VolumeCitation;
+										$('.h4_bibliographie').append(h4);
+										$('#CodeCit_FichierVar').append(CodeCit_FichierVar);
+										$('#CodeVar_bibliographie_FichierVar').append(CodeVar_bibliographie_FichierVar);
+										$('#Title_FichierVar').append(Title_FichierVar);
+										$('#Author_FichierVar').append(Author_FichierVar);
+										$('#Year_FichierVar').append(Year_FichierVar);
+										$('#PagesCitation_FichierVar').append(PagesCitation_FichierVar);
+										$('#VolumeCitation_FichierVar').append(VolumeCitation_FichierVar);
+									}
+								}
+								if(langue=="EN"){
+									if(key==="resultat_bibliographie_en"){
+										var h4=value.title;
+										var CodeCit_FichierVar=value.CodeCit;
+										var CodeVar_bibliographie_FichierVar=value.CodeVar;
+										var Title_FichierVar=value.Title;
+										var Author_FichierVar=value.Author;
+										var Year_FichierVar=value.Year;
+										var PagesCitation_FichierVar=value.PagesCitation;
+										var VolumeCitation_FichierVar=value.VolumeCitation;
+										$('.h4_bibliographie').append(h4);
+										$('#CodeCit_FichierVar').append(CodeCit_FichierVar);
+										$('#CodeVar_bibliographie_FichierVar').append(CodeVar_bibliographie_FichierVar);
+										$('#Title_FichierVar').append(Title_FichierVar);
+										$('#Author_FichierVar').append(Author_FichierVar);
+										$('#Year_FichierVar').append(Year_FichierVar);
+										$('#PagesCitation_FichierVar').append(PagesCitation_FichierVar);
+										$('#VolumeCitation_FichierVar').append(VolumeCitation_FichierVar);
+									}
+								}
+							});
+						});
+						//contents_emplacement
+						if(value.contents!=null){
+							$('#contents_bibliographie').append('<table  width="100%" id="contents_ligne_bibliographie"></table>');
+							var contents_ligne_bibliographie="";
+							$.each(value.contents,function(entryIndex,entry){
+								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
+																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
+																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
+																				'<td width="12%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Year']+'</td>'+
+																				'<td width="7%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['VolumeCitation']+'</td>'+
+																				'<td width="7%" onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['PagesCitation']+'</td></tr>';
+							});
+							$('#contents_ligne_bibliographie').append(contents_ligne_bibliographie);
+							var v=$('#contents_ligne_bibliographie')[0];
+							var Ptr2=v.getElementsByTagName("tr");
+							for (i=1;i<Ptr2.length+1;i++) { 
+							Ptr2[i-1].className = (i%2>0)?"t1":"t2"; 
+							}
+							for(var i=0;i<Ptr2.length;i++) {
+								Ptr2[i].onmouseover=function(){
+								this.tmpClass=this.className;
+								this.className = "t3";
+								
+								};
+								Ptr2[i].onmouseout=function(){
+								this.className=this.tmpClass;
+								};
+							}
+						}
+                                            }
+                                        });
 			}
 			,
 			dataType:"json"
@@ -10512,7 +10853,13 @@ and open the template in the editor.
 			var tri_lien_classname="tri_lien_asc";
 			var tri_lien_section=1;	
 			var tri_lien_colone="Titre";
-			var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone;
+                        var pagesize_bibliographie=20;
+			var curpage_bibliographie=1;
+			var tri_bibliographie_classname="tri_bibliographie_asc";
+			var tri_bibliographie_section=1;	
+			var tri_bibliographie_colone="CodeCit";
+                        //var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone;
+			var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone+'&curpage_bibliographie='+curpage_bibliographie+'&pagesize_bibliographie='+pagesize_bibliographie+'&tri_bibliographie_classname='+tri_bibliographie_classname+'&tri_bibliographie_section='+tri_bibliographie_section+'&tri_bibliographie_colone='+tri_bibliographie_colone;
 			console.log(dataString);
 			fichier_listMediatheque_FichierVar(dataString);
 		},
@@ -11070,7 +11417,13 @@ and open the template in the editor.
 			var tri_lien_classname="tri_lien_asc";
 			var tri_lien_section=1;	
 			var tri_lien_colone="Titre";
-			var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone;
+			var pagesize_bibliographie=20;
+			var curpage_bibliographie=1;
+			var tri_bibliographie_classname="tri_bibliographie_asc";
+			var tri_bibliographie_section=1;	
+			var tri_bibliographie_colone="CodeCit";
+                        //var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone;
+			var dataString='code='+code+'&curpage_doc='+curpage_doc+'&pagesize_doc='+pagesize_doc+'&tri_doc_classname='+tri_doc_classname+'&tri_doc_section='+tri_doc_section+'&tri_doc_colone='+tri_doc_colone+'&curpage_lien='+curpage_lien+'&pagesize_lien='+pagesize_lien+'&tri_lien_classname='+tri_lien_classname+'&tri_lien_section='+tri_lien_section+'&tri_lien_colone='+tri_lien_colone+'&curpage_bibliographie='+curpage_bibliographie+'&pagesize_bibliographie='+pagesize_bibliographie+'&tri_bibliographie_classname='+tri_bibliographie_classname+'&tri_bibliographie_section='+tri_bibliographie_section+'&tri_bibliographie_colone='+tri_bibliographie_colone;
 			console.log(dataString);
 			fichier_listMediatheque_FichierAcc(dataString);
 		},
@@ -13001,7 +13354,7 @@ and open the template in the editor.
 	}
 	//Commencer search advance
         //En appuyant sur la touche entrée
-        $('#ResearchA,body').keypress(function(e){
+        $('body').keydown(function(e){
         if( e.which == 13 ){
 		var v=$('#contents_condition')[0];
 		var Ptr=v.getElementsByTagName("tr");
@@ -15576,7 +15929,10 @@ and open the template in the editor.
 				$.each(data,function(key,value){
 					if(key==="Phototheque"){
                                                 var legend='<fieldset id="photolabel"><legend><img src="images/plus6.png"/ width="40" height="40"><span id="pho_SearchAd">Phototheque</span><a>('+value.nombreDeResultatPossible+'/'+value.nombreDeResultatTotal+')</a><a id="aide_nombre_resultat30"  onmouseover="$.aide_nombre_resultat(30);"><img src="images/help1.png" width="20" height="20"/></a></legend></fieldset>';
-						var image="";
+						$('#contents_Phototheque_avance').append(legend);
+                                                var galerie = '<div id="galeriephoto"></div>';
+                                                var image="";
+                                                $('#contents_Phototheque_avance').append(galerie);
 						var i=1;
                                                 var tab = new Array();
                                                 var content = value.contents;
@@ -15587,6 +15943,12 @@ and open the template in the editor.
                                                                         tab = tab.concat(entry);
                                                                         console.log(tab);
                                                                         $('.fancybox').fancybox({
+                                                                            beforeShow: function () {
+                                                                            /* Disable right click */
+                                                                                $.fancybox.wrap.bind("contextmenu", function (e) {
+                                                                                    return false; 
+                                                                                });
+                                                                            },
                                                                             afterLoad : function() {
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
@@ -15603,8 +15965,7 @@ and open the template in the editor.
 
 									
 								});
-						$('#contents_Phototheque_avance').append(legend);
-						$('#contents_Phototheque_avance').append(image);
+						$('#galeriephoto').append(image);
 						
 						$.getJSON("json/fichier.json",function(data){
 							$.each(data,function(key, value){

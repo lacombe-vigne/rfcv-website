@@ -30,6 +30,12 @@ blockquote:before, blockquote:after,q:before, q:after {
     content: ''; 
     content: none; 
 }
+input[type=radio] {
+    margin: 1px 10px 1px 10px;
+}
+input[type=test] {
+    padding: 2px 5px;
+}
 /* remember to define focus styles! */
 :focus { outline: 0; }
 
@@ -191,7 +197,7 @@ li.menu_rechercher {
     margin:-15px 20px  auto auto;
 }
 .menu .welcom li{
-    padding: 0 5px 0 5px;
+    padding: 0 10px 0 10px;
 }
 
 /* 1.4 Site chemin */
@@ -335,7 +341,7 @@ li.menu_rechercher {
 /* 2.2 site login */
 #site-loginpage{
     background:url(images/login_background.png) 20% no-repeat;
-    height:55%;
+    height: 360px;
     margin:auto auto;
     border-radius: 20px;
     box-shadow:5px 5px 20px #aaaaaa;
@@ -343,7 +349,7 @@ li.menu_rechercher {
 }
 #site-loginpage .site-login-form{
     width:35%;
-    color:#B3D270;
+    color:#000;
     font-weight:bold;
     margin:auto;
     text-align:left;
@@ -357,21 +363,21 @@ li.menu_rechercher {
     padding-top:6%;
 }
 #site-loginpage .login-input{
-    background: #B3D270;
+    background: #FFF;
     border: 0 none;
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
-    color: #d7d7d7;
-    padding: 6px 15px 6px 35px;
+    color: #A7A7A7;
+    padding: 6px 15px 6px 15px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    //text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    width:80%;
+    width:90%;
     height: 100%;
 }
 #site-loginpage .login-input:focus {
@@ -381,33 +387,35 @@ li.menu_rechercher {
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width:90%;
     height: 100%;
 }
 #site-loginpage .button{
     border-radius: 20px;
-    background: #B3D270;
+    background: #FFF;
     margin: auto;
     font-size: 20px;
     text-align: left;
-    color: #7B0043;
+    color: #000;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    padding: 5px 10px 5px 10px;
     border : 0px none;
 }
 #site-loginpage .button:hover{
-    background: #78B640;
-    color: #fff;
+    cursor:pointer;
+    background: #aaa;
+    color: #000;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
 }
 .notice_login{
-    width:70%;
-    color: #ada771;
-    background: #f9f9dc;
-    opacity:0.5;
-    border: 1px solid #fbfbef;
-    -moz-box-shadow: inset 0 0 45px #efefc0;
-    -webkit-box-shadow: inset 0 0 45px #efefc0;
-    box-shadow: inset 0 0 45px #efefc0;
+    width:90%;
+    color: #797979;
+    background: #DCDCF9;
+    opacity:0.7;
+    border: 1px solid #DCDCF9;
+    -moz-box-shadow: inset 0 0 45px #e7e7e7;
+    -webkit-box-shadow: inset 0 0 45px #e7e7e7;
+    box-shadow: inset 0 0 45px #cccccc;
     border-radius: 20px;
     margin: 1.5% auto auto auto ;
 }
@@ -458,11 +466,11 @@ legend img {
 #site-search fieldset table .search-input{
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #000;   
-    padding: 2px 0px 2px 0px;
+    padding: 2px 5px 2px 5px;
 }
 #site-search fieldset table .search-input:focus{
     color: #000;
-    padding: 2px 0px 2px 0px;
+    padding: 2px 5px 2px 5px;
 }
 #site-search fieldset table .ss-radio {
     color: #000;
@@ -500,7 +508,7 @@ legend img {
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1% 5%;
+    padding: 5px 10px 5px 10px;
     border-radius: 20px;
 }
 #site-search fieldset table #button_simple_search:hover{
@@ -517,14 +525,14 @@ legend img {
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1% 5%;
+    padding: 5px 10px 5px 10px;
     border-radius: 20px;
 }
 #site-search .search-notice{
     width:90%;
     color: #797979;
     background: #dcdcf9;
-    opacity:0.5;
+    opacity:0.7;
     border: 1px solid #fbfbef;
     -moz-box-shadow: inset 0 0 45px #e7e7e7;
     -webkit-box-shadow: inset 0 0 45px #e7e7e7;
@@ -805,7 +813,7 @@ avar,aesp,aclo{
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 20px;
-    padding: 1%;
+    padding: 5px 10px 5px 10px;
     font-size: none;
 }
 #searchA_button_table a:hover{
@@ -823,7 +831,7 @@ avar,aesp,aclo{
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 20px;
-    padding: 1%;
+    padding: 5px 10px 5px 10px;
     font-size: none;
 }
 #notice{
@@ -896,7 +904,13 @@ avar,aesp,aclo{
     color:#fff;
 }
 #Phototheque{
-    height:150px;
+    height:220px;
+}
+#galeriephoto{
+    //Permettent le défilement horrizontal de la galerie photo
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 .open{
     background:#fafafa;
@@ -990,7 +1004,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 #Modifiez-mes-info:hover{
@@ -1007,7 +1021,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .gestion-users{
@@ -1171,7 +1185,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .new-user fieldset table .new_user_button:hover{
@@ -1188,7 +1202,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .new-user legend{
@@ -1239,7 +1253,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 #Modifiez-ses-info:hover{
@@ -1256,7 +1270,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:1%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 #reset-password{
@@ -1352,7 +1366,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .modifier_mesInfos fieldset table .modifier_user_button:hover{
@@ -1369,7 +1383,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .modifier_mesInfos fieldset legend{
@@ -1487,7 +1501,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .modifier_ses_info fieldset table .modifier_user_button_sesInfo:hover{
@@ -1504,7 +1518,7 @@ avar,aesp,aclo{
     -moz-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
-    padding:3%;
+    padding: 5px 10px;
     border-radius: 20px;
 }
 .modifier_ses_info fieldset legend{
@@ -2005,20 +2019,20 @@ avar,aesp,aclo{
 }
 #lien_cate_var fieldset #contents_ligne_lien .t3 {
     background: #ccc;
-    cursor:hand;
+    cursor:pointer;
 }
 /**/
 #cate1_FichierEsp .vide,#cate2_FichierEsp .vide,#cate3_FichierEsp .vide{
     background:url("images/close_esp.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate1_FichierEsp .non_vide,#cate2_FichierEsp .non_vide,#cate3_FichierEsp .non_vide{
     background:url("images/open_esp.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate1_FichierAcc .vide,#cate2_FichierAcc .vide,#cate3_FichierAcc .vide
 ,#cate4_FichierAcc .vide,#cate5_FichierAcc .vide,#cate6_FichierAcc .vide,
@@ -2026,7 +2040,7 @@ avar,aesp,aclo{
     background:url("images/close_acc.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate1_FichierVar .vide,#cate2_FichierVar .vide,#cate3_FichierVar .vide,
 #cate4_FichierVar .vide,#cate5_FichierVar .vide,#cate6_FichierVar .vide,
@@ -2034,7 +2048,7 @@ avar,aesp,aclo{
     background:url("images/close_var.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate1_FichierAcc .non_vide,#cate2_FichierAcc .non_vide
 ,#cate3_FichierAcc .non_vide,#cate4_FichierAcc .non_vide
@@ -2043,7 +2057,7 @@ avar,aesp,aclo{
     background:url("images/open_acc.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate2_FichierVar .non_vide,#cate3_FichierVar .non_vide,
 #cate4_FichierVar .non_vide,#cate5_FichierVar .non_vide,#cate6_FichierVar .non_vide,
@@ -2051,13 +2065,13 @@ avar,aesp,aclo{
     background:url("images/open_var.png") left center no-repeat;
     width:50%;
     background-size:5% 88%;
-    cursor:hand;
+    cursor:pointer;
 }
 #cate1_FichierVar .non_vide,#cate7_FichierVar .non_vide{
     background:url("images/open_var.png") left center no-repeat;
     width:50%;
     background-size:5% 100%;
-    cursor:hand;
+    cursor:pointer;
 }
 /*cate1 accession*/
 #tabs-1,#tabs-2,#tabs-3{
@@ -2553,10 +2567,16 @@ avar,aesp,aclo{
 }
 #list6_cate_var fieldset #contents_ligne_sanitaire .t3 {
     background: #ccc;
-    cursor:hand;
+    cursor:pointer;
 }
 /*cate6 Accession*/
-#tabs-1_FichierAcc_MED{height:200px;}
+#tabs-1_FichierAcc_MED{
+    height:170px;
+    //Permettent le défilement horrizontal de la galerie photo
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 #tabs-3_FichierAcc_MED fieldset{
     color: #737373;
     background: #fafafa;
@@ -2610,7 +2630,7 @@ avar,aesp,aclo{
 }
 #tabs-3_FichierAcc_MED fieldset #contents_ligne_lien .t3 {
     background: #ccc;
-    cursor:hand;
+    cursor:pointer;
 }
 #tabs-2_FichierAcc_MED fieldset{
     color: #737373;
@@ -2631,16 +2651,16 @@ avar,aesp,aclo{
 }
 #tabs-2_FichierAcc_MED fieldset #table_doc_function{
     color: #000;
-    background: #DEDD80;
+    background: #D0CECD;
     opacity:0.5;
     font-weight:bold;
 }
 #tabs-2_FichierAcc_MED fieldset.function_ligne_doc{
     width:100%;
     margin: -1% auto auto auto;
-    border-top:1px solid #DEDD80;	
-    border-left:1px solid #DEDD80;	
-    border-right:1px solid #DEDD80;
+    border-top:1px solid #D0CECD;	
+    border-left:1px solid #D0CECD;	
+    border-right:1px solid #D0CECD;
 }
 #tabs-2_FichierAcc_MED fieldset #table_doc_titles{
     color: #050505;
@@ -2650,9 +2670,9 @@ avar,aesp,aclo{
 }
 #tabs-2_FichierAcc_MED fieldset #contents_ligne_doc{
     background: #ffffff;
-    border-left:1.5px solid #DEDD80;	
-    border-right:1.5px solid #DEDD80;
-    border-bottom:1.5px solid #DEDD80;
+    border-left:1.5px solid #D0CECD;	
+    border-right:1.5px solid #D0CECD;
+    border-bottom:1.5px solid #D0CECD;
 }
 #tabs-2_FichierAcc_MED fieldset #contents_ligne_doc tr {
     text-align:left;
@@ -2695,7 +2715,13 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
 #close { display:block; position:fixed; width:16px; height:16px; right:10px; top:10px; z-index:1000; background:url(trans.gif); cursor:pointer; }
 .liste_Phtot_info li{ float:left; padding:5px;}
 .liste_Phtot_info #lable_Code,.liste_Phtot_info #lable_Organe,.liste_Phtot_info #lable_Date,.liste_Phtot_info #lable_Photographe,.liste_Phtot_info #lable_Partenaire{font-weight:900;}
-#tabs-1_FichierVar_MED{height:200px;}
+#tabs-1_FichierVar_MED{
+    height:170px;
+    //Permettent le défilement horrizontal de la galerie photo
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
 #tabs-3_FichierVar_MED fieldset{
     color: #737373;
     background: #fafafa;
@@ -2808,7 +2834,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
 }
 #tabs-2_FichierVar_MED fieldset #contents_ligne_doc .t3 {
     background: #ccc;
-    cursor:hand;
+    cursor:pointer;
 }
 /*cate8 variete*/
 #list8_cate_var fieldset{
@@ -3119,7 +3145,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 10px;
-    padding: 2px;
+    padding: 5px 10px;
     margin: auto auto auto 80%;
 }
 #mySelection #vide_section_button:hover{
@@ -3137,7 +3163,7 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
     -webkit-box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.9), 1px 1px 1px rgba(0,0,0,0.1);
     border-radius: 10px;
-    padding: 2px;
+    padding: 5px 10px;
     margin: auto auto auto 80%;
 }
 /* 3.0 site footer */
@@ -3209,6 +3235,116 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
 .fancybox{
     margin: auto auto auto 1%;
     padding: 1px 1px 1px 1px;
+}
+#tabs-4_FichierVar_MED fieldset{
+    color: #737373;
+    background: #fafafa;
+    border: 1px solid #fafafa;
+    border-radius: 20px;
+    -moz-box-shadow: inset 0 0 45px #fafafa;
+    -webkit-box-shadow: inset 0 0 45px #fafafa;
+    box-shadow: inset 0 0 45px #fafafa;
+    width:97.5%;
+    box-shadow:2px 2px 10px #fafafa;
+    padding: 1% 1% 0 1%;
+}
+#tabs-4_FichierVar_MED fieldset legend{
+    margin: 2% auto 0 3%;
+    color:#696969;
+    font-weight: normal;
+    font-size: 1.5em;
+    text-shadow: 0 2px 2px #C0C0C0;
+}
+#tabs-4_FichierVar_MED fieldset #table_bibliographie_function{
+    color: #000;
+    background: #D0CECD;
+    opacity:0.5;
+    font-weight:bold;
+}
+#tabs-4_FichierVar_MED fieldset.function_ligne_bibliographie{
+    width:100%;
+    margin: -1% auto auto auto;
+    border-top:1px solid #D0CECD;	
+    border-left:1px solid #D0CECD;	
+    border-right:1px solid #D0CECD;
+}
+#tabs-4_FichierVar_MED fieldset #table_bibliographie_titles{
+    color: #050505;
+    background: #a2a2a2;	
+    font-weight:bold;
+    text-align:left;
+    font-size: 13px;
+}
+#tabs-4_FichierVar_MED fieldset #contents_ligne_bibliographie{
+    background: #ffffff;
+    border-left:1.5px solid #D0CECD;	
+    border-right:1.5px solid #D0CECD;
+    border-bottom:1.5px solid #D0CECD;
+    font-size: 12px;
+}
+#tabs-4_FichierVar_MED fieldset #contents_ligne_bibliographie tr {
+    text-align:left;
+}
+#tabs-4_FichierVar_MED fieldset #contents_ligne_bibliographie .t1 {
+    background: #FFF;
+}
+#tabs-4_FichierVar_MED fieldset #contents_ligne_bibliographie .t2 {
+    background: #DDD;
+}
+#tabs-4_FichierAcc_MED fieldset{
+    color: #737373;
+    background: #fafafa;
+    border: 1px solid #fafafa;
+    border-radius: 20px;
+    -moz-box-shadow: inset 0 0 45px #fafafa;
+    -webkit-box-shadow: inset 0 0 45px #fafafa;
+    box-shadow: inset 0 0 45px #fafafa;
+    width:97.5%;
+    box-shadow:2px 2px 10px #fafafa;
+    padding: 1% 1% 0 1%;
+}
+#tabs-4_FichierAcc_MED fieldset legend{
+    margin: 2% auto 0 3%;
+    color:#696969;
+    font-weight: normal;
+    font-size: 1.5em;
+    text-shadow: 0 2px 2px #C0C0C0;
+}
+#tabs-4_FichierAcc_MED fieldset #table_bibliographie_function{
+    color: #000;
+    background: #D0CECD;
+    opacity:0.5;
+    font-weight:bold;
+}
+#tabs-4_FichierAcc_MED fieldset.function_ligne_bibliographie{
+    width:100%;
+    margin: -1% auto auto auto;
+    border-top:1px solid #D0CECD;	
+    border-left:1px solid #D0CECD;	
+    border-right:1px solid #D0CECD;
+}
+#tabs-4_FichierAcc_MED fieldset #table_bibliographie_titles{
+    color: #050505;
+    background: #a2a2a2;	
+    font-weight:bold;
+    text-align:left;
+    font-size: 13px;
+}
+#tabs-4_FichierAcc_MED fieldset #contents_ligne_bibliographie{
+    background: #ffffff;
+    border-left:1.5px solid #D0CECD;	
+    border-right:1.5px solid #D0CECD;
+    border-bottom:1.5px solid #D0CECD;
+    font-size: 12px;
+}
+#tabs-4_FichierAcc_MED fieldset #contents_ligne_bibliographie tr {
+    text-align:left;
+}
+#tabs-4_FichierAcc_MED fieldset #contents_ligne_bibliographie .t1 {
+    background: #FFF;
+}
+#tabs-4_FichierAcc_MED fieldset #contents_ligne_bibliographie .t2 {
+    background: #DDD;
 }
 
 

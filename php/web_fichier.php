@@ -468,13 +468,6 @@
 						<div id='contents_cate7_FichierVar' display='none'>
 						</div>
 					</div>
-					<div id='cate8_FichierVar'>
-						<div id='title_cate8_FichierVar' class='vide'>
-							<span><a id='click_cate8_FichierVar'></a></span>
-						</div>
-						<div id='contents_cate8_FichierVar' display='none'>
-						</div>
-					</div>
 				</div>
 				";
 			break;
@@ -572,13 +565,6 @@
 							<span><a id='click_cate6_FichierAcc'></a></span>
 						</div>
 						<div id='contents_cate6_FichierAcc' display='none'>
-						</div>
-					</div>
-					<div id='cate7_FichierAcc'>
-						<div id='title_cate7_FichierAcc' class='vide'>
-							<span><a id='click_cate7_FichierAcc'></a></span>
-						</div>
-						<div id='contents_cate7_FichierAcc' display='none'>
 						</div>
 					</div>
 				</div>

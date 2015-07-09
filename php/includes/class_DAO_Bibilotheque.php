@@ -4760,8 +4760,8 @@ class BibliothequeDAO {
         mysql_query('SET NAMES UTF8');
         $bibliographie = $DAO->chargeContentBibliographie($sql_limit, $sql_total, $page_bibliographie, $pagesize_bibliographie, $langue, $sql_possible);
         $bibliographie['tri'] = $tri;
-        $res = array('bibliographie' => $bibliographie);
-        return $res;
+        //$res = array('bibliographie' => $bibliographie);
+        return $bibliographie;
     }
 
     public function genetique($code, $page, $pagesize, $langue, $section, $colone, $tri, $section_fiche) {
@@ -4933,7 +4933,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeIntro='" . $code . "' ";
+                        WHERE pho.CodeIntro='" . $code . "' 
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
             if (isset($_SESSION['codePersonne'])) {
                 $sql = "SELECT *
                         FROM Phototheque pho
@@ -4941,7 +4942,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeIntro='" . $code . "' ";
+                        WHERE pho.CodeIntro='" . $code . "' 
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
             } else {
                 $sql = "SELECT *
                         FROM Phototheque pho
@@ -4949,7 +4951,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par  ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeIntro='" . $code . "' and Public!='N' ";
+                        WHERE pho.CodeIntro='" . $code . "' and Public!='N' 
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
             }
         }
         if ($section_fiche == "Variete") {
@@ -4959,7 +4962,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeVar='" . $code . "' ";
+                        WHERE pho.CodeVar='" . $code . "'
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
             if (isset($_SESSION['codePersonne'])) {
                 $sql = "SELECT *
                         FROM Phototheque pho
@@ -4967,7 +4971,8 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeVar='" . $code . "' ";
+                        WHERE pho.CodeVar='" . $code . "' 
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
             } else {
                 $sql = "SELECT *
                         FROM Phototheque pho
@@ -4975,7 +4980,9 @@ class BibliothequeDAO {
                         LEFT JOIN `ListeDeroulante_typePhoto` ty ON pho.TypePhoto=ty.TypePhoto
                         LEFT JOIN `ListeDeroulante_fondPhoto` f ON pho.FondPhoto=f.FondPhoto
                         LEFT JOIN `Partenaires` par ON pho.CodePartenaire = par.CodePartenaire
-                        WHERE pho.CodeVar='" . $code . "' and Public!='N' ";
+                        WHERE pho.CodeVar='" . $code . "' and Public!='N'
+                        ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
+                        
             }
         }
         connexion_bbd();
@@ -7889,7 +7896,7 @@ class BibliothequeDAO {
                 }
                 break;
             case "Phototheque":
-                $tri = " group by pho.CodePhoto";
+                $tri = " ORDER BY pho.OrganePhoto,pho.CodePhoto asc";
                 break;
             case "Documentation":
                 if ($tri_section == 1) {

@@ -267,7 +267,8 @@ switch($fun){
 		$section=$_POST['section'];
 		$colone=$_POST['colone'];
 		$tri=array('classname'=>$classname,'section'=>$section,'colone'=>$colone);
-		$resultat=$DAO->bibliographie($code,$page_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri,'Variete');
+		$bibliographie=$DAO->bibliographie($code,$page_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri,'Variete');
+                $resultat=array('bibliographie'=>$bibliographie);
 		echo json_encode($resultat);
 	break;
 	case "cate8_acc":
@@ -299,12 +300,20 @@ switch($fun){
 		$tri_lien_section=$_POST['tri_lien_section'];
 		$tri_lien_colone=$_POST['tri_lien_colone'];
 		$tri_lien=array('classname'=>$tri_lien_classname,'section'=>$tri_lien_section,'colone'=>$tri_lien_colone);
+                $curpage_bibliographie=$_POST['curpage_bibliographie'];
+		$pagesize_bibliographie=$_POST['pagesize_bibliographie'];
+		$tri_bibliographie_classname=$_POST['tri_bibliographie_classname'];
+		$tri_bibliographie_section=$_POST['tri_bibliographie_section'];
+		$tri_bibliographie_colone=$_POST['tri_bibliographie_colone'];
+		$tri_bibliographie=array('classname'=>$tri_bibliographie_classname,'section'=>$tri_bibliographie_section,'colone'=>$tri_bibliographie_colone);
 		// $resultat=$DAO->cate7_var($code,$curpage_doc,$pagesize_doc,$langue,$tri_doc_section,$tri_doc_colone,$tri_doc,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien);
 		// echo json_encode($resultat);
 		$phototheque=$DAO->phototheque($code,$langue,'Variete');
 		$lien_site=$DAO->lien_site($code,$langue,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien,'Variete');
 		$doc=$DAO->doc($code,$langue,$curpage_doc,$pagesize_doc,$tri_doc_section,$tri_doc_colone,$tri_doc,'Variete');
-		$resultat=array('phototheque'=>$phototheque,'lien_site'=>$lien_site,'doc'=>$doc);
+                $bibliographie=$DAO->bibliographie($code,$curpage_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri_bibliographie,'Variete');
+                //$resultat=array('phototheque'=>$phototheque,'lien_site'=>$lien_site,'doc'=>$doc);
+		$resultat=array('phototheque'=>$phototheque,'lien_site'=>$lien_site,'doc'=>$doc,'bibliographie'=>$bibliographie);
 		echo json_encode($resultat);
 	break;
 	case "cate7_acc":
@@ -317,8 +326,9 @@ switch($fun){
 		$section=$_POST['section'];
 		$colone=$_POST['colone'];
 		$tri=array('classname'=>$classname,'section'=>$section,'colone'=>$colone);
-		$resultat=$DAO->bibliographie($code,$page_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri,'Accession');
-		echo json_encode($resultat);
+		$bibliographie=$DAO->bibliographie($code,$page_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri,'Accession');
+		$resultat=array('bibliographie'=>$bibliographie);
+                echo json_encode($resultat);
 	break;
 	case "cate6_var":
 		// echo json_encode(array("ok"=>"ok","function"=>$fun));
@@ -348,12 +358,19 @@ switch($fun){
 		$tri_lien_section=$_POST['tri_lien_section'];
 		$tri_lien_colone=$_POST['tri_lien_colone'];
 		$tri_lien=array('classname'=>$tri_lien_classname,'section'=>$tri_lien_section,'colone'=>$tri_lien_colone);
-		// $resultat=$DAO->cate7_var($code,$curpage_doc,$pagesize_doc,$langue,$tri_doc_section,$tri_doc_colone,$tri_doc,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien);
+		$curpage_bibliographie=$_POST['curpage_bibliographie'];
+		$pagesize_bibliographie=$_POST['pagesize_bibliographie'];
+		$tri_bibliographie_classname=$_POST['tri_bibliographie_classname'];
+		$tri_bibliographie_section=$_POST['tri_bibliographie_section'];
+		$tri_bibliographie_colone=$_POST['tri_bibliographie_colone'];
+		$tri_bibliographie=array('classname'=>$tri_bibliographie_classname,'section'=>$tri_bibliographie_section,'colone'=>$tri_bibliographie_colone);
+                // $resultat=$DAO->cate7_var($code,$curpage_doc,$pagesize_doc,$langue,$tri_doc_section,$tri_doc_colone,$tri_doc,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien);
 		// echo json_encode($resultat);
 		$phototheque=$DAO->phototheque($code,$langue,'Accession');
 		$lien_site=$DAO->lien_site($code,$langue,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien,'Accession');
 		$doc=$DAO->doc($code,$langue,$curpage_doc,$pagesize_doc,$tri_doc_section,$tri_doc_colone,$tri_doc,'Accession');
-		$resultat=array('phototheque'=>$phototheque,'lien_site'=>$lien_site,'doc'=>$doc);
+		$bibliographie=$DAO->bibliographie($code,$curpage_bibliographie,$pagesize_bibliographie,$langue,$section,$colone,$tri_bibliographie,'Accession');
+                $resultat=array('phototheque'=>$phototheque,'lien_site'=>$lien_site,'doc'=>$doc,'bibliographie'=>$bibliographie);
 		echo json_encode($resultat);
 	break;
 	case "cate5_acc":
@@ -690,8 +707,9 @@ switch($fun){
 		$tri_lien_classname=$_POST['classname'];
 		$tri_lien_section=$_POST['section'];
 		$tri_lien_colone=$_POST['colone'];
+                $sectionfiche=$_POST['sectionfiche'];
 		$tri_lien=array('classname'=>$tri_lien_classname,'section'=>$tri_lien_section,'colone'=>$tri_lien_colone);
-		$lien_site=$DAO->lien_site($code,$langue,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien,'Variete');
+		$lien_site=$DAO->lien_site($code,$langue,$curpage_lien,$pagesize_lien,$tri_lien_section,$tri_lien_colone,$tri_lien,$sectionfiche);
 		$resultat=array('lien_site'=>$lien_site);
 		echo json_encode($resultat);
 	break;
@@ -703,8 +721,9 @@ switch($fun){
 		$tri_doc_classname=$_POST['classname'];
 		$tri_doc_section=$_POST['section'];
 		$tri_doc_colone=$_POST['colone'];
+                $sectionfiche=$_POST['sectionfiche'];
 		$tri_doc=array('classname'=>$tri_doc_classname,'section'=>$tri_doc_section,'colone'=>$tri_doc_colone);
-		$doc=$DAO->doc($code,$langue,$curpage_doc,$pagesize_doc,$tri_doc_section,$tri_doc_colone,$tri_doc,'Variete');
+		$doc=$DAO->doc($code,$langue,$curpage_doc,$pagesize_doc,$tri_doc_section,$tri_doc_colone,$tri_doc,$sectionfiche);
 		$resultat=array('doc'=>$doc);
 		echo json_encode($resultat);
 	break;

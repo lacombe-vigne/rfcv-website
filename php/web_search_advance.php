@@ -9,7 +9,7 @@
 			<div id="fieldset_conditions">
 				<fieldset>
 					<legend id="fieldset_conditions_legend"><span></span></legend>
-					<form>
+					<form onsubmit="return false;">
 						<table>
 							<tr><th id="titile_section" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Champ" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Modele" style="text-align:center" width="15%"></th><th width="5%"></th><th id="titile_Condition" style="text-align:center" width="20%"></th><th width="5%"></th><th id="titile_Supprimer" width="5%"></th></tr>
 							<tr>
@@ -47,7 +47,7 @@
 										</select>
 									</td>
                                                                         <td width="5%"></td>
-									<td id="codition_td_1" width="20%">
+									<td id="condition_td_1" width="20%">
 										<input type="test" style="width:200" id="condition_1"/>
 									</td>
                                                                         <td width="5%"></td>
