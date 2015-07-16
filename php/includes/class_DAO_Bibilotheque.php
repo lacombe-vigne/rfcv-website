@@ -2803,14 +2803,14 @@ class BibliothequeDAO {
                 $DAO->update($dico['FaxBureau'], $user_fax, 'FaxBureau', $codePerson);
                 $DAO->update($dico['MailBureau'], $user_mail, 'MailBureau', $codePerson);
             }
-            if ($_SESSION['language_Vigne'] == "EN") {
+            /*if ($_SESSION['language_Vigne'] == "EN") {
                 $alert = "You have registered your new information!";
             } else {
                 $alert = "Vous avez bien enregistré votre nouveaux informations!";
-            }
+            }*/
         }
         deconnexion_bbd();
-        return $alert;
+        return true;
     }
 
     public function update($a, $b, $c, $d) {
@@ -5074,7 +5074,9 @@ class BibliothequeDAO {
         $DAO = new BibliothequeDAO();
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
-        $sql = "Select * from `NV-INTRODUCTIONS` where CodeIntro='" . $code . "'";
+        $sql = "Select * from `NV-INTRODUCTIONS`
+               LEFT JOIN `ListeDeroulante_remark_acc_name` ON `NV-INTRODUCTIONS`.`evdb_M-RemarkAccessionName` = `ListeDeroulante_remark_acc_name`.`evdb_M-RemarkAccessionName`
+               where CodeIntro='" . $code . "'";
 
         $resultat_accession = mysql_query($sql) or die(mysql_error());
         if (!$resultat_accession) {
@@ -5089,7 +5091,12 @@ class BibliothequeDAO {
         if (mysql_num_rows($resultat_accession) > 0) {
             for ($i = 0; $i < (mysql_num_rows($resultat_accession)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat_accession);
-                $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenancevAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                if ($langue == "FR") {
+                    $RmqAccName = $dico['RemAccName_FR'];
+                } else {
+                    $RmqAccName = $dico['RemAccName_EN'];
+                }
+                $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenancevAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $RmqAccName, $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
                 $detail = $ACC->getFicherAccessionTab();
             }
             deconnexion_bbd();
@@ -6556,8 +6563,44 @@ class BibliothequeDAO {
         foreach ($parametre as $key => $value) {
             $$key = $value;
         }
+        if (count($Emplacement) != 0) {
+            $_SESSION['Section']['Emplacement'] = true; // Variable de session qui va me permettre de récuperer les différentes sections pour la fonction des jointures.
+        }
+        if (count($Espece) != 0) {
+            $_SESSION['Section']['Espece'] = true;
+        }
+        if (count($Variete) != 0) {
+            $_SESSION['Section']['Variete'] = true;
+        }
         if (count($Accession) != 0) {
-            if (count($Emplacement) == 0 && count($Espece) == 0 && count($Variete) == 0 && count($Sanitaire) == 0 && count($Morphologique) == 0 && count($Aptitude) == 0 && count($Genetique) == 0 && count($Phototheque) == 0 && count($Documentation) == 0 && count($Bibliograhpie) == 0 && count($Partenaire) == 0) {
+            $_SESSION['Section']['Accession'] = true;
+        }
+        if (count($Sanitaire) != 0) {
+            $_SESSION['Section']['Sanitaire'] = true;
+        }
+        if (count($Morphologique) != 0) {
+            $_SESSION['Section']['Morphologique'] = true;
+        }
+        if (count($Aptitude) != 0) {
+            $_SESSION['Section']['Aptitude'] = true;
+        }
+        if (count($Genetique) != 0) {
+            $_SESSION['Section']['Genetique'] = true;
+        }
+        if (count($Phototheque) != 0) {
+            $_SESSION['Section']['Phototheque'] = true;
+        }
+        if (count($Documentation) != 0) {
+            $_SESSION['Section']['Documentation'] = true;
+        }
+        if (count($Bibliographie) != 0) {
+            $_SESSION['Section']['Bibliographie'] = true;
+        }
+        if (count($Partenaire) != 0) {
+            $_SESSION['Section']['Partenaire'] = true;
+        }
+        if (count($Accession) != 0) {
+            if (count($Emplacement) == 0 && count($Espece) == 0 && count($Variete) == 0 && count($Sanitaire) == 0 && count($Morphologique) == 0 && count($Aptitude) == 0 && count($Genetique) == 0 && count($Phototheque) == 0 && count($Documentation) == 0 && count($Bibliographie) == 0 && count($Partenaire) == 0) {
                 //Accession seule section
                 if (count($Accession) == 1) {
                     //Une seule condition pour la section accession
@@ -6610,7 +6653,7 @@ class BibliothequeDAO {
                 $condition_total = $condition_total . " " . $DAO->condition($$name, $$model_name, $$champ_name, $$condition_name);
             }
         } else if (count($Variete) != 0 && count($Accession) == 0) {
-            if (count($Emplacement) == 0 && count($Espece) == 0 && count($Sanitaire) == 0 && count($Morphologique) == 0 && count($Aptitude) == 0 && count($Genetique) == 0 && count($Phototheque) == 0 && count($Documentation) == 0 && count($Bibliograhpie) == 0 && count($Partenaire) == 0) {
+            if (count($Emplacement) == 0 && count($Espece) == 0 && count($Sanitaire) == 0 && count($Morphologique) == 0 && count($Aptitude) == 0 && count($Genetique) == 0 && count($Phototheque) == 0 && count($Documentation) == 0 && count($Bibliographie) == 0 && count($Partenaire) == 0) {
                 //Variete seule section
                 if (count($Variete) == 1) {
                     //Une seule condition pour la section variete
@@ -6672,51 +6715,39 @@ class BibliothequeDAO {
 
         if (count($Emplacement) != 0) {
             $resultat['Emplacement'] = "Emplacement";
-            $_SESSION['Section']['Emplacement'] = true; // Variable de session qui va me permettre de récuperer les différentes sections pour la fonction des jointures.
         }
         if (count($Espece) != 0) {
             $resultat['Espece'] = "Espece";
-            $_SESSION['Section']['Espece'] = true;
         }
         if (count($Variete) != 0) {
             $resultat['Variete'] = "Variete";
-            $_SESSION['Section']['Variete'] = true;
         }
         if (count($Accession) != 0) {
             $resultat['Accession'] = "Accession";
-            $_SESSION['Section']['Accession'] = true;
         }
         if (count($Sanitaire) != 0) {
             $resultat['Sanitaire'] = "Sanitaire";
-            $_SESSION['Section']['Sanitaire'] = true;
         }
         if (count($Morphologique) != 0) {
             $resultat['Morphologique'] = "Morphologique";
-            $_SESSION['Section']['Morphologique'] = true;
         }
         if (count($Aptitude) != 0) {
             $resultat['Aptitude'] = "Aptitude";
-            $_SESSION['Section']['Aptitude'] = true;
         }
         if (count($Genetique) != 0) {
             $resultat['Genetique'] = "Genetique";
-            $_SESSION['Section']['Genetique'] = true;
         }
         if (count($Phototheque) != 0) {
             $resultat['Phototheque'] = "Phototheque";
-            $_SESSION['Section']['Phototheque'] = true;
         }
         if (count($Documentation) != 0) {
             $resultat['Documentation'] = "Documentation";
-            $_SESSION['Section']['Documentation'] = true;
         }
         if (count($Bibliographie) != 0) {
             $resultat['Bibliographie'] = "Bibliographie";
-            $_SESSION['Section']['Bibliographie'] = true;
         }
         if (count($Partenaire) != 0) {
             $resultat['Partenaire'] = "Partenaire";
-            $_SESSION['Section']['Partenaire'] = true;
         }
         return $resultat;
     }
@@ -6782,8 +6813,6 @@ class BibliothequeDAO {
         /* Permet d'ajouter les différentes conditions que l'utilisateur a défini dans le formulaire
          * Et de les interpréter pour les inclure dans une requête sql
          */
-        $_SESSION["conditionSQL"] = array();
-        array_push($_SESSION["conditionSQL"], $section, $champ);
         if ($champ == "indifferent") {
             switch ($section) {
                 case "Espece":
@@ -6793,7 +6822,11 @@ class BibliothequeDAO {
                      $con = "'1'='1'";
                      break;
                  case "Accession":
-                     $con = "'1'='1'";
+                     if($_SESSION['Section']['Variete'] == true){
+                         $con = " acc.CodeVar IS NOT NULL ";
+                     } else {
+                         $con = "'1'='1'";
+                     }
                      break;
                  case "Emplacement":
                      $con = " emp.CodeIntro IS NOT NULL ";
@@ -6811,16 +6844,34 @@ class BibliothequeDAO {
                      $con = " (gen.CodeIntro IS NOT NULL OR gen.CodeVar IS NOT NULL) ";
                      break;
                  case "Bibliographie":
-                     $con = " (bib.CodeIntro IS NOT NULL OR bib.CodeVar IS NOT NULL) ";
+                     if($_SESSION['Section']['Variete'] == true && $_SESSION['Section']['Accession'] == true){
+                         $con = " (bib.CodeIntro IS NOT NULL OR bib.CodeVar IS NOT NULL) ";
+                     } else if($_SESSION['Section']['Variete'] == true) {
+                         $con = " (bib.CodeVar IS NOT NULL) ";
+                     } else {
+                         $con = " (bib.CodeIntro IS NOT NULL) ";
+                     }
                      break;
                  case "Phototheque":
-                     $con = " (pho.CodeIntro IS NOT NULL OR pho.CodeVar IS NOT NULL) ";
+                     if($_SESSION['Section']['Variete'] == true && $_SESSION['Section']['Accession'] == true){
+                         $con = " (pho.CodeIntro IS NOT NULL OR pho.CodeVar IS NOT NULL) ";
+                     } else if($_SESSION['Section']['Variete'] == true) {
+                         $con = " (pho.CodeVar IS NOT NULL) ";
+                     } else {
+                         $con = " (pho.CodeIntro IS NOT NULL) ";
+                     }
                      break;
                  case "Documentation":
                      $con = " (doc.CodeIntro IS NOT NULL OR doc.CodeVar IS NOT NULL) ";
                      break;
                  case "Partenaire":
-                     $con =" (var.CodePartenaire IS NOT NULL OR acc.CodePartenaire IS NOT NULL) " || " (var.CodePartenaire IS NOT NULL) " || " (acc.CodePartenaire IS NOT NULL) ";
+                     if($_SESSION['Section']['Variete'] == true && $_SESSION['Section']['Accession'] == true){
+                         $con =" (var.CodePartenaire IS NOT NULL AND acc.CodePartenaire IS NOT NULL) ";
+                     } else if($_SESSION['Section']['Variete'] == true) {
+                         $con = " (var.CodePartenaire IS NOT NULL) ";
+                     } else {
+                         $con = " (acc.CodePartenaire IS NOT NULL) ";
+                     }
                      break;
             }
             return $con;
@@ -8338,7 +8389,9 @@ class BibliothequeDAO {
         } else if ($section == "accession") {
             connexion_bbd();
             mysql_query('SET NAMES UTF8');
-            $sql = "select * from `NV-INTRODUCTIONS` where CodeIntro='" . $code . "'";
+            $sql = "select * from `NV-INTRODUCTIONS`
+                    LEFT JOIN `ListeDeroulante_remark_acc_name` ON `NV-INTRODUCTIONS`.`evdb_M-RemarkAccessionName` = `ListeDeroulante_remark_acc_name`.`evdb_M-RemarkAccessionName`
+                    where CodeIntro='" . $code . "'";
             $resultat_accession = mysql_query($sql) or die(mysql_error());
             if (!$resultat_accession) {
                 deconnexion_bbd();
@@ -8352,7 +8405,12 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_accession) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_accession)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_accession);
-                    $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                    if ($langue == "FR") {
+                        $RmqAccName = $dico['RemAccName_FR'];
+                    } else {
+                        $RmqAccName = $dico['RemAccName_EN'];
+                    }
+                    $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $RmqAccName, $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
                     $detail = $ACC->getFichePDFAccession();
                     $detail = supprNull($detail);
                 }

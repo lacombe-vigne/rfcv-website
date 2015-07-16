@@ -178,7 +178,7 @@ switch($fun){
 		$code=$_GET['code'];
 		$section=$_GET['section'];
 		$dataString='search='.$search_complet.'&case_s='.$case_s.'&model='.$model.'&langue='.$langue.'&page_espece='.$page_espece.'&pagesize_espece='.$pagesize_espece.'&page_variete='.$page_variete.'&pagesize_variete='.$pagesize_variete.'&page_accession='.$page_accession.'&pagesize_accession='.$pagesize_accession.'&tri_espece_classname='.$tri_espece_classname.'&tri_espece_section='.$tri_espece_section.'&tri_espece_colone='.$tri_espece_colone.'&tri_variete_classname='.$tri_variete_classname.'&tri_variete_section='.$tri_variete_section.'&tri_variete_colone='.$tri_variete_colone.'&tri_accession_classname='.$tri_accession_classname.'&tri_accession_section='.$tri_accession_section.'&tri_accession_colone='.$tri_accession_colone;
-		if(isset($_SESSION['codePersonne'])){
+		if(!isset($_SESSION['codePersonne'])){
 			$statue=1;
 		}else{
 			$statue=2;
@@ -214,7 +214,7 @@ switch($fun){
 		$tri_accession_section=$_POST['tri_accession_section'];
 		$tri_accession_colone=$_POST['tri_accession_colone'];
 		$dataString='search='.$search_complet.'&case_s='.$case_s.'&model='.$model.'&langue='.$langue.'&page_espece='.$page_espece.'&pagesize_espece='.$pagesize_espece.'&page_variete='.$page_variete.'&pagesize_variete='.$pagesize_variete.'&page_accession='.$page_accession.'&pagesize_accession='.$pagesize_accession.'&tri_espece_classname='.$tri_espece_classname.'&tri_espece_section='.$tri_espece_section.'&tri_espece_colone='.$tri_espece_colone.'&tri_variete_classname='.$tri_variete_classname.'&tri_variete_section='.$tri_variete_section.'&tri_variete_colone='.$tri_variete_colone.'&tri_accession_classname='.$tri_accession_classname.'&tri_accession_section='.$tri_accession_section.'&tri_accession_colone='.$tri_accession_colone;
-		if(isset($_SESSION['codePersonne'])){
+		if(!isset($_SESSION['codePersonne'])){
 			$statue=1;
 		}else{
 			$statue=2;
@@ -230,7 +230,7 @@ switch($fun){
 	break;
 	case "checkLogin_avance":
 		$dataString=$_POST['dataString_stocker'];
-		if(isset($_SESSION['codePersonne'])){
+		if(!isset($_SESSION['codePersonne'])){
 			$statue=1;
 		}else{
 			$statue=2;

@@ -379,7 +379,7 @@
 							<img src='images/variete_fichier.png'/>";
 				}
 					if($SynoMajeur!=" –" && $SynoMajeur!=" – "){
-						echo "<span id='var_FichierVar'></span>&nbsp &nbsp".stripslashes($NomVar)."&nbsp &nbsp 
+						echo "<span id='var_FichierVar'></span>&nbsp &nbsp<span>".stripslashes($NomVar)."</span>&nbsp  
 								<span class='SynoMajeur_FichierAcc'>[<span id='SynoMajeur_lable_var'></span> ".stripslashes($SynoMajeur)."]</span>
 								<span id='codeVar_FichierVar'><span id='code_fiche'></span> ".$CodeVar."</span>";
 					}else{
@@ -490,7 +490,7 @@
 				}
 					echo "<div class='title_FichierAcc'>
 						<img src='images/accession_fichier.png' />
-						<span id='acc_FichierAcc'></span>&nbsp &nbsp".stripslashes($NomIntro)."
+						<span id='acc_FichierAcc'></span>&nbsp &nbsp<span>".stripslashes($NomIntro)."</span>
 						<span id='CodeIntro_FichierAcc'><span id='code_fiche' > </span> ".$CodeIntro."</span>
 					</div>
 					<div class='carte_FichierAcc'>

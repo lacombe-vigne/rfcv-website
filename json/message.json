@@ -8,5 +8,9 @@
 	"logout_fr":"Vous êtes déconnecté",
 	"logout_en":"You are disconnected",
         "bdd_fr":"Erreur de base de données",
-        "bdd_en":"Database error"
+        "bdd_en":"Database error",
+        "resultat1_fr":"Connectez-vous pour consulter plus de données !",
+        "resultat1_en":"Connectez-vous pour consulter plus de données !",
+        "resultat2_fr":"Votre compte ne peut pas consulter plus de données !",
+        "resultat2_en":"Votre compte ne peut pas consulter plus de données !"
 }

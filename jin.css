@@ -368,27 +368,27 @@ li.menu_rechercher {
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #A7A7A7;
     padding: 6px 15px 6px 15px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
     //text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     width:90%;
-    height: 100%;
+    //height: 100%;
 }
 #site-loginpage .login-input:focus {
     background:#fcfcfc;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width:90%;
-    height: 100%;
+    //height: 100%;
 }
 #site-loginpage .button{
     border-radius: 20px;
@@ -413,8 +413,8 @@ li.menu_rechercher {
     background: #DCDCF9;
     opacity:0.7;
     border: 1px solid #DCDCF9;
-    -moz-box-shadow: inset 0 0 45px #e7e7e7;
-    -webkit-box-shadow: inset 0 0 45px #e7e7e7;
+    //-moz-box-shadow: inset 0 0 45px #e7e7e7;
+    //-webkit-box-shadow: inset 0 0 45px #e7e7e7;
     box-shadow: inset 0 0 45px #cccccc;
     border-radius: 20px;
     margin: 1.5% auto auto auto ;
@@ -1067,16 +1067,16 @@ avar,aesp,aclo{
     border: 0 none;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
     border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     width: 20%;
     margin: auto 1% auto auto;
@@ -1084,10 +1084,10 @@ avar,aesp,aclo{
 .gestion-users input:focus {
     float:right;
     background:url(images/search_person.png) no-repeat 10px 8px #fcfcfc;
-    border-radius: 20px;
+    //border-radius: 20px;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 25%;
@@ -1149,23 +1149,23 @@ avar,aesp,aclo{
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     width: 100%;
     margin: auto 1% auto auto;
 }
 .new-user fieldset table input:focus{
     background:#fcfcfc;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -1329,15 +1329,15 @@ avar,aesp,aclo{
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     width: 100%;
     margin: auto 1% auto auto;
@@ -1345,8 +1345,8 @@ avar,aesp,aclo{
 .modifier_mesInfos fieldset table input:focus{
     background:#fcfcfc;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -1464,15 +1464,15 @@ avar,aesp,aclo{
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     width: 100%;
     margin: auto 1% auto auto;
@@ -1480,8 +1480,8 @@ avar,aesp,aclo{
 .modifier_ses_info fieldset table input:focus{
     background:#fcfcfc;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -1576,7 +1576,7 @@ avar,aesp,aclo{
 #FichierPar #CodePartenaire_FichierPar,#FichierSite #CodeSite_FichierSite{
     margin: 2.2% 7% 0% auto;
     text-align: right;
-    width: 40%;
+    //width: 40%;
     float: right;
     font-size:80%;
 }
@@ -3044,16 +3044,16 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
     font: bold 15px ScalaSa, Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+    //-webkit-border-radius: 20px;
+    //-moz-border-radius: 20px;
+    //border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+    //-webkit-transition: all 0.5s ease 0s;
+    //-moz-transition: all 0.5s ease 0s;
+    //-o-transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     width:60%;
     height: 100%;
@@ -3062,8 +3062,8 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
     background:#fcfcfc;
     border-radius: 20px;
     color: #6a6f75;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
+    //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     width: 80%;

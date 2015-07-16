@@ -157,6 +157,7 @@ and open the template in the editor.
 	});	
 	//modifier mes information function appel serveur
 	$('.modifier_user_button').click(function(){
+		alert(faute);
 		if(faute<=0){
 			creatAjax();
 			var DataString='function=modifiez_infoPerson&user_nom='+$("#user_nom").val()+'&user_prenom='+$("#user_prenom").val()+'&password='+$("#password1").val()+'&user_tel='+$("#user_tel").val()+'&user_fax='+$("#user_fax").val()+'&user_mail='+$("#user_mail").val()+'&codePerson='+$("#user_code").val();
@@ -165,27 +166,15 @@ and open the template in the editor.
 				url:"./php/script_webbio.php",
 				data:DataString,
 				success:function(data){
-					$.getJSON("./json/personpage.json",function(data){
-                                                    $.each(data,function(key, value){
-							if(key==="PopUp_fr"){
-                                                            var message = value.ModifierInfoUser;
-                                                            alert(message);
-                                                            window.location.reload(1);
-							}
-                                                    });
-                                        });
+					// $('.mes-info').show();
+					// $('.modifier_mesInfos').hide();
+					window.location.reload();
+					alert(data);
 				}		
 			});
 			return false;
 		}else{
-			$.getJSON("./json/personpage.json",function(data){
-                                                    $.each(data,function(key, value){
-							if(key==="PopUp_fr"){
-                                                            var message = value.ModifierInfoUser2;
-                                                            alert(message);
-							}
-                                                    });
-                                                });
+			alert('non');
 		}
 	});
 	//list des utilisateur
@@ -416,26 +405,12 @@ and open the template in the editor.
 				url:"./php/script_webbio.php",
 				data:DataString,
 				success:function(data){
-					$.getJSON("./json/personpage.json",function(data){
-                                                    $.each(data,function(key, value){
-							if(key==="PopUp_fr"){
-                                                            var message = value.AddUser;
-                                                            alert(message);
-                                                            window.location.reload(1);
-							}
-                                                    });
-                                        });
+					alert("Le compte a bien été créé");
+                                        window.location.reload(1);
 				}		
 			});
 		}else{
-			$.getJSON("./json/personpage.json",function(data){
-                                $.each(data,function(key, value){
-                                        if(key==="PopUp_fr"){
-                                            var message = value.AddUser2;
-                                            alert(message);
-                                        }
-                                });
-                        });
+			alert("Vous n'avez pas bien rempli les champs! ");
 		}
                 
 	});
@@ -443,6 +418,7 @@ and open the template in the editor.
 	 $.extend({'ses_carte':function(a){
 			creatAjax();
 			var DataString='function=ses_infos&CodePersonne='+a;
+			// alert (DataString);
 			$.ajax({
 				type:"POST",
 				url:"./php/script_webbio.php",
@@ -721,27 +697,14 @@ and open the template in the editor.
 					url:"./php/script_webbio.php",
 					data:DataString,
 					success:function(data){
-						$.getJSON("./json/personpage.json",function(data){
-                                                    $.each(data,function(key, value){
-							if(key==="PopUp_fr"){
-                                                            var message = value.ModifierInfoUser;
-                                                            alert(message);
-                                                            window.location.reload(1);
-							}
-                                                    });
-                                                });
+						window.location.reload(1);
+						alert(data);
+						
 					}		
 				});
 				return false;
-			} else {
-				$.getJSON("./json/personpage.json",function(data){
-                                    $.each(data,function(key, value){
-                                        if(key==="PopUp_fr"){
-                                            var message = value.ModifierInfoUser2;
-                                            alert(message);
-                                        }
-                                    });
-                                });
+			}else{
+				alert('Vous devez corriger votre champs!');//jsonM
 			}
 		}
 	});
@@ -879,6 +842,7 @@ and open the template in the editor.
 				var pagesize_accession=$('#accession_pagesize_value_hidden').val() || 20;
 			}
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
+			// alert(dataString);
 			console.log(dataString);
 			search_ajax(dataString,search);
 		}
@@ -1621,6 +1585,7 @@ and open the template in the editor.
 				var pagesize_accession=$('#accession_pagesize_value_hidden').val() || 20;
 			}
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
+			// alert(dataString);
 			console.log(dataString);
 			search_ajax(dataString,search);
 		}
@@ -1644,6 +1609,7 @@ and open the template in the editor.
 				var tri_variete_colone=b;
 			}
 			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_variete_classname+'&section='+tri_variete_section+'&colone='+tri_variete_colone;
+			// alert(dataString);
 			console.log(dataString);
 			fichier_listVariete(dataString);	
 		}
@@ -2351,6 +2317,7 @@ and open the template in the editor.
 				// console.log(data);
 			},
 			success:function(data,status){
+				// alert(data,status);
 				console.log(data,status);
 				//chemin
 				
@@ -3477,6 +3444,7 @@ and open the template in the editor.
 			var tri_accession_section=$("#tri_accession_section").val();
 			var tri_accession_colone=$("#tri_accession_colone").val();
 			var dataString='search='+search+'&case_s='+case_s+'&model='+model+'&langue='+langue+'&page_espece='+page_espece+'&pagesize_espece='+pagesize_espece+'&page_variete='+page_variete+'&pagesize_variete='+pagesize_variete+'&page_accession='+page_accession+'&pagesize_accession='+pagesize_accession+'&tri_espece_classname='+tri_espece_classname+'&tri_espece_section='+tri_espece_section+'&tri_espece_colone='+tri_espece_colone+'&tri_variete_classname='+tri_variete_classname+'&tri_variete_section='+tri_variete_section+'&tri_variete_colone='+tri_variete_colone+'&tri_accession_classname='+tri_accession_classname+'&tri_accession_section='+tri_accession_section+'&tri_accession_colone='+tri_accession_colone;
+				// alert(dataString);
 			console.log(dataString);
 			search_ajax(dataString,search);
 		}
@@ -3491,6 +3459,7 @@ and open the template in the editor.
 			var tri_variete_section=$('#tri_variete_section').val();
 			var tri_variete_colone=$('#tri_variete_colone').val();
 			var dataString='code='+code+'&curpage='+curpage+'&pagesize='+pagesize+'&classname='+tri_variete_classname+'&section='+tri_variete_section+'&colone='+tri_variete_colone;
+				// alert(dataString);
 			console.log(dataString);
 			fichier_listVariete(dataString);
 		}
@@ -11824,20 +11793,12 @@ and open the template in the editor.
 	$.extend({'sup_condition':
 		function(id_number){
 			if(id_number!=1){
-                            $.getJSON("./json/searchAd.json",function(data){
-                                $.each(data,function(key, value){
-                                    if($('#mainMenu_Home').val()==="Accueil") {
-                                        if(key==="page_principale_fr"){
-                                            var message = value.MessageSupprimer;
-                                            var sup=confirm(message);
-                                        }
-                                    } else {
-                                        if(key==="page_principale_en"){
-                                            var message = value.MessageSupprimer;
-                                            var sup=confirm(message);
-                                        }    
-                                    }
-                                    if(sup){
+				if(langue=='FR'){
+					var sup=window.confirm('Vous être sûr que vous voulez supprimer cette condition?');
+				}else{
+					var sup=window.confirm('You sure you want to delete this condition?');
+				}
+				if(sup){
 					$('#tr_'+id_number).remove();
 					var v=$('#contents_condition')[0];
 					var Ptr=v.getElementsByTagName("tr");
@@ -11858,26 +11819,14 @@ and open the template in the editor.
 						$('#condition_ValeurCodee1_'+i).attr({id:"condition_ValeurCodee1_"+(i-1)});
 						$('#condition_ValeurCodee2_'+i).attr({id:"condition_ValeurCodee2_"+(i-1)});
 					}
-                                    }
-                                });
-                            });    
-			} else {
-                            $.getJSON("./json/searchAd.json",function(data){
-                                $.each(data,function(key, value){
-                                    if($('#mainMenu_Home').val()==="Accueil") {
-                                        if(key==="page_principale_fr"){
-                                            var message = value.MessageSupprimer2;
-                                            var sup= alert(message);
-                                        }
-                                    } else {
-                                        if(key==="page_principale_en"){
-                                            var message = value.MessageSupprimer2;
-                                            var sup= alert(message);
-                                        }    
-                                    }
-                                });
-                            });    
-                        }
+				}
+			}else{
+				if(langue=='FR'){
+					var sup=window.alert('Vous ne pouvez pas supprimer la dernière ligne de  condition.');
+				}else{
+					var sup=window.alert('You can not delete the last line condition.');
+				}
+			}
 		}
 	});
 	$.extend({'searchA_changeSection':
@@ -13066,7 +13015,7 @@ and open the template in the editor.
 			var condition_genetique_name1 = 'condition_ValeurCodee1_'+i;
 			var condition_genetique_name2 = 'condition_ValeurCodee2_'+i;
 			/*
-                         * Permet de vérifier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
+                         * Permet de vériffier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
                          */
             
                         if($('#champ_'+i).val()==' '){
@@ -13141,50 +13090,29 @@ and open the template in the editor.
 		if(faute==0 && v_a!=0 && !idem && (section.length <= 4) && !indiff){
 			console.log(dataString);
 			searchAdvance(dataString);
-		}
-                $.getJSON("./json/searchAd.json",function(data){
-			$.each(data,function(key, value){
-				if(langue=="FR") {
-					if(key==="page_principale_fr"){
-						if(faute!=0){
-							var message = value.MessageCondition;
-							alert(message);
-						} else if(v_a==0) {
-							var message = value.MessageCondition2;
-							alert(message);
-						} else if(idem) {
-							var message = value.MessageCondition3;
-							alert(message);
-						} else if(section.length > 4) {
-							var message = value.MessageCondition4;
-							alert(message);
-						} else if(indiff) {
-							var message = value.MessageCondition5;
-							alert(message);
-						}
-					}	
-				} else {		
-					if(key==="page_principale_en"){
-						if(faute!=0){
-							var message = value.MessageCondition;
-							alert(message);
-						} else if(v_a==0) {
-							var message = value.MessageCondition2;
-							alert(message);
-						} else if(idem) {
-							var message = value.MessageCondition3;
-							alert(message);
-						} else if(section.length > 4) {
-							var message = value.MessageCondition4;
-							alert(message);
-						} else if(indiff) {
-							var message = value.MessageCondition5;
-							alert(message);
-						}
-					}
-				}
-			});
-		});
+		}else if(faute!=0){
+			if(langue=="FR"){
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}else if(langue=="EN"){
+				alert('You can not leave a vacuum line provided.');
+			}else{
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}
+		}else if(v_a==0){
+			if(langue=="FR"){
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}else if(langue=="EN"){
+				alert('You must choose at least a Variety or Accession section, and you can leave the "- any -".');
+			}else{
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}
+		}else if(idem){ // si 2 conditons sont identiques
+                    alert('Vous avez 2 lignes identiques');
+                }else if(section.length > 4){ // si nous avons plus de 4 sections différentes
+                    alert('Vous ne pouvez pas effectuer une recherche sur plus de 4 sections différentes');
+                }else if(indiff){
+                    alert("Incohérence des données recherchées");
+                }
             }
 	});
         //En cliquant sur le bouton
@@ -13202,7 +13130,7 @@ and open the template in the editor.
 			var condition_genetique_name1 = 'condition_ValeurCodee1_'+i;
 			var condition_genetique_name2 = 'condition_ValeurCodee2_'+i;
 			/*
-                         * Permet de vérifier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
+                         * Permet de vériffier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
                          */
             
                         if($('#champ_'+i).val()==' '){
@@ -13277,50 +13205,29 @@ and open the template in the editor.
 		if(faute==0 && v_a!=0 && !idem && (section.length <= 4) && !indiff){
 			console.log(dataString);
 			searchAdvance(dataString);
-		}
-                $.getJSON("./json/searchAd.json",function(data){
-			$.each(data,function(key, value){
-				if(langue=="FR") {
-					if(key==="page_principale_fr"){
-						if(faute!=0){
-							var message = value.MessageCondition;
-							alert(message);
-						} else if(v_a==0) {
-							var message = value.MessageCondition2;
-							alert(message);
-						} else if(idem) {
-							var message = value.MessageCondition3;
-							alert(message);
-						} else if(section.length > 4) {
-							var message = value.MessageCondition4;
-							alert(message);
-						} else if(indiff) {
-							var message = value.MessageCondition5;
-							alert(message);
-						}
-					}	
-				} else {		
-					if(key==="page_principale_en"){
-						if(faute!=0){
-							var message = value.MessageCondition;
-							alert(message);
-						} else if(v_a==0) {
-							var message = value.MessageCondition2;
-							alert(message);
-						} else if(idem) {
-							var message = value.MessageCondition3;
-							alert(message);
-						} else if(section.length > 4) {
-							var message = value.MessageCondition4;
-							alert(message);
-						} else if(indiff) {
-							var message = value.MessageCondition5;
-							alert(message);
-						}
-					}
-				}
-			});
-		});
+		}else if(faute!=0){
+			if(langue=="FR"){
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}else if(langue=="EN"){
+				alert('You can not leave a vacuum line provided.');
+			}else{
+				alert('Vous ne pouvez pas laisser un ligne de condition vide.');
+			}
+		}else if(v_a==0){
+			if(langue=="FR"){
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}else if(langue=="EN"){
+				alert('You must choose at least a Variety or Accession section, and you can leave the "- any -".');
+			}else{
+				alert('Vous devez au moins choisir une section Variété ou Accession, et vous pouvez laissez le champ "--indifférent--".');
+			}
+		}else if(idem){ // si 2 conditons sont identiques
+                    alert('Vous avez 2 lignes identiques');
+                }else if(section.length > 4){ // si nous avons plus de 4 sections différentes
+                    alert('Vous ne pouvez pas effectuer une recherche sur plus de 4 sections différentes');
+                }else if(indiff){
+                    alert("Incohérence des données recherchées");
+                }
 	});
 	function searchAdvance(dataString){
 		creatAjax();
@@ -15692,10 +15599,10 @@ and open the template in the editor.
                                                                                 var langue = '<?php echo $langue ?>';
                                                                                 if(langue=='FR'){
                                                                                     this.title += '<span>Code : '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organe : '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date : '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photographe : '+tab[this.index]['Photographe']+'&nbsp&nbsp Partenaire : '+tab[this.index]['Partenaire']+'</span>';
-                                                                                    //Label en français : Organe,Date,Photographe,Partenaire (cf:phototheque.json)  
+                                                                                    //Label en français : Organe,Date,Photographe,Partenaire (cf:photothque.json)  
                                                                                 } else if(langue=='EN') {
                                                                                     this.title += '<span>Code: '+tab[this.index]['Code_photo']+'&nbsp&nbsp Organ: '+tab[this.index]['OrganePhoto']+'&nbsp&nbsp Date: '+tab[this.index]['DatePhoto']+'&nbsp&nbsp Photograph: '+tab[this.index]['Photographe']+'&nbsp&nbsp Partner: '+tab[this.index]['Partenaire']+'</span>';
-                                                                                    //Label en anglais : Organ,Date,Photograph,Partner (cf:phototheque.json) 
+                                                                                    //Label en anglais : Organ,Date,Photograph,Partner (cf:photothque.json) 
                                                                                 }    
                                                                             }
                                                                         });
@@ -16329,13 +16236,31 @@ and open the template in the editor.
 	}
 	$.extend({'selection':
 		function(section){
+			
+			// var name=new Array();
 			var dataString=section;
 			var section_name=section.toLowerCase();
+			
 			$('input[name="Checkbox_'+section_name+'[]"]:checked').each(function(){
+				// name.push($(this).val());
+				// name+=$(this).val()+",";
 				dataString=dataString+"_"+$(this).val();
 			});
+			
+			
+			
+			// alert(name.length==0?'Vous n\'avez aucune selecté.':name);
+			// var dataJson="{section:"+section+"}";
+			// var name={section:section};
+			// section_name.push(name);
+			
 			dataString="dataString="+dataString;
-			creatAjax();
+			// var section_name={section:section,code:name};
+			// var non={"x":"x","s":"s"};
+			// dataJson=JSON.stringify(section_name);
+			creatAjax()
+			// var datax={"data":dataJson};
+			// console.log(dataJson);
 			$.ajax({
 				type: "POST",
 				data:dataString,
@@ -16343,32 +16268,30 @@ and open the template in the editor.
 				success:function(data){
 					console.log(data);
 					console.log(dataString);
-					$.getJSON("./json/selection.json",function(data){
-                                            $.each(data,function(key, value){
-                                                if($('#mainMenu_Home').val()==="Accueil") {
-                                                    if(key==="selection_fr"){
-                                                        var message = value.AddSelect;
-                                                        alert(message);
-                                                    }
-                                                } else {
-                                                    if(key==="selection_en"){
-                                                        var message = value.AddSelect;
-                                                        alert(message);
-                                                    }    
-                                                }
-                                            });
-                                        });
+					alert("Vous avez bien ajouté les données dans votre selctions");
 				}
 			});
 		}
 	});
         $.extend({'selectionFiche':
 		function(section,code){
+			
+			// var name=new Array();
 			var dataString=section;
 			var section_name=section.toLowerCase();
 			dataString=dataString+"_"+code;
+			// alert(name.length==0?'Vous n\'avez aucune selecté.':name);
+			// var dataJson="{section:"+section+"}";
+			// var name={section:section};
+			// section_name.push(name);
+			
 			dataString="dataString="+dataString;
+			// var section_name={section:section,code:name};
+			// var non={"x":"x","s":"s"};
+			// dataJson=JSON.stringify(section_name);
 			creatAjax()
+			// var datax={"data":dataJson};
+			// console.log(dataJson);
 			$.ajax({
 				type: "POST",
 				data:dataString,
@@ -16376,21 +16299,7 @@ and open the template in the editor.
 				success:function(data){
 					console.log(data);
 					console.log(dataString);
-                                        $.getJSON("./json/selection.json",function(data){
-                                            $.each(data,function(key, value){
-                                                if($('#mainMenu_Home').val()==="Accueil") {
-                                                    if(key==="selection_fr"){
-                                                        var message = value.AddSelect;
-                                                        alert(message);
-                                                    }
-                                                } else {
-                                                    if(key==="selection_en"){
-                                                        var message = value.AddSelect;
-                                                        alert(message);
-                                                    }    
-                                                }
-                                            });
-                                        });
+					alert("Vous avez bien ajouté les données dans votre selections");
 				}
 			});
 		}
@@ -18085,21 +17994,16 @@ and open the template in the editor.
 	$.extend({"delete_selection":
 		function(id,section){
                     var r;
-                    $.getJSON("./json/selection.json",function(data){
+                    $.getJSON("./json/message.json",function(data){
                         $.each(data,function(key, value){
                             if($('#mainMenu_Home').val()==="Accueil"){
-                                if(key==="selection_fr"){
-                                	var message = value.SuppSelect;
-					r = confirm(message);
-				}	
+                                if(key===="selection_fr")
+                                var message = value.SuppSelect
                             } else {
-                                if(key==="selection_en"){
-                                	var message = value.SuppSelect;
-					r = confirm(message);
-				}
                                 
-                            }
-                            if(r==true){
+                            }    
+			var r=confirm("Êtes-vous sûr de vouloir supprimer?");
+			if(r==true){
 				creatAjax();
 				var dataString="id="+id+"&function=delete_selection&section="+section;
 				$.ajax({
@@ -18110,28 +18014,13 @@ and open the template in the editor.
 						window.location.href='./MySelection.php';
 					}
 				});
-                            }
-			});
-                    });	    	
-                }
+			}
+		}
 	});
 	$.extend({"vide_section":
 		function(section){
-                    $.getJSON("./json/selection.json",function(data){
-                        $.each(data,function(key, value){
-                            if($('#mainMenu_Home').val()==="Accueil"){
-                                if(key==="selection_fr"){
-                                	var message = value.SuppSelect;
-					var r = confirm(message);
-				}	
-                            } else {
-                                if(key==="selection_en"){
-                                	var message = value.SuppSelect;
-					var r = confirm(message);
-				}
-                                
-                            }
-                            if(r==true){
+			var r=confirm("Êtes-vous sûr de vouloir supprimer?");
+			if(r==true){
 				creatAjax();
 				var dataString="function=vide_section&section="+section;
 				$.ajax({
@@ -18142,10 +18031,7 @@ and open the template in the editor.
 						window.location.href='./MySelection.php';
 					}
 				});
-                            }
-			});
-                    });
-			
+			}
 		}
 	});
         

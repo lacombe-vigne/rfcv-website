@@ -13,16 +13,8 @@
 	<!--changer des page en langue francais -->
 	<script src="./js/chagePage_FR.js" type="text/javascript" charset=utf-8> </script>
         <?php include('./js/function.php');?>
-	<!--<script src="./js/function.js" type="text/javascript" charset=utf-8> 
-           //var langue = "FR";
-           
-            /*var langue = (function(){
-                var langue = '';
-                return langue; 
-            })*/
-        </script>-->
 	<link rel="stylesheet" href="jin.css" type="text/css" media="all" />
-		<link rel="stylesheet" href="jquery-ui.css" type="text/css" media="all">
+	<link rel="stylesheet" href="jquery-ui.css" type="text/css" media="all">
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <!-- Add fancyBox main JS and CSS files -->
 	<script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>

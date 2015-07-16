@@ -104,7 +104,9 @@
 			"Pays_lien_FichierVar":"Pays",
 			"LienCLICABLE_FichierVar":"Lien",
 			"CodeAcc_selection_lien":"Code acc.",
-			"CodeVar_selection_lien":"Code var."
+			"CodeVar_selection_lien":"Code var.",
+                        "SuppSelect":"Êtes-vous sur de vouloir supprimer ?",
+                        "AddSelect":"Vous avez bien ajouté les données dans votre selection"
 		},
 	"selection_en":
 		{
@@ -211,6 +213,8 @@
 			"Pays_lien_FichierVar":"Country",
 			"LienCLICABLE_FichierVar":"Link",
 			"CodeAcc_selection_lien":"Acc.code",
-			"CodeVar_selection_lien":"Acc.code"
+			"CodeVar_selection_lien":"Acc.code",
+                        "SuppSelect":"Êtes-vous sur de vouloir supprimer ?",
+                        "AddSelect":"Vous avez bien ajouté les données dans votre selection"
 		}
 }

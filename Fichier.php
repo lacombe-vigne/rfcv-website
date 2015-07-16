@@ -31,17 +31,7 @@
 
 	<!-- BEGIN <head> -->
 
-	<?php
-		$_SESSION['language_Vigne']=$_POST['langue_value'];
-		// Echo $_SESSION['language_Vigne'];
-		if($_SESSION['language_Vigne']=="FR"){
-			include('php/web_style_fr.php');
-		}else if($_SESSION['language_Vigne']=="EN"){
-			include('php/web_style_en.php');
-		}else{
-			include('php/web_style_fr.php');
-		}	
-	?>
+	
 
 
 	<!-- END <head> -->
@@ -163,6 +153,17 @@
 			
 		</div>
 		<!-- END Page Content -->
+                <?php
+                    $_SESSION['language_Vigne']=$_POST['langue_value'];
+                    // Echo $_SESSION['language_Vigne'];
+                    if($_SESSION['language_Vigne']=="FR"){
+			include('php/web_style_fr.php');
+                    }else if($_SESSION['language_Vigne']=="EN"){
+			include('php/web_style_en.php');
+                    }else{
+			include('php/web_style_fr.php');
+                    }	
+                ?>
 	</body>
 	
 </html>

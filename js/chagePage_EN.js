@@ -109,6 +109,12 @@ $(document).ready(function(){
 				$('#chemin_searchS').append(value.chemin_searchS);
 				$('#chemin_fiche').append(value.chemin_fiche);
 				$('#chemin_person').append(value.chemin_person);
+                                $('#chemin_contacts').append(value.chemin_contacts);
+				$('#chemin_credits').append(value.chemin_credits);
+				$('#chemin_droitsdevoirs').append(value.chemin_droitsdevoirs);
+				$('#chemin_partenaire').append(value.chemin_partenaire);
+				$('#chemin_charte').append(value.chemin_charte);
+                                $('#chemin_documentation').append(value.chemin_documentation);
 			}
 			if(key==="partenaire_page_en"){
 				$('#title_parti1_partenaire').append(value.title_parti1);

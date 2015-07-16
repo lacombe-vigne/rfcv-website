@@ -242,5 +242,13 @@
 			"fax":"Format of fax number must be '11 22 33 44 55'",
 			"mail":"You din't gave a correct email address.",
 			"dateFin":"The date format must be 'yyyy-mm-dd'"
-		}
+		},
+        "PopUp_fr":
+                {
+                    "ModifierInfoUser":"Les informations ont bien été modifiées",
+                    "ModifierInfoUser2":"Certains champs sont incorrects",
+                    "AddUser":"Le compte a bien été créé",
+                    "AddUser2":"Certains champs sont incorrects"
+                }
+                        
 }

@@ -103,16 +103,6 @@ $(document).ready(function(){
 										'<div class="notice_login"><h3>'+value.notice_title+'</h3><p>'+value.notice_contents+'</p></div>';
 				$('#site-loginpage').append(site_loginpage);
 			}
-			if(key==="chemin_fr"){
-				$('#chemin_home').append(value.chemin_home);
-				$('#chemin_selection').append(value.chemin_selection);
-				$('#chemin_searchA').append(value.chemin_searchA);
-				$('#chemin_login').append(value.chemin_login);
-				$('#chemin_resultat').append(value.chemin_resultat);
-				$('#chemin_searchS').append(value.chemin_searchS);
-				$('#chemin_fiche').append(value.chemin_fiche);
-				$('#chemin_person').append(value.chemin_person);
-			}
 			if(key==="partenaire_page_fr"){
 				$('#title_parti1_partenaire').append(value.title_parti1);
 				$('#contents_parti1_partenaire').append(value.contents_parti1);
@@ -160,6 +150,22 @@ $(document).ready(function(){
 				$('#contents_parti2_rights_duties').append(value.contents_parti2);
 				$('#title_parti3_rights_duties').append(value.title_parti3);
 				$('#contents_parti3_rights_duties').append(value.contents_parti3);
+			}
+                        if(key==="chemin_fr"){
+				$('#chemin_home').append(value.chemin_home);
+				$('#chemin_selection').append(value.chemin_selection);
+				$('#chemin_searchA').append(value.chemin_searchA);
+				$('#chemin_login').append(value.chemin_login);
+				$('#chemin_resultat').append(value.chemin_resultat);
+				$('#chemin_searchS').append(value.chemin_searchS);
+				$('#chemin_fiche').append(value.chemin_fiche);
+				$('#chemin_person').append(value.chemin_person);
+                                $('#chemin_contacts').append(value.chemin_contacts);
+				$('#chemin_credits').append(value.chemin_credits);
+				$('#chemin_droitsdevoirs').append(value.chemin_droitsdevoirs);
+				$('#chemin_partenaire').append(value.chemin_partenaire);
+				$('#chemin_charte').append(value.chemin_charte);
+                                $('#chemin_documentation').append(value.chemin_documentation);
 			}
                         if(key==="footer2_fr"){
                             var footer =value.footer;

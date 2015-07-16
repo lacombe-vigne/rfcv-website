@@ -169,7 +169,13 @@
 			"chemin_resultat":"Résultat de recherche",
 			"chemin_searchS":"Recherche simple",
 			"chemin_fiche":"Fiche",
-			"chemin_person":"Page personnelle"
+			"chemin_person":"Page personnelle",
+                        "chemin_contacts":"Contacts",
+			"chemin_credits":"Credit",
+			"chemin_droitsdevoirs":"Droits et Devoirs",
+			"chemin_partenaire":"Partenaire",
+			"chemin_charte":"Charte",
+                        "chemin_documentation":"Documentation"
 			
 		},
 	"chemin_en":
@@ -181,7 +187,13 @@
 			"chemin_resultat":"Search results",
 			"chemin_searchS":"Quick search",
 			"chemin_fiche":"Fiche",
-			"chemin_person":"Personal page"
+			"chemin_person":"Personal page",
+                        "chemin_contacts":"Contacts",
+			"chemin_credits":"Credit",
+			"chemin_droitsdevoirs":"Rights and Duties",
+			"chemin_partenaire":"Partner",
+			"chemin_charte":"Charter",
+			"chemin_documentation":"Documentation"
 		},
 	"partenaire_page_fr":
 		{
