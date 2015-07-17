@@ -1063,13 +1063,13 @@ avar,aesp,aclo{
 .gestion-users input{
     float:right;
     background: url(images/search_person.png) no-repeat 10px 8px #ccffff;
-    border-radius: 20px;
+    //border-radius: 20px;
     border: 0 none;
     color: #d7d7d7;
     padding: 6px 15px 6px 35px;
     //-webkit-border-radius: 20px;
     //-moz-border-radius: 20px;
-    border-radius: 20px;
+    //border-radius: 20px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     //-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
@@ -1077,9 +1077,9 @@ avar,aesp,aclo{
     //-webkit-transition: all 0.5s ease 0s;
     //-moz-transition: all 0.5s ease 0s;
     //-o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
-    width: 20%;
-    margin: auto 1% auto auto;
+    //transition: all 0.5s ease 0s;
+    //width: 20%;
+    margin: -5px 10px auto auto;
 }
 .gestion-users input:focus {
     float:right;
@@ -1090,8 +1090,8 @@ avar,aesp,aclo{
     //-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.5) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    width: 25%;
-    margin: auto 1% auto auto;
+    //width: 25%;
+    margin: -5px 10px auto auto;
 }
 .list-users img{
     margin: 2% 0px 1% 3%;
@@ -3346,7 +3346,26 @@ a.clickbox .lightbox:hover i, a.clickbox:active i, a.clickbox:focus i { right:5p
 #tabs-4_FichierAcc_MED fieldset #contents_ligne_bibliographie .t2 {
     background: #DDD;
 }
-
+#Close-ListUser{
+    margin: -4% 10px 1% 2%;
+    float: right;
+}
+#Close-NewUser{
+    margin: -6% -50px auto auto;
+    float: right;
+}
+#Close-SearchUser{
+    margin: -4% 10px 1% 2%;
+    float: right;
+}
+#Close-SesInfo{
+    margin: -50px 10px auto auto;
+    float: right;
+}
+#Close-ModifierSesInfo{
+    margin: -50px 10px auto auto;
+    float: right;
+}
 
 //Temporaire
 /*

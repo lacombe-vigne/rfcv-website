@@ -230,6 +230,13 @@ and open the template in the editor.
                                         }
                                     });
                                 });
+                                $.getJSON("./json/personpage.json",function(data){
+                                    $.each(data,function(key, value){
+                                        if(key==="PopUp_fr"){
+                                            $( "#Close-ListUser" ).attr("title", value.InfoClose);
+                                        }
+                                    });
+                                });
 				
 			},
 			dataType:"json"
@@ -237,7 +244,7 @@ and open the template in the editor.
                 
 		},
 		function(){
-		$('.list-users').hide();
+		$('.list-users').show();
 		}
 	);
 	//L'affichage des formulaire pour créer un nouveau utilisateur
@@ -246,9 +253,50 @@ and open the template in the editor.
 		$('.new-user').show();
 		},
 		function(){
-		$('.new-user').hide();
+		$('.new-user').show();
 		}
 	);
+        $.getJSON("./json/personpage.json",function(data){
+            $.each(data,function(key, value){
+                if(key==="PopUp_fr"){
+                    $( "#Close-NewUser" ).attr("title", value.InfoClose);
+                    $( "#Close-SearchUser" ).attr("title", value.InfoClose);
+                    $( "#rechercher_user" ).attr("title", value.SearchUser);
+                }
+            });
+        });
+        $('#Close-ListUser').toggle(
+            function(){
+		$('.list-users').hide(); 
+            },
+            function(){
+		$('.list-users').hide(); 
+            }
+        );
+        $('#Close-NewUser').toggle(
+            function(){
+		$('.new-user').hide(); 
+            },
+            function(){
+		$('.new-user').hide(); 
+            }
+        );
+        $('#Close-SearchUser').toggle(
+            function(){
+		$('.resl-list-users').hide(); 
+            },
+            function(){
+		$('.resl-list-users').hide(); 
+            }
+        );
+        $('#Close-SesInfo').toggle(
+            function(){
+		$('.ses-info').hide(); 
+            },
+            function(){
+		$('.ses-info').hide(); 
+            }
+        );
 	//vérifier des formulaire de creation un utilisateur
 	//var faute_new=4;
         var fauteID;
@@ -488,6 +536,9 @@ and open the template in the editor.
 									$('#Modifiez-ses-info').append(value.Modif);
 								}
 							}
+                                                        if(key==="PopUp_fr"){
+                                                            $( "#Close-SesInfo" ).attr("title", value.InfoClose);
+                                                        }    
 						});
 					});
 				},
@@ -510,8 +561,11 @@ and open the template in the editor.
 					$('.modifier_ses_info').show();
 					var formulaire='<form>'+
 									'<fieldset>'+
+                                                                        '<div>'+
 									'<legend><img src="images/modify_myinfos.png" alt="New user" width="40" height="40"/><span id="ModifiezSesInfo-title"></span></legend>'+
-									'<table>'+
+									'<a id="Close-ModifierSesInfo"><img src="images/DeleteAll.png" height="40" width="40"></a>'+
+                                                                        '</div>'+                                                                            
+                                                                        '<table>'+
 										'<tr>'+
 											'<td>'+
 												'<label for="user_nom" id="ModifiezSesInfo-nom"></label>'+
@@ -652,14 +706,21 @@ and open the template in the editor.
 									$('#user_mail_sesInfo_tip').append(value.mail);	
 								}
 							}
+                                                        if(key==="PopUp_fr"){
+                                                            $( "#Close-ModifierSesInfo" ).attr("title", value.InfoClose);
+                                                        }
 						});
 					});
+                                        $('#Close-ModifierSesInfo').click(
+                                            function(){
+                                                $('.modifier_ses_info').hide(); 
+                                            }
+                                        );
 				},
 				dataType:"json"
 			});
 		}
 	});
-	
 	//la fonction pour verifier si des valeur rempli dans le formulaire modifier ses infos sont correct ou pas 
 	
 	function verifier_ses_infos(){

@@ -248,7 +248,9 @@
                     "ModifierInfoUser":"Les informations ont bien été modifiées",
                     "ModifierInfoUser2":"Certains champs sont incorrects",
                     "AddUser":"Le compte a bien été créé",
-                    "AddUser2":"Certains champs sont incorrects"
+                    "AddUser2":"Certains champs sont incorrects",
+                    "InfoClose":"Cliquer pour cacher cette section",
+                    "SearchUser":"Appuyer sur la touche entrée pour lancer votre recherche"
                 }
                         
 }

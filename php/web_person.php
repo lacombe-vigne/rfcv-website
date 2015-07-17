@@ -122,7 +122,7 @@
 				echo '
 					<div class="list-users">
 					<img src="images/list_person.png" alt="List users" width="40" height="40"/>
-					<div><h3 id="title_list_user"></h3></div>
+					<div><h3 id="title_list_user"></h3><a id="Close-ListUser"><img src="images/DeleteAll.png" height="40" width="40"></a> </div>
 					<div class="table_info">
 					<table class="table_info_contents">
 					<tr><table id="listUser_header" width="100%"><th id="ListUser-nom" width="12%"></th><th id="ListUser-prenom" width="12%"></th><th id="ListUser-partenaire" width="12%" ></th><th id="ListUser-fonction" width="12%"></th><th id="ListUser-tel" width="12%"></th><th id="ListUser-fax" width="12%"></th><th id="ListUser-mail" width="12%"></th><th id="ListUser-dateFin" width="12%"></th><th> </th></tr></table>
@@ -135,7 +135,7 @@
 				echo '
 					<div class="resl-list-users">
 					<img src="images/list_person.png" alt="List users" width="40" height="40"/>
-					<div><h3 id="title_list_user_res"></h3></div>
+					<div><h3 id="title_list_user_res"></h3><a id="Close-SearchUser"><img src="images/DeleteAll.png" height="40" width="40"></a></div>
 					<div class="table_info">
 					<table id="table_info_contents">
 					<tr ><table id="listUser_header"><th id="ResUser-nom" width="13%"></th><th id="ResUser-prenom"  width="13%"></th><th id="ResUser-partenaire"  width="13%"></th><th id="ResUser-fonction" width="13%"></th><th id="ResUser-tel" width="13%"></th><th id="ResUser-fax" width="13%"></th><th id="ResUser-mail" width="13%"></th><th id="ResUser-dateFin" width="13%"></th><th>Détail</th></tr></table>
@@ -149,8 +149,11 @@
 					<div class="new-user">
 						<form>
 							<fieldset>
+                                                        <div>
 								<legend><img src="images/new_user.png" alt="New user" width="40" height="40"/><span id="NewUser-title"></span></legend>
-								<table>
+								<a id="Close-NewUser"><img src="images/DeleteAll.png" height="40" width="40"></a>
+                                                        </div>
+                                                        <table>
 								<tr>
 									<td style="width:25%;">
 										<label for="CodePersonne_new" id="NewUser-codepersonne"></label>
@@ -336,6 +339,7 @@
 						<div class="ses-info">
 						<img src="images/info_person.png" title="INFORMATIONS" width="40" height="40"/>
 						<h3 id="title-ses-info"></h3>
+                                                <a id="Close-SesInfo"><img src="images/DeleteAll.png" height="40" width="40"></a>
 						<table id="ses_info_table">
 						</table>
 						</div>
