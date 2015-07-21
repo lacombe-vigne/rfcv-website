@@ -156,9 +156,11 @@ $(document).ready(function(){
 				$('#chemin_selection').append(value.chemin_selection);
 				$('#chemin_searchA').append(value.chemin_searchA);
 				$('#chemin_login').append(value.chemin_login);
-				$('#chemin_resultat').append(value.chemin_resultat);
+				$('#chemin_resultat').prepend(value.chemin_resultat);
 				$('#chemin_searchS').append(value.chemin_searchS);
-				$('#chemin_fiche').append(value.chemin_fiche);
+				$('#chemin_ficheEsp').prepend(value.chemin_ficheEsp);
+                                $('#chemin_ficheVar').prepend(value.chemin_ficheVar);
+                                $('#chemin_ficheAcc').prepend(value.chemin_ficheAcc);
 				$('#chemin_person').append(value.chemin_person);
                                 $('#chemin_contacts').append(value.chemin_contacts);
 				$('#chemin_credits').append(value.chemin_credits);
@@ -298,7 +300,6 @@ $(document).ready(function(){
 				$('#ResUser-dateFin').append(value.dataFin);
 			}
 			if(key==="SesInfo_fr"){
-				console.log(value.vient);
 				$('#title-ses-info').append(value.title);	
 			}
 			if(key==="ModiMesInfo_fr"){
@@ -335,7 +336,6 @@ $(document).ready(function(){
 	});
 	//page fichier
 	$.getJSON("./json/fichier.json",function(data){
-		console.log(1);
 		$.each(data,function(key, value){
                         if(key==="code_fr"){
                             $('#code_fiche').append(value.Code);
@@ -543,6 +543,7 @@ $(document).ready(function(){
                                 $('#IdProtocoleRecolte_lable_gen').append(value.IdProtocoleRecolte)
 				$('#gen_FichierGen').append(value.title);
 				$('#nomAcc_lable_gen').append(value.nomAcc);
+                                $('#nomVar_lable_gen').append(value.nomVar);
 				$('#IdStockADN_lable_gen').append(value.IdStockADN);
 				$('#CodeAcc_lable_gen').append(value.CodeAcc);
 				$('#IdProtocolePCR_lable_gen').append(value.IdProtocolePCR);

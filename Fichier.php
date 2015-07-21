@@ -97,8 +97,8 @@
 								$section='sites';
 							}							
 							echo'
-								<li><a id="langue_fr" onclick="$.fichier_langue(\'FR\',\''.$code.'\',\''.$section.'\')"><img src="images/french.png"/></a></li>
-								<li><a id="langue_en" onclick="$.fichier_langue(\'EN\',\''.$code.'\',\''.$section.'\')"><img src="images/english.png"/></a></li>
+								<li><a id="langue_fr" onclick="$.fichier_langue(\'FR\',\''.$code.'\',\''.$section.'\',\''.$_POST['recherche'].'\')"><img src="images/french.png"/></a></li>
+								<li><a id="langue_en" onclick="$.fichier_langue(\'EN\',\''.$code.'\',\''.$section.'\',\''.$_POST['recherche'].'\')"><img src="images/english.png"/></a></li>
 								';
 ?>
 							</ul>
@@ -121,12 +121,12 @@
 					<ul>
 					<li><a href="Home.php" class="lien_chemin" id="chemin_home"></a></li>
 					<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>
-					<li><a href="SearchS.php" class="lien_chemin" id="chemin_searchS"></a></li>
+					<!--<li><a href="SearchS.php" class="lien_chemin" id="chemin_searchS"></a></li>
 					<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>
 					<li><a onclick='$.back_list();' class="lien_chemin" id="chemin_resultat"></a></li>
 					<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>
 					<li id="chemin_fiche"></li>
-					<li id="back_button"><a  onclick='$.back_list();' ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>
+					<li id="back_button"><a  onclick='$.back_list();' ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>-->
 					</ul>
 				</div>
 				<!-- END #site-chemin -->
@@ -164,6 +164,7 @@
 			include('php/web_style_fr.php');
                     }	
                 ?>
+                <script src="./js/Fichier.js" type="text/javascript" charset=utf-8> </script>
 	</body>
 	
 </html>

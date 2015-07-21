@@ -219,6 +219,7 @@ li.menu_rechercher {
 .lien_chemin{
     color:#9F9EB0;
     text-decoration:underline;
+    cursor: pointer;
 }
 .lien_chemin:hover{
     color:#fff;

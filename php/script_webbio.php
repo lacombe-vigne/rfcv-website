@@ -962,7 +962,32 @@ switch($fun){
 		$section=$_POST['section'];
 		unset ($_SESSION['selection'][ucfirst($section)]);
 	break;
-   
+        case "recuperer_code":
+            /*
+             * Case qui permet de construire le fil d'arianne avec les différents codes.
+             */
+            $section=$_POST['section'];
+            $code=$_POST['code'];
+            if($section == "variete"){
+                $resultat = $DAO->codeEsp($code);
+                echo json_encode($resultat);
+            } else if($section == "accession"){
+                $resultatVar = $DAO->codeVar($code);
+                $resultatEsp = $DAO->codeEsp($resultatVar);
+                $resultat = array("CodeEsp"=>$resultatEsp,"CodeVar"=>$resultatVar);
+                echo json_encode($resultat);
+            } else {
+                $resultatAcc = $DAO->codeAccSec($code,$section);
+                $resultatVar = $DAO->codeVarSec($code,$section);
+                if($resultatVar == "" && $resultatAcc != ""){
+                    $resultatVar = $DAO->codeVar($resultatAcc);
+                }
+                $resultatEsp = $DAO->codeEsp($resultatVar);
+                $resultat = array("CodeEsp"=>$resultatEsp,"CodeVar"=>$resultatVar,"CodeAcc"=>$resultatAcc);
+                echo json_encode($resultat);
+            }
+        break;
+    
 }
 
 

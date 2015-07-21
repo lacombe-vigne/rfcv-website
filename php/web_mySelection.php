@@ -59,10 +59,10 @@
 									}
 									echo '
 								<tr style="cursor:pointer;">
-									<td width="13%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['codeEspece'].'</td>
-									<td width="35%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['nomEspece'].'</td>
-									<td width="25%"  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['botaniste'].'</td>
-									<td  onclick="$.passerFicher(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['tronc'].'</td>
+									<td width="13%"  onclick="$.passerFicherSelection(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['codeEspece'].'</td>
+									<td width="35%"  onclick="$.passerFicherSelection(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['nomEspece'].'</td>
+									<td width="25%"  onclick="$.passerFicherSelection(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['botaniste'].'</td>
+									<td  onclick="$.passerFicherSelection(\''.$value['codeEspece'].'\',\'espece\');return false;">'.$value['tronc'].'</td>
 									<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
 									<td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeEspece'].'\',\'espece\')" /></td>
 								</tr>';
@@ -142,17 +142,17 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="4%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['codeVar'].'</td>
-										<td  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['nomVar'].'</td>
-										<td width="17%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['SynoMajeur'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['utilite'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['couleurPel'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['saveur'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['pepins'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['sexe'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['paysorigine'].'</td>
-										<td width="5%"  onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['CodeEsp'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['codeVar'].'\',\'variete\');return false;">...</td>
+										<td width="4%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['codeVar'].'</td>
+										<td  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['nomVar'].'</td>
+										<td width="17%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['SynoMajeur'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['utilite'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['couleurPel'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['saveur'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['pepins'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['sexe'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['paysorigine'].'</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">'.$value['CodeEsp'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['codeVar'].'\',\'variete\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['codeVar'].'\',\'variete\')" /></td>
 									</tr>';
@@ -228,14 +228,14 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['codeIntro'].'</td>
-										<td  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['NomIntro'].'</td>
-										<td width="17%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['nomVar'].'</td>
-										<td width="20%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['Partenaire'].'</td>
-										<td width="12%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['PaysProvenance'].'</td>
-										<td width="12%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['communeProvenance'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['AnneeEntree'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['CodeVar'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['codeIntro'].'</td>
+										<td  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['NomIntro'].'</td>
+										<td width="17%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['nomVar'].'</td>
+										<td width="20%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['Partenaire'].'</td>
+										<td width="12%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['PaysProvenance'].'</td>
+										<td width="12%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['communeProvenance'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['AnneeEntree'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['codeIntro'].'\',\'accession\');return false;">'.$value['CodeVar'].'</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" height="25" onclick="$.delete_selection(\''.$value['codeIntro'].'\',\'accession\')"  /></td>
 									</tr>';
@@ -313,15 +313,15 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="23%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeEmplacem'].'</td>
-										<td width="8%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeSite'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['Parcelle'].'</td>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['Rang'].'</td>
-										<td width="15%"  onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['AnneePlantation'].'</td>
-										<td   onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['NomIntro'].'</td>
-										<td width="10%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeIntro'].'</td>
-										<td width="10%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">...</td>
+										<td width="23%"  onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeEmplacem'].'</td>
+										<td width="8%" onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeSite'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['Parcelle'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['Rang'].'</td>
+										<td width="15%"  onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['AnneePlantation'].'</td>
+										<td   onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['NomIntro'].'</td>
+										<td width="10%" onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeIntro'].'</td>
+										<td width="10%" onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">'.$value['CodeVar'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['CodeEmplacem'].'\',\'emplacement\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeEmplacem'].'\',\'emplacement\')"   /></td>
 									</tr>';
@@ -397,14 +397,14 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="5%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['IdTest'].'</td>
-										<td width="10%" onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeIntro'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['NomTest'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CategorieTest'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['ResultatTest'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['Laboratoire'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['IdTest'].'\',\'sanitaire\');return false;">...</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['IdTest'].'</td>
+										<td width="10%" onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeIntro'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['NomTest'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CategorieTest'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['ResultatTest'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['Laboratoire'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">'.$value['CodeVar'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['IdTest'].'\',\'sanitaire\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['IdTest'].'\',\'sanitaire\')"   /></td>
 									</tr>';
@@ -479,13 +479,13 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="13%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Code'].'</td>
-										<td onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Description'].'</td>
-										<td width="20%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Critaire'].'</td>
-										<td width="15%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CaractereOIV'].'</td>
-										<td width="20%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeVar'].'</td>
-										<td width="15%"  onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeAcc'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['id'].'\',\'morphologique\');return false;">...</td>
+										<td width="13%"  onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Code'].'</td>
+										<td onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Description'].'</td>
+										<td width="20%"  onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['Critaire'].'</td>
+										<td width="15%"  onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CaractereOIV'].'</td>
+										<td width="20%"  onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeVar'].'</td>
+										<td width="15%"  onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">'.$value['CodeAcc'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['id'].'\',\'morphologique\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['id'].'\',\'morphologique\')"/></td>
 									</tr>';
@@ -569,16 +569,16 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeDonnee'].'</td>
-										<td width="22%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['AptitudeMesure'].'</td>
-										<td width="7%" onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['ValeurMesure'].'</td>
-										<td   onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['UniteMesure'].'</td>
-										<td width="15%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['PonderationValeur'].'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$date_aptitude.'</td>
-										<td width="10%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['PartenaireMesure'].'</td>
-										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeAcc'].'</td>
-										<td width="5%"  onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">...</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeDonnee'].'</td>
+										<td width="22%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['AptitudeMesure'].'</td>
+										<td width="7%" onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['ValeurMesure'].'</td>
+										<td   onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['UniteMesure'].'</td>
+										<td width="15%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['PonderationValeur'].'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$date_aptitude.'</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['PartenaireMesure'].'</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeAcc'].'</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">'.$value['CodeVar'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['CodeDonnee'].'\',\'aptitude\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeDonnee'].'\',\'aptitude\')"   /></td>
 									</tr>';
@@ -672,15 +672,15 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="23%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Code'].'</td>
-										<td width="19%" onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Margueur'].'</td>
-										<td   onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Allele1'].'</td>
-										<td width="14%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Allele2'].'</td>
-										<td width="14%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Partenaire'].'</td>
-										<td width="14%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Date'].'</td>
-										<td width="5%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeAcc'].'</td>
-										<td width="5%"  onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['Code'].'\',\'genetique\');return false;">...</td>
+										<td width="23%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Code'].'</td>
+										<td width="19%" onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Margueur'].'</td>
+										<td   onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Allele1'].'</td>
+										<td width="14%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Allele2'].'</td>
+										<td width="14%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Partenaire'].'</td>
+										<td width="14%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['Date'].'</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeAcc'].'</td>
+										<td width="5%"  onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">'.$value['CodeVar'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['Code'].'\',\'genetique\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['Code'].'\',\'genetique\')"   /></td>
 									</tr>';
@@ -845,15 +845,15 @@
 									}
 									echo '
 									<tr style="cursor:pointer;">
-										<td width="8%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeCit'].'</td>
-										<td   onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Title'].'</td>
-										<td width="25%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Author'].'</td>
-										<td width="12%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Year'].'</td>
-										<td width="7%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['VolumeCitation'].'</td>
-										<td width="7%" onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['PagesCitation'].'</td>
-										<td width="7%"  onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeAcc'].'</td>
-										<td width="7%" onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeVar'].'</td>
-										<td width="5%" onclick="$.passerFicher(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">...</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeCit'].'</td>
+										<td   onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Title'].'</td>
+										<td width="25%"  onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Author'].'</td>
+										<td width="12%"  onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['Year'].'</td>
+										<td width="7%"  onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['VolumeCitation'].'</td>
+										<td width="7%" onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['PagesCitation'].'</td>
+										<td width="7%"  onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeAcc'].'</td>
+										<td width="7%" onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">'.$value['CodeVar'].'</td>
+										<td width="5%" onclick="$.passerFicherSelection(\''.$value['CodeCit'].'\',\'bibliographie\');return false;">...</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodeCit'].'\',\'Bibliographie\')"  /></td>
 									</tr>';
@@ -925,10 +925,10 @@
 									}
 									echo '
 									<tr>
-										<td width="8%"  onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['CodePartenaire'].'</td>
-										<td   onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SiglePartenaire'].'</td>
-										<td width="40%"  onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['NomPartenaire'].'</td>
-										<td width="25%"  onclick="$.passerFicher(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SectionRegionaleENTAV'].'</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['CodePartenaire'].'</td>
+										<td   onclick="$.passerFicherSelection(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SiglePartenaire'].'</td>
+										<td width="40%"  onclick="$.passerFicherSelection(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['NomPartenaire'].'</td>
+										<td width="25%"  onclick="$.passerFicherSelection(\''.$value['CodePartenaire'].'\',\'partenaire\');return false;">'.$value['SectionRegionaleENTAV'].'</td>
 										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
                                                                                 <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''.$value['CodePartenaire'].'\',\'partenaire\')"  /></td>
 									</tr>';

@@ -2583,25 +2583,6 @@ class BibliothequeDAO {
         return $nomVar;
     }
 
-    public function codeVar($a) {
-        $sql = "select CodeVar from `NV-INTRODUCTIONS` where CodeIntro='" . $a . "'";
-        $resultat = mysql_query($sql) or die(mysql_error());
-        if (!$resultat) {
-            echo "<script>alert('erreur de base de donnes')</script>";
-            exit;
-        }
-        if (mysql_num_rows($resultat) == 0) {
-            $codeVar = "";
-        }
-        if (mysql_num_rows($resultat) > 0) {
-            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
-                $dico = mysql_fetch_assoc($resultat);
-                $codeVar = $dico['CodeVar'];
-            }
-        }
-        return $codeVar;
-    }
-
     public function Partenaire($a) {
         $sql = "select * from Partenaires where CodePartenaire='" . $a . "'";
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -3149,9 +3130,12 @@ class BibliothequeDAO {
                     connexion_bbd();
                     mysql_query('SET NAMES UTF8');
                     $sql = "select *
-                            from `Aptitudes` 
-                            LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
-                            where CodeAptitude='" . $code . "'";
+                            from `Aptitudes` apt
+                            LEFT JOIN `NV-INTRODUCTIONS` acc ON apt.CodeIntro = acc.CodeIntro
+                            LEFT JOIN `NV-VARIETES` var ON apt.CodeVar = var.CodeVar 
+                            LEFT JOIN `Partenaires` par ON apt.CodePartenaire = par.CodePartenaire
+                            LEFT JOIN `Caracteristiques` ON apt.CodeCaract = `Caracteristiques`.CodeCaract 
+                            where apt.CodeAptitude='" . $code . "'";
                     $resultat_apt = mysql_query($sql) or die(mysql_error());
                     if (!$resultat_apt) {
                         deconnexion_bbd();
@@ -10978,4 +10962,242 @@ class BibliothequeDAO {
     }
 
     //Fin export xls
+    //Fonction pour le fil d'Ariane
+    public function codeVar($a) {
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+        $sql = "SELECT CodeVar FROM `NV-INTRODUCTIONS` WHERE CodeIntro='" . $a . "'";
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            $codeVar = "";
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $codeVar = $dico['CodeVar'];
+            }
+        }
+        deconnexion_bbd();
+        return $codeVar;
+    }
+    
+    public function codeEsp($a) {
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+        $sql = "SELECT CodeEsp FROM `NV-VARIETES` WHERE CodeVar='" . $a . "'";
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            $codeEsp = "";
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $codeEsp = $dico['CodeEsp'];
+            }
+        }
+        deconnexion_bbd();
+        return $codeEsp;
+    }
+    
+    public function codeVarSec($code, $section) {
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+        switch ($section) {
+            case "genetique":
+                $sql = "SELECT CodeVar FROM `BM-donnees_resume` WHERE IdAnalyse='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeVar = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeVar = $dico['CodeVar'];
+                    }
+                }
+                break;
+            case "aptitude":
+                $sql = "SELECT CodeVar FROM `Aptitudes` WHERE CodeAptitude='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeVar = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeVar = $dico['CodeVar'];
+                    }
+                }
+                break;
+            case "emplacement":
+                $codeVar = "";
+                break;
+            case "sanitaire":
+                $codeVar = "";
+                break;
+            case "morphologique":
+                $sql = "SELECT CodeVar FROM `Ampelographie` WHERE CodeAmpelo='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeVar = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeVar = $dico['CodeVar'];
+                    }
+                }
+                break;
+            case "bibliographie":
+                $sql = "SELECT CodeVar FROM `Bibliographie_citations` WHERE CodeCit='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeVar = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeVar = $dico['CodeVar'];
+                    }
+                }
+                break;
+        }
+        deconnexion_bbd();
+        return $codeVar;
+    }
+
+    public function codeAccSec($code,$section){
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+        switch($section){
+            case "genetique":
+                $sql = "SELECT CodeIntro FROM `BM-donnees_resume` WHERE IdAnalyse='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+            case "aptitude":
+                $sql = "SELECT CodeIntro FROM `Aptitudes` WHERE CodeAptitude='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+            case "emplacement":
+                $sql = "SELECT CodeIntro FROM `NV-EMPLACEMENTS` WHERE CodeEmplacem='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+            case "sanitaire":
+                $sql = "SELECT CodeIntro FROM `Tests_sanitaires` WHERE IdTest='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+            case "morphologique":
+                $sql = "SELECT CodeIntro FROM `Ampelographie` WHERE CodeAmpelo='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+            case "bibliographie":
+                $sql = "SELECT CodeIntro FROM `Bibliographie_citations` WHERE CodeCit='" . $code . "'";
+                $resultat = mysql_query($sql) or die(mysql_error());
+                if (!$resultat) {
+                    echo "<script>alert('erreur de base de donnes')</script>";
+                    exit;
+                }
+                if (mysql_num_rows($resultat) == 0) {
+                    $codeAcc = "";
+                }
+                if (mysql_num_rows($resultat) > 0) {
+                    for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                        $dico = mysql_fetch_assoc($resultat);
+                        $codeAcc = $dico['CodeIntro'];
+                    }
+                }
+                break;
+        }
+        deconnexion_bbd();
+        return $codeAcc;
+    }
 }

@@ -2393,8 +2393,9 @@ and open the template in the editor.
 	});
 	function search_ajax(dataString,search){
                 console.log(dataString);
+                console.log(search);
 		var data=dataString+"&function=searchSimple";
-                var search = " : " + escapeHtml(search);
+                var search = escapeHtml(search);
                 function escapeHtml(text) {
                     return text
                     .replace(/&/g, "&amp;")
@@ -2435,7 +2436,6 @@ and open the template in the editor.
 								$('#chemin_login').append(value_search.chemin_login);
 								$('#chemin_resultat').append(value_search.chemin_resultat).append(search);
 								$('#chemin_searchS').append(value_search.chemin_searchS);
-								$('#chemin_fiche').append(value_search.chemin_fiche);
 								$('#chemin_person').append(value_search.chemin_person);
 							}
 						}
@@ -2445,9 +2445,8 @@ and open the template in the editor.
 								$('#chemin_selection').append(value_search.chemin_selection);
 								$('#chemin_searchA').append(value_search.chemin_searchA);
 								$('#chemin_login').append(value_search.chemin_login);
-								$('#chemin_resultat').append(value_search.chemin_resultat);
+								$('#chemin_resultat').append(value_search.chemin_resultat).append(search);;
 								$('#chemin_searchS').append(value_search.chemin_searchS);
-								$('#chemin_fiche').append(value_search.chemin_fiche);
 								$('#chemin_person').append(value_search.chemin_person);
 							}
 						}
@@ -4216,7 +4215,11 @@ and open the template in the editor.
 	$.extend({'back_list':
 		function(){
 			var dataString=searcheSimplePrarams();
-			$('.center').empty();
+                        var search=$("#search_value").val();
+			//$('#site-center').empty();
+                        $('#FichierEsp').remove();
+			$('#FichierVar').remove();
+			$('#FichierAcc').remove();
 			$('#FichierApt').remove();
 			$('#FichierMor').remove();
 			$('#FichierEmp').remove();
@@ -4225,8 +4228,8 @@ and open the template in the editor.
 			$('#FichierBib').remove();
 			$('#FichierPar').remove();
 			$('#FichierSite').remove();
-			$('.center').append('<div id="site-search"></div>');
-                        var search=$("#search_value").val();
+			$('#site-center').html('<div id="site-search"></div>');
+                        //$(".site-center").html('<img src="images/ajax-loader.gif" width="30" height="30" id="loding"/>');
 			search_ajax(dataString,search);
 			return false;
 		}
@@ -4241,11 +4244,15 @@ and open the template in the editor.
 			type: "POST",
 			url:"./php/script_webbio.php?section="+b+"&code="+a,
 			data:dataString+"&function=ficher",
+                        beforeSend:function(){
+                            $('#passFichierForm').remove();
+                        }, 
 			success:function(data){
-				console.log(data);
+				var search = data["search"];
 				var html="";
 				var htmlll="";
 				$.each(data,function(key,value){
+                                        console.log(key , value);
 					if(key==="contents_acc"){
 						if(value!=null){
 							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
@@ -4413,7 +4420,9 @@ and open the template in the editor.
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+                                                        html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
 							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
 							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
 							html+="<input type='hidden' name='ValeurCodee2' value='"+value.ValeurCodee2+"'>";
@@ -4545,6 +4554,1008 @@ and open the template in the editor.
 						htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
 						htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
 					}
+					if($('#recherche').val() == "SearchA" || $('#recherche').val() == "Selection"){
+						htmlll+="<input type='hidden' name='recherche' value='"+$('#recherche').val()+"'>";
+					} else {
+						htmlll+="<input type='hidden' name='recherche' value='SearchS'>";
+					}	
+                                        
+				});
+				html=html+htmlll+"</form>";
+				document.write(html);
+				$('#passFichierForm').submit();
+			}
+			,
+			dataType:"json"
+			});
+			return false;
+		}
+	});
+        $.extend({'passerFicherAvance':
+		function(a,b){
+                    var langue = '<?php echo $langue;?>';
+			console.log(a,b);
+			var dataString=searcheSimplePrarams();
+			creatAjax();
+			$.ajax({
+			type: "POST",
+			url:"./php/script_webbio.php?section="+b+"&code="+a,
+			data:dataString+"&function=ficher",
+                        beforeSend:function(){
+                            $('#passFichierForm').remove();
+                        }, 
+			success:function(data){
+				var search = data["search"];
+				var html="";
+				var htmlll="";
+				$.each(data,function(key,value){
+                                        console.log(key , value);
+					if(key==="contents_acc"){
+						if(value!=null){
+							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
+							html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
+							html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
+							html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
+							html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
+							html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+							html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+							html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
+							html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
+						}
+					}
+					
+				
+					if(key==="contents_var"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
+							html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
+							html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
+							html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
+							html+="<input type='hidden' name='UniteVar' value='"+value.UniteVar+"'>";
+							html+="<input type='hidden' name='Type' value='"+value.Type+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Obtenteur' value='"+value.Obtenteur+"'>";
+							html+='<input type="hidden" name="OIpays" value="'+value.OIpays+'">';
+							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
+							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
+							
+						}
+					}
+				
+				
+					if(key==="contents_esp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=espece&code="+value.CodeEsp+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEsp' value='"+value.CodeEsp+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='Botaniste' value='"+value.Botaniste+"'>";
+							html+="<input type='hidden' name='Genre' value='"+value.Genre+"'>";
+							html+="<input type='hidden' name='CompoGenet' value='"+value.CompoGenet+"'>";
+							html+="<input type='hidden' name='SousGenre' value='"+value.SousGenre+"'>";
+							html+="<input type='hidden' name='Validite' value='"+value.Validite+"'>";
+							html+="<input type='hidden' name='Tronc' value='"+value.Tronc+"'>";
+							html+="<input type='hidden' name='RemarqueEsp' value='"+value.RemarqueEsp+"'>";
+						}
+					}
+					
+					if(key==="contents_apt"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
+							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
+							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
+							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='EmplacementExp' value='"+value.EmplacementExp+"'>";
+						}
+					}
+					
+					if(key==="contents_mor"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
+							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
+							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
+							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Emplamcement' value='"+value.Emplamcement+"'>";
+						}
+					}
+										
+					if(key==="contents_emp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
+							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
+							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
+							html+="<input type='hidden' name='NbreEtatNormal' value='"+value.NbreEtatNormal+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyen' value='"+value.NbreEtatMoyen+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyFaible' value='"+value.NbreEtatMoyFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatFaible' value='"+value.NbreEtatFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatTresFaible' value='"+value.NbreEtatTresFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatMort' value='"+value.NbreEtatMort+"'>";
+							html+="<input type='hidden' name='Rang' value='"+value.Rang+"'>";
+							html+="<input type='hidden' name='TypeSouche' value='"+value.TypeSouche+"'>";
+							html+="<input type='hidden' name='PremiereSouche' value='"+value.PremiereSouche+"'>";
+							html+="<input type='hidden' name='DerniereSouche' value='"+value.DerniereSouche+"'>";
+							html+="<input type='hidden' name='AnneePlantation' value='"+value.AnneePlantation+"'>";
+							html+="<input type='hidden' name='AnneeElimination' value='"+value.AnneeElimination+"'>";
+							html+="<input type='hidden' name='CategMateriel' value='"+value.CategMateriel+"'>";
+							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
+							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
+							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+						}
+					}
+					
+					if(key==="contents_san"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
+							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
+							html+="<input type='hidden' name='CategorieTest' value='"+value.CategorieTest+"'>";
+							html+="<input type='hidden' name='MatTeste' value='"+value.MatTeste+"'>";
+							html+="<input type='hidden' name='CodeEmplacem' value='"+value.CodeEmplacem+"'>";
+							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
+							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
+							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_gen"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+                                                        html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
+							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
+							html+="<input type='hidden' name='ValeurCodee2' value='"+value.ValeurCodee2+"'>";
+							html+="<input type='hidden' name='EmplacemRecolte' value='"+value.EmplacemRecolte+"'>";
+							html+="<input type='hidden' name='SouchePrelev' value='"+value.SouchePrelev+"'>";
+							html+="<input type='hidden' name='DateRecolte' value='"+value.DateRecolte+"'>";
+							html+="<input type='hidden' name='IdProtocoleRecolte' value='"+value.IdProtocoleRecolte+"'>";
+							html+="<input type='hidden' name='TypeOrgane' value='"+value.TypeOrgane+"'>";
+							html+="<input type='hidden' name='IdStockADN' value='"+value.IdStockADN+"'>";
+							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
+							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
+							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_bib"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
+							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
+							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
+							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
+							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
+							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
+							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
+							html+="<input type='hidden' name='PagesDoc' value='"+value.PagesDoc+"'>";
+							html+="<input type='hidden' name='CallNumber' value='"+value.CallNumber+"'>";
+							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
+							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
+							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
+						}
+					}
+					
+					if(key==="contents_par"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
+							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
+							html+='<input type="hidden" name="RegionPartenaire" value="'+value.RegionPartenaire+'">';
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
+							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
+							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
+							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
+							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
+						}
+					}
+					
+					if(key==="contents_site"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
+							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
+							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
+							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
+							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
+							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
+							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
+							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
+							html+="<input type='hidden' name='TelSite' value='"+value.TelSite+"'>";
+							html+="<input type='hidden' name='FaxSite' value='"+value.FaxSite+"'>";
+							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
+							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
+							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
+						}
+					}
+					
+					if(key==="search"){
+						htmlll+="<input type='hidden' name='search_value' value='"+value+"'>";
+					}
+					if(key==="case_s"){
+						htmlll+="<input type='hidden' name='case_s_value' value='"+value+"'>";
+					}
+					if(key==="model"){
+						htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
+					}
+					
+					if(langue=='FR'){
+						htmlll+="<input type='hidden' name='langue_value' value='FR'>";
+					}
+					if(langue=='EN'){
+						htmlll+="<input type='hidden' name='langue_value' value='EN'>";
+					}
+					if(key==="tri_espece"){
+						htmlll+="<input type='hidden' name='classname_espece' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_espece' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_espece' value='"+value.colone+"'>";
+					}
+					if(key==="tri_variete"){
+						htmlll+="<input type='hidden' name='classname_variete' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_variete' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_variete' value='"+value.colone+"'>";
+					}
+					if(key==="tri_accession"){
+						htmlll+="<input type='hidden' name='classname_accession' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_accession' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_accession' value='"+value.colone+"'>";
+
+					}
+					if(key==="page_espece_json"){
+						htmlll+="<input type='hidden' name='page_espece' value='"+value.page_espece+"'>";
+						htmlll+="<input type='hidden' name='pagesize_espece' value='"+value.pagesize_espece+"'>";
+					}
+					if(key==="page_variete_json"){
+						htmlll+="<input type='hidden' name='page_variete' value='"+value.page_variete+"'>";
+						htmlll+="<input type='hidden' name='pagesize_variete' value='"+value.pagesize_variete+"'>";
+					}
+					if(key==="page_accession_json"){
+						htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
+						htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
+					}
+                                        htmlll+="<input type='hidden' name='recherche' value='SearchA'>";
+				});
+				html=html+htmlll+"</form>";
+				document.write(html);
+				$('#passFichierForm').submit();
+			}
+			,
+			dataType:"json"
+			});
+			return false;
+		}
+	});
+        $.extend({'passerFicherSelection':
+		function(a,b){
+                    var langue = '<?php echo $langue;?>';
+			console.log(a,b);
+			var dataString=searcheSimplePrarams();
+			creatAjax();
+			$.ajax({
+			type: "POST",
+			url:"./php/script_webbio.php?section="+b+"&code="+a,
+			data:dataString+"&function=ficher",
+                        beforeSend:function(){
+                            $('#passFichierForm').remove();
+                        }, 
+			success:function(data){
+				var search = data["search"];
+				var html="";
+				var htmlll="";
+				$.each(data,function(key,value){
+                                        console.log(key , value);
+					if(key==="contents_acc"){
+						if(value!=null){
+							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
+							html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
+							html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
+							html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
+							html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
+							html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+							html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+							html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
+							html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
+						}
+					}
+					
+				
+					if(key==="contents_var"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
+							html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
+							html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
+							html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
+							html+="<input type='hidden' name='UniteVar' value='"+value.UniteVar+"'>";
+							html+="<input type='hidden' name='Type' value='"+value.Type+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Obtenteur' value='"+value.Obtenteur+"'>";
+							html+='<input type="hidden" name="OIpays" value="'+value.OIpays+'">';
+							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
+							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
+							
+						}
+					}
+				
+				
+					if(key==="contents_esp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=espece&code="+value.CodeEsp+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEsp' value='"+value.CodeEsp+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='Botaniste' value='"+value.Botaniste+"'>";
+							html+="<input type='hidden' name='Genre' value='"+value.Genre+"'>";
+							html+="<input type='hidden' name='CompoGenet' value='"+value.CompoGenet+"'>";
+							html+="<input type='hidden' name='SousGenre' value='"+value.SousGenre+"'>";
+							html+="<input type='hidden' name='Validite' value='"+value.Validite+"'>";
+							html+="<input type='hidden' name='Tronc' value='"+value.Tronc+"'>";
+							html+="<input type='hidden' name='RemarqueEsp' value='"+value.RemarqueEsp+"'>";
+						}
+					}
+					
+					if(key==="contents_apt"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
+							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
+							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
+							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='EmplacementExp' value='"+value.EmplacementExp+"'>";
+						}
+					}
+					
+					if(key==="contents_mor"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
+							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
+							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
+							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Emplamcement' value='"+value.Emplamcement+"'>";
+						}
+					}
+										
+					if(key==="contents_emp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
+							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
+							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
+							html+="<input type='hidden' name='NbreEtatNormal' value='"+value.NbreEtatNormal+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyen' value='"+value.NbreEtatMoyen+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyFaible' value='"+value.NbreEtatMoyFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatFaible' value='"+value.NbreEtatFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatTresFaible' value='"+value.NbreEtatTresFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatMort' value='"+value.NbreEtatMort+"'>";
+							html+="<input type='hidden' name='Rang' value='"+value.Rang+"'>";
+							html+="<input type='hidden' name='TypeSouche' value='"+value.TypeSouche+"'>";
+							html+="<input type='hidden' name='PremiereSouche' value='"+value.PremiereSouche+"'>";
+							html+="<input type='hidden' name='DerniereSouche' value='"+value.DerniereSouche+"'>";
+							html+="<input type='hidden' name='AnneePlantation' value='"+value.AnneePlantation+"'>";
+							html+="<input type='hidden' name='AnneeElimination' value='"+value.AnneeElimination+"'>";
+							html+="<input type='hidden' name='CategMateriel' value='"+value.CategMateriel+"'>";
+							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
+							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
+							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+						}
+					}
+					
+					if(key==="contents_san"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
+							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
+							html+="<input type='hidden' name='CategorieTest' value='"+value.CategorieTest+"'>";
+							html+="<input type='hidden' name='MatTeste' value='"+value.MatTeste+"'>";
+							html+="<input type='hidden' name='CodeEmplacem' value='"+value.CodeEmplacem+"'>";
+							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
+							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
+							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_gen"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+                                                        html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
+							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
+							html+="<input type='hidden' name='ValeurCodee2' value='"+value.ValeurCodee2+"'>";
+							html+="<input type='hidden' name='EmplacemRecolte' value='"+value.EmplacemRecolte+"'>";
+							html+="<input type='hidden' name='SouchePrelev' value='"+value.SouchePrelev+"'>";
+							html+="<input type='hidden' name='DateRecolte' value='"+value.DateRecolte+"'>";
+							html+="<input type='hidden' name='IdProtocoleRecolte' value='"+value.IdProtocoleRecolte+"'>";
+							html+="<input type='hidden' name='TypeOrgane' value='"+value.TypeOrgane+"'>";
+							html+="<input type='hidden' name='IdStockADN' value='"+value.IdStockADN+"'>";
+							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
+							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
+							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_bib"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
+							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
+							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
+							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
+							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
+							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
+							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
+							html+="<input type='hidden' name='PagesDoc' value='"+value.PagesDoc+"'>";
+							html+="<input type='hidden' name='CallNumber' value='"+value.CallNumber+"'>";
+							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
+							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
+							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
+						}
+					}
+					
+					if(key==="contents_par"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
+							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
+							html+='<input type="hidden" name="RegionPartenaire" value="'+value.RegionPartenaire+'">';
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
+							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
+							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
+							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
+							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
+						}
+					}
+					
+					if(key==="contents_site"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
+							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
+							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
+							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
+							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
+							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
+							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
+							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
+							html+="<input type='hidden' name='TelSite' value='"+value.TelSite+"'>";
+							html+="<input type='hidden' name='FaxSite' value='"+value.FaxSite+"'>";
+							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
+							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
+							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
+						}
+					}
+					
+					if(key==="search"){
+						htmlll+="<input type='hidden' name='search_value' value='"+value+"'>";
+					}
+					if(key==="case_s"){
+						htmlll+="<input type='hidden' name='case_s_value' value='"+value+"'>";
+					}
+					if(key==="model"){
+						htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
+					}
+					
+					if(langue=='FR'){
+						htmlll+="<input type='hidden' name='langue_value' value='FR'>";
+					}
+					if(langue=='EN'){
+						htmlll+="<input type='hidden' name='langue_value' value='EN'>";
+					}
+					if(key==="tri_espece"){
+						htmlll+="<input type='hidden' name='classname_espece' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_espece' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_espece' value='"+value.colone+"'>";
+					}
+					if(key==="tri_variete"){
+						htmlll+="<input type='hidden' name='classname_variete' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_variete' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_variete' value='"+value.colone+"'>";
+					}
+					if(key==="tri_accession"){
+						htmlll+="<input type='hidden' name='classname_accession' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_accession' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_accession' value='"+value.colone+"'>";
+
+					}
+					if(key==="page_espece_json"){
+						htmlll+="<input type='hidden' name='page_espece' value='"+value.page_espece+"'>";
+						htmlll+="<input type='hidden' name='pagesize_espece' value='"+value.pagesize_espece+"'>";
+					}
+					if(key==="page_variete_json"){
+						htmlll+="<input type='hidden' name='page_variete' value='"+value.page_variete+"'>";
+						htmlll+="<input type='hidden' name='pagesize_variete' value='"+value.pagesize_variete+"'>";
+					}
+					if(key==="page_accession_json"){
+						htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
+						htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
+					}
+                                        htmlll+="<input type='hidden' name='recherche' value='Selection'>";
+				});
+				html=html+htmlll+"</form>";
+				document.write(html);
+				$('#passFichierForm').submit();
+			}
+			,
+			dataType:"json"
+			});
+			return false;
+		}
+	});
+        $.extend({'passerFicher2':
+		function(a,b,c){
+                    var langue = '<?php echo $langue;?>';
+			console.log(a,b,c);
+			var dataString=searcheSimplePrarams();
+			creatAjax();
+			$.ajax({
+			type: "POST",
+			url:"./php/script_webbio.php?section="+b+"&code="+a,
+			data:dataString+"&function=ficher",
+                        beforeSend:function(){
+                            $('#passFichierForm').remove();
+                        }, 
+			success:function(data){
+				var search = data["search"];
+				var html="";
+				var htmlll="";
+				$.each(data,function(key,value){
+                                        console.log(key , value);
+					if(key==="contents_acc"){
+						if(value!=null){
+							html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
+							html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
+							html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
+							html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
+							html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
+							html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
+							html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
+							html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
+							html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
+						}
+					}
+					
+				
+					if(key==="contents_var"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
+							html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
+							html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
+							html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
+							html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
+							html+="<input type='hidden' name='UniteVar' value='"+value.UniteVar+"'>";
+							html+="<input type='hidden' name='Type' value='"+value.Type+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
+							html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
+							html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
+							html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
+							html+="<input type='hidden' name='Obtenteur' value='"+value.Obtenteur+"'>";
+							html+='<input type="hidden" name="OIpays" value="'+value.OIpays+'">';
+							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
+							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
+							
+						}
+					}
+				
+				
+					if(key==="contents_esp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=espece&code="+value.CodeEsp+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEsp' value='"+value.CodeEsp+"'>";
+							html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
+							html+="<input type='hidden' name='Botaniste' value='"+value.Botaniste+"'>";
+							html+="<input type='hidden' name='Genre' value='"+value.Genre+"'>";
+							html+="<input type='hidden' name='CompoGenet' value='"+value.CompoGenet+"'>";
+							html+="<input type='hidden' name='SousGenre' value='"+value.SousGenre+"'>";
+							html+="<input type='hidden' name='Validite' value='"+value.Validite+"'>";
+							html+="<input type='hidden' name='Tronc' value='"+value.Tronc+"'>";
+							html+="<input type='hidden' name='RemarqueEsp' value='"+value.RemarqueEsp+"'>";
+						}
+					}
+					
+					if(key==="contents_apt"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
+							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
+							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
+							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='EmplacementExp' value='"+value.EmplacementExp+"'>";
+						}
+					}
+					
+					if(key==="contents_mor"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
+							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
+							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
+							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
+							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
+							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
+							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
+							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
+							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Emplamcement' value='"+value.Emplamcement+"'>";
+						}
+					}
+										
+					if(key==="contents_emp"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
+							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
+							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
+							html+="<input type='hidden' name='NbreEtatNormal' value='"+value.NbreEtatNormal+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyen' value='"+value.NbreEtatMoyen+"'>";
+							html+="<input type='hidden' name='NbreEtatMoyFaible' value='"+value.NbreEtatMoyFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatFaible' value='"+value.NbreEtatFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatTresFaible' value='"+value.NbreEtatTresFaible+"'>";
+							html+="<input type='hidden' name='NbreEtatMort' value='"+value.NbreEtatMort+"'>";
+							html+="<input type='hidden' name='Rang' value='"+value.Rang+"'>";
+							html+="<input type='hidden' name='TypeSouche' value='"+value.TypeSouche+"'>";
+							html+="<input type='hidden' name='PremiereSouche' value='"+value.PremiereSouche+"'>";
+							html+="<input type='hidden' name='DerniereSouche' value='"+value.DerniereSouche+"'>";
+							html+="<input type='hidden' name='AnneePlantation' value='"+value.AnneePlantation+"'>";
+							html+="<input type='hidden' name='AnneeElimination' value='"+value.AnneeElimination+"'>";
+							html+="<input type='hidden' name='CategMateriel' value='"+value.CategMateriel+"'>";
+							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
+							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
+							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+						}
+					}
+					
+					if(key==="contents_san"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
+							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
+							html+="<input type='hidden' name='CategorieTest' value='"+value.CategorieTest+"'>";
+							html+="<input type='hidden' name='MatTeste' value='"+value.MatTeste+"'>";
+							html+="<input type='hidden' name='CodeEmplacem' value='"+value.CodeEmplacem+"'>";
+							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
+							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
+							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_gen"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+                                                        html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
+							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
+							html+="<input type='hidden' name='ValeurCodee2' value='"+value.ValeurCodee2+"'>";
+							html+="<input type='hidden' name='EmplacemRecolte' value='"+value.EmplacemRecolte+"'>";
+							html+="<input type='hidden' name='SouchePrelev' value='"+value.SouchePrelev+"'>";
+							html+="<input type='hidden' name='DateRecolte' value='"+value.DateRecolte+"'>";
+							html+="<input type='hidden' name='IdProtocoleRecolte' value='"+value.IdProtocoleRecolte+"'>";
+							html+="<input type='hidden' name='TypeOrgane' value='"+value.TypeOrgane+"'>";
+							html+="<input type='hidden' name='IdStockADN' value='"+value.IdStockADN+"'>";
+							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
+							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
+							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
+							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+						}
+					}
+					
+					if(key==="contents_bib"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
+							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
+							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
+							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
+							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
+							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
+							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
+							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
+							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
+							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
+							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
+							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
+							html+="<input type='hidden' name='PagesDoc' value='"+value.PagesDoc+"'>";
+							html+="<input type='hidden' name='CallNumber' value='"+value.CallNumber+"'>";
+							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
+							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
+							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
+							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
+						}
+					}
+					
+					if(key==="contents_par"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
+							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
+							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
+							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
+							html+='<input type="hidden" name="RegionPartenaire" value="'+value.RegionPartenaire+'">';
+							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
+							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
+							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
+							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
+							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
+							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
+							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
+						}
+					}
+					
+					if(key==="contents_site"){
+						if(value!=null){
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
+							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
+							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
+							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
+							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
+							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
+							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
+							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
+							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
+							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
+							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
+							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
+							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
+							html+="<input type='hidden' name='TelSite' value='"+value.TelSite+"'>";
+							html+="<input type='hidden' name='FaxSite' value='"+value.FaxSite+"'>";
+							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
+							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
+							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
+							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
+						}
+					}
+					
+					if(key==="search"){
+						htmlll+="<input type='hidden' name='search_value' value='"+value+"'>";
+					}
+					if(key==="case_s"){
+						htmlll+="<input type='hidden' name='case_s_value' value='"+value+"'>";
+					}
+					if(key==="model"){
+						htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
+					}
+					
+					if(langue=='FR'){
+						htmlll+="<input type='hidden' name='langue_value' value='FR'>";
+					}
+					if(langue=='EN'){
+						htmlll+="<input type='hidden' name='langue_value' value='EN'>";
+					}
+					if(key==="tri_espece"){
+						htmlll+="<input type='hidden' name='classname_espece' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_espece' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_espece' value='"+value.colone+"'>";
+					}
+					if(key==="tri_variete"){
+						htmlll+="<input type='hidden' name='classname_variete' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_variete' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_variete' value='"+value.colone+"'>";
+					}
+					if(key==="tri_accession"){
+						htmlll+="<input type='hidden' name='classname_accession' value='"+value.classname+"'>";
+						htmlll+="<input type='hidden' name='section_accession' value='"+value.section+"'>";
+						htmlll+="<input type='hidden' name='colone_accession' value='"+value.colone+"'>";
+
+					}
+					if(key==="page_espece_json"){
+						htmlll+="<input type='hidden' name='page_espece' value='"+value.page_espece+"'>";
+						htmlll+="<input type='hidden' name='pagesize_espece' value='"+value.pagesize_espece+"'>";
+					}
+					if(key==="page_variete_json"){
+						htmlll+="<input type='hidden' name='page_variete' value='"+value.page_variete+"'>";
+						htmlll+="<input type='hidden' name='pagesize_variete' value='"+value.pagesize_variete+"'>";
+					}
+					if(key==="page_accession_json"){
+						htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
+						htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
+					}
+                                        htmlll+="<input type='hidden' name='recherche' value='"+c+"'>";
 				});
 				html=html+htmlll+"</form>";
 				document.write(html);
@@ -4557,7 +5568,7 @@ and open the template in the editor.
 		}
 	});
 	$.extend({'fichier_langue':
-		function(langue,code,section){
+		function(langue,code,section,rech){
 			var dataString="";
 			var case_s=$("#case_s_value").val();
 			var search=$("#search_value").val();
@@ -4585,8 +5596,10 @@ and open the template in the editor.
 			type: "POST",
 			url:"./php/script_webbio.php?section="+section+"&code="+code,
 			data:dataString+"&function=ficher",
+                        beforeSend:function(){
+                            $('#passFichierForm').remove();
+                        },    
 			success:function(data){
-                            console.log("oktamer");
 				console.log(data);
 				var html="";
 				var htmlll="";
@@ -4637,7 +5650,6 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Utilite' value='"+value.Utilite+"'>";
 							html+="<input type='hidden' name='codeEspece' value='"+value.codeEspece+"'>";
 							
-							
 						}
 					}
 				
@@ -4656,23 +5668,28 @@ and open the template in the editor.
 							html+="<input type='hidden' name='RemarqueEsp' value='"+value.RemarqueEsp+"'>";
 						}
 					}
+					
 					if(key==="contents_apt"){
 						if(value!=null){
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
 							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
 							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
 							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
 							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
 							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
 							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
 							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
 							html+="<input type='hidden' name='EmplacementExp' value='"+value.EmplacementExp+"'>";
 						}
 					}
@@ -4682,17 +5699,20 @@ and open the template in the editor.
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
 							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
 							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
 							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
 							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
 							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
 							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
 							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
 							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
 							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
 							html+="<input type='hidden' name='Emplamcement' value='"+value.Emplamcement+"'>";
 						}
 					}
@@ -4704,6 +5724,7 @@ and open the template in the editor.
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
+							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
 							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
 							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
 							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
@@ -4741,6 +5762,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
 							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
 							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 						}
 					}
 					
@@ -4749,6 +5771,7 @@ and open the template in the editor.
 							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
+                                                        html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
 							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
 							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
@@ -4763,6 +5786,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
 							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
 							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
+							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
 						}
 					}
 					
@@ -4772,6 +5796,8 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
+							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
+							html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
 							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
 							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
 							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
@@ -4878,6 +5904,7 @@ and open the template in the editor.
 						htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
 						htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
 					}
+                                        htmlll+="<input type='hidden' name='recherche' value='"+rech+"'>";
 				});
 				html=html+htmlll+"</form>";
 				document.write(html);
@@ -4888,424 +5915,6 @@ and open the template in the editor.
 			return false;
 		}
 	});
-	function passerFicher_resultat(a,b,c){
-		var dataString=c;
-		creatAjax();
-		$.ajax({
-		type: "POST",
-		url:"./php/script_webbio.php?section="+b+"&code="+a,
-		data:dataString+"&function=ficher",
-		success:function(data){
-			console.log(data);
-			var html="";
-			var htmlll="";
-			$.each(data,function(key,value){
-				if(key==="contents_acc"){
-					if(value!=null){
-						html+="<form id='passFichierForm' action='./Fichier.php?section=accession&code="+value.CodeIntro+"' method='post' name='formx1' style='display:none'>";
-						html+="<input type='hidden' name='CodeIntro' value='"+value.CodeIntro+"'>";
-						html+='<input type="hidden" name="NomIntro" value="'+value.NomIntro+'">';
-						html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
-						html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-						html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
-						html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
-						html+="<input type='hidden' name='CouleurPe' value='"+value.CouleurPe+"'>";
-						html+="<input type='hidden' name='CouleurPu' value='"+value.CouleurPu+"'>";
-						html+="<input type='hidden' name='Pepins' value='"+value.Pepins+"'>";
-						html+="<input type='hidden' name='Saveur' value='"+value.Saveur+"'>";
-						html+="<input type='hidden' name='Sexe' value='"+value.Sexe+"'>";
-						html+='<input type="hidden" name="Statut" value="'+value.Statut+'">';
-						html+="<input type='hidden' name='DateEntre' value='"+value.DateEntre+"'>";
-						html+="<input type='hidden' name='Collecteur' value='"+value.Collecteur+"'>";
-						html+='<input type="hidden" name="PayP" value="'+value.PayP+'">';
-                                                html+='<input type="hidden" name="CommuneProvenance" value="'+value.CommuneProvenance+'">';
-						html+='<input type="hidden" name="AdresProvenance" value="'+value.AdresProvenance+'">';
-						html+="<input type='hidden' name='SiteProvenance' value='"+value.SiteProvenance+"'>";
-						html+="<input type='hidden' name='UniteIntro' value='"+value.UniteIntro+"'>";
-						html+="<input type='hidden' name='AnneeAgrement' value='"+value.AnneeAgrement+"'>";
-						html+="<input type='hidden' name='CodeIntroPartenaire' value='"+value.CodeIntroPartenaire+"'>";
-					}
-				}
-				
-			
-				if(key==="contents_var"){
-					if(value!=null){
-						html+="<form  id='passFichierForm' action='./Fichier.php?section=variete&code="+value.CodeVar+"' method='post' name='formx1' style='display:none'>";
-						html+="<input type='hidden' name='CodeVar' value='"+value.CodeVar+"'>";
-						html+='<input type="hidden" name="NomVar" value="'+value.NomVar+'">';
-						html+='<input type="hidden" name="SynoMajeur" value="'+value.SynoMajeur+'">';
-						html+="<input type='hidden' name='NumVarOnivins' value='"+value.NumVarOnivins+"'>";
-						html+="<input type='hidden' name='InscriptionFrance' value='"+value.InscriptionFrance+"'>";
-						html+="<input type='hidden' name='AnneeInscriptionFrance' value='"+value.AnneeInscriptionFrance+"'>";
-						html+="<input type='hidden' name='UniteVar' value='"+value.UniteVar+"'>";
-						html+="<input type='hidden' name='Type' value='"+value.Type+"'>";
-						html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
-					}
-				}
-			
-			
-				if(key==="contents_esp"){
-					if(value!=null){
-						html+="<form  id='passFichierForm' action='./Fichier.php?section=espece&code="+value.CodeEsp+"' method='post' name='formx1' style='display:none'>";
-						html+="<input type='hidden' name='CodeEsp' value='"+value.CodeEsp+"'>";
-						html+="<input type='hidden' name='Espece' value='"+value.Espece+"'>";
-						html+="<input type='hidden' name='Botaniste' value='"+value.Botaniste+"'>";
-						html+="<input type='hidden' name='Genre' value='"+value.Genre+"'>";
-						html+="<input type='hidden' name='CompoGenet' value='"+value.CompoGenet+"'>";
-						html+="<input type='hidden' name='SousGenre' value='"+value.SousGenre+"'>";
-						html+="<input type='hidden' name='Validite' value='"+value.Validite+"'>";
-						html+="<input type='hidden' name='Tronc' value='"+value.Tronc+"'>";
-						html+="<input type='hidden' name='RemarqueEsp' value='"+value.RemarqueEsp+"'>";
-					}
-				}
-				if(key==="contents_apt"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=aptitude&code="+value.codeAptitude+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='codeAptitude' value='"+value.codeAptitude+"'>";
-							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+="<input type='hidden' name='Caracteristique' value='"+value.Caracteristique+"'>";
-							html+="<input type='hidden' name='Valeur' value='"+value.Valeur+"'>";
-							html+="<input type='hidden' name='Unite' value='"+value.Unite+"'>";
-							html+="<input type='hidden' name='Ponderation' value='"+value.Ponderation+"'>";
-							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
-							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
-							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
-							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
-							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
-							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
-							html+="<input type='hidden' name='EmplacementExp' value='"+value.EmplacementExp+"'>";
-						}
-					}
-					
-					if(key==="contents_mor"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=morphologique&code="+value.CodeAmpelo+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='CodeAmpelo' value='"+value.CodeAmpelo+"'>";
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+="<input type='hidden' name='Descripteur' value='"+value.Descripteur+"'>";
-							html+="<input type='hidden' name='CodeDescripteur' value='"+value.CodeDescripteur+"'>";
-							html+="<input type='hidden' name='Caractere' value='"+value.Caractere+"'>";
-							html+="<input type='hidden' name='CodeCaractere' value='"+value.CodeCaractere+"'>";
-							html+="<input type='hidden' name='Experimentateur' value='"+value.Experimentateur+"'>";
-							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
-							html+="<input type='hidden' name='JourExp' value='"+value.JourExp+"'>";
-							html+="<input type='hidden' name='MoisExp' value='"+value.MoisExp+"'>";
-							html+="<input type='hidden' name='AnneeExp' value='"+value.AnneeExp+"'>";
-							html+="<input type='hidden' name='LieuExp' value='"+value.LieuExp+"'>";
-							html+="<input type='hidden' name='SiteExp' value='"+value.SiteExp+"'>";
-							html+="<input type='hidden' name='Emplamcement' value='"+value.Emplamcement+"'>";
-						}
-					}
-										
-					if(key==="contents_emp"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+='<input type="hidden" name="Site" value="'+value.Site+'">';
-							html+="<input type='hidden' name='Zone' value='"+value.Zone+"'>";
-							html+="<input type='hidden' name='Parcelle' value='"+value.Parcelle+"'>";
-							html+="<input type='hidden' name='SousPartie' value='"+value.SousPartie+"'>";
-							html+="<input type='hidden' name='NbreEtatNormal' value='"+value.NbreEtatNormal+"'>";
-							html+="<input type='hidden' name='NbreEtatMoyen' value='"+value.NbreEtatMoyen+"'>";
-							html+="<input type='hidden' name='NbreEtatMoyFaible' value='"+value.NbreEtatMoyFaible+"'>";
-							html+="<input type='hidden' name='NbreEtatFaible' value='"+value.NbreEtatFaible+"'>";
-							html+="<input type='hidden' name='NbreEtatTresFaible' value='"+value.NbreEtatTresFaible+"'>";
-							html+="<input type='hidden' name='NbreEtatMort' value='"+value.NbreEtatMort+"'>";
-							html+="<input type='hidden' name='Rang' value='"+value.Rang+"'>";
-							html+="<input type='hidden' name='TypeSouche' value='"+value.TypeSouche+"'>";
-							html+="<input type='hidden' name='PremiereSouche' value='"+value.PremiereSouche+"'>";
-							html+="<input type='hidden' name='DerniereSouche' value='"+value.DerniereSouche+"'>";
-							html+="<input type='hidden' name='AnneePlantation' value='"+value.AnneePlantation+"'>";
-							html+="<input type='hidden' name='AnneeElimination' value='"+value.AnneeElimination+"'>";
-							html+="<input type='hidden' name='CategMateriel' value='"+value.CategMateriel+"'>";
-							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
-							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
-							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
-						}
-					}
-					
-					if(key==="contents_san"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=sanitaire&code="+value.CodeSanitaire+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='CodeSanitaire' value='"+value.CodeSanitaire+"'>";
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+="<input type='hidden' name='PathogeneTeste' value='"+value.PathogeneTeste+"'>";
-							html+="<input type='hidden' name='ResultatTest' value='"+value.ResultatTest+"'>";
-							html+="<input type='hidden' name='CategorieTest' value='"+value.CategorieTest+"'>";
-							html+="<input type='hidden' name='MatTeste' value='"+value.MatTeste+"'>";
-							html+="<input type='hidden' name='CodeEmplacem' value='"+value.CodeEmplacem+"'>";
-							html+="<input type='hidden' name='SoucheTestee' value='"+value.SoucheTestee+"'>";
-							html+="<input type='hidden' name='Laboratoire' value='"+value.Laboratoire+"'>";
-							html+="<input type='hidden' name='DateTest' value='"+value.DateTest+"'>";
-							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
-						}
-					}
-					
-					if(key==="contents_gen"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=genetique&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
-							html+="<input type='hidden' name='Marqueur' value='"+value.Marqueur+"'>";
-							html+="<input type='hidden' name='ValeurCodee1' value='"+value.ValeurCodee1+"'>";
-							html+="<input type='hidden' name='ValeurCodee2' value='"+value.ValeurCodee2+"'>";
-							html+="<input type='hidden' name='EmplacemRecolte' value='"+value.EmplacemRecolte+"'>";
-							html+="<input type='hidden' name='SouchePrelev' value='"+value.SouchePrelev+"'>";
-							html+="<input type='hidden' name='DateRecolte' value='"+value.DateRecolte+"'>";
-							html+="<input type='hidden' name='IdProtocoleRecolte' value='"+value.IdProtocoleRecolte+"'>";
-							html+="<input type='hidden' name='TypeOrgane' value='"+value.TypeOrgane+"'>";
-							html+="<input type='hidden' name='IdStockADN' value='"+value.IdStockADN+"'>";
-							html+="<input type='hidden' name='IdProtocolePCR' value='"+value.IdProtocolePCR+"'>";
-							html+="<input type='hidden' name='DatePCR' value='"+value.DatePCR+"'>";
-							html+="<input type='hidden' name='DateRun' value='"+value.DateRun+"'>";
-							html+='<input type="hidden" name="Partenaire" value="'+value.Partenaire+'">';
-						}
-					}
-					
-					if(key==="contents_bib"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=bibliographie&code="+value.Code+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='Code' value='"+value.Code+"'>";
-							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
-							html+='<input type="hidden" name="nomVar" value="'+value.nomVar+'">';
-							html+="<input type='hidden' name='TypeDoc' value='"+value.TypeDoc+"'>";
-							html+='<input type="hidden" name="Title" value="'+value.Title+'">';
-							html+="<input type='hidden' name='Author' value='"+value.Author+"'>";
-							html+="<input type='hidden' name='Year' value='"+value.Year+"'>";
-							html+="<input type='hidden' name='Edition' value='"+value.Edition+"'>";
-							html+='<input type="hidden" name="Publisher" value="'+value.Publisher+'">';
-							html+='<input type="hidden" name="PlacePublished" value="'+value.PlacePublished+'">';
-							html+="<input type='hidden' name='ISBN' value='"+value.ISBN+"'>";
-							html+="<input type='hidden' name='Language' value='"+value.Language+"'>";
-							html+="<input type='hidden' name='NumberOfVolumes' value='"+value.NumberOfVolumes+"'>";
-							html+="<input type='hidden' name='PagesDoc' value='"+value.PagesDoc+"'>";
-							html+="<input type='hidden' name='CallNumber' value='"+value.CallNumber+"'>";
-							html+="<input type='hidden' name='VolumeCitation' value='"+value.VolumeCitation+"'>";
-							html+="<input type='hidden' name='PagesCitation' value='"+value.PagesCitation+"'>";
-							html+="<input type='hidden' name='AuteurCitation' value='"+value.AuteurCitation+"'>";
-							html+='<input type="hidden" name="NomVigneCite" value="'+value.NomVigneCite+'">';
-						}
-					}
-					
-					if(key==="contents_par"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=partenaire&code="+value.CodePartenaire+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='CodePartenaire' value='"+value.CodePartenaire+"'>";
-							html+='<input type="hidden" name="NomPartenaire" value="'+value.NomPartenaire+'">';
-							html+="<input type='hidden' name='SiglePartenaire' value='"+value.SiglePartenaire+"'>";
-							html+='<input type="hidden" name="SectionRegionaleENTAV" value="'+value.SectionRegionaleENTAV+'">';
-							html+="<input type='hidden' name='RegionPartenaire' value='"+value.RegionPartenaire+"'>";
-							html+='<input type="hidden" name="DepartPartenaire" value="'+value.DepartPartenaire+'">';
-							html+="<input type='hidden' name='ResponsablesPartenaire' value='"+value.ResponsablesPartenaire+"'>";
-							html+="<input type='hidden' name='TelephonePartenaire' value='"+value.TelephonePartenaire+"'>";
-							html+="<input type='hidden' name='Email' value='"+value.Email+"'>";
-							html+='<input type="hidden" name="AdressePartenaire" value="'+value.AdressePartenaire+'">';
-							html+="<input type='hidden' name='CodPostPartenaire' value='"+value.CodPostPartenaire+"'>";
-							html+='<input type="hidden" name="CommunePartenaire" value="'+value.CommunePartenaire+'">';
-						}
-					}
-					
-					if(key==="contents_site"){
-						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=site&code="+value.CodeSite+"' method='post' name='formx1' style='display:none'>";
-							html+="<input type='hidden' name='CodeSite' value='"+value.CodeSite+"'>";
-							html+='<input type="hidden" name="RegionSite" value="'+value.RegionSite+'">';
-							html+='<input type="hidden" name="DepartSite" value="'+value.DepartSite+'">';
-							html+='<input type="hidden" name="CommuneSite" value="'+value.CommuneSite+'">';
-							html+="<input type='hidden' name='CodPostSite' value='"+value.CodPostSite+"'>";
-							html+='<input type="hidden" name="AdresseSite" value="'+value.AdresseSite+'">';
-							html+="<input type='hidden' name='LatSite' value='"+value.LatSite+"'>";
-							html+="<input type='hidden' name='LongSite' value='"+value.LongSite+"'>";
-							html+="<input type='hidden' name='AltSite' value='"+value.AltSite+"'>";
-							html+='<input type="hidden" name="SecRegENTAV" value="'+value.SecRegENTAV+'">';
-							html+="<input type='hidden' name='ProprietaireSite' value='"+value.ProprietaireSite+"'>";
-							html+="<input type='hidden' name='ExploitSite' value='"+value.ExploitSite+"'>";
-							html+="<input type='hidden' name='ResponsSite' value='"+value.ResponsSite+"'>";
-							html+="<input type='hidden' name='TelSite' value='"+value.TelSite+"'>";
-							html+="<input type='hidden' name='FaxSite' value='"+value.FaxSite+"'>";
-							html+="<input type='hidden' name='MailSite' value='"+value.MailSite+"'>";
-							html+="<input type='hidden' name='AnneeCreationSite' value='"+value.AnneeCreationSite+"'>";
-							html+="<input type='hidden' name='VarMajoritairesSite' value='"+value.VarMajoritairesSite+"'>";
-							html+='<input type="hidden" name="PresentationSite" value="'+value.PresentationSite+'">';
-						}
-					}	
-				if(key==="search"){
-					htmlll+="<input type='hidden' name='search_value' value='"+value+"'>";
-				}
-				if(key==="case_s"){
-					htmlll+="<input type='hidden' name='case_s_value' value='"+value+"'>";
-				}
-				if(key==="model"){
-					htmlll+="<input type='hidden' name='model_value' value='"+value+"'>";
-				}
-				if($('#mainMenu_Home').val()==="Accueil"){
-						htmlll+="<input type='hidden' name='langue_value' value='FR'>";
-					}
-					if($('#mainMenu_Home').val()==="Home"){
-						htmlll+="<input type='hidden' name='langue_value' value='EN'>";
-					}
-				if(key==="tri_espece"){
-					htmlll+="<input type='hidden' name='classname_espece' value='"+value.classname+"'>";
-					htmlll+="<input type='hidden' name='section_espece' value='"+value.section+"'>";
-					htmlll+="<input type='hidden' name='colone_espece' value='"+value.colone+"'>";
-				}
-				if(key==="tri_variete"){
-					htmlll+="<input type='hidden' name='classname_variete' value='"+value.classname+"'>";
-					htmlll+="<input type='hidden' name='section_variete' value='"+value.section+"'>";
-					htmlll+="<input type='hidden' name='colone_variete' value='"+value.colone+"'>";
-				}
-				if(key==="tri_accession"){
-					htmlll+="<input type='hidden' name='classname_accession' value='"+value.classname+"'>";
-					htmlll+="<input type='hidden' name='section_accession' value='"+value.section+"'>";
-					htmlll+="<input type='hidden' name='colone_accession' value='"+value.colone+"'>";
-
-				}
-				if(key==="page_espece_json"){
-					htmlll+="<input type='hidden' name='page_espece' value='"+value.page_espece+"'>";
-					htmlll+="<input type='hidden' name='pagesize_espece' value='"+value.pagesize_espece+"'>";
-				}
-				if(key==="page_variete_json"){
-					htmlll+="<input type='hidden' name='page_variete' value='"+value.page_variete+"'>";
-					htmlll+="<input type='hidden' name='pagesize_variete' value='"+value.pagesize_variete+"'>";
-				}
-				if(key==="page_accession_json"){
-					htmlll+="<input type='hidden' name='page_accession' value='"+value.page_accession+"'>";
-					htmlll+="<input type='hidden' name='pagesize_accession' value='"+value.pagesize_accession+"'>";
-				}
-			});
-			html=html+htmlll+"</form>";
-			document.write(html);
-			$('#passFichierForm').submit();
-		},
-		dataType:"json"
-		});
-		return false;
-	}
-
-	/*
-	$('#click_cate1_FichierEsp').toggle(
-		function(){
-			$('#contents_cate1_FichierEsp').css("display","block");
-			$('#cate1_FichierEsp').addClass('open_cate1_FichierEsp');
-			$('#title_cate1_FichierEsp').removeClass('vide');
-			$('#title_cate1_FichierEsp').addClass('non_vide');
-			var dataString='code='+$('#fichier_code_espece').val();
-			console.log(dataString);
-			creatAjax();
-			$.ajax({
-				type: "GET",
-				url:"./php/cate1_esp.php",
-				data:dataString,
-				beforeSend:function(){
-					$('#cate1_FichierEsp').append('<img src="images/ajax-loader.gif" width="30" height="30" id="loding" />');
-				},
-				success:function(data){
-					console.log(data);
-					$("#loding").remove();
-					$("#cate1_FichierEsp").append('<div id="list_cate_esp"><fieldset></fieldset></div>');
-					var legend='<legend>'+
-									'<img src="images/plus6.png" width="40" height="40">'+
-									'<span class="h4_emplacement">Emplacement</span>'+
-									'<a href="#" id="nombre_em_pt"></a>'+
-									'<img src="images/help1.png" width="20" height="20">'+
-								'</legend>';
-					$('fieldset').append(legend);
-					
-					var contents_res_em='<div id="contents_res_em">'+
-												'<table id="table_em_total">'+
-													'<tr class="function_ligne_em">'+
-														'<table width="100%" id="table_em_function">'+
-															'<tr>'+
-																'<td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAllEm(this)"></td>'+
-																'<td width="5%"><a><img src="images/new_selection.png" width="25" height="25"></a></td>'+
-																'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"></a></td>'+
-																'<td width="60%"></td>'+
-																'<td>'+
-																'</td>'+
-																'<td width="15%">'+
-																'</td>'+
-															'</tr>'+
-														'</table>'+
-													'</tr>'+
-													'<tr>'+
-														'<table  id="title_ligne_em">'+
-															'<tr>'+
-																'<th><span id="CodeEmplacem">Code Emplacem</span></th>'+
-																'<th width="8%"><span id="CodeSite">Code Site</span></th>'+
-																'<th width="8%"><span id="Parcelle">Parcelle</span></th>'+
-																'<th width="8%"><span id="Rang">Rang</span></th>'+
-																'<th width="8%"><span id="PremiereSouche">Premiere Souche</span></th>'+
-																'<th width="8%"><span id="DerniereSouche">Derniere Souche</span></th>'+
-																'<th width="8%"><span id="NomIntro">Nom Intro</span></th>'+
-																'<th width="8%"><span id="CodeIntro">Code Intro</span></th>'+
-																'<th width="8%"><span id="CodeVar">Code Var</span></th>'+
-																'<th width="8%"><span id="CodeIntroPartenaire">Code Intro Partenaire</span></th>'+
-																'<th width="8%"><span id="NumCloneCTPS">Num Clone CTPS</span></th>'+
-															'</tr>'+
-														'</table>'+
-													'</tr>'+
-													'<tr><table id="lignes_em" width="100%"></table></tr>'+
-												'</table>'+
-											'</div>';
-						$('fieldset').append(contents_res_em);
-					$.each(data,function(key,value){
-						if(key==='em'){
-							var nombre=value.Em_NombrePossible+'/'+value.Em_NombreTotal;
-							$('#nombre_em_pt').append(nombre);
-							var contents=value.Em_Contents;
-							var tr='';
-							$.each(contents,function(entryIndex,entry){
-								tr=tr+ '<tr><td width="2%"><input type="checkbox" name="Checkbox_em[]" value="'+entry['CodeEmplacem']+'" onclick="$.chkRow(this);return flase;"/></td>'+
-											'<td onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
-											'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['PremiereSouche']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['DerniereSouche']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeVar']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntroPartenaire']+'</td>'+
-											'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NumCloneCTPS']+'</td>'+
-										'</tr>'
-							});
-							$('#lignes_em').append(tr);
-						}
-					});
-					var Ptr2=document.getElementById("lignes_em").getElementsByTagName("tr");
-					for (i=1;i<Ptr2.length+1;i++) { 
-					Ptr2[i-1].className = (i%2>0)?"t1":"t2"; 
-					}
-					for(var i=0;i<Ptr2.length;i++) {
-						Ptr2[i].onmouseover=function(){
-						this.tmpClass=this.className;
-						this.className = "t3";
-						
-						};
-						Ptr2[i].onmouseout=function(){
-						this.className=this.tmpClass;
-						};
-					}
-					
-				},
-				dataType:"json"
-				});
-		},
-		function(){
-			$('#contents_cate1_FichierEsp').css("display","none");
-			$('#cate1_FichierEsp').removeClass('open_cate1_FichierEsp');
-			$('#title_cate1_FichierEsp').removeClass('non_vide');
-			$('#title_cate1_FichierEsp').addClass('vide');
-			$('#list_cate_esp').remove();
-		}
-	);
-	*/
            //Fonctions liées aux fiches de données
 	function fichier_listVariete(dataString){
 		creatAjax();
@@ -14062,10 +14671,10 @@ and open the template in the editor.
 							var espece_contents=value.contents;
 							$.each(espece_contents,function(entryIndex,entry){
 								contents_espece = contents_espece+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_espece[]" value="'+entry['codeEspece']+'"/></td>'+
-																'<td width="13%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['codeEspece']+'</td>'+
-																'<td width="35%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['nomEspece']+'</td>'+
-																'<td width="25%"  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['botaniste']+'</td>'+
-																'<td  onclick="$.passerFicher(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['tronc']+'</td></tr>';
+																'<td width="13%"  onclick="$.passerFicherAvance(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['codeEspece']+'</td>'+
+																'<td width="35%"  onclick="$.passerFicherAvance(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['nomEspece']+'</td>'+
+																'<td width="25%"  onclick="$.passerFicherAvance(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['botaniste']+'</td>'+
+																'<td  onclick="$.passerFicherAvance(\''+entry['codeEspece']+'\',\'espece\');return false;">'+entry['tronc']+'</td></tr>';
 							});
 							$('#contents_ligne_espece').append(contents_espece);
 							var v=$('#contents_ligne_espece')[0];
@@ -14326,15 +14935,15 @@ and open the template in the editor.
 							$.each(value.contents,function(entryIndex,entry){
 								// console.log(entryIndex, entry);
 								contents_ligne_variete=contents_ligne_variete+'<tr style="cursor:pointer"><td width="1%"><input type="checkbox" name="Checkbox_variete[]" value="'+entry['codeVar']+'"/></td>'+
-																				'<td width="4%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['codeVar']+'</td>'+
-																				'<td  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['nomVar']+'</td>'+
-																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['SynoMajeur']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['utilite']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['couleurPel']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['saveur']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['pepins']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['sexe']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['paysorigine']+'</td></tr>';
+																				'<td width="4%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['codeVar']+'</td>'+
+																				'<td  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['nomVar']+'</td>'+
+																				'<td width="17%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['SynoMajeur']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['utilite']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['couleurPel']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['saveur']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['pepins']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['sexe']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeVar']+'\',\'variete\');return false;">'+entry['paysorigine']+'</td></tr>';
 							});
 							$('#contents_ligne_variete').append(contents_ligne_variete);
 							
@@ -14548,13 +15157,13 @@ and open the template in the editor.
 							var contents_ligne_accession="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_accession=contents_ligne_accession+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_accession[]" value="'+entry['codeIntro']+'"/></td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
-																				'<td  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
-																				'<td width="17%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
-																				'<td width="20%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['Partenaire']+'</td>'+
-																				'<td width="12%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['PaysProvenance']+'</td>'+
-																				'<td width="12%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['communeProvenance']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['AnneeEntree']+'</td></tr>';
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['codeIntro']+'</td>'+
+																				'<td  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['NomIntro']+'</td>'+
+																				'<td width="17%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['nomVar']+'</td>'+
+																				'<td width="20%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['Partenaire']+'</td>'+
+																				'<td width="12%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['PaysProvenance']+'</td>'+
+																				'<td width="12%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['communeProvenance']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['codeIntro']+'\',\'accession\');return false;">'+entry['AnneeEntree']+'</td></tr>';
 							});
 							$('#contents_ligne_accession').append(contents_ligne_accession);
 							var v=$('#contents_ligne_accession')[0];
@@ -14781,13 +15390,13 @@ and open the template in the editor.
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
-																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
-																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
-																				'<td width="10%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
+																				'<td width="23%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
+																				'<td width="8%" onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
+																				'<td width="10%" onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
 							});
 							$('#contents_ligne_emplacement').append(contents_ligne_emplacement);
 							var v=$('#contents_ligne_emplacement')[0];
@@ -14999,12 +15608,12 @@ and open the template in the editor.
 							var contents_ligne_sanitaire="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_sanitaire[]" value="'+entry['IdTest']+'"/></td>'+
-																				'<td width="5%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['IdTest']+'</td>'+
-																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CodeIntro']+'</td>'+
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['NomTest']+'</td>'+
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CategorieTest']+'</td>'+
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['ResultatTest']+'</td>'+
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['Laboratoire']+'</td>></tr>';
+																				'<td width="5%"  onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['IdTest']+'</td>'+
+																				'<td width="10%" onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CodeIntro']+'</td>'+
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['NomTest']+'</td>'+
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['CategorieTest']+'</td>'+
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['ResultatTest']+'</td>'+
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['IdTest']+'\',\'sanitaire\');return false;">'+entry['Laboratoire']+'</td>></tr>';
 							});
 							$('#contents_ligne_sanitaire').append(contents_ligne_sanitaire);
 							var v=$('#contents_ligne_sanitaire')[0];
@@ -15194,10 +15803,10 @@ and open the template in the editor.
 							var contents_ligne_description="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_description=contents_ligne_description+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_morphologique[]" value="'+entry['id']+'"/></td>'+
-																				'<td width="13%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Code']+'</td>'+
-																				'<td onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Description']+'</td>'+
-																				'<td width="20%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Critaire']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicher(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['CaractereOIV']+'</td></tr>';
+																				'<td width="13%"  onclick="$.passerFicherAvance(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Code']+'</td>'+
+																				'<td onclick="$.passerFicherAvance(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Description']+'</td>'+
+																				'<td width="20%"  onclick="$.passerFicherAvance(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['Critaire']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicherAvance(\''+entry['id']+'\',\'morphologique\');return false;">'+entry['CaractereOIV']+'</td></tr>';
 							});
 							$('#contents_ligne_description').append(contents_ligne_description);
 							var v=$('#contents_ligne_description')[0];
@@ -15461,15 +16070,15 @@ and open the template in the editor.
 									var data="";
 								}
 								contents_ligne_aptitude=contents_ligne_aptitude+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_aptitude[]" value="'+entry['CodeDonnee']+'"/></td>'+
-																				'<td width="5%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['CodeDonnee']+'</td>'+
+																				'<td width="5%"  onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['CodeDonnee']+'</td>'+
 																				
-																				'<td width="22%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['AptitudeMesure']+'</td>'+
-																				'<td width="7%" onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['ValeurMesure']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['UniteMesure']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['PonderationValeur']+'</td>'+
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+data+'</td>'+
+																				'<td width="22%"  onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['AptitudeMesure']+'</td>'+
+																				'<td width="7%" onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['ValeurMesure']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['UniteMesure']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['PonderationValeur']+'</td>'+
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+data+'</td>'+
 																				
-																				'<td width="10%"  onclick="$.passerFicher(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['PartenaireMesure']+'</td></tr>';
+																				'<td width="10%"  onclick="$.passerFicherAvance(\''+entry['CodeDonnee']+'\',\'aptitude\');return false;">'+entry['PartenaireMesure']+'</td></tr>';
 							});
 							$('#contents_ligne_aptitude').append(contents_ligne_aptitude);
 							var v=$('#contents_ligne_aptitude')[0];
@@ -15658,12 +16267,12 @@ and open the template in the editor.
 							var contents_ligne_genetique="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_genetique=contents_ligne_genetique+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_genetique[]" value="'+entry['Code']+'"/></td>'+
-																				'<td width="23%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Code']+'</td>'+
-																				'<td width="19%" onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Margueur']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele1']+'</td>'+
-																				'<td width="14%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele2']+'</td>'+
-																				'<td width="14%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Partenaire']+'</td>'+
-																				'<td width="14%"  onclick="$.passerFicher(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Date']+'</td></tr>';
+																				'<td width="23%"  onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Code']+'</td>'+
+																				'<td width="19%" onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Margueur']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele1']+'</td>'+
+																				'<td width="14%"  onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Allele2']+'</td>'+
+																				'<td width="14%"  onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Partenaire']+'</td>'+
+																				'<td width="14%"  onclick="$.passerFicherAvance(\''+entry['Code']+'\',\'genetique\');return false;">'+entry['Date']+'</td></tr>';
 							});
 							$('#contents_ligne_genetique').append(contents_ligne_genetique);
 							var v=$('#contents_ligne_genetique')[0];
@@ -16141,12 +16750,12 @@ and open the template in the editor.
 							var contents_ligne_bibliographie="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_bibliographie[]" value="'+entry['CodeCit']+'"/></td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
-																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
-																				'<td width="12%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Year']+'</td>'+
-																				'<td width="7%"  onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['VolumeCitation']+'</td>'+
-																				'<td width="7%" onclick="$.passerFicher(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['PagesCitation']+'</td></tr>';
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['CodeCit']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Title']+'</td>'+
+																				'<td width="25%"  onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Author']+'</td>'+
+																				'<td width="12%"  onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['Year']+'</td>'+
+																				'<td width="7%"  onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['VolumeCitation']+'</td>'+
+																				'<td width="7%" onclick="$.passerFicherAvance(\''+entry['CodeCit']+'\',\'bibliographie\');return false;">'+entry['PagesCitation']+'</td></tr>';
 							});
 							$('#contents_ligne_bibliographie').append(contents_ligne_bibliographie);
 							var v=$('#contents_ligne_bibliographie')[0];
@@ -16306,10 +16915,10 @@ and open the template in the editor.
 							var contents_ligne_Partenaire="";
 							$.each(value.contents,function(entryIndex,entry){
 								contents_ligne_Partenaire=contents_ligne_Partenaire+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_partenaire[]" value="'+entry['CodePartenaire']+'"/></td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['CodePartenaire']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['SiglePartenaire']+'</td>'+
-																				'<td width="40%"  onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['NomPartenaire']+'</td>'+
-																				'<td width="25%"  onclick="$.passerFicher(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['SectionRegionaleENTAV']+'</td></tr>';	
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['CodePartenaire']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['SiglePartenaire']+'</td>'+
+																				'<td width="40%"  onclick="$.passerFicherAvance(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['NomPartenaire']+'</td>'+
+																				'<td width="25%"  onclick="$.passerFicherAvance(\''+entry['CodePartenaire']+'\',\'partenaire\');return false;">'+entry['SectionRegionaleENTAV']+'</td></tr>';	
 							});
 							$('#contents_ligne_Partenaire').append(contents_ligne_Partenaire);
 							var v=$('#contents_ligne_Partenaire')[0];
@@ -16744,10 +17353,10 @@ and open the template in the editor.
 						for(var i=startpage;i<limite;i++){
 							// console.log(value.contents[i]['codeEspece']);
 							contents_ligne_espece=contents_ligne_espece+'<tr>'+
-														'<td width="13%"  onclick="$.passerFicher(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['codeEspece']+'</td>'+
-														'<td width="35%"  onclick="$.passerFicher(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['nomEspece']+'</td>'+
-														'<td width="25%"  onclick="$.passerFicher(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['botaniste']+'</td>'+
-														'<td  onclick="$.passerFicher(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['tronc']+'</td>'+
+														'<td width="13%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['codeEspece']+'</td>'+
+														'<td width="35%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['nomEspece']+'</td>'+
+														'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['botaniste']+'</td>'+
+														'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['tronc']+'</td>'+
 														'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 														'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeEspece']+'\',\'espece\')"  /></td>'+
 													'</tr>';
@@ -16837,17 +17446,17 @@ and open the template in the editor.
 						var contents_ligne_variete='<tr><input id="variete_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_variete=contents_ligne_variete+'<tr>'+
-										'<td width="4%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['codeVar']+'</td>'+
-										'<td  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['nomVar']+'</td>'+
-										'<td width="17%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['SynoMajeur']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['utilite']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['couleurPel']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['saveur']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['pepins']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['sexe']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['paysorigine']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['CodeEsp']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">...</td>'+
+										'<td width="4%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['codeVar']+'</td>'+
+										'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['nomVar']+'</td>'+
+										'<td width="17%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['SynoMajeur']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['utilite']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['couleurPel']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['saveur']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['pepins']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['sexe']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['paysorigine']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['CodeEsp']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeVar']+'\',\'variete\')"  /></td>'+
 									'</tr>';
@@ -16938,14 +17547,14 @@ and open the template in the editor.
 						var contents_ligne_accession='<tr><input id="accession_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_accession=contents_ligne_accession+'<tr>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['codeIntro']+'</td>'+
-										'<td  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
-										'<td width="17%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['nomVar']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
-										'<td width="12%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['PaysProvenance']+'</td>'+
-										'<td width="12%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['communeProvenance']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['AnneeEntree']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['codeIntro']+'</td>'+
+										'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
+										'<td width="17%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['nomVar']+'</td>'+
+										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
+										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['PaysProvenance']+'</td>'+
+										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['communeProvenance']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['AnneeEntree']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeIntro']+'\',\'accession\')"  /></td>'+
 									'</tr>';
@@ -17034,15 +17643,15 @@ and open the template in the editor.
 						var contents_ligne_emplacement='<tr><input id="emplacement_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_emplacement=contents_ligne_emplacement+'<tr>'+
-										'<td width="23%"  onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeEmplacem']+'</td>'+
-										'<td width="8%" onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeSite']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Parcelle']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Rang']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
-										'<td   onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
-										'<td width="10%" onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="10%" onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">...</td>'+
+										'<td width="23%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeEmplacem']+'</td>'+
+										'<td width="8%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeSite']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Parcelle']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Rang']+'</td>'+
+										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
+										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
+										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
+										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\')"  /></td>'+
 									'</tr>';
@@ -17131,14 +17740,14 @@ and open the template in the editor.
 						var contents_ligne_sanitaire='<tr><input id="sanitaire_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_sanitaire=contents_ligne_sanitaire+'<tr>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['IdTest']+'</td>'+
-										'<td width="10%" onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['NomTest']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CategorieTest']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['ResultatTest']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['Laboratoire']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">...</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['IdTest']+'</td>'+
+										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['NomTest']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CategorieTest']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['ResultatTest']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['Laboratoire']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\')"  /></td>'+
 									'</tr>';
@@ -17227,13 +17836,13 @@ and open the template in the editor.
 						var contents_ligne_description='<tr><input id="morphologique_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_description=contents_ligne_description+'<tr>'+
-										'<td width="13%"  onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Code']+'</td>'+
-										'<td onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Description']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Critaire']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CaractereOIV']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">...</td>'+
+										'<td width="13%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Code']+'</td>'+
+										'<td onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Description']+'</td>'+
+										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Critaire']+'</td>'+
+										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CaractereOIV']+'</td>'+
+										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['id']+'\',\'morphologique\')"  /></td>'+
 									'</tr>';
@@ -17327,16 +17936,16 @@ and open the template in the editor.
 								var date_aptitude="";
 							}
 							contents_ligne_aptitude=contents_ligne_aptitude+'<tr>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeDonnee']+'</td>'+
-										'<td width="22%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['AptitudeMesure']+'</td>'+
-										'<td width="7%" onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['ValeurMesure']+'</td>'+
-										'<td   onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['UniteMesure']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PonderationValeur']+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+date_aptitude+'</td>'+
-										'<td width="10%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PartenaireMesure']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">...</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeDonnee']+'</td>'+
+										'<td width="22%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['AptitudeMesure']+'</td>'+
+										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['ValeurMesure']+'</td>'+
+										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['UniteMesure']+'</td>'+
+										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PonderationValeur']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+date_aptitude+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PartenaireMesure']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\')"   /></td>'+
 									'</tr>';
@@ -17425,15 +18034,15 @@ and open the template in the editor.
 						var contents_ligne_genetique='<tr><input id="genetique_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_genetique=contents_ligne_genetique+'<tr>'+
-										'<td width="23%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Code']+'</td>'+
-										'<td width="19%" onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Margueur']+'</td>'+
-										'<td   onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele1']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele2']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Date']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">...</td>'+
+										'<td width="23%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Code']+'</td>'+
+										'<td width="19%" onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Margueur']+'</td>'+
+										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele1']+'</td>'+
+										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele2']+'</td>'+
+										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
+										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Date']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code']+'\',\'genetique\')"  /></td>'+
 									'</tr>';
@@ -17620,15 +18229,15 @@ and open the template in the editor.
 						var contents_ligne_bibliographie='<tr><input id="bibliographie_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_bibliographie=contents_ligne_bibliographie+'<tr>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeCit']+'</td>'+
-										'<td   onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Title']+'</td>'+
-										'<td width="25%"  onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Author']+'</td>'+
-										'<td width="12%"  onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Year']+'</td>'+
-										'<td width="7%"  onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['VolumeCitation']+'</td>'+
-										'<td width="7%" onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['PagesCitation']+'</td>'+
-										'<td width="7%"  onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="7%" onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicher(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">...</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeCit']+'</td>'+
+										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Title']+'</td>'+
+										'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Author']+'</td>'+
+										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['Year']+'</td>'+
+										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['VolumeCitation']+'</td>'+
+										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['PagesCitation']+'</td>'+
+										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\')" /></td>'+
 									'</tr>';
@@ -17717,10 +18326,10 @@ and open the template in the editor.
 						var contents_ligne_Partenaire='<tr><input id="partenaire_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_Partenaire=contents_ligne_Partenaire+'<tr>'+
-										'<td width="8%"  onclick="$.passerFicher(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['CodePartenaire']+'</td>'+
-										'<td   onclick="$.passerFicher(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SiglePartenaire']+'</td>'+
-										'<td width="40%"  onclick="$.passerFicher(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['NomPartenaire']+'</td>'+
-										'<td width="25%"  onclick="$.passerFicher(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SectionRegionaleENTAV']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['CodePartenaire']+'</td>'+
+										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SiglePartenaire']+'</td>'+
+										'<td width="40%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['NomPartenaire']+'</td>'+
+										'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SectionRegionaleENTAV']+'</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25"   onclick="$.delete_selection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\')" /></td>'+
 									'</tr>';
@@ -18348,23 +18957,6 @@ and open the template in the editor.
                                        
 					console.log(data);
 				}
-				/*
-				, 
-				success: function(json){ 
-					if(json.success==1){ 
-						$(".site-login-form").remove(); 
-						var div = "<div id='result'><p><strong>"+json.user+"</strong>，恭喜您登录成功！</p> 
-						<p>您这是第<span>"+json.login_counts+"</span>次登录本站。</p> 
-						<p>上次登录本站的时间是：<span>"+json.login_time+"</span></p><p> 
-						<a href='#' id='logout'>【退出】</a></p></div>"; 
-						$("#login").append(div); 
-					}else{ 
-						$("#msg").remove(); 
-						$('<div id="errmsg" />').html(json.msg).css("color","#999").appendTo('.sub') .fadeOut(2000); 
-						return false; 
-					} 
-				} 
-				*/
 		});
 	}
 	});
