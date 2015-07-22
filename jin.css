@@ -555,6 +555,10 @@ legend img {
     background:url(images/tri_up.png) center top no-repeat; 
     height:20;
     width:20;
+    border-style: solid;
+    border-color: #DCDCDC;
+    border-radius: 5px;
+    cursor: pointer;
 
 }
 .tri_accession_desc,.tri_variete_desc,.tri_espece_desc,.tri_aptitude_desc,.tri_description_desc 
@@ -562,6 +566,10 @@ legend img {
     background:url(images/tri_down.png) center top no-repeat; 
     height:20;
     width:20;
+    border-style: solid;
+    border-color: #DCDCDC;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 avar,aesp,aclo{

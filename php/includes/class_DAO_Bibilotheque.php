@@ -2603,7 +2603,7 @@ class BibliothequeDAO {
     }
 
     public function ListePartenaire() {
-        $sql = "select * from Partenaires where 1";
+        $sql = "select * from Partenaires ORDER BY NomPartenaire";
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             echo "<script>alert('erreur de base de donnes')</script>";

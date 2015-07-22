@@ -11,8 +11,8 @@ and open the template in the editor.
     <body>
        <?php session_start();
        $langue = $_SESSION['language_Vigne']; ?>
-       <script type="text/javascript" charset=utf-8>          
-        $(document).ready(function(){   
+       <script type="text/javascript" charset=utf-8>     
+       $(document).ready(function(){
 	//page person, qui ne affiche pas au début de ce page
 	$('.modifier_mesInfos').hide();
 	$('.list-users').hide();
@@ -4193,7 +4193,7 @@ and open the template in the editor.
 		var case_s=$("#case_s_value").val();
 		var search=$("#search_value").val();
 		var model=$("#model_value").val();
-		var langue=$("#langue_value").val();
+		var langue=$("#langue_value").val() || "<?php echo $langue ?>";
 		var page_espece=$('#espece_curpage_value').val() || 1;
 		var pagesize_espece=$('#select_pagesize_espece').val() || 20;	
 		var page_variete=$('#variete_curpage_value').val() || 1;
