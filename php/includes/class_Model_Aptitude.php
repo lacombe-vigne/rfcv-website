@@ -137,7 +137,6 @@ class Aptitude {
 	function getSelectionAptitude(){
 		$contents=array();
 		$contents['CodeDonnee']=$this->getCodeDonnee();
-		$contents['CodeVariete']=$this->getCodeVariete();
 		$contents['AptitudeMesure']=$this->getAptitudeMesure();
 		$contents['ValeurMesure']=$this->getValeurMesure();
 		$contents['UniteMesure']=$this->getUniteMesure();
@@ -145,9 +144,7 @@ class Aptitude {
 		$contents['date']=$this->getdate_apt();
 		$contents['SiteMesure']=$this->getSiteMesure();
 		$contents['PartenaireMesure']=$this->getPartenaireMesure();
-		$contents['NomVar']=$this->getnomVar();
 		$contents['CodeVar']=$this->getCodeVar();
-		$contents['NomAcc']=$this->getnomAcc();
 		$contents['CodeAcc']=$this->getCodeAcc();
 		return $contents;
 		

@@ -33,11 +33,13 @@ if($langue== "FR"){
 switch ($section) {
 
     case "Espece":
-        $data = array();
+        $TabCode = array();
         foreach ($_SESSION['selection']['Espece'] as $value) {
-            $content = $DAO->espece_selection($value);
-            array_push($data, $content);
-        } //Récupère le contenu de notre panier
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->espece_selection($TabCode);
+        //Récupère le contenu de notre panier
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeEspece}),
@@ -53,11 +55,12 @@ switch ($section) {
         }
         break;
     case "Variete":
-        $data = array(); //Récupère le contenu de notre panier
+        $TabCode = array();
         foreach ($_SESSION['selection']['Variete'] as $value) {
-            $content = $DAO->variete_selection($value, $langue);
-            array_push($data, $content);
+            array_push($TabCode, $value);
         }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->variete_selection($TabCode, $langue);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeVariete}),
@@ -68,7 +71,8 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{Saveur}),
                 utf8_decode($parsed_json->{selection_fr}->{Pepins}),
                 utf8_decode($parsed_json->{selection_fr}->{Sexe}),
-                utf8_decode($parsed_json->{selection_fr}->{PaysOrigine}));
+                utf8_decode($parsed_json->{selection_fr}->{PaysOrigine}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeEspece}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{CodeVariete}),
@@ -79,15 +83,18 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{Saveur}),
                 utf8_decode($parsed_json->{selection_en}->{Pepins}),
                 utf8_decode($parsed_json->{selection_en}->{Sexe}),
-                utf8_decode($parsed_json->{selection_en}->{PaysOrigine}));
+                utf8_decode($parsed_json->{selection_en}->{PaysOrigine}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeEspece}));
         }
         break;
     case "Accession":
-        $data = array(); //Récupère le contenu de notre panier
+        $TabCode = array();
         foreach ($_SESSION['selection']['Accession'] as $value) {
-            $content = $DAO->accession_selection($value);
-            array_push($data, $content);
+            array_push($TabCode, $value);
         }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->accession_selection($TabCode);
+        //print_r($data);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeIntro}),
@@ -111,11 +118,12 @@ switch ($section) {
         }
         break;
     case "Emplacement":
-        $data = array(); //Récupère le contenu de notre panier
+        $TabCode = array();
         foreach ($_SESSION['selection']['Emplacement'] as $value) {
-            $content = $DAO->emplacement_selection($value);
-            array_push($data, $content);
+            array_push($TabCode, $value);
         }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->emplacement_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeEmplacem_FichierVar}),
@@ -124,8 +132,7 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{Rang_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{Anneeplantation_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{NomIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_emplacement}));
+                utf8_decode($parsed_json->{selection_fr}->{CodeIntro_selection_emplacement}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{CodeEmplacem_FichierVar}),
@@ -134,26 +141,27 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{Rang_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{Anneeplantation_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{NomIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_en}->{CodeIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_emplacement}));
+                utf8_decode($parsed_json->{selection_en}->{CodeIntro_selection_emplacement}));
         }
 
         break;
     case "Sanitaire":
-        $data=array();
-		foreach($_SESSION['selection']['Sanitaire'] as $value){
-			$content=$DAO->sanitaire_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Sanitaire'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->sanitaire_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
-                utf8_decode($parsed_json->{selection_fr}->{IdTest_FichierVar}),
+                utf8_decode($parsed_json->{selection_fr}->{IdTest_FichierVar}),  
                 utf8_decode($parsed_json->{selection_fr}->{CodeIntro_sanitaire_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{Pathogene_sanitaire_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{CategorieTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{ResultatTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{Laboratoire_FichierVar}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_sanitaire}));
+                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_sanitaire}),
+                utf8_decode($parsed_json->{selection_fr}->{NomVariete}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{IdTest_FichierVar}),
@@ -162,18 +170,21 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{CategorieTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{ResultatTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{Laboratoire_FichierVar}),
-                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_sanitaire}));
+                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_sanitaire}),
+                utf8_decode($parsed_json->{selection_en}->{NomVariete}));
         }
 
         break;
     case "Morphologique":
-        $data =array();
-		foreach($_SESSION['selection']['Morphologique'] as $value){
-			$content=$DAO->morphologique_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Morphologique'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->morphologique_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
+                utf8_decode($parsed_json->{selection_fr}->{IdTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{CodeOIV}),
                 utf8_decode($parsed_json->{selection_fr}->{LibelleDescrip}),
                 utf8_decode($parsed_json->{selection_fr}->{LibelleCritere}),
@@ -182,6 +193,7 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_morphologique}));
         } else if ($langue == "EN") {
             $labeljson = array(
+                utf8_decode($parsed_json->{selection_fr}->{IdTest_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{CodeOIV}),
                 utf8_decode($parsed_json->{selection_en}->{LibelleDescrip}),
                 utf8_decode($parsed_json->{selection_en}->{LibelleCritere}),
@@ -192,33 +204,36 @@ switch ($section) {
 
         break;
     case "Aptitude":
-        $data =array();
-		foreach($_SESSION['selection']['Aptitude'] as $value){
-			$content=$DAO->aptitude_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Aptitude'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->aptitude_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeAptitude}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeSite_FichierVar}),      
                 utf8_decode($parsed_json->{selection_fr}->{AptitudeMesure}),
                 utf8_decode($parsed_json->{selection_fr}->{ValeurCaractNum}),
                 utf8_decode($parsed_json->{selection_fr}->{UniteMesure}),
                 utf8_decode($parsed_json->{selection_fr}->{Ponderation}),
                 utf8_decode($parsed_json->{selection_fr}->{Date_aptitude}),
                 utf8_decode($parsed_json->{selection_fr}->{CodePartenaire}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_aptitude}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_aptitude}));
+                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_aptitude}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_aptitude}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{CodeAptitude}),
+                utf8_decode($parsed_json->{selection_en}->{CodeSite_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{AptitudeMesure}),
                 utf8_decode($parsed_json->{selection_en}->{ValeurCaractNum}),
                 utf8_decode($parsed_json->{selection_en}->{UniteMesure}),
                 utf8_decode($parsed_json->{selection_en}->{Ponderation}),
                 utf8_decode($parsed_json->{selection_en}->{Date_aptitude}),
                 utf8_decode($parsed_json->{selection_en}->{CodePartenaire}),
-                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_aptitude}),
-                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_aptitude}));
+                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_aptitude}),
+                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_aptitude}));
         }
         break;
     case "Phototheque": //pas encore programmé
@@ -253,11 +268,12 @@ switch ($section) {
 
         break;
     case "Genetique":
-        $data=array();
-		foreach($_SESSION['selection']['Genetique'] as $value){
-			$content=$DAO->genetique_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Genetique'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->genetique_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{IdAnalyse_FichierVar}),
@@ -282,11 +298,12 @@ switch ($section) {
 
         break;
     case "Documentation":
-        $data=array();
-		foreach($_SESSION['selection']['Documentation'] as $value){
-			$content=$DAO->documentation_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Documentation'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->documentation_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeDocPdf_FichierVar}),
@@ -311,11 +328,12 @@ switch ($section) {
 
         break;
     case "Bibliographie":
-        $data =array();
-		foreach($_SESSION['selection']['Bibliographie'] as $value){
-			$content=$DAO->bibliographie_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Bibliographie'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->bibliographie_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeCit_FichierVar}),
@@ -324,8 +342,10 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{Year_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{VolumeCitation_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{PagesCitation_FichierVar}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_bibliographie}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_bibliographie}));
+                utf8_decode($parsed_json->{selection_fr}->{NomVariete}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeVar_selection_bibliographie}),
+                utf8_decode($parsed_json->{selection_fr}->{NomIntro_acc}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeAcc_selection_bibliographie}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{CodeCit_FichierVar}),
@@ -334,24 +354,29 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{Year_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{VolumeCitation_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{PagesCitation_FichierVar}),
-                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_bibliographie}),
-                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_bibliographie}));
+                utf8_decode($parsed_json->{selection_en}->{NomVariete}),
+                utf8_decode($parsed_json->{selection_en}->{CodeVar_selection_bibliographie}),
+                utf8_decode($parsed_json->{selection_en}->{NomIntro_acc}),
+                utf8_decode($parsed_json->{selection_en}->{CodeAcc_selection_bibliographie}));
         }
 
         break;
     case "Partenaire":
-        $data=array();
-		foreach($_SESSION['selection']['Partenaire'] as $value){
-			$content=$DAO->partenaire_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Partenaire'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->partenaire_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
+                utf8_decode($parsed_json->{selection_fr}->{CodePartenaire}),
                 utf8_decode($parsed_json->{selection_fr}->{siglePartenaire}),
                 utf8_decode($parsed_json->{selection_fr}->{NomPartenaire}),
                 utf8_decode($parsed_json->{selection_fr}->{sectionPartenaire}));
         } else if ($langue == "EN") {
             $labeljson = array(
+                utf8_decode($parsed_json->{selection_en}->{CodePartenaire}),
                 utf8_decode($parsed_json->{selection_en}->{siglePartenaire}),
                 utf8_decode($parsed_json->{selection_en}->{NomPartenaire}),
                 utf8_decode($parsed_json->{selection_en}->{sectionPartenaire}));
@@ -359,11 +384,12 @@ switch ($section) {
 
         break;
     case "Lien":
-        $data=array();
-		foreach($_SESSION['selection']['Lien'] as $value){
-			$content=$DAO->lien_selection($value);
-			array_push($data,$content);
-		}
+        $TabCode = array();
+        foreach ($_SESSION['selection']['Lien'] as $value) {
+            array_push($TabCode, $value);
+        }
+        $TabCode = "'" . implode("','", $TabCode) . "'";
+        $data = $DAO->lien_selection($TabCode);
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_fr}->{CodeLienWeb_FichierVar}),

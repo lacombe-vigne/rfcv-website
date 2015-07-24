@@ -232,7 +232,6 @@ class Variete {
 		$contents_variete['sexe']=$this->getSexe();
 		$contents_variete['paysorigine']=$this->getOIpays();
 		$contents_variete['CodeEsp']=$this->getCodeEspece();
-		$contents_variete['Espece']=$this->getEspece();
 		return $contents_variete;
 	}
 }

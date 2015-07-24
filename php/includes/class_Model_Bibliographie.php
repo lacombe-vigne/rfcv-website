@@ -114,12 +114,12 @@ class Bibliograhpie {
 	function getSelectionBibliographie(){
 		$BI_Contents=array();
 		$BI_Contents['CodeCit']=$this->getCodeCit();
-		$BI_Contents['CodeVar']=$this->getCodeVar();
 		$BI_Contents['Title']=$this->getTitle();
 		$BI_Contents['Author']=$this->getAuthor();
 		$BI_Contents['Year']=$this->getYear();
+                $BI_Contents['VolumeCitation']=$this->getVolumeCitation();
 		$BI_Contents['PagesCitation']=$this->getPagesCitation();
-		$BI_Contents['VolumeCitation']=$this->getVolumeCitation();
+                $BI_Contents['CodeVar']=$this->getCodeVar();
 		$BI_Contents['NomVar']=$this->getnomVar();
 		$BI_Contents['CodeAcc']=$this->getCodeAcc();
 		$BI_Contents['NomAcc']=$this->getnomAcc();

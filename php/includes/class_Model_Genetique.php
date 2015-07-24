@@ -115,7 +115,7 @@ class Genetique {
 		$contents_genetique['Partenaire']=$this->getPartenaire();
 		$contents_genetique['Date']=$this->getDate_gen();
 		$contents_genetique['CodeAcc']=$this->getCodeAcc();
-		$contents_genetique['NomAcc']=$this->getnomAcc();
+		$contents_genetique['CodeVar']=$this->getCodeVar();
 		return $contents_genetique;
 	}
 }

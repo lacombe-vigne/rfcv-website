@@ -35,6 +35,7 @@ class Emplacement {
 	private $CategMateriel=null;
 	private $Greffe=null;
 	private $PorteGreffe=null;
+        private $IdEmplacem=null;
 
 	public function getCodeEmplacem(){return $this->CodeEmplacem;}
 	public function getCodeSite(){return $this->CodeSite;}
@@ -66,6 +67,7 @@ class Emplacement {
 	public function getCategMateriel(){return $this->CategMateriel;}
 	public function getGreffe(){return $this->Greffe;}
 	public function getPorteGreffe(){return $this->PorteGreffe;}
+        public function getIdEmplacem(){return $this->IdEmplacem;}
 	
 	function __construct($CodeEmplacem,$CodeSite,$Parcelle,$Rang,$PremiereSouche,$DerniereSouche,$NomIntro,$CodeIntro,$NomVar,$CodeVar,$CodeIntroPartenaire,$NumCloneCTPS,$AnneePlantation,$nomAcc,$CodeAcc,$Site,$Zone,$SousPartie,$NbreEtatNormal,$NbreEtatMoyen,$NbreEtatMoyFaible,$NbreEtatFaible,$NbreEtatTresFaible,$NbreEtatMort,$TypeSouche,$AnneeElimination,$CategMateriel,$Greffe,$PorteGreffe){
 		$this->CodeEmplacem = $CodeEmplacem;
@@ -98,6 +100,7 @@ class Emplacement {
 		$this->CategMateriel=$CategMateriel;
 		$this->Greffe=$Greffe;
 		$this->PorteGreffe=$PorteGreffe;
+                $this->IdEmplacem=$IdEmplacem;
 	}
 
 	function getListeEmplaclemnt(){
@@ -109,7 +112,8 @@ class Emplacement {
 		$Em_Contents['AnneePlantation']=$this->getAnneePlantation();
 		$Em_Contents['NomIntro']=$this->getNomIntro();
 		$Em_Contents['CodeIntro']=$this->getCodeIntro();
-		$Em_Contents['CodeIntroPartenaire']=$this->getCodeIntroPartenaire();
+		//$Em_Contents['CodeIntroPartenaire']=$this->getCodeIntroPartenaire();
+                //$Em_Contents['IdEmplacem']=$this->getIdEmplacem();
 		
 		return $Em_Contents;
 	}
@@ -141,6 +145,7 @@ class Emplacement {
 		$contents['Greffe']=$this->getGreffe();
 		$contents['PorteGreffe']=$this->getPorteGreffe();
 		$contents['NumCloneCTPS']=$this->getNumCloneCTPS();
+                $contents['IdEmplacem']=$this->getIdEmplacem();
 		return $contents;
 	}
 }

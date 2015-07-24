@@ -1762,7 +1762,7 @@ class BibliothequeDAO {
             $Em_Contents = array();
             for ($j = 0; $j < (mysql_num_rows($resultat_emplacement)); $j = $j + 1) {
                 $dico = mysql_fetch_assoc($resultat_emplacement);
-                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                 $Em_Content = supprNull($EM->getListeEmplaclemnt());
                 array_push($Em_Contents, $Em_Content);
             }
@@ -3218,7 +3218,7 @@ class BibliothequeDAO {
                     if (mysql_num_rows($resultat_emp) > 0) {
                         for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                             $dico = mysql_fetch_assoc($resultat_emp);
-                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                             $Em_Content = supprNull($EM->getFicherEmplacement());
                         }
                         deconnexion_bbd();
@@ -7973,10 +7973,13 @@ class BibliothequeDAO {
     //Fin requête recherche avancée
     //Début requête selection
     public function espece_selection($code) {
+        /*
+         * $code est un tableau de code.
+         */
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `NV-ESPECES` where CodeEsp='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
+        $sql = "select * from `NV-ESPECES` where CodeEsp IN (".$code.")";
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             deconnexion_bbd();
@@ -7989,18 +7992,30 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $ESP = new Espece($dico['CodeEsp'], $dico['Espece'], $dico['Botaniste'], $dico['Genre'], $dico['CompoGenet'], $dico['SousGenre'], $dico['Validite'], $dico['Tronc'], $dico['RemarqueEsp']);
-            $content_espece = supprNull($ESP->getListeEspece());
+            $content_espece = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $ESP = new Espece($dico['CodeEsp'], $dico['Espece'], $dico['Botaniste'], $dico['Genre'], $dico['CompoGenet'], $dico['SousGenre'], $dico['Validite'], $dico['Tronc'], $dico['RemarqueEsp']);
+                $content = supprNull($ESP->getListeEspece());
+                array_push($content_espece, $content);
+            }
         }
         return $content_espece;
+        deconnexion_bbd();
     }
 
     public function variete_selection($code, $langue) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `NV-VARIETES` where CodeVar='" . $code . "'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
+        $sql = "SELECT * FROM `NV-VARIETES` var
+                LEFT JOIN `ListeDeroulante_utilite` ON var.Utilite = `ListeDeroulante_utilite`.Utilite
+                LEFT JOIN `ListeDeroulante_couleurPel` ON var.CouleurPel = `ListeDeroulante_couleurPel`.CouleurPel
+                LEFT JOIN `ListeDeroulante_saveur` ON var.Saveur = `ListeDeroulante_saveur`.Saveur
+                LEFT JOIN `ListeDeroulante_pepins` ON var.Pepins = `ListeDeroulante_pepins`.Pepins
+                LEFT JOIN `ListeDeroulante_sexe` ON var.Sexe = `ListeDeroulante_sexe`.Sexe
+                LEFT JOIN `ListeDeroulante_pays` ON var.`PaysOrigine` = `ListeDeroulante_pays`.CodePays
+                WHERE CodeVar IN (".$code.")";
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             deconnexion_bbd();
@@ -8013,16 +8028,39 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $DAO->type($dico['CodeType'], $langue), $DAO->espece($dico['CodeEsp']), $DAO->couleurPel($dico['CouleurPel'], $langue), $DAO->couleurPulp($dico['CouleurPulp'], $langue), $DAO->saveur($dico['Saveur'], $langue), $DAO->pepins($dico['Pepins'], $langue), $dico['Obtenteur'], $DAO->utilite($dico['Utilite'], $langue), $dico['CodeEsp'], $DAO->sexe($dico['Sexe'], $langue), $DAO->paysorigine($dico['PaysOrigine'], $langue), $DAO->regionorigine($dico['RegionOrigine'], $langue), $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $DAO->departorigine($dico['DepartOrigine'], $langue), $dico['RemarquesVar']);
-            $content_variete = supprNull($VAR->getSelectionVariete());
+            $content_variete = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                if ($langue == "FR") {
+                    $saveur = $dico['Saveur_Texte'];
+                    $pepins = $dico['Pepins_texte'];
+                    $couleur = $dico['CouleurPel_Texte'];
+                    $sexe = $dico['Sexe_texte'];
+                    $pays = $dico['NomPaysFrancais'];
+                    $utilite = $dico['Utilite_Texte'];
+                } else if ($langue == "EN") {
+                    $saveur = $dico['Saveur_Texte_en'];
+                    $pepins = $dico['Pepins_texte_en'];
+                    $couleur = $dico['CouleurPel_Texte_en'];
+                    $sexe = $dico['Sexe_texte_en'];
+                    $pays = $dico['NomPaysLocal'];
+                    $utilite = $dico['Utilite_texte_anglais'];
+                }
+                $VAR = new Variete($dico['CodeVar'], $dico['NomVar'], $dico['SynoMajeur'], $dico['NumVarOnivins'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['UniteVar'], $dico['CodeType'], $dico['Espece'], $couleur, $dico['CouleurPulp'], $saveur, $pepins, $dico['Obtenteur'], $utilite, $dico['CodeEsp'], $sexe, $pays, $dico['RegionOrigine'], $dico['DepartOrigine'], $dico['InscriptionFrance'], $dico['AnneeInscriptionFrance'], $dico['NumVarOnivins'], $dico['InscriptionEurope'], $dico['Obtenteur'], $dico['MereReelle'], $dico['AnneeObtention'], $dico['CodeVarMereReelle'], $dico['MereObt'], $dico['PereReel'], $dico['CodeCroisementINRA'], $dico['CodeVarPereReel'], $dico['PereObt'], $dico['RemarqueParenteReelle'], $dico['DepartOrigine'], $dico['RemarquesVar']);
+                $content = supprNull($VAR->getSelectionVariete());
+                array_push($content_variete, $content);
+            }    
         }
-        return $content_variete;
+        return $content_variete;//tab
     }
 
-    public function accession_selection($code) {
+    public function accession_selection($code,$langue) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `NV-INTRODUCTIONS` where CodeIntro='" . $code . "'";
+        $sql = "SELECT * FROM `NV-INTRODUCTIONS` acc
+                LEFT JOIN `NV-VARIETES` var ON acc.CodeVar = var.CodeVar
+                LEFT JOIN `Partenaires` par ON acc.CodePartenaire = par.CodePartenaire
+                LEFT JOIN `ListeDeroulante_pays` ON acc.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                WHERE CodeIntro IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8037,11 +8075,20 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $DateEntre = $dico['JourMAJ'] . "/" . $dico['MoisMAJ'] . "/" . $dico['AnneeMAJ'];
-            $langue = $_SESSION['language_Vigne'];
-            $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $DAO->nomVar($dico['CodeVar']), $DAO->Partenaire($dico['CodePartenaire']), $DAO->paysorigine($dico['PaysProvenance'], $langue), $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $DAO->statut($dico['Statut'], $langue), $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $DAO->paysorigine($dico['PaysProvenance'], $langue), $DAO->regionorigine($dico['RegionProvenance'], $langue), $DAO->departorigine($dico['DepartProvenance'], $langue), $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $DAO->paysorigine($dico['PaysProvAnt'], $langue), $DAO->regionorigine($dico['RegionProvAnt'], $langue), $DAO->departorigine($dico['DepartProvAnt'], $langue), $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $DAO->couleurPel($dico['CouleurPelIntro'], $langue), $DAO->couleurPulp($dico['CouleurPulpIntro'], $langue), $DAO->saveur($dico['SaveurIntro'], $langue), $DAO->pepins($dico['PepinsIntro'], $langue), $DAO->sexe($dico['SexeIntro'], $langue), $dico['NumTempCTPS'], $dico['DelegONIVINS'], $DAO->statut($dico['Statut'], $langue), $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
-            $content_accession = supprNull($ACC->getSelectionAccession());
+            $content_accession = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                if ($langue == "FR") {
+                    $pays = $dico['NomPaysFrancais'];
+                } else if ($langue == "EN") {
+                    $pays = $dico['NomPaysLocal'];
+                }
+                $DateEntre = $dico['JourMAJ'] . "/" . $dico['MoisMAJ'] . "/" . $dico['AnneeMAJ'];
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $dico['NomVar'], $dico['NomPartenaire'], $pays, $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['PepinsIntro'], $dico['SaveurIntro'], $dico['SexeIntro'], $dico['Statut'], $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $dico['PaysProvenance'], $dico['RegionProvenance'], $dico['DepartProvenance'], $langue, $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $dico['PaysProvAnt'], $dico['RegionProvAnt'], $dico['DepartProvAnt'], $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['SaveurIntro'], $dico['PepinsIntro'], $dico['SexeIntro'], $dico['NumTempCTPS'], $dico['DelegONIVINS'], $dico['Statut'], $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                $content = supprNull($ACC->getSelectionAccession());
+                array_push($content_accession, $content);
+            }
         }
         return $content_accession;
     }
@@ -8054,7 +8101,7 @@ class BibliothequeDAO {
                 INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
                 INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
                 INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
-                WHERE e.CodeEmplacem='" . $code . "'";
+                WHERE e.CodeEmplacem IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8069,9 +8116,14 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
-            $Em_Content = supprNull($EM->getListeEmplaclemnt());
+            $Em_Content = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
+                $Content = supprNull($EM->getListeEmplaclemnt());
+                array_push($Em_Content, $Content);
+            }
         }
         return $Em_Content;
     }
@@ -8084,8 +8136,9 @@ class BibliothequeDAO {
                 LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON s.MatTeste=do.OrganeDecrit
                 LEFT JOIN `ListeDeroulante_resultatsTest` rt ON s.ResultatTest=rt.ResultatTest
                 LEFT JOIN `NV-INTRODUCTIONS` i ON s.CodeIntro=i.CodeIntro
+                LEFT JOIN `NV-VARIETES` var ON i.CodeVar=var.CodeVar
                 LEFT JOIN `Partenaires` p ON s.CodePartenaire=p.CodePartenaire   
-                where s.IdTest='" . $code . "'";
+                where s.IdTest IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $langue = $_SESSION['language_Vigne'];
@@ -8101,18 +8154,26 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            if ($langue == 'FR') {
-                $dico = mysql_fetch_assoc($resultat);
-                $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
-                $San_Content = supprNull($SAN->getListeSanitaire());
-                $San_Content['CodeVar'] = $dico['CodeVar'];
-                $San_Content['NomVar'] = $DAO->nomVar($San_Content['CodeVar']);
-            } else {
-                $dico = mysql_fetch_assoc($resultat);
-                $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
-                $San_Content = supprNull($SAN->getListeSanitaire());
-                $San_Content['CodeVar'] = $dico['CodeVar'];
-                $San_Content['NomVar'] = $DAO->nomVar($San_Content['CodeVar']);
+            $San_Content = array();
+            $langue = $_SESSION['language_Vigne'];
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                if ($langue == 'FR') {
+                    $dico = mysql_fetch_assoc($resultat);
+                    $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                    $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest'], $dico['CategorieTest'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['NomFranComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomFranComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                    $Content = supprNull($SAN->getListeSanitaire());
+                    $Content['CodeVar'] = $dico['CodeVar'];
+                    $Content['NomVar'] = $dico['NomVar'];
+                    array_push($San_Content, $Content);
+                } else {
+                    $dico = mysql_fetch_assoc($resultat);
+                    $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                    $SAN = new Sanitaire($dico['IdTest'], $dico['CodeIntro'], $dico['ResultatTest_en'], $dico['CategMateriel_en'], $dico['MatTest'], $dico['Laboratoire'], $dateTest, $dico['LieuTest'], $dico['SoucheTestee'], $dico['JY_NomEngComplet'], $dico['IdTest'], $dico['NomIntro'], $dico['CodeIntro'], $dico['JY_NomEngComplet'], $dico['CodeEmplacem'], $dico['NomPartenaire'], $dico['CodePartenaire']);
+                    $Content = supprNull($SAN->getListeSanitaire());
+                    $Content['CodeVar'] = $dico['CodeVar'];
+                    $Content['NomVar'] = $dico['NomVar'];
+                    array_push($San_Content, $Content);
+                }
             }
         }
         return $San_Content;
@@ -8131,7 +8192,7 @@ class BibliothequeDAO {
                       LEFT JOIN `ListeDeroulante_descripteurs_categorie` dc ON d.CategorieDescripteur=dc.CategorieDescripteur
                       LEFT JOIN `ListeDeroulante_descripteurs_organes` do ON d.OrganeDecrit=do.OrganeDecrit
                       LEFT JOIN `ListeDeroulante_descripteurs_type` dt ON d.TypeDescripteur=dt.TypeDescripteur 
-                      WHERE a.CodeAmpelo='" . $code . "' AND a.CaractereOIV IS NOT NULL ";
+                      WHERE a.CodeAmpelo IN (".$code.") AND a.CaractereOIV IS NOT NULL ";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8146,23 +8207,29 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
+            $content_Mor = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
             if ($langue == "FR") {
                 $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripFRA'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripFRA'], $dico['CodeOIV'], $dico['LibelleCritereFRA'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             } else { // EN
                 $MOR = new Morphologique($dico['CodeAmpelo'], $dico['CodeOIV'], $dico['LibelleDescripENG'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodeAmpelo'], $dico['NodeVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['LibelleDescripENG'], $dico['CodeOIV'], $dico['LibelleCritereENG'], $dico['CaractereOIV'], $dico['CodePersonne'], $dico['NomPartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $DAO->site($dico['CodeSite']), $dico['CodeSite'], $dico['CodeEmplacemExpe']);
             }
             $content = supprNull($MOR->getSelectionMorphologique());
+            array_push($content_Mor, $content);
+            }
         }
-        return $content;
+        return $content_Mor;
     }
 
     public function aptitude_selection($code) {
         $DAO = new BibliothequeDAO();
+        $langue = $_SESSION['language_Vigne'];
         $sql = "select *
                 from `Aptitudes` 
                 LEFT JOIN `Caracteristiques` ON `Aptitudes`.CodeCaract = `Caracteristiques`.CodeCaract 
-                where CodeAptitude='" . $code . "'";
+                where CodeAptitude IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8177,17 +8244,25 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            if($langue = "FR"){
-                $nomcarac = $dico['NomCaract'];
-            } else {
-                $nomcarac = $dico['JY_NomCaract_en'];
+            $content_APT = array();
+        
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                if($langue = "FR"){
+                    $nomcarac = $dico['NomCaract'];
+                } else {
+                    $nomcarac = $dico['JY_NomCaract_en'];
+                }
+                $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
+                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $content = supprNull($APT->getSelectionAptitude());
+                array_push($content_APT, $content);
             }
-            $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-            $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
-            $content = supprNull($APT->getSelectionAptitude());
         }
-        return $content;
+        }
+        return $content_APT;
     }
 
     public function genetique_selection($code) {
@@ -8197,7 +8272,7 @@ class BibliothequeDAO {
                 LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
                 LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
                 LEFT JOIN `Partenaires` p ON g.CodePartenaire = p.CodePartenaire
-                WHERE g.IdAnalyse='" . $code . "'";
+                WHERE g.IdAnalyse IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8212,16 +8287,21 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
-            $content_genetique = $genetique_class->getSelectionGenetique();
+            $content_genetique = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $genetique_class = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                $content = supprNull($genetique_class->getSelectionGenetique());
+                array_push($content_genetique, $content);
+            }
         }
         return $content_genetique;
     }
 
     public function documentation_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from Documents_pdf_JY where CodeDocPdf='" . $code . "' ";
+        $sql = "select * from Documents_pdf_JY where CodeDocPdf IN (".$code.") ";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8236,16 +8316,24 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $DOC = new Doc($dico['CodeDocPdf'], $dico['Titre'], $dico['Auteurs'], $dico['Editeur'], $dico['Date'], $dico['Langue'], $dico['NbPages'], $dico['CodeRangement'], $dico['Volume'], $dico['Pages'], $dico['TypeDoc'], $dico['FichierDocPdf'], $dico['CodeVar'], $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $DAO->nomAcc($dico['CodeIntro']));
-            $DOC_Content = supprNull($DOC->getSelectionDoc());
+            $DOC_Content = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $DOC = new Doc($dico['CodeDocPdf'], $dico['Titre'], $dico['Auteurs'], $dico['Editeur'], $dico['Date'], $dico['Langue'], $dico['NbPages'], $dico['CodeRangement'], $dico['Volume'], $dico['Pages'], $dico['TypeDoc'], $dico['FichierDocPdf'], $dico['CodeVar'], $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $DAO->nomAcc($dico['CodeIntro']));
+                $content = supprNull($DOC->getSelectionDoc());
+                array_push($DOC_Content, $content);
+            }
         }
         return $DOC_Content;
     }
 
     public function bibliographie_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Bibliographie_citations` c,`Bibliographie_documents` d where c.CodeCit='" . $code . "' and c.CodeDoc=d.CodeDoc";
+        $sql = "select * "
+                . "from `Bibliographie_citations` c,`Bibliographie_documents` d "
+                . "where c.CodeDoc=d.CodeDoc "
+                . "and c.CodeCit IN (".$code.")  ";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8260,16 +8348,21 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $BI = new Bibliograhpie($dico['CodeCit'], $dico['CodeVar'], $dico['Title'], $dico['Author'], $dico['Year'], $dico['PagesCitation'], $dico['VolumeCitation'], $DAO->nomAcc($dico['CodeIntro']), $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $dico['TypeDoc'], $dico['Edition'], $dico['Publisher'], $dico['PlacePublished'], $dico['ISBN'], $dico['Language'], $dico['NumberOfVolumes'], $dico['PagesDoc'], $dico['CallNumber'], $dico['AuteurCitation'], $dico['NomVigneCite']);
-            $BI_Content = supprNull($BI->getSelectionBibliographie());
+            $BI_Content = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                //$dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $BI = new Bibliograhpie($dico['CodeCit'], $dico['CodeVar'], $dico['Title'], $dico['Author'], $dico['Year'], $dico['PagesCitation'], $dico['VolumeCitation'], $DAO->nomAcc($dico['CodeIntro']), $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $dico['TypeDoc'], $dico['Edition'], $dico['Publisher'], $dico['PlacePublished'], $dico['ISBN'], $dico['Language'], $dico['NumberOfVolumes'], $dico['PagesDoc'], $dico['CallNumber'], $dico['AuteurCitation'], $dico['NomVigneCite']);
+                $content = supprNull($BI->getSelectionBibliographie());
+                array_push($BI_Content, $content);
+            }
         }
         return $BI_Content;
     }
 
     public function partenaire_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Partenaires` where CodePartenaire='" . $code . "'";
+        $sql = "select * from `Partenaires` where CodePartenaire IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8284,35 +8377,45 @@ class BibliothequeDAO {
             exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $PAR = new Partenaire($dico['CodePartenaire'], $dico['NomPartenaire'], $dico['SiglePartenaire'], $dico['SectionRegionaleENTAV'], $dico['RegionPartenaire'], $dico['DepartPartenaire'], $dico['ResponsablesPartenaire'], $dico['TelephonePartenaire'], $dico['Email'], $dico['AdressePartenaire'], $dico['CodPostPartenaire'], $dico['CommunePartenaire']);
-            $PAR_Content = supprNull($PAR->getListePartenaire());
+            $PAR_Content = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $PAR = new Partenaire($dico['CodePartenaire'], $dico['NomPartenaire'], $dico['SiglePartenaire'], $dico['SectionRegionaleENTAV'], $dico['RegionPartenaire'], $dico['DepartPartenaire'], $dico['ResponsablesPartenaire'], $dico['TelephonePartenaire'], $dico['Email'], $dico['AdressePartenaire'], $dico['CodPostPartenaire'], $dico['CommunePartenaire']);
+                $content = supprNull($PAR->getListePartenaire());
+                array_push($PAR_Content, $content);
+            }
         }
         return $PAR_Content;
     }
 
     public function lien_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "select * from `Liens_web_JY` where CodeLienWeb='" . $code . "'";
+        $sql = "select * from `Liens_web_JY` where CodeLienWeb IN (".$code.")";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
         if (!$resultat) {
             deconnexion_bbd();
-            echo "<script>alert('erreur de base de donnes')</script>";
-            exit;
+            //echo "<script>alert('erreur de base de donnes')</script>";
+            //exit;
         }
         if (mysql_num_rows($resultat) == 0) {
             deconnexion_bbd();
-            echo "<script>alert('erreur de base de donnes')</script>";
-            exit;
+            //echo "<script>alert('erreur de base de donnes')</script>";
+            //exit;
         }
         if (mysql_num_rows($resultat) > 0) {
-            $dico = mysql_fetch_assoc($resultat);
-            $LIEN = new Lien($dico['CodeLienWeb'], $dico['Titre'], $dico['NomSite'], $dico['NomSite'], $dico['URL'], $dico['CodeVar'], $dico['CodeIntro']);
-            $LIEN_Content = supprNull($LIEN->getSelectionLien());
-            $LIEN_Content['NomVar'] = $DAO->nomVar($dico['CodeVar']);
-            $LIEN_Content['NomAcc'] = $DAO->nomAcc($dico['CodeIntro']);
+            $LIEN_Content = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $LIEN = new Lien($dico['CodeLienWeb'], $dico['Titre'], $dico['NomSite'], $dico['NomSite'], $dico['URL'], $dico['CodeVar'], $dico['CodeIntro']);
+                $content = supprNull($LIEN->getSelectionLien());
+                //$content['NomVar'] = $DAO->nomVar($dico['CodeVar']);
+                //$content['NomAcc'] = $DAO->nomAcc($dico['CodeIntro']);
+                array_push($LIEN_Content, $content);
+            }
         }
         return $LIEN_Content;
     }
@@ -8612,7 +8715,7 @@ class BibliothequeDAO {
             if (mysql_num_rows($resultat_emp) > 0) {
                 for ($i = 0; $i < (mysql_num_rows($resultat_emp)); $i = $i + 1) {
                     $dico = mysql_fetch_assoc($resultat_emp);
-                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                    $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['NomSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                 }
                 $detail = $EM->getFicherEmplacement();
                 $detail = supprNull($detail);
@@ -9937,7 +10040,7 @@ class BibliothequeDAO {
                         $dico = mysql_fetch_assoc($resultat);
                         $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
                         $dico['CodeIntroPartenaire'] = "'" . $dico['CodeIntroPartenaire'];
-                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                         $detail = $EM->getListeEmplaclemnt();
                         $detail = supprNull($detail);
                         array_push($result, $detail);
@@ -10346,7 +10449,7 @@ class BibliothequeDAO {
                         $dico = mysql_fetch_assoc($resultat);
                         $dico['CodeIntro'] = "'" . $dico['CodeIntro'];
                         $dico['CodeIntroPartenaire'] = "'" . $dico['CodeIntroPartenaire'];
-                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeSite'], $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                         $detail = $EM->getListeEmplaclemnt();
                         $detail = supprNull($detail);
                         array_push($result, $detail);
@@ -10726,7 +10829,7 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                         $dico = mysql_fetch_assoc($resultat);
-                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe']);
+                        $EM = new Emplacement($dico['CodeEmplacem'], $dico['CodeSite'], $dico['Parcelle'], $dico['Rang'], $dico['PremiereSouche'], $dico['DerniereSouche'], $dico['NomIntro'], $dico['CodeIntro'], $dico['CodeVar'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['NumCloneCTPS-PG'], $dico['AnneePlantation'], $dico['NomIntro'], $dico['CodeIntro'], $DAO->site($dico['CodeSite']), $dico['Zone'], $dico['SousPartie'], $dico['NbreEtatNormal'], $dico['NbreEtatMoyen'], $dico['NbreEtatMoyFaible'], $dico['NbreEtatFaible'], $dico['NbreEtatTresFaible'], $dico['NbreEtatMort'], $dico['TypeSouche'], $dico['AnneeElimination'], $dico['CategMateriel'], $dico['Greffe'], $dico['PorteGreffe'], $dico['IdEmplacem']);
                         $Em_Content = supprNull($EM->getListeEmplaclemnt());
                         array_push($result, $Em_Content);
                     }

@@ -1462,7 +1462,8 @@ and open the template in the editor.
 			var curpage=page;
 			var pagesize=$('#select_pagesize_espece_selection').val();
 			var dataString="curpage="+curpage+"&pagesize="+pagesize+"&function=select_change_selection_espece";
-			selection_listEspece(dataString);
+			console.log(dataString);
+                        selection_listEspece(dataString);
 		}
 	});
 	$.extend({'search_page_selection_listVariete':
@@ -4061,7 +4062,8 @@ and open the template in the editor.
 			var curpage=$('#espece_curpage_value').val();
 			var pagesize=$('#select_pagesize_espece_selection').val();
 			var dataString="curpage="+curpage+"&pagesize="+pagesize+"&function=select_change_selection_espece";
-			selection_listEspece(dataString);
+			console.log(dataString);
+                        selection_listEspece(dataString);
 		}
 	});
 	$.extend({'select_change_selection_listvariete':
@@ -4393,6 +4395,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
 							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
 							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+                                                        html+="<input type='hidden' name='IdEmplacem' value='"+value.IdEmplacem+"'>";
 						}
 					}
 					
@@ -4730,6 +4733,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
 							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
 							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+                                                        html+="<input type='hidden' name='IdEmplacem' value='"+value.IdEmplacem+"'>";
 						}
 					}
 					
@@ -5062,6 +5066,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
 							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
 							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+                                                        html+="<input type='hidden' name='IdEmplacem' value='"+value.IdEmplacem+"'>";
 						}
 					}
 					
@@ -5394,6 +5399,7 @@ and open the template in the editor.
 							html+="<input type='hidden' name='Greffe' value='"+value.Greffe+"'>";
 							html+="<input type='hidden' name='PorteGreffe' value='"+value.PorteGreffe+"'>";
 							html+="<input type='hidden' name='NumCloneCTPS' value='"+value.NumCloneCTPS+"'>";
+                                                        html+="<input type='hidden' name='IdEmplacem' value='"+value.IdEmplacem+"'>";
 						}
 					}
 					
@@ -17650,7 +17656,6 @@ and open the template in the editor.
 										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
 										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
 										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\')"  /></td>'+

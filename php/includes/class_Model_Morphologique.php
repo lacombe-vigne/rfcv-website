@@ -124,7 +124,7 @@ class Morphologique {
 		$contents['Critaire']=$this->getCritaire();
 		$contents['CaractereOIV']=$this->getCaractereOIV();
 		$contents['CodeAcc']=$this->getCodeAcc();
-		$contents['NomAcc']=$this->getnomAcc();
+                $contents['CodeVar']=$this->getCodeVar();
 		return $contents;
 	}
 }

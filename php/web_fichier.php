@@ -153,6 +153,7 @@
 		$Greffe=supprNull($_POST['Greffe']);
 		$PorteGreffe=supprNull($_POST['PorteGreffe']);
 		$NumCloneCTPS=supprNull($_POST['NumCloneCTPS']);
+                $IdEmplacem=supprNull($_POST['IdEmplacem']);
 	}
 	if($section=='sanitaire'){
 		$CodeSanitaire=supprNull($_POST['CodeSanitaire']);
@@ -722,6 +723,7 @@
 						<table width='100%'>
 							<tr>
 								<input type='hidden' id='fichier_code_emplacement' value='".$CodeEmplacemen."'>
+                                                                <input type='hidden' id='fichier_ID_emplacement' value='".$IdEmplacem."'>    
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Rang_lable_emp'></span></td><td width='30%' class='res_acc'>".$Rang."</td>
 							</tr>
