@@ -608,6 +608,13 @@ switch ($fun) {
         $resultat = $DAO->ficher($section, $code, $search_complet, $case_s, $model, $langue, $page_espece, $pagesize_espece, $page_variete, $pagesize_variete, $page_accession, $pagesize_accession, $tri_espece_classname, $tri_espece_section, $tri_espece_colone, $tri_variete_classname, $tri_variete_section, $tri_variete_colone, $tri_accession_classname, $tri_accession_section, $tri_accession_colone);
         echo json_encode($resultat);
         break;
+    case "fichier":
+        $section = $_GET['section'];
+        $code = $_GET['code'];
+        $langue = "FR";
+        $resultat = $DAO->fichier($section, $code, $langue);
+        echo json_encode($resultat);
+        break;
     case "searchAdevance":
         // echo json_encode(array("ok"=>"ok","function"=>$fun));
         $parametre = array();

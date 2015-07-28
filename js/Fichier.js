@@ -4,6 +4,7 @@
  * Recherche Simple, Recherche Avancée et Ma Selection
  */
 $(document).ready(function () {
+    
     var icone = '<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>'
     var i = 2; //Itérateur qui me permet d'ajouter les élements en fonction de leur position
     if ($('#recherche').val() == "SearchS") {
@@ -13,22 +14,17 @@ $(document).ready(function () {
         $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('<li><a onclick="$.back_list();" class="lien_chemin" id="chemin_resultat"></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $('<li id="back_button"><a  onclick="$.back_list();" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('#chemin_resultat').append($('#search_value').val());
     }
     else if ($('#recherche').val() == "SearchA") {
         //Si on vient de faire une recherche avancée
         //console.log($('#recherche').val());
         $('<li><a href="SearchA.php" class="lien_chemin" id="chemin_searchA"></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $('<li id="back_button"><a  href="SearchA.php" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     }
     else if ($('#recherche').val() == "Selection") {
         //Si on accède à la fiche via le panier
         //console.log($('#recherche').val());
         $('<li><a href="MySelection.php" class="lien_chemin" id="chemin_selection"></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $('<li id="back_button"><a  href="MySelection.php" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     }
     else {
         console.log("ça déconne !!!");
@@ -37,7 +33,7 @@ $(document).ready(function () {
     var Code = CodeSection["code"];
     var Section = CodeSection["section"];
     console.log(Section);
-    $('<li id="chemin_ficheEsp"></li>').insertBefore(($('div[class="chemin"] ul li:nth-child(' + (i) + ')')));
+    $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     if (Section == "espece") {
         $('#chemin_ficheEsp').append('<span id="codeEsp">'+Code+'</span>');
         $('#chemin_ficheEsp').css('font-weight', 'bold'); // cette caractéristique permet de montrer à l'utisateur ou il se situe
@@ -66,7 +62,7 @@ $(document).ready(function () {
             $('li img:last-child').eq(-2).remove();
         }*/
     }
-
+    
     function recupererVariablesGet() {
         /*
          * Fonction qui va nous permettre de récuperer le code et la section de la fiche pour compléter le fil d'Ariane

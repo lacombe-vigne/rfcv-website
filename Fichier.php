@@ -5,26 +5,26 @@
 		//connexionBbd();
 	
 		session_start();
-		// $langue=$_GET['l'];
-					// if(isset($langue)){
-				// if($langue=="FR"){
-					// $_SESSION['language_Vigne']="FR";
-				// }
-				// if($langue=="EN"){
-					// $_SESSION['language_Vigne']="EN";
-				// }
-			// }else{
-				// if(!isset($_SESSION['language_Vigne'])){
-					// $_SESSION['language_Vigne']="FR";
-				// }else{
-					// $_SESSION['language_Vigne']=$_SESSION['language_Vigne'];
-				// }
-			// }
-		if($_SESSION['page']!="Fichier.php"){
-			$_SESSION['page']="Fichier.php";
-		}else{
-			$_SESSION['page']="Fichier.php";
-		}
+		$langue=$_GET['l'];
+			if(isset($langue)){
+				if($langue=="FR"){
+					$_SESSION['language_Vigne']="FR";
+				}
+				if($langue=="EN"){
+					$_SESSION['language_Vigne']="EN";
+				}
+			}else{
+				if(!isset($_SESSION['language_Vigne'])){
+					$_SESSION['language_Vigne']="FR";
+				}else{
+					$_SESSION['language_Vigne']=$_SESSION['language_Vigne'];
+				}
+			}
+                        if($_SESSION['page']!="Fichier.php"){
+                            $_SESSION['page']="Fichier.php";
+                        } else {
+                            $_SESSION['page']="Fichier.php";
+                        }
 			
 	?>
 	<!-- END SESSION+langue site -->
@@ -162,9 +162,9 @@
 			include('php/web_style_en.php');
                     }else{
 			include('php/web_style_fr.php');
-                    }	
-                ?>
-                <script src="./js/Fichier.js" type="text/javascript" charset=utf-8> </script>
+                    }
+                ?>           
+                <script src="./js/Fichier.js" type="text/javascript" charset=utf-8></script>
 	</body>
 	
 </html>

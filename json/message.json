@@ -14,5 +14,6 @@
         "resultat2_fr":"Votre compte ne peut pas consulter plus de données !",
         "resultat2_en":"Votre compte ne peut pas consulter plus de données !",
         "Adblock_fr":"Veuillez désactiver Adblock qui peut bloquer certaines fonctionnalités du site, et réactualiser votre page",
-        "Adblock_en":"Adblock off please !"
+        "Adblock_en":"Adblock off please !",
+        "ficheVarAcc":"Cette fiche n'est pas disponible ! \nCette fiche n'est pas disponible !(à traduire en anglais)"
 }

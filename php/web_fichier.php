@@ -384,7 +384,7 @@
 							<img src='images/variete_fichier.png'/>";
 				}
 					if($SynoMajeur!=" –" && $SynoMajeur!=" – "){
-						echo "<span id='var_FichierVar'></span>&nbsp &nbsp<span>".stripslashes($NomVar)."</span>&nbsp  
+						echo "<span id='var_FichierVar'></span>&nbsp &nbsp<span>".stripslashes($NomVar)."</span>&nbsp &nbsp  
 								<span class='SynoMajeur_FichierAcc'>[<span id='SynoMajeur_lable_var'></span> ".stripslashes($SynoMajeur)."]</span>
 								<span id='codeVar_FichierVar'><span id='code_fiche'></span> ".$CodeVar."</span>";
 					}else{
@@ -600,13 +600,25 @@
 					<div class='carte_FichierApt'>
 						<table width='100%'>
 							<tr>
-								<input type='hidden' id='fichier_code_aptitude' value='".$codeAptitude."'>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier' >".stripslashes($nomVar)."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Experimentateur_lable_apt'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
+								<input type='hidden' id='fichier_code_aptitude' value='".$codeAptitude."'>";
+                                                            if($nomVar == ' –' || $nomVar == ' – '){
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($nomVar)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier' >".stripslashes($nomVar)."</a></td>";
+                                                            }
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Experimentateur_lable_apt'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
 							</tr>
-							<tr>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
+                                                        <tr>";
+                                                            if($nomAcc == ' –' || $nomAcc == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'>".stripslashes($nomAcc)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>";
+                                                            } if($Partenaire == ' –' || $Partenaire == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'>".stripslashes($Partenaire)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>";
+                                                            }
+								echo "
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc''><img src='images/poin_par.png' width='10' height='10'/><span id='Caracteristique_lable_apt'></span></td><td width='30%' class='res_acc'>".$Caracteristique."</td>
@@ -625,8 +637,13 @@
 								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='LieuExp_lable_apt'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
 							</tr>
 							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($SiteExp)."</a></td>
+								<td colspan='2'></td>";
+                                                            if ($SiteExp == ' –' || $SiteExp == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($SiteExp)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($SiteExp)."</a></td>";
+                                                            }
+                                                                echo "
 							</tr>
 							<tr>
 								<td colspan='2'></td>
@@ -661,13 +678,23 @@
 					<div class='carte_FichierMor'>
 						<table width='100%'>
 							<tr>
-								<input type='hidden' id='fichier_code_ampelo' value='".$CodeAmpelo."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Experimentateur_lable_mor'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
-							</tr>
+								<input type='hidden' id='fichier_code_ampelo' value='".$CodeAmpelo."'>";
+                                                            if($nomAcc == ' –' || $nomAcc == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'>".stripslashes($nomAcc)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>";
+                                                            }
+                                                                echo "<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Experimentateur_lable_mor'></span></td><td width='30%' class='res_acc'>".$Experimentateur."</td>
+                                                        </tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Descripteur_lable_mor'></span></td><td class='res_acc'>".$Descripteur."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_mor'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
+                                                                      <td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Descripteur_lable_mor'></span></td><td class='res_acc'>".$Descripteur."</td>";
+                                                        
+                                                            if($Partenaire == ' –' || $Partenaire == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'>".stripslashes($Partenaire)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>";
+                                                            }
+								echo "
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeDescripteur_lable_mor'></span></td><td width='30%' class='res_acc'>".$CodeDescripteur."</td>
@@ -686,8 +713,13 @@
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='LieuExp_lable_mor'></span></td><td width='30%' class='res_acc'>".$LieuExp."</td>
 							</tr>
 							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='SiteExp_lable_mor'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".$SiteExp."</a></td>
+								<td colspan='2'></td>";
+                                                            if ($SiteExp == ' –' || $SiteExp == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($SiteExp)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($SiteExp)."</a></td>";
+                                                            }
+                                                                echo "
 							</tr>
 							<tr>
 								<td colspan='2'></td>
@@ -731,8 +763,13 @@
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='CodeAcc_lable_emp'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($CodeAcc)."</a></td>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TypeSouche_lable_emp'></span></td><td class='res_acc'>".$TypeSouche."</td>
 							</tr>
-							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Site_lable_emp'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Site)."</a></td>
+							<tr>";
+                                                            if ($Site == ' –' || $Site == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($Site)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='SiteExp_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeSite."\",\"site\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Site)."</a></td>";
+                                                            }
+                                                                echo "
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PremiereSouche_lable_emp'></span></td><td width='30%' class='res_acc'>".$PremiereSouche."</td>
 							</tr>
 							<tr>
@@ -825,8 +862,13 @@
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DateTest_lable_san'></span></td><td width='30%' class='res_acc'>".$DateTest."</td>
 							</tr>
 							<tr>
-								<td colspan='2'></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_san'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
+								<td colspan='2'></td>";
+                                                            if($Partenaire == ' –' || $Partenaire == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'>".stripslashes($Partenaire)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>";
+                                                            }
+								echo "
 							</tr>
 						</table>
 					</div>
@@ -857,13 +899,21 @@
 					<div class='carte_FichierGen'>
 						<table width='100%'>
 							<tr>
-								<input type='hidden' id='fichier_code_genetique' value='".$Code."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdStockADN_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdStockADN."</td>
+								<input type='hidden' id='fichier_code_genetique' value='".$Code."'>";
+                                                            if($nomAcc == ' –' || $nomAcc == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'>".stripslashes($nomAcc)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>";
+                                                            }
+                                                                echo "<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdStockADN_lable_gen'></span></td><td width='30%' class='res_acc'>".$IdStockADN."</td>
 							</tr>
-							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomVar_lable_gen'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomVar)."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdProtocolePCR_lable_gen'></span></td><td class='res_acc'>".$IdProtocolePCR."</td>
+							<tr>";
+                                                            if($nomVar == ' –' || $nomVar == ' – '){
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($nomVar)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier' >".stripslashes($nomVar)."</a></td>";
+                                                            }
+                                                                echo "<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='IdProtocolePCR_lable_gen'></span></td><td class='res_acc'>".$IdProtocolePCR."</td>
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Marqueur_lable_gen'></span></td><td width='30%' class='res_acc'>".$Marqueur."</td>
@@ -874,8 +924,13 @@
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='DateRun_lable_gen'></span></td><td class='res_acc'>".$DateRun."</td>
 							</tr>
 							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ValeurCodee2_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee2."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='Partenaire_lable_gen'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>
+								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='ValeurCodee2_lable_gen'></span></td><td class='res_acc'>".$ValeurCodee2."</td>";
+                                                            if($Partenaire == ' –' || $Partenaire == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'>".stripslashes($Partenaire)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='Partenaire_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodePartenaire."\",\"partenaire\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($Partenaire)."</a></td>";
+                                                            }
+								echo "
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='EmplacemRecolte_lable_gen'></span></td><td width='30%' class='res_acc'>".$EmplacemRecolte."</td>
@@ -926,13 +981,21 @@
 					<div class='carte_FichierBib'>
 						<table width='100%'>
 							<tr>
-								<input type='hidden' id='fichier_code_bibliographique' value='".$Code."'>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomVar_lable_bib'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomVar)."</a></td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='VolumeCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$VolumeCitation."</td>
+								<input type='hidden' id='fichier_code_bibliographique' value='".$Code."'>";
+                                                            if($nomVar == ' –' || $nomVar == ' – '){
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'>".stripslashes($nomVar)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomVar_lable_apt'></span></td><td width='30%' class='res_acc'><a onclick='$.passerFicher2(\"".$CodeVar."\",\"variete\",\"".$recherche."\")' class='lien_fichier' >".stripslashes($nomVar)."</a></td>";
+                                                            }
+                                                                echo "<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='VolumeCitation_lable_bib'></span></td><td width='30%' class='res_acc'>".$VolumeCitation."</td>
 							</tr>
-							<tr>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='nomAcc_lable_bib'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</td>
-								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PagesCitation_lable_bib'></span></td><td class='res_acc'>".$PagesCitation."</td>
+							<tr>";
+                                                            if($nomAcc == ' –' || $nomAcc == ' – ') {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'>".stripslashes($nomAcc)."</td>";
+                                                            } else {
+                                                                echo "<td width='17%' class='lable_carte_acc'><img src='images/poin_par.png' width='10' height='10'/><span id='nomAcc_lable_apt'></span></td><td class='res_acc'><a onclick='$.passerFicher2(\"".$CodeAcc."\",\"accession\",\"".$recherche."\")' class='lien_fichier'>".stripslashes($nomAcc)."</a></td>";
+                                                            }
+								echo "<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='PagesCitation_lable_bib'></span></td><td class='res_acc'>".$PagesCitation."</td>
 							</tr>
 							<tr>
 								<td width='17%' class='lable_carte_acc' ><img src='images/poin_par.png' width='10' height='10'/>  <span id='TypeDoc_lable_bib'></span></td><td width='30%' class='res_acc'>".$TypeDoc."</td>

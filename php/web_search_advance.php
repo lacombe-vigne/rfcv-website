@@ -47,7 +47,7 @@
 										</select>
 									</td>
                                                                         <td width="5%"></td>
-									<td id="condition_td_1" width="20%">
+									<td id="codition_td_1" width="20%">
 										<input type="test" style="width:200" id="condition_1"/>
 									</td>
                                                                         <td width="5%"></td>

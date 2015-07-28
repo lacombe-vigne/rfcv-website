@@ -56,7 +56,6 @@
 					<li><a href="Home.php" class="lien_chemin" id="chemin_home"></a></li>
 					<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>
 					<li id="chemin_login"></li>
-					<li id="back_button"><a  href="Home.php" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>
 					</ul>
 				</div>
 				<!-- END #site-chemin -->

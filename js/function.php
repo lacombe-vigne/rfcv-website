@@ -13,6 +13,7 @@ and open the template in the editor.
        $langue = $_SESSION['language_Vigne']; ?>
        <script type="text/javascript" charset=utf-8>     
        $(document).ready(function(){
+           
 	//page person, qui ne affiche pas au début de ce page
 	$('.modifier_mesInfos').hide();
 	$('.list-users').hide();
@@ -2424,7 +2425,6 @@ and open the template in the editor.
 							'<li><a href="SearchS.php" class="lien_chemin" id="chemin_searchS"></a></li>'+
 							'<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>'+
 							'<li id="chemin_resultat"></li>'+
-							'<li id="back_button"><a  href="SearchS.php" ><img src="images/back_chemin.png" id="back_chemin" width="20" height="20"/></a></li>'+
 							'</ul>';
 				$('.chemin').append(chemin);
 				$.getJSON("json/home.json",function(data){
@@ -5573,6 +5573,8 @@ and open the template in the editor.
 			return false;
 		}
 	});
+        
+        
 	$.extend({'fichier_langue':
 		function(langue,code,section,rech){
 			var dataString="";
@@ -12810,7 +12812,7 @@ and open the template in the editor.
 											'<option value="indifferent">'+value.indifferent+'</option>'+
 											'<option value="OrganePhoto">'+value.OrganePhoto+'</option>'+
 											'<option value="CouleurPhoto">'+value.CouleurPhoto+'</option>'+
-											'<option value="TypePhoto">'+value.indiTypePhotofferent+'</option>';
+											'<option value="TypePhoto">'+value.TypePhoto+'</option>';
 								$('#champ_'+id_number).empty();
 								$('#champ_'+id_number).append(option);
 							}
@@ -12820,7 +12822,7 @@ and open the template in the editor.
 											'<option value="indifferent">'+value.indifferent+'</option>'+
 											'<option value="OrganePhoto">'+value.OrganePhoto+'</option>'+
 											'<option value="CouleurPhoto">'+value.CouleurPhoto+'</option>'+
-											'<option value="TypePhoto">'+value.indiTypePhotofferent+'</option>';
+											'<option value="TypePhoto">'+value.TypePhoto+'</option>';
 								$('#champ_'+id_number).empty();
 								$('#champ_'+id_number).append(option);
 							}
@@ -13058,7 +13060,7 @@ and open the template in the editor.
 			}
 			if(section==="Accession"){
 				if(champ!='indifferent'){
-					if(champ==="PayProvenance"||champ==="Statut"||champ==="UniteIntro"||champ==="RegionProvenance"||champ==="DepartProvenance"||champ==="Agrement"){
+					if(champ==="PaysProvenance"||champ==="Statut"||champ==="UniteIntro"||champ==="RegionProvenance"||champ==="DepartProvenance"||champ==="Agrement"){
 						$.getJSON("json/searchAd.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
@@ -13744,8 +13746,9 @@ and open the template in the editor.
 			/*
                          * Permet de vérifier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
                          */
+                        //console.log($('#condition_'+i).val());
             
-                        if($('#champ_'+i).val()==' '){
+                        if($('#champ_'+i).val()==' ' || $('#condition_'+i).val()== ""){
 				faute+=1;
 			}else{
 				faute=faute;
@@ -13881,7 +13884,7 @@ and open the template in the editor.
                          * Permet de vérifier si il n'y a pas de champ vide ou si il y'a bien au moins une condition sur la variete et sur l'accession
                          */
             
-                        if($('#champ_'+i).val()==' '){
+                        if($('#champ_'+i).val()==' ' || $('#condition_'+i).val()== ""){
 				faute+=1;
 			}else{
 				faute=faute;
@@ -18965,6 +18968,7 @@ and open the template in the editor.
 		});
 	}
 	});
+        
                
 });
 

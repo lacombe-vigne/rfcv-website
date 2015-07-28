@@ -10,7 +10,7 @@
 		if(isset($_SESSION['codePersonne'])){
 		//s'il exist la connection, il affiche des menu pour partenaire
 			echo'
-			<li id="welcom_contents"><a id="PagePerson" href="PagePerson.php?l='.$_SESSION['language_Vigne'].'"><span id="site-login-title"></span> '.$_SESSION['nomPersonne'].' '.$_SESSION['prenomPersonne'].'</a></li>
+			<li id="welcom_contents"><a id="PagePerson" href="PagePerson.php?l='.$_SESSION['language_Vigne'].'"><span id="site-login-title"></span> '.$_SESSION['prenomPersonne'].' '.$_SESSION['nomPersonne'].'</a></li>
 			
 			<li><a id="logout" style="cursor:hand" href="php/logout.php"><img src="images/lougout.png" alt="deconnectes" width="20px" hight="20px"/></a></li>';
 		}else{
