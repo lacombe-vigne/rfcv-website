@@ -109,7 +109,7 @@ class Genetique {
 	function getSelectionGenetique(){
 		$contents_genetique=array();
 		$contents_genetique['Code']=$this->getCode();
-		$contents_genetique['Margueur']=$this->getnomAcc();
+		$contents_genetique['Margueur']=$this->getMargueur();
 		$contents_genetique['Allele1']=$this->getAllele1();
 		$contents_genetique['Allele2']=$this->getAllele2();
 		$contents_genetique['Partenaire']=$this->getPartenaire();

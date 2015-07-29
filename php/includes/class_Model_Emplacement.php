@@ -69,7 +69,7 @@ class Emplacement {
 	public function getPorteGreffe(){return $this->PorteGreffe;}
         public function getIdEmplacem(){return $this->IdEmplacem;}
 	
-	function __construct($CodeEmplacem,$CodeSite,$Parcelle,$Rang,$PremiereSouche,$DerniereSouche,$NomIntro,$CodeIntro,$NomVar,$CodeVar,$CodeIntroPartenaire,$NumCloneCTPS,$AnneePlantation,$nomAcc,$CodeAcc,$Site,$Zone,$SousPartie,$NbreEtatNormal,$NbreEtatMoyen,$NbreEtatMoyFaible,$NbreEtatFaible,$NbreEtatTresFaible,$NbreEtatMort,$TypeSouche,$AnneeElimination,$CategMateriel,$Greffe,$PorteGreffe){
+	function __construct($CodeEmplacem,$CodeSite,$Parcelle,$Rang,$PremiereSouche,$DerniereSouche,$NomIntro,$CodeIntro,$NomVar,$CodeVar,$CodeIntroPartenaire,$NumCloneCTPS,$AnneePlantation,$nomAcc,$CodeAcc,$Site,$Zone,$SousPartie,$NbreEtatNormal,$NbreEtatMoyen,$NbreEtatMoyFaible,$NbreEtatFaible,$NbreEtatTresFaible,$NbreEtatMort,$TypeSouche,$AnneeElimination,$CategMateriel,$Greffe,$PorteGreffe,$IdEmplacem){
 		$this->CodeEmplacem = $CodeEmplacem;
 		$this->CodeSite = $CodeSite;
 		$this->Parcelle = $Parcelle;
@@ -113,7 +113,7 @@ class Emplacement {
 		$Em_Contents['NomIntro']=$this->getNomIntro();
 		$Em_Contents['CodeIntro']=$this->getCodeIntro();
 		//$Em_Contents['CodeIntroPartenaire']=$this->getCodeIntroPartenaire();
-                //$Em_Contents['IdEmplacem']=$this->getIdEmplacem();
+                $Em_Contents['IdEmplacem']=$this->getIdEmplacem();
 		
 		return $Em_Contents;
 	}

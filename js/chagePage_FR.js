@@ -691,15 +691,15 @@ $(document).ready(function(){
 		$.each(data,function(key, value){
 			if(key==="selection_fr"){
 				$('#title_myselection').append(value.title);
-				$('#vide_section_button').append(value.vide_section_button);
+				$('.vide_section_button').append(value.vide_section_button);
 				$('#vide_selection').append(value.vide_selection);
 				$('#click_Espece_selection').append(value.click_Espece_selection);
 				$('#CodeEspece').append(value.CodeEspece);
 				$('#NomEspece').append(value.NomEspece);
 				$('#Botaniste').append(value.Botaniste);
 				$('#Tronc').append(value.Tronc);
-				$('#Export_pdf').append(value.Export_pdf);
-				$('#Suppr_selection').append(value.Suppr_selection);
+				$('.Export_pdf').append(value.Export_pdf);
+				$('.Suppr_selection').append(value.Suppr_selection);
 				$('#click_Variete_selection').append(value.click_Variete_selection);
 				$('#CodeVariete').append(value.CodeVariete);
 				$('#NomVariete').append(value.NomVariete);

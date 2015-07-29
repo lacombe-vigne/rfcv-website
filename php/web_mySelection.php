@@ -47,8 +47,8 @@ if (count($_SESSION['selection']['Espece']) != 0) {
 									<th width="35%"><span id="NomEspece"></span></th>
 									<th width="25%"><span id="Botaniste"></span></th>
 									<th ><span id="Tronc"></span></th>
-									<th width="5%"><span id="Export_pdf"></span></th>
-									<th width="5%"><span id="Suppr_selection"></span></th>
+									<th width="5%"><span class="Export_pdf"></span></th>
+									<th width="5%"><span class="Suppr_selection"></span></th>
 								</table>
 							</div>
 							<table id="contents_ligne_espece" width=100%>
@@ -65,8 +65,8 @@ if (count($_SESSION['selection']['Espece']) != 0) {
 									<td width="35%"  onclick="$.passerFicherSelection(\'' . $value['codeEspece'] . '\',\'espece\');return false;">' . $value['nomEspece'] . '</td>
 									<td width="25%"  onclick="$.passerFicherSelection(\'' . $value['codeEspece'] . '\',\'espece\');return false;">' . $value['botaniste'] . '</td>
 									<td width="15%" onclick="$.passerFicherSelection(\'' . $value['codeEspece'] . '\',\'espece\');return false;">' . $value['tronc'] . '</td>
-									<td width="10%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-									<td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['codeEspece'] . '\',\'espece\')" /></td>
+									<td width="10%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+									<td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['codeEspece'] . '\',\'espece\')" /></td>
 								</tr>';
     }
     echo'
@@ -75,7 +75,7 @@ if (count($_SESSION['selection']['Espece']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'espece\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'espece\')"></a>
 					</div>
 				</div>
 				
@@ -85,12 +85,6 @@ if (count($_SESSION['selection']['Espece']) != 0) {
 }
 
 if (count($_SESSION['selection']['Variete']) != 0) {
-    /* $Variete_Contents=array();
-      $langue =$_SESSION['language_Vigne'];
-      foreach($_SESSION['selection']['Variete'] as $value){
-      $content=$DAO->variete_selection($value,$langue);
-      array_push($Variete_Contents,$content);
-      } */
     $TabCodeVar = array();
     $langue = $_SESSION['language_Vigne'];
     foreach ($_SESSION['selection']['Variete'] as $value) {
@@ -136,8 +130,8 @@ if (count($_SESSION['selection']['Variete']) != 0) {
 										<th width="8%"><span id="Sexe"></span></th>
 										<th width="8%"><span id="PaysOrigine"></span></th>
 										<th width="5%"><span id="CodeEsp"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table id="contents_ligne_variete">
@@ -160,8 +154,8 @@ if (count($_SESSION['selection']['Variete']) != 0) {
 										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['codeVar'] . '\',\'variete\');return false;">' . $value['sexe'] . '</td>
 										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['codeVar'] . '\',\'variete\');return false;">' . $value['paysorigine'] . '</td>
 										<td width="5%"  onclick="$.passerFicherSelection(\'' . $value['codeVar'] . '\',\'variete\');return false;">' . $value['CodeEsp'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['codeVar'] . '\',\'variete\')" /></td>
+										<td width="5%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['codeVar'] . '\',\'variete\')" /></td>
 									</tr>';
     }
     echo'
@@ -171,7 +165,7 @@ if (count($_SESSION['selection']['Variete']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'variete\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'variete\')"></a>
 					</div>
 				</div>
 			</div>';
@@ -215,16 +209,16 @@ if (count($_SESSION['selection']['Accession']) != 0) {
 								</div>
 								<div id="title_ligne_accession">
 									<table width="100%" id="table_accession_titles">
-										<th width="8%"><span id="CodeIntro"></span></th>
+										<th width="10%"><span id="CodeIntro"></span></th>
 										<th width="15%"><span id="NomIntro_acc"></span></th>
 										<th width="15%" ><span id="NomVariete_acc_FichierEsp"></span></th>
-										<th width="18%" ><span id="Partenaire_FichierEsp"></span></th>
+										<th width="15%" ><span id="Partenaire_FichierEsp"></span></th>
 										<th width="10%" ><span id="PaysProvenance"></span></th>
 										<th width="10%" ><span id="CommuneProvenance"></span></th>
-										<th width="10%" ><span id="AnneeEntree"></span></th>
+										<th width="6%" ><span id="AnneeEntree"></span></th>
 										<th width="6%" ><span id="CodeVariete_selection_accession"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="4%"><span class="Export_pdf"></span></th>
+										<th width="4%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_accession">
@@ -243,10 +237,10 @@ if (count($_SESSION['selection']['Accession']) != 0) {
 										<td width="17%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['Partenaire'] . '</td>
 										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['PaysProvenance'] . '</td>
 										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['communeProvenance'] . '</td>
-										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['AnneeEntree'] . '</td>
+										<td width="6%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['AnneeEntree'] . '</td>
 										<td width="6%"  onclick="$.passerFicherSelection(\'' . $value['codeIntro'] . '\',\'accession\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="3%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="3%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" height="25" onclick="$.delete_selection(\'' . $value['codeIntro'] . '\',\'accession\')"  /></td>
+										<td width="6%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="4%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" height="25" onclick="$.delete_selection(\'' . $value['codeIntro'] . '\',\'accession\')"  /></td>
 									</tr>';
     }
     echo'
@@ -256,7 +250,7 @@ if (count($_SESSION['selection']['Accession']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'accession\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'accession\')"></a>
 					</div>
 				</div>
 					
@@ -307,8 +301,8 @@ if (count($_SESSION['selection']['Emplacement']) != 0) {
 										<th width="15%" ><span id="Anneeplantation_FichierVar"></span></th>
 										<th ><span id="NomIntro_selection_emplacement"></span></th>
 										<th width="10%" ><span id="CodeIntro_selection_emplacement"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_emplacement">
@@ -321,15 +315,15 @@ if (count($_SESSION['selection']['Emplacement']) != 0) {
         }
         echo '
 									<tr style="cursor:pointer;">
-										<td width="23%"  onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeEmplacem'] . '</td>
-										<td width="8%" onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeSite'] . '</td>
-										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['Parcelle'] . '</td>
-										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['Rang'] . '</td>
-										<td width="15%"  onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['AnneePlantation'] . '</td>
-										<td   onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['NomIntro'] . '</td>
-										<td width="10%" onclick="$.passerFicherSelection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeIntro'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\')"   /></td>
+										<td width="23%"  onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeEmplacem'] . '</td>
+										<td width="8%" onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeSite'] . '</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['Parcelle'] . '</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['Rang'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['AnneePlantation'] . '</td>
+										<td width="20%" onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['NomIntro'] . '</td>
+										<td width="10%" onclick="$.passerFicherSelection(\'' . $value['IdEmplacem'] . '\',\'emplacement\');return false;">' . $value['CodeIntro'] . '</td>
+										<td width="5%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeEmplacem'] . '\',\'emplacement\')"   /></td>
 									</tr>';
     }
     echo'
@@ -339,7 +333,7 @@ if (count($_SESSION['selection']['Emplacement']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'emplacement\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'emplacement\')"></a>
 					</div>
 				</div>
 					
@@ -388,8 +382,8 @@ if (count($_SESSION['selection']['Sanitaire']) != 0) {
 										<th width="10%" ><span id="CategorieTest_FichierVar"></span></th>
 										<th width="10%" ><span id="ResultatTest_FichierVar"></span></th>
 										<th width="10%" ><span id="Laboratoire_FichierVar"></span></th>
-										<th width="10%" ><span id="CodeVar_selection_sanitaire"></span></th>										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="10%" ><span id="CodeVar_selection_sanitaire"></span></th>										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_sanitaire">
@@ -409,8 +403,8 @@ if (count($_SESSION['selection']['Sanitaire']) != 0) {
 										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['IdTest'] . '\',\'sanitaire\');return false;">' . $value['ResultatTest'] . '</td>
 										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['IdTest'] . '\',\'sanitaire\');return false;">' . $value['Laboratoire'] . '</td>
 										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['IdTest'] . '\',\'sanitaire\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['IdTest'] . '\',\'sanitaire\')"   /></td>
+										<td width="5%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['IdTest'] . '\',\'sanitaire\')"   /></td>
 									</tr>';
     }
     echo'
@@ -420,7 +414,7 @@ if (count($_SESSION['selection']['Sanitaire']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'sanitaire\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'sanitaire\')"></a>
 					</div>
 				</div>
 					
@@ -468,9 +462,9 @@ if (count($_SESSION['selection']['Morphologique']) != 0) {
 										<th width="10%" ><span id="LibelleCritere"></span></th>
 										<th width="10%"><span id="CaractereOIV"></span></th>
 										<th width="11%"><span id="CodeAcc_selection_morphologique"></span></th>
-										<th width="5%"><span id="CodeVar_selection_morphologique"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="7%"><span id="CodeVar_selection_morphologique"></span></th>
+										<th width="4%"><span class="Export_pdf"></span></th>
+										<th width="4%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_description">
@@ -489,8 +483,8 @@ if (count($_SESSION['selection']['Morphologique']) != 0) {
 										<td width="15%"  onclick="$.passerFicherSelection(\'' . $value['id'] . '\',\'morphologique\');return false;">' . $value['CaractereOIV'] . '</td>
 										<td width="15%"  onclick="$.passerFicherSelection(\'' . $value['id'] . '\',\'morphologique\');return false;">' . $value['CodeAcc'] . '</td>
                                                                                 <td width="10%"  onclick="$.passerFicherSelection(\'' . $value['id'] . '\',\'morphologique\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['id'] . '\',\'morphologique\')"/></td>
+										<td width="8%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['id'] . '\',\'morphologique\')"/></td>
 									</tr>';
     }
     echo'
@@ -500,7 +494,7 @@ if (count($_SESSION['selection']['Morphologique']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'morphologique\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'morphologique\')"></a>
 					</div>
 				</div>
 					
@@ -512,8 +506,10 @@ if (count($_SESSION['selection']['Morphologique']) != 0) {
 if (count($_SESSION['selection']['Aptitude']) != 0) {
     $TabCodeApt = array();
     foreach ($_SESSION['selection']['Aptitude'] as $value) {
+       
         array_push($TabCodeApt, $value);
     }
+     
     $TabCodeApt = "'" . implode("','", $TabCodeApt) . "'";
     $Aptitude_Contents = $DAO->aptitude_selection($TabCodeApt);
     $pagetotal = ceil(count($_SESSION['selection']['Aptitude']) / 20);
@@ -544,17 +540,17 @@ if (count($_SESSION['selection']['Aptitude']) != 0) {
 								</div>
 								<div id="title_ligne_aptitude">
 									<table width="100%" id="table_aptitude_titles">
-										<th width="5%"><span id="CodeAptitude"></span></th>
-										<th width="14%" ><span id="AptitudeMesure"></span></th>
+										<th width="7%"><span id="CodeAptitude"></span></th>
+										<th width="10%" ><span id="AptitudeMesure"></span></th>
 										<th width="10%" ><span id="ValeurCaractNum"></span></th>
-										<th width="13%"><span id="UniteMesure"></span></th>
-										<th width="10%" ><span id="Ponderation"></span></th>
+										<th width="11%"><span id="UniteMesure"></span></th>
+										<th width="11%" ><span id="Ponderation"></span></th>
 										<th width="11%" ><span id="Date_aptitude"></span></th>
 										<th width="11%" ><span id="CodePartenaire"></span></th>
 										<th width="11%" ><span id="CodeAcc_selection_aptitude"></span></th>
 										<th width="11%" ><span id="CodeVar_selection_aptitude"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_aptitude">
@@ -573,16 +569,16 @@ if (count($_SESSION['selection']['Aptitude']) != 0) {
         echo '
 									<tr style="cursor:pointer;">
 										<td width="5%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['CodeDonnee'] . '</td>
-										<td width="15%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['AptitudeMesure'] . '</td>
-										<td width="10%" onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['ValeurMesure'] . '</td>
-										<td width="15%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['UniteMesure'] . '</td>
-										<td width="11%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['PonderationValeur'] . '</td>
-										<td width="11%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $date_aptitude . '</td>
-										<td width="11%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['PartenaireMesure'] . '</td>
-										<td width="11%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['CodeAcc'] . '</td>
-										<td width="11%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeDonnee'] . '\',\'aptitude\')"   /></td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['AptitudeMesure'] . '</td>
+										<td width="6%" onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['ValeurMesure'] . '</td>
+										<td width="12%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['UniteMesure'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['PonderationValeur'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $date_aptitude . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['PartenaireMesure'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['CodeAcc'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['CodeDonnee'] . '\',\'aptitude\');return false;">' . $value['CodeVar'] . '</td>
+										<td width="7%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="3%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeDonnee'] . '\',\'aptitude\')"   /></td>
 									</tr>';
     }
     echo'
@@ -592,7 +588,7 @@ if (count($_SESSION['selection']['Aptitude']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'aptitude\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'aptitude\')"></a>
 					</div>
 				</div>
 					
@@ -652,16 +648,16 @@ if (count($_SESSION['selection']['Genetique']) != 0) {
 								</div>
 								<div id="title_ligne_genetique">
 									<table width="100%" id="table_genetique_titles">
-										<th width="25%"><span id="IdAnalyse_FichierVar"></span></th>
-										<th  width="19%" ><span id="Marqueur_genetique_FichierVar"></span></th>
-										<th  ><span id="ValeurCodee1_FichierVar"></span></th>
-										<th width="14%" ><span id="ValeurCodee2_genetique_FichierVar"></span></th>
-										<th width="14%" ><span id="CodePartenaire_FichierVar"></span></th>
-										<th width="14%"><span id="DatePCR_FichierVar"></span></th>
-										<th width="5%" ><span id="CodeAcc_selection_genetique"></span></th>
-										<th width="5%"><span id="CodeVar_selection_genetique"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection" ></span></th>
+										<th width="20%"><span id="IdAnalyse_FichierVar"></span></th>
+										<th width="15%" ><span id="Marqueur_genetique_FichierVar"></span></th>
+										<th width="7%" ><span id="ValeurCodee1_FichierVar"></span></th>
+										<th width="8%" ><span id="ValeurCodee2_genetique_FichierVar"></span></th>
+										<th width="10%" ><span id="CodePartenaire_FichierVar"></span></th>
+										<th width="10%"><span id="DatePCR_FichierVar"></span></th>
+										<th width="10%" ><span id="CodeAcc_selection_genetique"></span></th>
+										<th width="10%"><span id="CodeVar_selection_genetique"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection" ></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_genetique">
@@ -674,16 +670,16 @@ if (count($_SESSION['selection']['Genetique']) != 0) {
         }
         echo '
 									<tr style="cursor:pointer;">
-										<td width="23%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Code'] . '</td>
-										<td width="19%" onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Margueur'] . '</td>
-										<td   onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Allele1'] . '</td>
-										<td width="14%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Allele2'] . '</td>
-										<td width="14%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Partenaire'] . '</td>
-										<td width="14%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Date'] . '</td>
-										<td width="5%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['CodeAcc'] . '</td>
-										<td width="5%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code'] . '\',\'genetique\')"   /></td>
+										<td width="20%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Code'] . '</td>
+										<td width="15%" onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Margueur'] . '</td>
+										<td width="7%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Allele1'] . '</td>
+										<td width="8%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Allele2'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Partenaire'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['Date'] . '</td>
+										<td width="10%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['CodeAcc'] . '</td>
+										<td width="9%"  onclick="$.passerFicherSelection(\'' . $value['Code'] . '\',\'genetique\');return false;">' . $value['CodeVar'] . '</td>
+										<td width="8%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="3%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code'] . '\',\'genetique\')"   /></td>
 									</tr>';
     }
     echo'
@@ -693,7 +689,7 @@ if (count($_SESSION['selection']['Genetique']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'genetique\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'genetique\')"></a>
 					</div>
 				</div>
 					
@@ -720,7 +716,7 @@ if (count($_SESSION['selection']['Documentation']) != 0) {
 								<div class="function_ligne_doc">
 									<table width="100%" id="table_doc_function">
 										<tr>
-											<td width="5%"><a id="aide_export_xls9" onmouseover="$.aide_export_xls(9)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Documentation" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a id="aide_export_xls9" onmouseover="$.aide_export_xls(9)" class="button_nonclick"><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="70%"></td>
 											<td ><select id="select_pagesize_documentation_selection" onchange="$.select_change_selection_listdoc();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
     if ($pagetotal > 1) {
@@ -737,16 +733,15 @@ if (count($_SESSION['selection']['Documentation']) != 0) {
 								<div id="title_ligne_doc">
 									<table width="100%" id="table_doc_titles">
 										<th width="10%"><span id="CodeDocPdf_FichierVar"></span></th>
-										<th  width="35%" ><span id="Titre_doc_FichierVar"></span></th>
-										<th  ><span id="Auteurs_doc_FichierVar"></span></th>
+										<th width="20%" ><span id="Titre_doc_FichierVar"></span></th>
+										<th width="10%" ><span id="Auteurs_doc_FichierVar"></span></th>
 										<th width="15%" ><span id="Date_doc_FichierVar"></span></th>
 										<th width="15%" ><span id="TypeDoc_doc_FichierVar"></span></th>
 										<th width="10%" ><span id="DocCLICABLE_FichierVar"></span></th>
-										<th width="5%" ><span id="CodeAcc_selection_documentation"></span></th>
-										<th width="5%" ><span id="CodeVar_selection_documentation"></span></th>
-										<th width="5%"><span id="more_colonne"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="10%" ><span id="CodeAcc_selection_documentation"></span></th>
+										<th width="10%" ><span id="CodeVar_selection_documentation"></span></th>
+										<th width="2%"><span class="Export_pdf"></span></th>
+										<th width="3%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_doc">
@@ -761,17 +756,16 @@ if (count($_SESSION['selection']['Documentation']) != 0) {
 
         echo '
 									<tr style="cursor:pointer;">
-										<td width="8%">' . $value['Code_doc'] . '</td>
-										<td width="35%">' . $value['Titre'] . '</td>
-										<td>' . $value['Auteur'] . '</td>
+										<td width="5%">' . $value['Code_doc'] . '</td>
+										<td width="25%">' . $value['Titre'] . '</td>
+										<td width="10%">' . $value['Auteur'] . '</td>
 										<td width="15%">' . $value['Date_doc'] . '</td>
 										<td width="15%">' . $value['TypeDoc'] . '</td>
 										<td width="10%"><a href="' . $value['FichierDocPdf'] . '" target =_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
-										<td width="5%">' . $value['CodeAcc'] . '</td>
-										<td width="5%">' . $value['CodeVar'] . '</td>
-										<td width="5%">...</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code_doc'] . '\',\'Documentation\')"   /></td>
+										<td width="10%">' . $value['CodeAcc'] . '</td>
+										<td width="10%">' . $value['CodeVar'] . '</td>
+										<td width="2%" ><img class="button_nonclick" class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="3%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code_doc'] . '\',\'Documentation\')"   /></td>
 									</tr>';
     }
     echo'
@@ -781,7 +775,7 @@ if (count($_SESSION['selection']['Documentation']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
 					</div>
 				</div>
 					
@@ -833,8 +827,8 @@ if (count($_SESSION['selection']['Bibliographie']) != 0) {
 										<th width="7%" ><span id="PagesCitation_FichierVar"></span></th>
 										<th width="7%"><span id="CodeAcc_selection_bibliographie"></span></th>
 										<th width="7%" ><span id="CodeVar_selection_bibliographie"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_bibliographie">
@@ -855,8 +849,8 @@ if (count($_SESSION['selection']['Bibliographie']) != 0) {
 										<td width="7%" onclick="$.passerFicherSelection(\'' . $value['CodeCit'] . '\',\'bibliographie\');return false;">' . $value['PagesCitation'] . '</td>
 										<td width="7%"  onclick="$.passerFicherSelection(\'' . $value['CodeCit'] . '\',\'bibliographie\');return false;">' . $value['CodeAcc'] . '</td>
 										<td width="7%" onclick="$.passerFicherSelection(\'' . $value['CodeCit'] . '\',\'bibliographie\');return false;">' . $value['CodeVar'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeCit'] . '\',\'Bibliographie\')"  /></td>
+										<td width="8%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="3%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodeCit'] . '\',\'Bibliographie\')"  /></td>
 									</tr>';
     }
     echo'
@@ -866,7 +860,7 @@ if (count($_SESSION['selection']['Bibliographie']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'Bibliographie\')"></a>
 					</div>
 				</div>
 					
@@ -913,8 +907,8 @@ if (count($_SESSION['selection']['Partenaire']) != 0) {
 										<th ><span id="siglePartenaire"></span></th>
 										<th width="40%" ><span id="NomPartenaire"></span></th>
 										<th width="25%" ><span id="sectionPartenaire"></span></th>
-										<th width="5%"><span id="Export_pdf"></span></th>
-										<th width="5%"><span id="Suppr_selection"></span></th>
+										<th width="5%"><span class="Export_pdf"></span></th>
+										<th width="5%"><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_Partenaire">
@@ -931,8 +925,8 @@ if (count($_SESSION['selection']['Partenaire']) != 0) {
 										<td   onclick="$.passerFicherSelection(\'' . $value['CodePartenaire'] . '\',\'partenaire\');return false;">' . $value['SiglePartenaire'] . '</td>
 										<td width="40%"  onclick="$.passerFicherSelection(\'' . $value['CodePartenaire'] . '\',\'partenaire\');return false;">' . $value['NomPartenaire'] . '</td>
 										<td width="25%"  onclick="$.passerFicherSelection(\'' . $value['CodePartenaire'] . '\',\'partenaire\');return false;">' . $value['SectionRegionaleENTAV'] . '</td>
-										<td width="5%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="5%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodePartenaire'] . '\',\'partenaire\')"  /></td>
+										<td width="8%" ><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="3%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['CodePartenaire'] . '\',\'partenaire\')"  /></td>
 									</tr>';
     }
     echo'
@@ -942,7 +936,7 @@ if (count($_SESSION['selection']['Partenaire']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'partenaire\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'partenaire\')"></a>
 					</div>
 				</div>
 					
@@ -970,7 +964,7 @@ if (count($_SESSION['selection']['Lien']) != 0) {
 								<div class="function_ligne_lien">
 									<table width="100%" id="table_lien_function">
 										<tr>
-											<td width="5%"><a id="aide_export_xls12" onmouseover="$.aide_export_xls(12)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Lien" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
+											<td width="5%"><a id="aide_export_xls12" class="button_nonclick" onmouseover="$.aide_export_xls(12)"><img src="images/xls3.png" width="25" height="25"/></a></td>
 											<td width="60%"></td>
 											<td ><select id="select_pagesize_lien_selection" onchange="$.select_change_selection_listlien();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
     if ($pagetotal > 1) {
@@ -993,8 +987,8 @@ if (count($_SESSION['selection']['Lien']) != 0) {
 										<th width="5%" ><span id="LienCLICABLE_FichierVar"></span></th>
 										<th width="14%" ><span id="CodeAcc_selection_lien"></span></th>
 										<th width="14%" ><span id="CodeVar_selection_lien"></span></th>
-										<th width="7%" ><span id="Export_pdf"></span></th>
-										<th width="7%" ><span id="Suppr_selection"></span></th>
+										<th width="7%" ><span class="Export_pdf"></span></th>
+										<th width="7%" ><span class="Suppr_selection"></span></th>
 									</table>
 								</div>
 								<table  width="100%" id="contents_ligne_lien">
@@ -1014,8 +1008,8 @@ if (count($_SESSION['selection']['Lien']) != 0) {
 										<td width="5%"><a href="' . $value['URL'] . '" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>
 										<td width="14%">' . $value['CodeIntro'] . '</td>
 										<td width="14%">' . $value['CodeVar'] . '</td>
-										<td width="7%" ><img id="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>
-                                                                                <td width="7%" ><img id="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code_lien'] . '\',\'Lien\')"   /></td>
+										<td width="7%" ><img class="select_Export_pdf" class="button_nonclick" src="images/export_pdf.png" width="25" height="25" /></td>
+                                                                                <td width="7%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\'' . $value['Code_lien'] . '\',\'Lien\')"   /></td>
 									</tr>';
     }
     echo'
@@ -1025,7 +1019,7 @@ if (count($_SESSION['selection']['Lien']) != 0) {
 					</div>
                                         <br>
 					<div id="vide_section">
-						<a id="vide_section_button" onclick="$.vide_section(\'lien\')"></a>
+						<a class="vide_section_button" onclick="$.vide_section(\'lien\')"></a>
 					</div>
 				</div>
 					

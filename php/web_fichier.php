@@ -736,13 +736,13 @@
 					echo"
 						<div id='function_ligne'>
 						<a id='modifier_fiche'><img src='images/Modifier_Fiche.png'  width='25' height='25'/></a>
-						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$CodeEmplacemen."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$IdEmplacem."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}else{
 					echo"
 						<div id='function_ligne'>
-						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$CodeEmplacemen."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
+						<a id='selection_fiche'><img onclick='$.selectionFiche(\"Emplacement\",\"".$IdEmplacem."\")' src='images/partenaire_selection.png'  width='25' height='25'/></a>
 						<a id='export_pdf_fiche' href='php/ExportPDF/ExportPDF_Emplacement.php' target=_blank><img src='images/partenaire_pdf.png'  width='25' height='25'/></a>
 					</div>";
 				}

@@ -4370,7 +4370,7 @@ and open the template in the editor.
 										
 					if(key==="contents_emp"){
 						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.IdEmplacem+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
@@ -4708,7 +4708,7 @@ and open the template in the editor.
 										
 					if(key==="contents_emp"){
 						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.IdEmplacem+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
@@ -5041,7 +5041,7 @@ and open the template in the editor.
 										
 					if(key==="contents_emp"){
 						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.IdEmplacem+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
@@ -5374,7 +5374,7 @@ and open the template in the editor.
 										
 					if(key==="contents_emp"){
 						if(value!=null){
-							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.CodeEmplacemen+"' method='post' name='formx1' style='display:none'>";
+							html+="<form  id='passFichierForm' action='./Fichier.php?section=emplacement&code="+value.IdEmplacem+"' method='post' name='formx1' style='display:none'>";
 							html+="<input type='hidden' name='CodeEmplacemen' value='"+value.CodeEmplacemen+"'>";
 							html+='<input type="hidden" name="nomAcc" value="'+value.nomAcc+'">';
 							html+="<input type='hidden' name='CodeAcc' value='"+value.CodeAcc+"'>";
@@ -7748,14 +7748,14 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'" /></td>'+
-																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
-																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
-																				'<td width="10%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['IdEmplacem']+'" /></td>'+
+																				'<td width="23%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
+																				'<td width="8%" onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
+																				'<td   onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
+																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
 							});
 							$('#contents_ligne_emplacement').append(contents_ligne_emplacement);
 							var v=$('#contents_ligne_emplacement')[0];
@@ -7983,14 +7983,14 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
-																				'<td width="23%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
-																				'<td width="8%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
-																				'<td   onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
-																				'<td width="10%" onclick="$.passerFicher(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['IdEmplacem']+'"/></td>'+
+																				'<td width="23%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
+																				'<td width="8%" onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
+																				'<td   onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
+																				'<td width="10%" onclick="$.passerFicher(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
 							});
 							$('#contents_ligne_emplacement').append(contents_ligne_emplacement);
 							var v=$('#contents_ligne_emplacement')[0];
@@ -15398,14 +15398,14 @@ and open the template in the editor.
 							$('#contents_emplacement').append('<table  width="100%" id="contents_ligne_emplacement"></table>');
 							var contents_ligne_emplacement="";
 							$.each(value.contents,function(entryIndex,entry){
-								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['CodeEmplacem']+'"/></td>'+
-																				'<td width="23%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
-																				'<td width="8%" onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
-																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
-																				'<td width="15%"  onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
-																				'<td   onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
-																				'<td width="10%" onclick="$.passerFicherAvance(\''+entry['CodeEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
+								contents_ligne_emplacement=contents_ligne_emplacement+'<tr style="cursor:pointer"><td width="2%"><input type="checkbox" name="Checkbox_emplacement[]" value="'+entry['IdEmplacem']+'"/></td>'+
+																				'<td width="23%"  onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeEmplacem']+'</td>'+
+																				'<td width="8%" onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeSite']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Parcelle']+'</td>'+
+																				'<td width="8%"  onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['Rang']+'</td>'+
+																				'<td width="15%"  onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['AnneePlantation']+'</td>'+
+																				'<td   onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['NomIntro']+'</td>'+
+																				'<td width="10%" onclick="$.passerFicherAvance(\''+entry['IdEmplacem']+'\',\'emplacement\');return false;">'+entry['CodeIntro']+'</td></tr>';
 							});
 							$('#contents_ligne_emplacement').append(contents_ligne_emplacement);
 							var v=$('#contents_ligne_emplacement')[0];
@@ -17340,8 +17340,8 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_espece_function='<tr>'+
-										'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
-										'<td width="70%"></td>'+
+										'<td width="5%"><a id="aide_export_xls1" onmouseover="$.aide_export_xls(1)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Espece" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+										'<td width="65%"></td>'+
 										'<td ><select id="select_pagesize_espece_selection" onchange="$.select_change_selection_espece();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 										'<td width="15%"><img id="premier_page_espece" src="images/start_page.png" width="25" height="25" onclick="$.search_page_espece_selection(1);"/><img id="precedent_page_espece" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_espece_selection('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_espece" src="images/next_page.png" width="25" height="25" onclick="$.search_page_espece_selection('+(parseInt(curpage)+1)+');"/><img id="fini_page_espece" src="images/end_page.png" width="25" height="25"  onclick="$.search_page_espece_selection('+pagetotal+');"/></td>'+
 									'</tr>';
@@ -17394,15 +17394,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17434,7 +17434,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_variete_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls2" onmouseover="$.aide_export_xls(2)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Variete" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_variete_selection" onchange="$.select_change_selection_listvariete();"><option value="20" >20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_variete" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete(1);"/><img id="precedent_page_variete" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+(parseInt(curpage)-1)+')"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_variete" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+(parseInt(curpage)+1)+');"/><img id="fini_page_variete" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+pagetotal+');"/></td>'+
@@ -17455,7 +17455,7 @@ and open the template in the editor.
 						var contents_ligne_variete='<tr><input id="variete_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_variete=contents_ligne_variete+'<tr>'+
-										'<td width="4%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['codeVar']+'</td>'+
+										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['codeVar']+'</td>'+
 										'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['nomVar']+'</td>'+
 										'<td width="17%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['SynoMajeur']+'</td>'+
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['utilite']+'</td>'+
@@ -17465,7 +17465,6 @@ and open the template in the editor.
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['sexe']+'</td>'+
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['paysorigine']+'</td>'+
 										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['CodeEsp']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeVar']+'\',\'variete\')"  /></td>'+
 									'</tr>';
@@ -17494,15 +17493,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17536,7 +17535,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_accession_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls3" onmouseover="$.aide_export_xls(3)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Accession" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_accession_selection" onchange="$.select_change_selection_listaccession();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_accession"  src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listAccession(1);"/><img id="precedent_page_accession" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listAccession('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_accession" src="images/next_page.png"width="25" height="25" onclick="$.search_page_selection_listAccession('+(parseInt(curpage)+1)+');"/><img id="fini_page_accession" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listAccession('+pagetotal+');"/></td>'+
@@ -17557,15 +17556,15 @@ and open the template in the editor.
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_accession=contents_ligne_accession+'<tr>'+
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['codeIntro']+'</td>'+
-										'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
-										'<td width="17%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['nomVar']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
-										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['PaysProvenance']+'</td>'+
-										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['communeProvenance']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['AnneeEntree']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeIntro']+'\',\'accession\')"  /></td>'+
+										'<td width="15%" onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
+										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['nomVar']+'</td>'+
+										'<td width="17%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['PaysProvenance']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['communeProvenance']+'</td>'+
+										'<td width="6%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['AnneeEntree']+'</td>'+
+										'<td width="6%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="6%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="4%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeIntro']+'\',\'accession\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_accession').append(contents_ligne_accession);
@@ -17592,15 +17591,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17632,7 +17631,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_emplacement_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls4" onmouseover="$.aide_export_xls(4)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Emplacement" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_emplacement_selection" onchange="$.select_change_selection_listemplacement();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_emplacement" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listEmplacement(1);"/><img id="precedent_page_emplacement" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listEmplacement('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_emplacement" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listEmplacement('+(parseInt(curpage)+1)+');"/><img id="fini_page_emplacement" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listEmplacement('+pagetotal+');"/></td>'+
@@ -17652,14 +17651,13 @@ and open the template in the editor.
 						var contents_ligne_emplacement='<tr><input id="emplacement_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_emplacement=contents_ligne_emplacement+'<tr>'+
-										'<td width="23%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeEmplacem']+'</td>'+
-										'<td width="8%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeSite']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Parcelle']+'</td>'+
-										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Rang']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
-										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
-										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\');return false;">...</td>'+
+										'<td width="23%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeEmplacem']+'</td>'+
+										'<td width="8%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeSite']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Parcelle']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['Rang']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
+										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
+										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\')"  /></td>'+
 									'</tr>';
@@ -17688,15 +17686,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17728,7 +17726,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_sanitaire_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls5" onmouseover="$.aide_export_xls(5)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Sanitaire" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_sanitaire_selection" onchange="$.select_change_selection_listsanitaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_sanitaire" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listSanitaire(1);"/><img id="precedent_page_sanitaire"  src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listSanitaire('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_sanitaire" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listSanitaire('+(parseInt(curpage)+1)+');"/><img id="fini_page_sanitaire" src="images/end_page.png" width="25"  height="25" onclick="$.search_page_selection_listSanitaire('+pagetotal+');"/></td>'+
@@ -17755,7 +17753,6 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['ResultatTest']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['Laboratoire']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">...</td>'+
 										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\')"  /></td>'+
 									'</tr>';
@@ -17784,15 +17781,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17824,7 +17821,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_description_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls6" onmouseover="$.aide_export_xls(6)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Morphologique" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_description_selection" onchange="$.select_change_selection_listdescription();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_description" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listDescription(1);"/><img id="precedent_page_description"  src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listDescription('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_description" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listDescription('+(parseInt(curpage)+1)+');"/><img id="fini_page_description" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listDescription('+pagetotal+');"/></td>'+
@@ -17844,14 +17841,13 @@ and open the template in the editor.
 						var contents_ligne_description='<tr><input id="morphologique_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_description=contents_ligne_description+'<tr>'+
-										'<td width="13%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Code']+'</td>'+
-										'<td onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Description']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Critaire']+'</td>'+
+										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Code']+'</td>'+
+										'<td width="30%" onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Description']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['Critaire']+'</td>'+
 										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CaractereOIV']+'</td>'+
-										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
 										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['id']+'\',\'morphologique\')"  /></td>'+
 									'</tr>';
 						}
@@ -17879,15 +17875,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -17919,7 +17915,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_aptitude_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls7" onmouseover="$.aide_export_xls(7)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Aptitude" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_aptitude_selection" onchange="$.select_change_selection_listaptitude();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_aptitude" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listAptitude(1);"/><img id="precedent_page_aptitude" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listAptitude('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_aptitude" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listAptitude('+(parseInt(curpage)+1)+');"/><img id="fini_page_aptitude" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listAptitude('+pagetotal+');"/></td>'+
@@ -17945,17 +17941,16 @@ and open the template in the editor.
 							}
 							contents_ligne_aptitude=contents_ligne_aptitude+'<tr>'+
 										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeDonnee']+'</td>'+
-										'<td width="22%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['AptitudeMesure']+'</td>'+
-										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['ValeurMesure']+'</td>'+
-										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['UniteMesure']+'</td>'+
-										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PonderationValeur']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['AptitudeMesure']+'</td>'+
+										'<td width="6%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['ValeurMesure']+'</td>'+
+										'<td width="12%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['UniteMesure']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PonderationValeur']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+date_aptitude+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PartenaireMesure']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\')"   /></td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="7%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\')"   /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_aptitude').append(contents_ligne_aptitude);
@@ -17982,15 +17977,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18022,7 +18017,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_genetique_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls8" onmouseover="$.aide_export_xls(8)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Genetique" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_genetique_selection" onchange="$.select_change_selection_listgenetique();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_genetique" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listGenetique(1);"/><img id="precedent_page_genetique" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listGenetique('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_genetique" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listGenetique('+(parseInt(curpage)+1)+');"/><img id="fini_page_genetique" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listGenetique('+pagetotal+');"/></td>'+
@@ -18042,17 +18037,16 @@ and open the template in the editor.
 						var contents_ligne_genetique='<tr><input id="genetique_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_genetique=contents_ligne_genetique+'<tr>'+
-										'<td width="23%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Code']+'</td>'+
-										'<td width="19%" onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Margueur']+'</td>'+
-										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele1']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele2']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
-										'<td width="14%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Date']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code']+'\',\'genetique\')"  /></td>'+
+										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Code']+'</td>'+
+										'<td width="15%" onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Margueur']+'</td>'+
+										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele1']+'</td>'+
+										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Allele2']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Partenaire']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Date']+'</td>'+
+										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="9%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code']+'\',\'genetique\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_genetique').append(contents_ligne_genetique);
@@ -18079,15 +18073,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18119,7 +18113,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_doc_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a><img class="button_nonclick" src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_documentation_selection" onchange="$.select_change_selection_listdoc();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_doc" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listDoc(1);"/><img id="precedent_page_doc" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listDoc('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_doc" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listDoc('+(parseInt(curpage)+1)+');"/><img id="fini_page_doc" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listDoc('+pagetotal+');"/></td>'+
@@ -18139,18 +18133,16 @@ and open the template in the editor.
 						var contents_ligne_doc='<tr><input id="documentation_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_doc=contents_ligne_doc+'<tr>'+
-										'<td width="2%"><input type="checkbox" name="Checkbox_documentation[]" value="'+value.contents[i]['Code_doc']+'"/></td>'+
-										'<td width="8%">'+value.contents[i]['Code_doc']+'</td>'+
-										'<td width="35%">'+value.contents[i]['Titre']+'</td>'+
-										'<td>'+value.contents[i]['Auteur']+'</td>'+
+										'<td width="5%">'+value.contents[i]['Code_doc']+'</td>'+
+										'<td width="25%">'+value.contents[i]['Titre']+'</td>'+
+										'<td width="10%">'+value.contents[i]['Auteur']+'</td>'+
 										'<td width="15%">'+value.contents[i]['Date_doc']+'</td>'+
 										'<td width="15%">'+value.contents[i]['TypeDoc']+'</td>'+
 										'<td width="10%"><a href="'+value.contents[i]['FichierDocPdf']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
-										'<td width="5%">'+value.contents[i]['CodeAcc']+'</td>'+
-										'<td width="5%">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%">...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code_doc']+'\',\'Documentation\')"  /></td>'+
+										'<td width="10%">'+value.contents[i]['CodeAcc']+'</td>'+
+										'<td width="10%">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="2%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code_doc']+'\',\'Documentation\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_doc').append(contents_ligne_doc);
@@ -18177,15 +18169,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18217,7 +18209,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_bibliographie_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls10" onmouseover="$.aide_export_xls(10)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Bibliographie" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_bibliographie_selection" onchange="$.select_change_selection_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_bibliographie"  src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listBibliographie('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listBibliographie('+(parseInt(curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listBibliographie('+pagetotal+');"/></td>'+
@@ -18245,9 +18237,8 @@ and open the template in the editor.
 										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['PagesCitation']+'</td>'+
 										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\')" /></td>'+
+										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\')" /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_bibliographie').append(contents_ligne_bibliographie);
@@ -18274,15 +18265,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18314,7 +18305,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_Partenaire_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls11" onmouseover="$.aide_export_xls(11)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Partenaire" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_Partenaire_selection" onchange="$.select_change_selection_listPartenaire();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_Partenaire" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listPartenaire(1);"/><img id="precedent_page_Partenaire" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listPartenaire('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_Partenaire" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listPartenaire('+(parseInt(curpage)+1)+');"/><img id="fini_page_Partenaire" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listPartenaire('+pagetotal+');"/></td>'+
@@ -18338,8 +18329,8 @@ and open the template in the editor.
 										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SiglePartenaire']+'</td>'+
 										'<td width="40%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['NomPartenaire']+'</td>'+
 										'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SectionRegionaleENTAV']+'</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25"   onclick="$.delete_selection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\')" /></td>'+
+										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25"   onclick="$.delete_selection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\')" /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_Partenaire').append(contents_ligne_Partenaire);
@@ -18366,15 +18357,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18406,7 +18397,7 @@ and open the template in the editor.
 						var pagetotal=value.pagetotal;
 						var startpage=value.startpage;
 						var table_lien_function='<tr>'+
-														'<td width="5%"><a><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls12" class="button_nonclick" onmouseover="$.aide_export_xls(12)" ><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="70%"></td>'+
 														'<td ><select id="select_pagesize_lien_selection" onchange="$.select_change_selection_listlien();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_lien" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listLien(1);"/><img id="precedent_page_lien" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listLien('+(parseInt(curpage)-1)+');"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_lien" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listLien('+(parseInt(curpage)+1)+');"/><img id="fini_page_lien" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listLien('+pagetotal+');"/></td>'+
@@ -18426,16 +18417,15 @@ and open the template in the editor.
 						var contents_ligne_lien='<tr><input id="lien_curpage_value" type="hidden" value="'+curpage+'" /></tr>';
 						for(var i=startpage;i<limite;i++){
 							contents_ligne_lien=contents_ligne_lien+'<tr>'+
-										'<td width="8%">'+value.contents[i]['Code_lien']+'</td>'+
-										'<td width="25%">'+value.contents[i]['Titre']+'</td>'+
-										'<td>'+value.contents[i]['NomSite']+'</td>'+
-										'<td width="25%">'+value.contents[i]['Pays']+'</td>'+
-										'<td width="15%"><a href="'+value.contents[i]['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
-										'<td>'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="25%">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" >...</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['Code_lien']+'\',\'Lien\')"  /></td>'+
+										'<td width="5%">'+value.contents[i]['Code_lien']+'</td>'+
+										'<td width="15%">'+value.contents[i]['Titre']+'</td>'+
+										'<td width="14%">'+value.contents[i]['NomSite']+'</td>'+
+										'<td width="14%">'+value.contents[i]['Pays']+'</td>'+
+										'<td width="5%"><a href="'+value.contents[i]['URL']+'" target=_blank><img src="./images/lien_image_ficherMediatheque.png" width="15px" alt="Link" /></a></td>'+
+										'<td width="14%">'+value.contents[i]['CodeIntro']+'</td>'+
+										'<td width="14%">'+value.contents[i]['CodeVar']+'</td>'+
+										'<td width="7%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
+										'<td width="7%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['Code_lien']+'\',\'Lien\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_lien').append(contents_ligne_lien);
@@ -18462,15 +18452,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
@@ -18744,15 +18734,15 @@ and open the template in the editor.
                                     $.each(data,function(key, value){
                                         if($('#mainMenu_Home').val()==="Accueil"){
                                             if(key==="infobulle_fr"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
-                                                $( "#select_Export_pdf" ).attr("title", value.SelectPDF);
-                                                $( "#select_supp" ).attr("title", value.SelectSupp);
+                                                $( ".select_Export_pdf" ).attr("title", value.SelectPDF);
+                                                $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
                                             }

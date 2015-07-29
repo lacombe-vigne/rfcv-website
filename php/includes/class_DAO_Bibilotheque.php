@@ -3204,7 +3204,7 @@ class BibliothequeDAO {
                             INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
                             INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
                             INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
-                            WHERE e.CodeEmplacem='" . $code . "'";
+                            WHERE e.IdEmplacem='" . $code . "' AND `Elimination`='non'";
                     $resultat_emp = mysql_query($sql) or die(mysql_error());
                     if (!$resultat_emp) {
                         deconnexion_bbd();
@@ -8168,7 +8168,7 @@ class BibliothequeDAO {
                     $pays = $dico['NomPaysLocal'];
                 }
                 $DateEntre = $dico['JourMAJ'] . "/" . $dico['MoisMAJ'] . "/" . $dico['AnneeMAJ'];
-                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                //$dico['CodeIntro'] =  "'".$dico['CodeIntro'];
                 $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $dico['NomVar'], $dico['NomPartenaire'], $pays, $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['PepinsIntro'], $dico['SaveurIntro'], $dico['SexeIntro'], $dico['Statut'], $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $dico['PaysProvenance'], $dico['RegionProvenance'], $dico['DepartProvenance'], $langue, $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $dico['PaysProvAnt'], $dico['RegionProvAnt'], $dico['DepartProvAnt'], $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['SaveurIntro'], $dico['PepinsIntro'], $dico['SexeIntro'], $dico['NumTempCTPS'], $dico['DelegONIVINS'], $dico['Statut'], $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
                 $content = supprNull($ACC->getSelectionAccession());
                 array_push($content_accession, $content);
@@ -8185,7 +8185,7 @@ class BibliothequeDAO {
                 INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
                 INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
                 INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
-                WHERE e.CodeEmplacem IN (".$code.")";
+                WHERE e.IdEmplacem IN (".$code.") AND e.`Elimination`='non'";
         connexion_bbd();
         mysql_query('SET NAMES UTF8');
         $resultat = mysql_query($sql) or die(mysql_error());
@@ -8329,11 +8329,9 @@ class BibliothequeDAO {
         }
         if (mysql_num_rows($resultat) > 0) {
             $content_APT = array();
-        
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
                 $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
-                for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 if($langue = "FR"){
                     $nomcarac = $dico['NomCaract'];
                 } else {
@@ -8345,13 +8343,12 @@ class BibliothequeDAO {
                 array_push($content_APT, $content);
             }
         }
-        }
         return $content_APT;
     }
 
     public function genetique_selection($code) {
         $DAO = new BibliothequeDAO();
-        $sql = "SELECT *
+        $sql = "SELECT *, g.CodeVar
                 FROM `BM-donnees_resume` g
                 LEFT JOIN `NV-VARIETES` v ON g.CodeVar = v.CodeVar
                 LEFT JOIN `NV-INTRODUCTIONS` i ON g.CodeIntro = i.CodeIntro
@@ -8403,7 +8400,6 @@ class BibliothequeDAO {
             $DOC_Content = array();
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
-                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
                 $DOC = new Doc($dico['CodeDocPdf'], $dico['Titre'], $dico['Auteurs'], $dico['Editeur'], $dico['Date'], $dico['Langue'], $dico['NbPages'], $dico['CodeRangement'], $dico['Volume'], $dico['Pages'], $dico['TypeDoc'], $dico['FichierDocPdf'], $dico['CodeVar'], $DAO->nomVar($dico['CodeVar']), $dico['CodeIntro'], $DAO->nomAcc($dico['CodeIntro']));
                 $content = supprNull($DOC->getSelectionDoc());
                 array_push($DOC_Content, $content);
@@ -8785,7 +8781,7 @@ class BibliothequeDAO {
                 INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
                 INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
                 INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
-                WHERE e.CodeEmplacem='" . $code . "'";
+                WHERE e.IdEmplacem='" . $code . "' `Elimination`='non'";
             $resultat_emp = mysql_query($sql) or die(mysql_error());
             if (!$resultat_emp) {
                 deconnexion_bbd();
@@ -10341,7 +10337,7 @@ class BibliothequeDAO {
                 if (mysql_num_rows($resultat) > 0) {
                     for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                         $dico = mysql_fetch_assoc($resultat);
-                        $GEN = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $DAO->nomVar($dico['CodeVar']), $dico['CodeVar'], $DAO->nomAcc($dico['CodeIntro']), $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
+                        $GEN = new Genetique($dico['IdAnalyse'], $dico['Marqueur'], $dico['ValeurCodee1'], $dico['ValeurCodee2'], $dico['CodePartenaire'], $dico['DatePCR'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $dico['EmplacemRecolte'], $dico['SouchePrelev'], $dico['DateRecolte'], $dico['IdProtocoleRecolte'], $dico['TypeOrgane'], $dico['IdStockADN'], $dico['IdProtocolePCR'], $dico['DatePCR'], $dico['DateRun'], $dico['CodePartenaire']);
                         $detail = supprNull($GEN->getListeGenetique());
                         array_push($result, $detail);
                     }
@@ -11316,7 +11312,7 @@ class BibliothequeDAO {
                 }
                 break;
             case "emplacement":
-                $sql = "SELECT CodeIntro FROM `NV-EMPLACEMENTS` WHERE CodeEmplacem='" . $code . "'";
+                $sql = "SELECT CodeIntro FROM `NV-EMPLACEMENTS` WHERE IdEmplacem='" . $code . "'";
                 $resultat = mysql_query($sql) or die(mysql_error());
                 if (!$resultat) {
                     echo "<script>alert('erreur de base de donnes')</script>";
