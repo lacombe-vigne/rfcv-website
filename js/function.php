@@ -17047,7 +17047,7 @@ and open the template in the editor.
 			var section_name=section.toLowerCase();
 			dataString=dataString+"_"+code;
 			dataString="dataString="+dataString;
-			creatAjax()
+			creatAjax();
 			$.ajax({
 				type: "POST",
 				data:dataString,
@@ -17365,9 +17365,9 @@ and open the template in the editor.
 														'<td width="13%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['codeEspece']+'</td>'+
 														'<td width="35%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['nomEspece']+'</td>'+
 														'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['botaniste']+'</td>'+
-														'<td  onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['tronc']+'</td>'+
-														'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-														'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeEspece']+'\',\'espece\')"  /></td>'+
+														'<td width="15%" onclick="$.passerFicherSelection(\''+value.contents[i]['codeEspece']+'\',\'espece\');return false;">'+value.contents[i]['tronc']+'</td>'+
+														'<td width="10%" onclick="$.PDFSelection(\''+value.contents[i]['codeEspece']+'\',\'Espece\');return false;"><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>'+
+														'<td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeEspece']+'\',\'espece\')"  /></td>'+
 													'</tr>';
 						}
 						$('#contents_ligne_espece').append(contents_ligne_espece);
@@ -17465,8 +17465,8 @@ and open the template in the editor.
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['sexe']+'</td>'+
 										'<td width="8%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['paysorigine']+'</td>'+
 										'<td width="5%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeVar']+'\',\'variete\');return false;">'+value.contents[i]['CodeEsp']+'</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeVar']+'\',\'variete\')"  /></td>'+
+										'<td width="5%" onclick="$.PDFSelection(\''+value.contents[i]['codeVar']+'\',\'Variete\');return false;"><img class="select_Export_pdf" src="images/export_pdf.png" width="25" height="25" /></td>'+
+										'<td width="5%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeVar']+'\',\'variete\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_variete').append(contents_ligne_variete);
@@ -17563,8 +17563,8 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['communeProvenance']+'</td>'+
 										'<td width="6%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['AnneeEntree']+'</td>'+
 										'<td width="6%"  onclick="$.passerFicherSelection(\''+value.contents[i]['codeIntro']+'\',\'accession\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="6%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="4%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeIntro']+'\',\'accession\')"  /></td>'+
+										'<td width="6%" onclick="$.PDFSelection(\''+value.contents[i]['codeIntro']+'\',\'Accession\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="4%" ><img class="select_supp" src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['codeIntro']+'\',\'accession\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_accession').append(contents_ligne_accession);
@@ -17658,8 +17658,8 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['AnneePlantation']+'</td>'+
 										'<td width="20%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['NomIntro']+'</td>'+
 										'<td width="10%" onclick="$.passerFicherSelection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\');return false;">'+value.contents[i]['CodeIntro']+'</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeEmplacem']+'\',\'emplacement\')"  /></td>'+
+										'<td width="5%" onclick="$.PDFSelection(\''+value.contents[i]['IdEmplacem']+'\',\'Emplacement\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="5%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['IdEmplacem']+'\',\'emplacement\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_emplacement').append(contents_ligne_emplacement);
@@ -17753,8 +17753,8 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['ResultatTest']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['Laboratoire']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="5%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\')"  /></td>'+
+										'<td width="5%" onclick="$.PDFSelection(\''+value.contents[i]['IdTest']+'\',\'Sanitaire\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="5%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['IdTest']+'\',\'sanitaire\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_sanitaire').append(contents_ligne_sanitaire);
@@ -17847,8 +17847,8 @@ and open the template in the editor.
 										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CaractereOIV']+'</td>'+
 										'<td width="15%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['id']+'\',\'morphologique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="5%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['id']+'\',\'morphologique\')"  /></td>'+
+										'<td width="8%" onclick="$.PDFSelection(\''+value.contents[i]['id']+'\',\'Morphologique\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="5%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['id']+'\',\'morphologique\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_description').append(contents_ligne_description);
@@ -17949,8 +17949,8 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['PartenaireMesure']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="7%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\')"   /></td>'+
+										'<td width="7%" onclick="$.PDFSelection(\''+value.contents[i]['CodeDonnee']+'\',\'Aptitude\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['CodeDonnee']+'\',\'aptitude\')"   /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_aptitude').append(contents_ligne_aptitude);
@@ -18045,8 +18045,8 @@ and open the template in the editor.
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['Date']+'</td>'+
 										'<td width="10%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="9%"  onclick="$.passerFicherSelection(\''+value.contents[i]['Code']+'\',\'genetique\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code']+'\',\'genetique\')"  /></td>'+
+										'<td width="8%" onclick="$.PDFSelection(\''+value.contents[i]['Code']+'\',\'Genetique\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code']+'\',\'genetique\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_genetique').append(contents_ligne_genetique);
@@ -18142,7 +18142,7 @@ and open the template in the editor.
 										'<td width="10%">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="10%">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="2%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
-										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code_doc']+'\',\'Documentation\')"  /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25" onclick="$.delete_selection(\''+value.contents[i]['Code_doc']+'\',\'Documentation\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_doc').append(contents_ligne_doc);
@@ -18237,8 +18237,8 @@ and open the template in the editor.
 										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['PagesCitation']+'</td>'+
 										'<td width="7%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeAcc']+'</td>'+
 										'<td width="7%" onclick="$.passerFicherSelection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\');return false;">'+value.contents[i]['CodeVar']+'</td>'+
-										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\')" /></td>'+
+										'<td width="8%" onclick="$.PDFSelection(\''+value.contents[i]['CodeCit']+'\',\'Bibliographie\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['CodeCit']+'\',\'bibliographie\')" /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_bibliographie').append(contents_ligne_bibliographie);
@@ -18329,8 +18329,8 @@ and open the template in the editor.
 										'<td   onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SiglePartenaire']+'</td>'+
 										'<td width="40%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['NomPartenaire']+'</td>'+
 										'<td width="25%"  onclick="$.passerFicherSelection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\');return false;">'+value.contents[i]['SectionRegionaleENTAV']+'</td>'+
-										'<td width="8%" ><img src="images/export_pdf.png" width="25" height="25" /></td>'+
-										'<td width="3%" ><img src="images/delete_selection.png" width="25" height="25"   onclick="$.delete_selection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\')" /></td>'+
+										'<td width="8%" onclick="$.PDFSelection(\''+value.contents[i]['CodePartenaire']+'\',\'Partenaire\');return false;"><img src="images/export_pdf.png" class="select_Export_pdf" width="25" height="25" /></td>'+
+										'<td width="3%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25"   onclick="$.delete_selection(\''+value.contents[i]['CodePartenaire']+'\',\'partenaire\')" /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_Partenaire').append(contents_ligne_Partenaire);
@@ -18425,7 +18425,7 @@ and open the template in the editor.
 										'<td width="14%">'+value.contents[i]['CodeIntro']+'</td>'+
 										'<td width="14%">'+value.contents[i]['CodeVar']+'</td>'+
 										'<td width="7%" ><img src="images/export_pdf.png" class="button_nonclick"  width="25" height="25" /></td>'+
-										'<td width="7%" ><img src="images/delete_selection.png" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['Code_lien']+'\',\'Lien\')"  /></td>'+
+										'<td width="7%" ><img src="images/delete_selection.png" class="select_supp" width="25" height="25"  onclick="$.delete_selection(\''+value.contents[i]['Code_lien']+'\',\'Lien\')"  /></td>'+
 									'</tr>';
 						}
 						$('#contents_ligne_lien').append(contents_ligne_lien);
@@ -18816,6 +18816,21 @@ and open the template in the editor.
 			
 		}
 	});
+        $.extend({"PDFSelection":
+            function(code,section){
+		var dataString = "function=pdf&section=" + section + "&code=" + code;
+		creatAjax();
+		$.ajax({
+			type: "POST",
+			data:dataString,
+			url:"./php/script_webbio.php",
+			success:function(data){
+                            console.log(data);
+                            window.open('php/ExportPDF/ExportPDF_'+section+'.php');
+			}
+		});
+            }
+        });
         
         $.extend({'login':function(){
 		var username=$('#login_name').val();

@@ -7,6 +7,7 @@ $(document).ready(function () {
     
     var icone = '<li><img src="images/breadcrumb-separator.png" alt="prochain" width="6" height="10"/></li>'
     var i = 2; //Itérateur qui me permet d'ajouter les élements en fonction de leur position
+    console.log($('#recherche').val());
     if ($('#recherche').val() == "SearchS") {
         //Si on vient de faire une recherche simple
         //console.log($('#search_value').val());
@@ -20,11 +21,13 @@ $(document).ready(function () {
         //Si on vient de faire une recherche avancée
         //console.log($('#recherche').val());
         $('<li><a href="SearchA.php" class="lien_chemin" id="chemin_searchA"></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     }
     else if ($('#recherche').val() == "Selection") {
         //Si on accède à la fiche via le panier
         //console.log($('#recherche').val());
         $('<li><a href="MySelection.php" class="lien_chemin" id="chemin_selection"></a></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     }
     else {
         console.log("ça déconne !!!");
@@ -154,6 +157,7 @@ $(document).ready(function () {
                         $('#back_button').css('float','right');
                         $('#back_button').css('margin','auto 2% auto auto');
                         //On lui réattribue ces caractéristiques(liens, css).
+                        
                     } else {
                         $.each(data, function (key, value) {
                             //console.log(key,value);
@@ -184,11 +188,11 @@ $(document).ready(function () {
                                 }
                             }
                         });
+                        var chemin = $('.chemin').html(); //Cette variable permet de gérer le cas ou est sur une fiche partenaire/site.
+                        sessionStorage.setItem("chemin",chemin);
+                        //console.log(chemin);
                     }
                 }
-                var chemin = $('.chemin').html(); //Cette variable permet de gérer le cas ou est sur une fiche partenaire/site.
-                sessionStorage.setItem("chemin",chemin);
-                //console.log(chemin);
 
             },
             dataType: "json"

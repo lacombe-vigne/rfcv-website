@@ -753,6 +753,7 @@ $(document).ready(function(){
 				$('#Ponderation').append(value.Ponderation);
 				$('#Date_aptitude').append(value.Date_aptitude);
 				$('#CodePartenaire').append(value.CodePartenaire);
+                                $('#CodePartenaire2').append(value.CodePartenaire);
 				$('#CodeAcc_selection_aptitude').append(value.CodeAcc_selection_aptitude);
 				$('#CodeVar_selection_aptitude').append(value.CodeVar_selection_aptitude);
 				$('#click_Genetique_selection').append(value.click_Genetique_selection);

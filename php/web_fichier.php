@@ -129,7 +129,8 @@
 	}
 	if($section=='emplacement'){
 		$CodeEmplacemen=supprNull($_POST['CodeEmplacemen']);
-                $_SESSION["CodeEmplacemen"]=$CodeEmplacemen;
+                $IdEmplacem=supprNull($_POST['IdEmplacem']);
+                $_SESSION["CodeEmplacemen"]=$IdEmplacem;
 		$nomAcc=supprNull($_POST['nomAcc']);
 		$CodeAcc=supprNull($_POST['CodeAcc']);
 		$Site=supprNull($_POST['Site']);

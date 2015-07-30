@@ -1011,5 +1011,44 @@ switch ($fun) {
             echo json_encode($resultat);
         }
         break;
+    case "pdf":
+        $section = $_POST['section'];
+        $code = $_POST['code'];
+        switch ($section) {
+            case "Espece":
+                $_SESSION['CodeEsp'] = $code;
+                break;
+            case "Variete":
+                $_SESSION['CodeVar'] = null;
+                $_SESSION['CodeVar'] = $code;
+                break;
+            case "Accession":
+                $_SESSION['CodeIntro'] = $code;
+                break;
+            case "Emplacement":
+                $_SESSION["CodeEmplacemen"] = $code;
+                break;
+            case "Sanitaire":
+                $_SESSION['CodeSanitaire'] = $code;
+                break;
+            case "Morphologique":
+                $_SESSION['CodeAmpelo'] = $code;
+                break;
+            case "Aptitude":
+                $_SESSION['codeAptitude'] = $code;
+                break;
+            case "Genetique":
+                $_SESSION['Code'] = $code;
+                break;
+            case "Bibliographie":
+                $_SESSION['Code'] = $code;
+                break;
+            case "Partenaire":
+                $_SESSION["CodePartenaire"] = $code;
+                break;
+        }
+        $resultat = array("section" => $section, "code" => $code);
+        echo json_encode($resultat);
+        break;
 }
 ?>

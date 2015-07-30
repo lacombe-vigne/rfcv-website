@@ -93,7 +93,7 @@ switch ($section) {
             array_push($TabCode, $value);
         }
         $TabCode = "'" . implode("','", $TabCode) . "'";
-        $data = $DAO->accession_selection($TabCode);
+        $data = $DAO->accession_selectionXLS($TabCode,$langue);
         //print_r($data);
         if ($langue == "FR") {
             $labeljson = array(
@@ -132,7 +132,8 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_fr}->{Rang_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{Anneeplantation_FichierVar}),
                 utf8_decode($parsed_json->{selection_fr}->{NomIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_fr}->{CodeIntro_selection_emplacement}));
+                utf8_decode($parsed_json->{selection_fr}->{CodeIntro_selection_emplacement}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeDocPdf_FichierVar}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{selection_en}->{CodeEmplacem_FichierVar}),
@@ -141,7 +142,8 @@ switch ($section) {
                 utf8_decode($parsed_json->{selection_en}->{Rang_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{Anneeplantation_FichierVar}),
                 utf8_decode($parsed_json->{selection_en}->{NomIntro_selection_emplacement}),
-                utf8_decode($parsed_json->{selection_en}->{CodeIntro_selection_emplacement}));
+                utf8_decode($parsed_json->{selection_en}->{CodeIntro_selection_emplacement}),
+                utf8_decode($parsed_json->{selection_fr}->{CodeDocPdf_FichierVar}));
         }
 
         break;

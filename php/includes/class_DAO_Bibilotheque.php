@@ -8781,7 +8781,7 @@ class BibliothequeDAO {
                 INNER JOIN `Sites` s on s.CodeSite=t.CodeSite
                 INNER JOIN `NV-INTRODUCTIONS` i on i.CodeIntro=e.CodeIntro
                 INNER JOIN `NV-VARIETES` v on v.CodeVar=i.CodeVar
-                WHERE e.IdEmplacem='" . $code . "' `Elimination`='non'";
+                WHERE e.IdEmplacem='" . $code . "' AND `Elimination`='non'";
             $resultat_emp = mysql_query($sql) or die(mysql_error());
             if (!$resultat_emp) {
                 deconnexion_bbd();
@@ -11142,6 +11142,44 @@ class BibliothequeDAO {
                 deconnexion_bbd();                
                 return $result;
         }
+    }
+    public function accession_selectionXLS($code,$langue) {
+        $DAO = new BibliothequeDAO();
+        $sql = "SELECT * FROM `NV-INTRODUCTIONS` acc
+                LEFT JOIN `NV-VARIETES` var ON acc.CodeVar = var.CodeVar
+                LEFT JOIN `Partenaires` par ON acc.CodePartenaire = par.CodePartenaire
+                LEFT JOIN `ListeDeroulante_pays` ON acc.`PaysProvenance` = `ListeDeroulante_pays`.CodePays
+                WHERE CodeIntro IN (".$code.")";
+        connexion_bbd();
+        mysql_query('SET NAMES UTF8');
+        $resultat = mysql_query($sql) or die(mysql_error());
+        if (!$resultat) {
+            deconnexion_bbd();
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) == 0) {
+            deconnexion_bbd();
+            echo "<script>alert('erreur de base de donnes')</script>";
+            exit;
+        }
+        if (mysql_num_rows($resultat) > 0) {
+            $content_accession = array();
+            for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
+                $dico = mysql_fetch_assoc($resultat);
+                if ($langue == "FR") {
+                    $pays = $dico['NomPaysFrancais'];
+                } else if ($langue == "EN") {
+                    $pays = $dico['NomPaysLocal'];
+                }
+                $DateEntre = $dico['JourMAJ'] . "/" . $dico['MoisMAJ'] . "/" . $dico['AnneeMAJ'];
+                $dico['CodeIntro'] =  "'".$dico['CodeIntro'];
+                $ACC = new Accession($dico['CodeIntro'], $dico['NomIntro'], $dico['NomVar'], $dico['NomPartenaire'], $pays, $dico['CommuneProvenance'], $dico['AnneeEntree'], $dico['CodeVar'], $dico['CodeIntroPartenaire'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['PepinsIntro'], $dico['SaveurIntro'], $dico['SexeIntro'], $dico['Statut'], $DateEntre, $dico['Collecteur'], $dico['AdresProvenance'], $dico['SiteProvenance'], $dico['CodePartenaire'], $dico['UniteIntro'], $dico['AnneeAgrement'], $dico['Collecteur'], $dico['TypeCollecteur'], $dico['ContinentProvenance'], $dico['CommuneProvenance'], $dico['CodPostProvenance'], $dico['SiteProvenance'], $dico['AdresProvenance'], $dico['ProprietProvenance'], $dico['ParcelleProvenance'], $dico['TypeParcelleProvenance'], $dico['RangProvenance'], $dico['SoucheProvenance'], $dico['SoucheTheoriqueProvenance'], $dico['PaysProvenance'], $dico['RegionProvenance'], $dico['DepartProvenance'], $langue, $dico['evdb_15-LATITUDE'], $dico['evdb_16-LONGITUDE'], $dico['evdb_17-ELEVATION'], $dico['JourEntree'], $dico['MoisEntree'], $dico['AnneeEntree'], $dico['CodeIntroProvenance'], $dico['CodeEntree'], $dico['ReIntroduit'], $dico['IssuTraitement'], $dico['CloneTraite'], $dico['RemarquesProvenance'], $dico['CollecteurAnt'], $dico['TypeCollecteurAnt'], $dico['ContinentProvAnt'], $dico['CommuneProvAnt'], $dico['CodPostProvAnt'], $dico['SiteProvAnt'], $dico['AdresProvAnt'], $dico['ProprietProvAnt'], $dico['ParcelleProvAnt'], $dico['TypeParcelleProvAnt'], $dico['RangProvAnt'], $dico['SoucheProvAnt'], $dico['SoucheTheoriqueProvAnt'], $dico['PaysProvAnt'], $dico['RegionProvAnt'], $dico['DepartProvAnt'], $dico['CodeIntroProvenanceAnt'], $dico['evdb_ID_VITIS'], $dico['evdb_F-ConfirmAmpelo'], $dico['evdb_G-ConfirmSSR'], $dico['evdb_I-BiblioVolume'], $dico['evdb_L-ConfirmOther'], $dico['evdb_I-BiblioVolume'], $dico['evdb_K-BiblioPage'], $dico['evdb_M-RemarkAccessionName'], $dico['CouleurPelIntro'], $dico['CouleurPulpIntro'], $dico['SaveurIntro'], $dico['PepinsIntro'], $dico['SexeIntro'], $dico['NumTempCTPS'], $dico['DelegONIVINS'], $dico['Statut'], $dico['DepartAgrementClone'], $dico['AnneeAgrement'], $dico['SiteAgrementClone'], $dico['AnneeNonCertifiable'], $dico['LieuDepotMatInitial'], $dico['SurfMulti'], $dico['NomPartenaire'], $dico['NomPartenaire2'], $dico['Famille'], $dico['Agrement'], $dico['NumCloneCTPS'], $dico['SiregalPresenceEnColl'], $dico['MTAactif'], $dico['RemarquesIntro']);
+                $content = supprNull($ACC->getSelectionAccession());
+                array_push($content_accession, $content);
+            }
+        }
+        return $content_accession;
     }
 
     //Fin export xls
