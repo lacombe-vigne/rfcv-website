@@ -105,7 +105,7 @@ if (count($_SESSION['selection']['Variete']) != 0) {
 									<table width="100%" id="table_variete_function">
 										<tr>
 											<td width="5%"><a id="aide_export_xls2" onmouseover="$.aide_export_xls(2)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Variete" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>
-											<td width="70%"></td>
+											<td width="60%"></td>
 											<td ><select id="select_pagesize_variete_selection" onchange="$.select_change_selection_listvariete();"><option value="20" >20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>';
     if ($pagetotal > 1) {
         echo'

@@ -637,6 +637,20 @@ $(document).ready(function(){
                                 $( "#list_des_utilisateur" ).attr("title", value.userlist);
                                 $( ".detail_ses_infos" ).attr("title", value.modifuser);
                                 $( "#new_user_create" ).attr("title", value.newuser);
+                                $("#aide_export_xls1").css("margin-left","5px");
+                                $("#aide_export_xls2").css("margin-left","5px");
+                                $("#aide_export_xls3").css("margin-left","5px");
+                                $("#aide_export_xls4").css("margin-left","5px");
+                                $("#aide_export_xls5").css("margin-left","5px");
+                                $("#aide_export_xls6").css("margin-left","5px");
+                                $("#aide_export_xls7").css("margin-left","5px");
+                                $("#aide_export_xls8").css("margin-left","5px");
+                                $("#aide_export_xls9").css("margin-left","5px");
+                                $("#aide_export_xls10").css("margin-left","5px");
+                                $("#aide_export_xls11").css("margin-left","5px");
+                                $("#aide_export_xls12").css("margin-left","5px");
+                                
+                                
                                 
                                 
                                 

@@ -8691,7 +8691,7 @@ and open the template in the editor.
                                                 $('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
 						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection16" onmouseover="$.aide_myselection(16)"><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)" href="./php/ExportXLS/ExportXLS_Accession.php?section=bibliographie" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_bibliographie_FichierAcc" onchange="$.select_change_FichierAcc_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+value.page.pagetotal+');"/></td>'+
@@ -10997,7 +10997,7 @@ and open the template in the editor.
                                                     $('#contents_bibliographie').append('<div class="function_ligne_bibliographie"></div>');
 						var function_ligne= '<table width="100%" id="table_bibliographie_function"><tr><td width="5%"><input type="checkbox" name="chkAll" onclick="$.selectAll(this,\'bibliographie\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection16" onmouseover="$.aide_myselection(16)"><img src="images/new_selection.png" onclick="$.selection(\'Bibliographie\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls16" onmouseover="$.aide_export_xls(16)" href="./php/ExportXLS/ExportXLS_Accession.php?section=bibliographie" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_bibliographie_FichierAcc" onchange="$.select_change_FichierAcc_listbibliographie();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_bibliographie" src="images/start_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie(1);"/><img id="precedent_page_bibliographie" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_bibliographie" src="images/next_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_bibliographie" src="images/end_page.png" width="25" height="25" onclick="$.search_page_FichierAcc_listBibliographie('+value.page.pagetotal+');"/></td>'+
@@ -15138,7 +15138,7 @@ and open the template in the editor.
 										$('#AnneeEntree').append(AnneeEntree);
 									}
 								}
-								if(langue=="EN"){
+								else {
 									if(key==="resultat_accession_en"){
 										var h4=value.title;
 										var CodeIntro=value.CodeIntro;
@@ -15889,7 +15889,7 @@ and open the template in the editor.
 						$('#contents_aptitude').append('<div class="function_ligne_aptitude"></div>');
 						var function_ligne= '<table width="100%" id="table_accession_function"><tr><td width="5%"><input type="checkbox" name="chkAll"  onclick="$.selectAll(this,\'aptitude\')"/></td>'+
 														'<td width="5%"><a id="aide_myselection33" onmouseover="$.aide_myselection(33)" ><img src="images/new_selection.png" onclick="$.selection(\'Aptitude\');return false;" width="25" height="25"/></a></td>'+
-														'<td width="5%"><a id="aide_export_xls33" onmouseover="$.aide_export_xls(33)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Aptitude" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
+														'<td width="5%"><a id="aide_export_xls33" onmouseover="$.aide_export_xls(33)" href="./php/ExportXLS/ExportXLS_SearchA.php?section=Aptitudes" target="_blank"><img src="images/xls3.png" width="25" height="25"/></a></td>'+
 														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_aptitude_avance" onchange="$.select_change_avance_listaptitude();"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_aptitude" src="images/start_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude(1);"/><img id="precedent_page_aptitude" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+(parseInt(value.page.curpage)-1)+');"/>'+value.page.curpage+'/'+value.page.pagetotal+'<img id="suivant_page_aptitude" src="images/next_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+(parseInt(value.page.curpage)+1)+');"/><img id="fini_page_aptitude" src="images/end_page.png" width="25" height="25" onclick="$.search_page_avance_listAptitude('+value.page.pagetotal+');"/></td>'+
@@ -16042,7 +16042,7 @@ and open the template in the editor.
 										$('#CodePartenaire').append(CodePartenaire);
 									}
 								}
-								if(langue=="EN"){
+								else {
 									if(key==="resultat_aptitude_en"){
 										var h4=value.title;
 										var CodeAptitude=value.CodeAptitude;
@@ -16731,7 +16731,7 @@ and open the template in the editor.
 										$('#VolumeCitation_FichierVar').append(VolumeCitation_FichierVar);
 									}
 								}
-								if(langue=="EN"){
+								else {
 									if(key==="resultat_bibliographie_en"){
 										var h4=value.title;
 										var CodeCit_FichierVar=value.CodeCit;
@@ -17398,6 +17398,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls1").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17405,6 +17406,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls1").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17435,7 +17437,7 @@ and open the template in the editor.
 						var startpage=value.startpage;
 						var table_variete_function='<tr>'+
 														'<td width="5%"><a id="aide_export_xls2" onmouseover="$.aide_export_xls(2)" href="./php/ExportXLS/ExportXLS_Selection.php?section=Variete" target=_blank><img src="images/xls3.png" width="25" height="25"/></a></td>'+
-														'<td width="70%"></td>'+
+														'<td width="60%"></td>'+
 														'<td ><select id="select_pagesize_variete_selection" onchange="$.select_change_selection_listvariete();"><option value="20" >20</option><option value="50">50</option><option value="100">100</option></select>/Page</td>'+
 														'<td width="15%"><img id="premier_page_variete" src="images/start_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete(1);"/><img id="precedent_page_variete" src="images/previous_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+(parseInt(curpage)-1)+')"/>'+curpage+'/'+pagetotal+'<img id="suivant_page_variete" src="images/next_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+(parseInt(curpage)+1)+');"/><img id="fini_page_variete" src="images/end_page.png" width="25" height="25" onclick="$.search_page_selection_listVariete('+pagetotal+');"/></td>'+
 													'</tr>';
@@ -17497,6 +17499,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls2").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17504,6 +17507,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls2").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17595,6 +17599,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls3").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17602,6 +17607,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls3").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17690,6 +17696,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls4").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17697,6 +17704,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls4").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17785,6 +17793,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls5").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17792,6 +17801,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls5").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17879,6 +17889,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls6").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17886,6 +17897,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls6").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -17981,6 +17993,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls7").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -17988,6 +18001,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls7").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -18077,6 +18091,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls8").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -18084,6 +18099,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls8").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -18173,6 +18189,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls9").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -18180,6 +18197,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls9").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -18269,6 +18287,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls10").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -18276,6 +18295,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls10").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -18361,6 +18381,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls11").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -18368,6 +18389,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls11").css("margin-left","5px");
                                             }
                                         }
                                     });
@@ -18456,6 +18478,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls12").css("margin-left","5px");
                                             }
                                         } else {    
                                             if(key==="infobulle_en"){
@@ -18463,6 +18486,7 @@ and open the template in the editor.
                                                 $( ".select_supp" ).attr("title", value.SelectSupp);
                                                 $( ".t1" ).attr( "title", value.result );
                                                 $( ".t2" ).attr( "title", value.result );
+                                                $("#aide_export_xls12").css("margin-left","5px");
                                             }
                                         }
                                     });

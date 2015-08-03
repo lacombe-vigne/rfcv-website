@@ -165,6 +165,9 @@
                     }
                 ?>           
                 <script src="./js/Fichier.js" type="text/javascript" charset=utf-8></script>
+                <!-- Add fancyBox main JS and CSS files -->
+                <script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>
+                <link rel="stylesheet" type="text/css" href="jquery.fancybox.css?v=2.1.5" media="screen" />
 	</body>
 	
 </html>

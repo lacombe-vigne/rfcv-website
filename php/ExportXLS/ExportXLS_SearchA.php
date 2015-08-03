@@ -141,25 +141,27 @@ switch ($section) {
         //Permet de récupérer les bon json en fonction de la langue
         if ($langue == "FR") {
             $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_fr}->{ID}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{Code}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{Description}),        
                 utf8_decode($parsed_json->{resultat_description_fr}->{Critaire}),
                 utf8_decode($parsed_json->{resultat_description_fr}->{CaractereOIV}));
         } else if ($langue == "EN") {
             $labeljson = array(
+                utf8_decode($parsed_json->{resultat_description_fr}->{ID}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Code}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Description}),
                 utf8_decode($parsed_json->{resultat_description_en}->{Critaire}),
                 utf8_decode($parsed_json->{resultat_description_en}->{CaractereOIV}));
         }
         break;
-    case "Aptitude":
+    case "Aptitudes":
         $requete = $_SESSION['sql_apt']; // Recupère la requête de la recherche avancée
         //Permet de récupérer les bon json en fonction de la langue
         if ($langue == "FR") {
             $labeljson = array(
                 utf8_decode($parsed_json->{resultat_aptitude_fr}->{CodeAptitude}),
-                utf8_decode($parsed_json->{resultat_aptitude_fr}->{CodeVar_selection_aptitude}),        
+                utf8_decode($parsed_json->{resultat_aptitude_fr}->{CodeVar_aptitude}),        
                 utf8_decode($parsed_json->{resultat_aptitude_fr}->{AptitudeMesure}),
                 utf8_decode($parsed_json->{resultat_aptitude_fr}->{ValeurCaractNum}),
                 utf8_decode($parsed_json->{resultat_aptitude_fr}->{UniteMesure}),
@@ -169,7 +171,7 @@ switch ($section) {
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{resultat_aptitude_en}->{CodeAptitude}),
-                utf8_decode($parsed_json->{resultat_aptitude_en}->{CodeVar_selection_aptitude}), 
+                utf8_decode($parsed_json->{resultat_aptitude_en}->{CodeVar_aptitude}), 
                 utf8_decode($parsed_json->{resultat_aptitude_en}->{AptitudeMesure}),
                 utf8_decode($parsed_json->{resultat_aptitude_en}->{ValeurCaractNum}),
                 utf8_decode($parsed_json->{resultat_aptitude_en}->{UniteMesure}),
@@ -247,14 +249,14 @@ switch ($section) {
             $labeljson = array(
                 utf8_decode($parsed_json->{resultat_partenaire_fr}->{Title}),
                 utf8_decode($parsed_json->{resultat_partenaire_fr}->{CodePartenaire}),
-                utf8_decode($parsed_json->{resultat_partenaire_fr}->{SiglePartenaire}),
+                utf8_decode($parsed_json->{resultat_partenaire_fr}->{siglePartenaire}),
                 utf8_decode($parsed_json->{resultat_partenaire_fr}->{NomPartenaire}),
                 utf8_decode($parsed_json->{resultat_partenaire_fr}->{SectionRegionaleENTAV}));
         } else if ($langue == "EN") {
             $labeljson = array(
                 utf8_decode($parsed_json->{resultat_partenaire_en}->{Title}),
                 utf8_decode($parsed_json->{resultat_partenaire_en}->{CodePartenaire}),
-                utf8_decode($parsed_json->{resultat_partenaire_en}->{SiglePartenaire}),
+                utf8_decode($parsed_json->{resultat_partenaire_en}->{siglePartenaire}),
                 utf8_decode($parsed_json->{resultat_partenaire_en}->{NomPartenaire}),
                 utf8_decode($parsed_json->{resultat_partenaire_en}->{SectionRegionaleENTAV}));
         }

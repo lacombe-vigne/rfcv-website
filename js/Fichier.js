@@ -36,17 +36,19 @@ $(document).ready(function () {
     var Code = CodeSection["code"];
     var Section = CodeSection["section"];
     console.log(Section);
-    $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
     if (Section == "espece") {
+        $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('#chemin_ficheEsp').append('<span id="codeEsp">'+Code+'</span>');
         $('#chemin_ficheEsp').css('font-weight', 'bold'); // cette caractéristique permet de montrer à l'utisateur ou il se situe
     } else if (Section == "variete") {
+        $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('<li id="chemin_ficheVar"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('#chemin_ficheVar').css('font-weight', 'bold');
         $('#chemin_ficheVar').append('<span id="codeVar">'+Code+'</span>');
         var CodeEsp = recupererCode(Code, Section);
     } else if (Section == "accession") {
+        $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $('<li id="chemin_ficheVar"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
         $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
@@ -55,11 +57,17 @@ $(document).ready(function () {
         $('#chemin_ficheAcc').append('<span id="codeAcc">'+Code+'</span>');
         var Codes = recupererCode(Code, Section);
     } else { // Une autre section comme emplacement par exemple
-        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $('<li id="chemin_ficheVar"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        $('<li id="chemin_ficheAcc"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
-        var Codes = recupererCode(Code, Section);
+        if(($('#recherche').val() == "SearchA" || $('#recherche').val() == "Selection") && (Section == "site" || Section == "partenaire")){
+            console.log("oktamer");
+        } else {
+            $('<li id="chemin_ficheEsp"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+            $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+            $('<li id="chemin_ficheVar"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+            $(icone).insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+            $('<li id="chemin_ficheAcc"></li>').insertAfter(($('div[class="chemin"] ul li:nth-child(' + (i++) + ')')));
+            var Codes = recupererCode(Code, Section);
+        }
+        
         /*console.log($('chemin_ficheAcc').html());
         if($('chemin_ficheAcc').html() == undefined){
             $('li img:last-child').eq(-2).remove();
@@ -188,11 +196,11 @@ $(document).ready(function () {
                                 }
                             }
                         });
-                        var chemin = $('.chemin').html(); //Cette variable permet de gérer le cas ou est sur une fiche partenaire/site.
-                        sessionStorage.setItem("chemin",chemin);
-                        //console.log(chemin);
                     }
                 }
+                var chemin = $('.chemin').html(); //Cette variable permet de gérer le cas ou est sur une fiche partenaire/site.
+                sessionStorage.setItem("chemin",chemin);
+                //console.log(chemin);
 
             },
             dataType: "json"
