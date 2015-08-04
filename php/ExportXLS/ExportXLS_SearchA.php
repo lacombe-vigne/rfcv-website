@@ -2,8 +2,8 @@
 /*
  * Ce fichier gère les exports xls lorsqu'on réalise une recherche avancée
  */
-require_once "writeexcel/class.writeexcel_workbook.inc.php"; // Recupère la librairie qui permet d'exporter en format xls
-require_once "writeexcel/class.writeexcel_worksheet.inc.php";
+require "writeexcel/class.writeexcel_workbook.inc.php"; // Recupère la librairie qui permet d'exporter en format xls
+require "writeexcel/class.writeexcel_worksheet.inc.php";
 $section = $_GET["section"]; // récupère la section
 session_start(); //Permet de récupérer le contenu des variables de session
 $langue = $_SESSION['language_Vigne'];

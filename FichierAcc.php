@@ -1,11 +1,21 @@
 <?php
+/*
+ * FichierAcc permet d'accéder à une fiche accession sans effectuer de recherche
+ */
 session_start();
 if ($_SESSION['page'] != "Fichier.php") {
     $_SESSION['page'] = "Fichier.php";
 } else {
     $_SESSION['page'] = "Fichier.php";
 }
-?>                        
+?>
+<?php
+if (!isset($_SESSION['language_Vigne'])) {
+    $_SESSION['language_Vigne'] = "FR";
+} else {
+    $_SESSION['language_Vigne'] = $_SESSION['language_Vigne'];
+}
+?>
 <!-- END SESSION+langue site -->
 
 <!-- BEGIN <head> -->
@@ -89,15 +99,14 @@ if ($_SESSION['page'] != "Fichier.php") {
 </div>
 <!-- END Page Content -->
 <?php
-$_SESSION['language_Vigne'] = "FR";
-    if ($_SESSION['language_Vigne'] == "FR") {
-        include('php/web_style_fr.php');
-    } else if ($_SESSION['language_Vigne'] == "EN") {
-        include('php/web_style_en.php');
-    } else {
-        include('php/web_style_fr.php');
-    }
-    ?>
+if ($_SESSION['language_Vigne'] == "FR") {
+    include('php/web_style_fr.php');
+} else if ($_SESSION['language_Vigne'] == "EN") {
+    include('php/web_style_en.php');
+} else {
+    include('php/web_style_fr.php');
+}
+?>
 <script src="./js/FichierBis.js" type="text/javascript" charset=utf-8></script>
 <!-- Add fancyBox main JS and CSS files -->
 <script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>

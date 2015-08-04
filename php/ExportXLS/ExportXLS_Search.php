@@ -2,8 +2,8 @@
 /*
  * Ce fichier gère les exports xls lorsqu'on réalise une recherche simple
  */
-require_once "writeexcel/class.writeexcel_workbook.inc.php";
-require_once "writeexcel/class.writeexcel_worksheet.inc.php";
+require "writeexcel/class.writeexcel_workbook.inc.php";
+require "writeexcel/class.writeexcel_worksheet.inc.php";
 $section = $_GET["section"];
 $name = "search"."_".$section.".xls"; // nomme le fichier xls
 $fname = tempnam("/tmp", $name);

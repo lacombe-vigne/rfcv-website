@@ -2,8 +2,8 @@
 /*
  * Ce fichier gère les exports xls sur les fiches d'une variété
  */
-require_once "writeexcel/class.writeexcel_workbook.inc.php";
-require_once "writeexcel/class.writeexcel_worksheet.inc.php";
+require "writeexcel/class.writeexcel_workbook.inc.php";
+require "writeexcel/class.writeexcel_worksheet.inc.php";
 $section = $_GET["section"]; // récupère la section que l'on va exporter
 session_start(); //Permet de récupérer le contenu des variables de session
 $langue = $_SESSION['language_Vigne']; // récupère la langue actuelle de la page web

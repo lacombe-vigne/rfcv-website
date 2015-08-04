@@ -2,8 +2,8 @@
 /*
  * Ce fichier gère les exports xls sur les fiches d'une espèce
  */
-require_once "writeexcel/class.writeexcel_workbook.inc.php";
-require_once "writeexcel/class.writeexcel_worksheet.inc.php";
+require "writeexcel/class.writeexcel_workbook.inc.php";
+require "writeexcel/class.writeexcel_worksheet.inc.php";
 session_start(); //Permet de récupérer le contenu des variables de session
 $langue = $_SESSION['language_Vigne']; // langue de la page web
 $json = file_get_contents('../../json/search.json');

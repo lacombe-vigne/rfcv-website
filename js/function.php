@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Function.php est un fichier qui contient principalement du JS/JQUERY
+Mais qui a une extension php car il fallait récupérer la variable 
+de session qui contient la langue du site
 -->
 <html>
     <head>
@@ -5582,12 +5582,13 @@ and open the template in the editor.
 			var search=$("#search_value").val();
 			var model=$("#model_value").val();
 			//var langue=value.langue;
-			var page_espece=$('#espece_curpage_value').val();
-			var pagesize_espece=$('#select_pagesize_espece').val();	
-			var page_variete=$('#variete_curpage_value').val();
-			var pagesize_variete=$('#select_pagesize_variete').val();
-			var page_accession=$('#accession_curpage_value').val();
-			var pagesize_accession=$('#select_pagesize_accession').val();	
+                        var langue= langue || "<?php echo $langue ?>";
+                        var page_espece=$('#espece_curpage_value').val() || 1;
+                        var pagesize_espece=$('#select_pagesize_espece').val() || 20;	
+                        var page_variete=$('#variete_curpage_value').val() || 1;
+                        var pagesize_variete=$('#select_pagesize_variete').val() || 20;
+                        var page_accession=$('#accession_curpage_value').val() || 1;
+                        var pagesize_accession=$('#select_pagesize_accession').val() || 20;	
 			var tri_espece_classname=$("#tri_espece_classname").val();
 			var tri_espece_section=$("#tri_espece_section").val();
 			var tri_espece_colone=$("#tri_espece_colone").val();

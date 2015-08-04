@@ -2,8 +2,8 @@
 /*
  * Ce fichier gère les exports xls lorsqu'on réalise une selection d'entité
  */
-require_once "writeexcel/class.writeexcel_workbook.inc.php"; // Fais appel à la librairie qui génère les xls
-require_once "writeexcel/class.writeexcel_worksheet.inc.php";
+require "writeexcel/class.writeexcel_workbook.inc.php"; // Fais appel à la librairie qui génère les xls
+require "writeexcel/class.writeexcel_worksheet.inc.php";
 require('../includes/bibliFonc.php'); //Accès à la base de données
 require('../includes/class_DAO_Bibilotheque.php'); //Accès aux requêtes SQL
 $section = $_GET["section"];

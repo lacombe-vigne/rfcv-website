@@ -1,11 +1,21 @@
 <?php
+/*
+ * FichierVar permet d'accéder à une fiche variété sans effectuer de recherche
+ */
 session_start();
 if ($_SESSION['page'] != "Fichier.php") {
     $_SESSION['page'] = "Fichier.php";
 } else {
     $_SESSION['page'] = "Fichier.php";
 }
-?>                        
+?>
+<?php
+if (!isset($_SESSION['language_Vigne'])) {
+    $_SESSION['language_Vigne'] = "FR";
+} else {
+    $_SESSION['language_Vigne'] = $_SESSION['language_Vigne'];
+}
+?>
 <!-- END SESSION+langue site -->
 
 <!-- BEGIN <head> -->
@@ -27,10 +37,10 @@ if ($_SESSION['page'] != "Fichier.php") {
         <div class="langue">
             <ul>
                 <?php
-                    $_SESSION["CodeVar2"] = $_GET["code"];
-                    $code = $_POST['CodeVar'];
-                    $section = 'variete';
-                    $rech = "";
+                $_SESSION["CodeVar2"] = $_GET["code"];
+                $code = $_POST['CodeVar'];
+                $section = 'variete';
+                $rech = "";
                 echo'
 								<li><a id="langue_fr" onclick="$.fichier_langue(\'FR\',\'' . $code . '\',\'' . $section . '\',\'' . $rech . '\')"><img src="images/french.png"/></a></li>
 								<li><a id="langue_en" onclick="$.fichier_langue(\'EN\',\'' . $code . '\',\'' . $section . '\',\'' . $rech . '\')"><img src="images/english.png"/></a></li>
@@ -86,15 +96,14 @@ if ($_SESSION['page'] != "Fichier.php") {
 </div>
 <!-- END Page Content -->
 <?php
-$_SESSION['language_Vigne'] = "FR";
-    if ($_SESSION['language_Vigne'] == "FR") {
-        include('php/web_style_fr.php');
-    } else if ($_SESSION['language_Vigne'] == "EN") {
-        include('php/web_style_en.php');
-    } else {
-        include('php/web_style_fr.php');
-    }
-    ?>
+if ($_SESSION['language_Vigne'] == "FR") {
+    include('php/web_style_fr.php');
+} else if ($_SESSION['language_Vigne'] == "EN") {
+    include('php/web_style_en.php');
+} else {
+    include('php/web_style_fr.php');
+}
+?>
 <script src="./js/FichierBis.js" type="text/javascript" charset=utf-8></script>
 <!-- Add fancyBox main JS and CSS files -->
 <script type="text/javascript" src="./js/jquery.fancybox.js?v=2.1.5"></script>
