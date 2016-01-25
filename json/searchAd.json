@@ -3,7 +3,7 @@
 		{
 			"title_recherche_avancee":"Recherche avancée",
 			"fieldset_conditions_legend":"Choix des critères de recherche",
-			"titile_section":"Section",
+			"titile_section":"Thème",
 			"titile_Champ":"Information",
 			"titile_Modele":"Opérateur",
 			"titile_Condition":"Critère",
@@ -23,8 +23,8 @@
 	"page_principale_en":
 		{
 			"title_recherche_avancee":"Advanced search",
-			"fieldset_conditions_legend":"Selection of search criteria",
-			"titile_section":"Section",
+			"fieldset_conditions_legend":"Criteria selection",
+			"titile_section":"Topic",
 			"titile_Champ":"Information",
 			"titile_Modele":"Operator",
 			"titile_Condition":"Criterion",
@@ -128,7 +128,7 @@
 			"NomVar":"Variety name",
 			"SynoMajeur":"Main synonym",
 			"CodeType":"Type",
-			"UniteVar":"Unity",
+			"UniteVar":"Unit",
 			"Utilite":"Use",
 			"PaysOrigine":"Country origin",
 			"RegionOrigine":"Region",
