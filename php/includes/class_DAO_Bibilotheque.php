@@ -1933,13 +1933,15 @@ class BibliothequeDAO {
             $contents = array();
             for ($i = 0; $i < (mysql_num_rows($resultat)); $i = $i + 1) {
                 $dico = mysql_fetch_assoc($resultat);
-                if($langue = "FR"){
+                if($langue == "FR"){
                     $nomcarac = $dico['NomCaract'];
+                    $unitecarac = $dico['UniteCaract'];
                 } else {
                     $nomcarac = $dico['JY_NomCaract_en'];
+                    $unitecarac = $dico['UniteCaract_en'];
                 }
                 $date = $dico['JourExpe'] . '/' . $dico['MoisExpe'] . '/' . $dico['AnneeExpe'];
-                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
+                $APT = new Aptitude($dico['CodeAptitude'], $dico['CodeVar'], $nomcarac, $dico['ValeurCaractNum'], $unitecarac, $dico['Ponderation'], $date, $dico['CodeSite'], $dico['CodePartenaire'], $dico['CodeAptitude'], $dico['NomVar'], $dico['CodeVar'], $dico['NomIntro'], $dico['CodeIntro'], $nomcarac, $dico['ValeurCaractNum'], $dico['UniteCaract'], $dico['Ponderation'], $dico['CodePersonneExpe'], $dico['CodePartenaire'], $dico['CodePartenaire'], $dico['JourExpe'], $dico['MoisExpe'], $dico['AnneeExpe'], $dico['LieuExpe'], $dico['CodeSite'], $dico['CodeSite'], $dico['CodeEmplacemExpe']);
                 $content = supprNull($APT->getListeAptitude());
                 array_push($contents, $content);
             }
