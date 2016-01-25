@@ -22,7 +22,7 @@
 			"model_tous":"All grapevines",
 			"model_especes":"Species",
 			"model_varietes":"Varieties",
-			"model_accession":"Accessions / clons",
+			"model_accession":"Accessions / clones",
 			"button":"Search"
 		},
 	"search_notice_fr":
@@ -33,7 +33,7 @@
 	"search_notice_en":
 		{
 			"title":"WARNING: ",
-			"contents":"The information disseminated are the property of the Network's Partners. Total or partial copy can not be done without the agreement of the leaders of the Network. Any citation of the database or the information disseminated must mention credit \"Database Network of French Vine Conservatories © INRA-SupAgro IFV-2005-2015\" and the names of Partners owners of the data used. Users are solely responsible for the searches they formulate as well as the interpretation and use they make of the results."
+			"contents":"The information disseminated are the property of the Network's Partners. Total or partial copy can not be done without the agreement of the leaders of the Network. Any citation of the database or the information disseminated must mention credit \"Database Network of French Vine Conservatories © INRA-SupAgro IFV-2005-2015\" and the names of Partners owners of the data used. Users are solely responsible for the searches they formulate as well as for the interpretation and use they make of the results."
 		},
 	"resultat_espece_fr":
 		{
