@@ -97,28 +97,6 @@ if ($_SESSION['language_Vigne'] == "FR") {
     include('php/web_style_fr.php');
 }
 ?>
-    <script src="./js/advertisement.js" type="text/javascript" charset=utf-8></script>
-    <script type="text/javascript">
-        $(function () {
-            if ($.ads == undefined) {
-                $.getJSON("./json/message.json", function (data) {
-                    $.each(data, function (key, value) {
-                        if ($('#mainMenu_Home').val() == "Accueil") {
-                            if(key==="Adblock_fr"){
-                                var message = value;
-                                alert(message);
-                            }
-                        } else if ($('#mainMenu_Home').val() == "Home") {
-                            if(key==="Adblock_en"){
-                                var message = value;
-                                alert(message);
-                            }
-                        }
-                    });
-                });
-            }
-        });
-    </script>
 </body>
 
 </html>
