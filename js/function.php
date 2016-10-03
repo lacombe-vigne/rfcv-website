@@ -12375,7 +12375,7 @@ de session qui contient la langue du site
         * Permet d'ajouter autant de conditiion que l'on souhaite
          */
 		function(){
-                        $.getJSON("json/searchAd.json",function(data){
+                        $.getJSON("json/searchPlus.json",function(data){
                             $.each(data,function(key, value){
 				if($('#mainMenu_Home').val()==="Accueil"){
                                     if(key==="section_fr"){
@@ -12503,7 +12503,7 @@ de session qui contient la langue du site
 	$.extend({'sup_condition':
 		function(id_number){
 			if(id_number!=1){
-                            $.getJSON("./json/searchAd.json",function(data){
+                            $.getJSON("./json/searchPlus.json",function(data){
                                 $.each(data,function(key, value){
                                     if($('#mainMenu_Home').val()==="Accueil") {
                                         if(key==="page_principale_fr"){
@@ -12541,7 +12541,7 @@ de session qui contient la langue du site
                                 });
                             });    
 			} else {
-                            $.getJSON("./json/searchAd.json",function(data){
+                            $.getJSON("./json/searchPlus.json",function(data){
                                 $.each(data,function(key, value){
                                     if($('#mainMenu_Home').val()==="Accueil") {
                                         if(key==="page_principale_fr"){
@@ -12564,7 +12564,7 @@ de session qui contient la langue du site
 			
 			var section=$('#section_'+id_number).val();
 			if(section==="Espece"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					
 					$.each(data,function(key, value){
 						
@@ -12595,7 +12595,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Variete"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==='champ_variete_fr'){
@@ -12655,7 +12655,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Accession"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_accession_fr"){
@@ -12703,7 +12703,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Emplacement"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_emplacement_fr"){
@@ -12739,7 +12739,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Sanitaire"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_sanitaire_fr"){
@@ -12777,7 +12777,7 @@ de session qui contient la langue du site
 				charge_champ_Morphologique(langue,id_number);
 			}
 			if(section==="Aptitude"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_aptitude_fr"){
@@ -12805,7 +12805,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Phototheque"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_phototheque_fr"){
@@ -12835,7 +12835,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Documentation"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_documentation_fr"){
@@ -12865,7 +12865,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Bibliographie"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_bibliographie_fr"){
@@ -12895,7 +12895,7 @@ de session qui contient la langue du site
 				
 			}
 			if(section==="Partenaire"){
-				$.getJSON("json/searchAd.json",function(data){
+				$.getJSON("json/searchPlus.json",function(data){
 					$.each(data,function(key, value){
 						if($('#mainMenu_Home').val()==="Accueil"){
 							if(key==="champ_partenaire_fr"){
@@ -12945,7 +12945,7 @@ de session qui contient la langue du site
 			console.log(champ);
 			if(section==="Espece"){
 				if(champ!='indifferent'){
-					$.getJSON("json/searchAd.json",function(data){
+					$.getJSON("json/searchPlus.json",function(data){
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
@@ -12987,7 +12987,7 @@ de session qui contient la langue du site
 			if(section==="Variete"){
 				if(champ!='indifferent'){
 					if(champ==="CodeVar" || champ==="NomVar" || champ==="SynoMajeur" || champ==="Obtenteur" ||champ==="MereObt" || champ==="PereObt" ){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13022,7 +13022,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13062,7 +13062,7 @@ de session qui contient la langue du site
 			if(section==="Accession"){
 				if(champ!='indifferent'){
 					if(champ==="PaysProvenance"||champ==="Statut"||champ==="UniteIntro"||champ==="RegionProvenance"||champ==="DepartProvenance"||champ==="Agrement"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13085,7 +13085,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13129,7 +13129,7 @@ de session qui contient la langue du site
 			if(section==="Emplacement"){
 				if(champ!='indifferent'){
 					if(champ==="CodeSite"||champ==="Parcelle"||champ==="Rang"||champ==="TypeSouche"||champ==="PremiereSouche"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13152,7 +13152,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13196,7 +13196,7 @@ de session qui contient la langue du site
 			}
 			if(section==="Morphologique"){
 				if(champ!='indifferent'){
-					$.getJSON("json/searchAd.json",function(data){
+					$.getJSON("json/searchPlus.json",function(data){
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
@@ -13239,7 +13239,7 @@ de session qui contient la langue du site
 			if(section==="Sanitaire"){
 				if(champ!='indifferent'){
 					// if(champ!="Date"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13283,7 +13283,7 @@ de session qui contient la langue du site
 			}
 			if(section==="Phototheque"){
 				if(champ!='indifferent'){
-					$.getJSON("json/searchAd.json",function(data){
+					$.getJSON("json/searchPlus.json",function(data){
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
@@ -13316,7 +13316,7 @@ de session qui contient la langue du site
 			if(section==="Documentation"){
 				if(champ!='indifferent'){
 					if(champ=="TypeDoc"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13339,7 +13339,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13383,7 +13383,7 @@ de session qui contient la langue du site
 			if(section==="Bibliographie"){
 				if(champ!='indifferent'){
 					if(champ=="TypeDoc"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13406,7 +13406,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13450,7 +13450,7 @@ de session qui contient la langue du site
 			if(section==="Partenaire"){
 				if(champ!='indifferent'){
 					if(champ!="NomPartenaire"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13473,7 +13473,7 @@ de session qui contient la langue du site
 							
 						});
 					}else{
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13516,7 +13516,7 @@ de session qui contient la langue du site
 			}
 			if(section==="Genetique"){
 				if(champ!='indifferent'){
-					$.getJSON("json/searchAd.json",function(data){
+					$.getJSON("json/searchPlus.json",function(data){
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
@@ -13554,7 +13554,7 @@ de session qui contient la langue du site
 			}
 			if(section==="Morphologique"){
 				if(champ!='indifferent'){
-					$.getJSON("json/searchAd.json",function(data){
+					$.getJSON("json/searchPlus.json",function(data){
 						$.each(data,function(key, value){
 							if($('#mainMenu_Home').val()==="Accueil"){
 								if(key==="model_fr"){
@@ -13587,7 +13587,7 @@ de session qui contient la langue du site
 			if(section==="Aptitude"){
 				if(champ!='indifferent'){
 					if(champ!="ValeurCaractNum" && champ!="Date"){
-						$.getJSON("json/searchAd.json",function(data){
+						$.getJSON("json/searchPlus.json",function(data){
 							$.each(data,function(key, value){
 								if($('#mainMenu_Home').val()==="Accueil"){
 									if(key==="model_fr"){
@@ -13611,7 +13611,7 @@ de session qui contient la langue du site
 						});
 					}else{
 						if(champ!="Date"){
-							$.getJSON("json/searchAd.json",function(data){
+							$.getJSON("json/searchPlus.json",function(data){
 								$.each(data,function(key, value){
 									if($('#mainMenu_Home').val()==="Accueil"){
 										if(key==="model_fr"){
@@ -13644,7 +13644,7 @@ de session qui contient la langue du site
 								
 							});
 						}else{
-							$.getJSON("json/searchAd.json",function(data){
+							$.getJSON("json/searchPlus.json",function(data){
 								$.each(data,function(key, value){
 									if($('#mainMenu_Home').val()==="Accueil"){
 										if(key==="model_fr"){
@@ -13822,7 +13822,7 @@ de session qui contient la langue du site
 			console.log(dataString);
 			searchAdvance(dataString);
 		}
-                $.getJSON("./json/searchAd.json",function(data){
+                $.getJSON("./json/searchPlus.json",function(data){
 			$.each(data,function(key, value){
 				if(langue=="FR") {
 					if(key==="page_principale_fr"){
@@ -13958,7 +13958,7 @@ de session qui contient la langue du site
 			console.log(dataString);
 			searchAdvance(dataString);
 		}
-                $.getJSON("./json/searchAd.json",function(data){
+                $.getJSON("./json/searchPlus.json",function(data){
 			$.each(data,function(key, value){
 				if(langue=="FR") {
 					if(key==="page_principale_fr"){

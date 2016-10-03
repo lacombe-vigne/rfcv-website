@@ -812,7 +812,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	$.getJSON("./json/searchAd.json",function(data){
+	$.getJSON("./json/searchPlus.json",function(data){
 		$.each(data,function(key, value){
 			if(key==="page_principale_fr"){
 				$('#title_recherche_avancee').append(value.title_recherche_avancee);
