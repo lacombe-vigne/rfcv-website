@@ -1,2 +1,3 @@
-Conception et développement : Y. Jin, JF. Ramos, C. Sereno, T. Lacombe.
-Collaborations et remerciements : R. Aliaga, P. Chatelet, JM. Boursiquot, T. Flutre, C. Goby, G. Sarah, Ph. Naudin.
+Thierry Lacombe
+Emilie Jin
+Jean-François Ramos
