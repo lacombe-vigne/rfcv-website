@@ -1648,7 +1648,7 @@ class BibliothequeDAO {
             echo "<script>alert('erreur de base de donnes')</script>";
             exit;
         }
-        if (mysql_num_rows(resultat_variete) == 0) {
+        if (mysql_num_rows($resultat_variete) == 0) {
             $nombreDeResultatPossibleVarietes = 0;
             $variete['nombreDeResultatPossible'] = $nombreDeResultatPossibleVarietes;
             $variete['page']['pagetotal'] = 1;
