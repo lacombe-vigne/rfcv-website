@@ -1,10 +1,12 @@
+<?php
+session_start();
+?>
 <html>
 	<!-- BEGIN SESSION+langeu site -->
 	<?php
 		//include('connection_bbd/connection_bbd.php');
 		//connexionBbd();
-		
-		session_start();
+
 		$langue=$_GET['l'];
 		
 			if(isset($langue)){

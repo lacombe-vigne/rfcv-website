@@ -1,8 +1,10 @@
+<?php
+session_start();
+?>
 <html>
 	<!-- BEGIN SESSION+langue site -->
 	<?php
-		
-		session_start();
+
 		$langue=$_GET['l'];
 		
 			if(isset($langue)){
